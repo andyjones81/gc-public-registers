@@ -1,0 +1,416 @@
+// This has started to be split into pattern files and BEM format. 
+// Speak to Andy Williams-Jones if you change this
+
+$black: #0b0c0c;
+$grey-1: #6f777b;
+$grey-2: #bfc1c3;
+$grey-3: #dee0e2;
+$grey-4: #f8f8f8;
+$white: #fff;
+$yellow: #ffbf47;
+//GC Custom colors
+$gclightgrey: #f5f5f5;
+$gcmercury: #e7e6e5;
+$gcebony: #242e46;
+$gcebonyshade: #3d4d76;
+$gccopper: #964c54;
+$gcscorpion: #5e5e5e;
+$white: #ffffff;
+$black: #000000;
+$jaffa: #eb6a36;
+$gcviolet: #9c1482;
+$gcapple: #669734;
+
+$govuk-blue: #005ea5;
+
+
+
+.gc-pull-right {
+  float: right;
+}
+
+.gc-clear-left {
+  clear: left !important;
+}
+
+.gc-text-grey {
+  color: govuk-colour(grey-1)
+}
+
+.gc-logo-image {
+  max-width: 200px;
+}
+
+.attachment-thumb img {
+  border: 1px solid $grey-3;
+}
+
+.gc-tag {
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
+  font-size: 14px;
+  font-size: 0.87rem;
+  line-height: 1.25;
+  display: inline-block;
+  padding: 4px 8px;
+  padding-bottom: 1px;
+  outline: 2px solid #005ea5;
+  outline-offset: -2px;
+  color: #005ea5;
+  background-color: #ffffff;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media all and (min-width:40.06em) {
+  .gc-tag {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+}
+
+.gc-button-secondary {
+  box-shadow: 0px 2px 0px govuk-colour(grey-1);
+  background: govuk-colour(grey-2);
+  color: #000000 !important;
+}
+
+.gc-button-secondary:hover {
+  box-shadow: 0px 2px 0px govuk-colour(grey-1);
+  background: rgba(191, 193, 195, 0.7);
+}
+
+.gc-panel {
+  padding: 20px;
+  margin: 0px 0px 30px 0px;
+  border: 5px solid govuk-colour(grey-1);
+}
+
+.gc-panel--complete {
+  border-color: govuk-colour(green)
+}
+
+.gc-panel--info {
+  border-color: #005ea5
+}
+
+.gc-panel p:last-of-type {
+  margin-bottom: 0px
+}
+
+.gc-panel-card {
+  margin-bottom: 36px;
+  background-color: $grey-4;
+  border: 1px solid $grey-2;
+  box-shadow: 2px 2px 8px 0px $grey-1;
+}
+
+.gc-panel-card--noshadow {
+  box-shadow: none;
+  border: 1px solid $grey-2
+}
+
+.gc-panel-card--history {
+  margin-bottom: 36px;
+  background-color: $white;
+  border: 2px solid $grey-2;
+  box-shadow: none;
+}
+
+.gc-panel-card-min-height {
+  min-height: 200px;
+  height: 200px;
+}
+
+.gc-panel-card__link-wrapper {
+  background-color: $grey-4;
+
+  display: block;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+}
+
+.gc-panel-card__meta {
+  font-size: 12pt !important;
+  font-weight: 400;
+  text-align: right;
+}
+
+
+.gc-panel-card__content {
+  padding: 5px 30px;
+}
+
+.gc-panel-card__count {
+  font-size: 50pt;
+}
+
+.gc-panel-card__link-wrapper:hover {
+  background-color: $grey-4;
+  box-shadow: 0 0 0 4px $yellow;
+  text-decoration: none;
+}
+
+.gc-panel-card__link-wrapper:hover .gc-panel-card__heading {
+  text-decoration: underline;
+}
+
+.gc-panel-card--history .gc-panel-card__heading,
+.gc-panel-card--history .gc-panel-card__description,
+.gc-panel-card--history .gc-panel-card__meta {
+  color: $grey-1 !important;
+}
+
+.gc-panel--information {
+  border: 5px solid $govuk-blue;
+  padding: 15px;
+  box-shadow: none;
+  background: $white
+}
+
+.gc-panel--success {
+  border: 5px solid $gcapple;
+  padding: 15px;
+  box-shadow: none;
+  background: $white
+}
+
+.gc-panel--warning {
+  border: 5px solid $govuk-error-colour;
+  padding: 15px;
+  box-shadow: none;
+  background: $white
+}
+
+
+.govuk-template__body {
+  background: $white;
+}
+
+.govuk-template {
+  background: $grey-3;
+}
+
+.govuk-header {
+  background: $gcebony;
+  padding: 10px 0 15px 0;
+  // border-bottom: none;
+  // margin-bottom: none;
+  border-bottom: 10px solid $gcebonyshade
+}
+
+.govuk-footer {
+  background: $grey-3;
+  border-top: 5px solid $gcebony;
+}
+
+.govuk-footer .govuk-footer__link,
+.govuk-footer__licence-logo,
+.govuk-footer__licence-description {
+  color: $black;
+}
+
+.govuk-footer .govuk-footer__link:focus {
+  color: $black;
+}
+
+.govuk-header__container {
+  border-bottom: none;
+}
+
+.govuk-header__link--service-name {
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 0px;
+  font-weight: 700;
+}
+
+.govuk-template__body {
+  margin: 0;
+  background-color: $white;
+}
+
+
+.card {
+
+  margin-bottom: 2em;
+}
+
+@media screen and (min-width:600px) and (max-width:900px) {
+  .card {
+    flex-basis: 45.99%; // Every card in the first row needs horizontal margin
+
+    &:nth-child(2n-1) {
+      margin-right: 3%;
+    }
+
+    // Every card in the second row needs horizontal margin
+    &:nth-child(2n-2) {
+      margin-left: 3%;
+    }
+  }
+}
+
+@media screen and (min-width:900px) {
+  .card {
+    flex-basis: 31%;
+
+    &:nth-child(3n-1) {
+      margin-left: 3%;
+      margin-right: 3%;
+    }
+  }
+}
+
+html[data-useragent*='MSIE 10.0'] .flex-container {
+  .card {
+    flex-basis: 31%;
+    margin: 3%;
+  }
+}
+
+.card {
+  border: 1px solid $grey-3;
+  font-size: 16px;
+  min-height: 270px;
+  // max-height: 300px;
+}
+
+.card .inactive {
+  color: $grey-1;
+}
+
+.card .card-heading {
+  margin-top: 0;
+}
+
+.card .card-body {
+  border-bottom: 1px solid $grey-3;
+  padding: 12px;
+  background: $grey-3;
+  min-height: 120px;
+  // max-height: 150px;
+}
+
+.card .card-body:last-child {
+  margin-bottom: 0;
+}
+
+.card .card-body .detail-large {
+  color: $grey-1;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.card .card-body .detail {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.card-body.active {
+  background-color: $grey-4;
+  transition: .1s ease-in-out;
+}
+
+.card-action {
+  border-top: 0;
+  padding: 12px;
+
+  ul {
+    margin: 0;
+
+    li {
+      margin: 0 0 10px 0;
+
+      a {
+        font-size: 16px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.card-body.active.highlighted {
+  background-color: $govuk-blue;
+  color: $white;
+  transition: .1s ease-in-out;
+  transition-delay: .25s;
+
+  .card-heading,
+  p,
+  span {
+    color: $white;
+    transition: .1s ease-in-out;
+    transition-delay: .25s;
+  }
+
+  .card-heading a {
+    color: $white;
+    transition-delay: .25s;
+  }
+
+  .detail-large {
+    color: $white;
+    transition-delay: .25s;
+  }
+
+}
+
+
+
+
+.card-body.active {
+  &:hover {
+    transition: .1s ease-in-out;
+    transition-delay: .25s;
+
+    .card-heading,
+    p,
+    span {
+      transition: .1s ease-in-out;
+      transition-delay: .25s;
+    }
+
+    .card-heading a {
+      transition-delay: .25s;
+    }
+
+    .detail-large {
+      transition-delay: .25s;
+    }
+
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+
+.gc-list--alpha {
+  list-style-type: lower-alpha;
+  margin-left: 22px;
+}
+
+.gc-table__row--total {
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+
+  .govuk-table__cell {
+    font-weight: 700
+  }
+}
+
+.gc-table__meta{
+  font-weight: 400;
+  color: $grey-1;
+}

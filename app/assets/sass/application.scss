@@ -1,0 +1,318 @@
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+$gcapple-dark: #4D7227;
+// Path to assets for use with the file-url function
+// in the govuk frontend toolkit's url-helpers partial
+$path: "/public/images/";
+
+//Import GOV.UK Frontend
+@import "node_modules/govuk-frontend/all";
+
+//Variables specific to Blue Badge
+
+@import "variables";
+
+// Patterns that aren't in Frontend
+@import "patterns/_check-your-answers";
+@import "patterns/_task-list";
+@import "patterns/_related-items";
+
+.code {
+  color: $govuk-text-colour;
+  background-color: govuk-colour(grey-4);
+
+  text-shadow: 0 1px govuk-colour(white);
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+  border: 1px solid $govuk-border-colour;
+  padding: 4px 4px 2px;
+}
+
+
+// Take a look at in app/assets/sass/patterns/ to see which files are imported.
+// @import 'patterns/check-your-answers';
+// @import 'patterns/task-list';
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+@import 'patterns/sign-in';
+@import 'patterns/admin';
+@import 'patterns/cropper';
+@import 'patterns/candidate';
+@import 'patterns/guidance';
+@import 'patterns/autocomplete';
+@import 'patterns/header';
+@import 'patterns/govuk-panels';
+@import "components/_cookie-banner";
+@import "patterns/gc-core";
+
+.text-right{text-align: right;}
+
+
+.gc-product-page{
+margin-top:20px;
+margin-bottom: -20px;
+background: $gcebonyshade;
+  .govuk-breadcrumbs__list-item,
+  .govuk-breadcrumbs__link,
+  .govuk-heading-l,
+  .govuk-heading-m,
+  .govuk-body-l,
+  .govuk-body,
+  .govuk-label,
+  .govuk-link, a
+  {color: #fff}
+}
+
+.gc-panel-card-min-height{height: 170px; min-height: 170px;}
+
+
+// Search
+
+.gc-register-search * {
+  box-sizing: border-box;
+}
+
+.gc-register-search form {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.gc-register-search form .inner-form {
+  background: $white;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center;
+  // border: 2px solid $grey-1;
+  // box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+.gc-register-search form .inner-form .input-field {
+  height: 48px;
+}
+
+
+.gc-register-search form .inner-form .input-field input {
+  height: 100%;
+  background: transparent;
+  border: 0;
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: $black !important;
+}
+
+
+
+.gc-register-search form .inner-form .input-field input.placeholder {
+  color: $grey-1;
+  font-size: 16px;
+}
+
+.gc-register-search form .inner-form .input-field input:-moz-placeholder {
+  color: $grey-1;
+  font-size: 16px;
+}
+
+.gc-register-search form .inner-form .input-field input::-webkit-input-placeholder {
+  color: $grey-1;
+  font-size: 16px;
+}
+
+.gc-register-search form .inner-form .input-field input:hover,
+.gc-register-search form .inner-form .input-field input:focus {
+  box-shadow: 0 0 0 4px $yellow;
+
+}
+
+
+.gc-register-search form .inner-form .input-field.second-wrap {
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.gc-register-search form .inner-form .input-field.third-wrap {
+  width: 50px;
+  margin-left: 4px;
+}
+
+.gc-register-search form .inner-form .input-field.third-wrap .btn-search {
+  height: 100%;
+  width: 100%;
+  white-space: nowrap;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  background: $black;
+  transition: all .2s ease-out, color .2s ease-out;
+}
+
+.gc-register-search form .inner-form .input-field.third-wrap .btn-search svg {
+  width: 16px;
+}
+
+.gc-register-search form .inner-form .input-field.third-wrap .btn-search:hover {
+  background: $black;
+  box-shadow: 0 0 0 4px $yellow;
+}
+
+.gc-register-search form .inner-form .input-field.third-wrap .btn-search:focus {
+
+  box-shadow: 0 0 0 4px $yellow;
+}
+
+
+@media screen and (max-width: 992px) {
+  .gc-register-search form .inner-form .input-field {
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .gc-register-search form .inner-form {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .gc-register-search form .inner-form .input-field {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .gc-register-search form .inner-form .input-field input {
+    padding: 10px 15px;
+  }
+
+  .gc-register-search form .inner-form .input-field.first-wrap {
+    width: 100%;
+    border-right: 0;
+  }
+
+  .gc-register-search form .inner-form .input-field.first-wrap .choices__inner {
+    padding: 10px 15px;
+  }
+
+  .gc-register-search form .inner-form .input-field.first-wrap .choices[data-type*="select-one"]:after {
+    right: 11.5px;
+    border-color: #e5e5e5 transparent transparent transparent;
+  }
+
+  .gc-register-search form .inner-form .input-field.second-wrap {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .gc-register-search form .inner-form .input-field.second-wrap input {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .gc-register-search form .inner-form .input-field.third-wrap {
+    margin-bottom: 0;
+    width: 100%;
+  }
+}
+
+
+.table{
+  margin-bottom:30px
+}
+.table .panel{
+  margin:30px 0
+}
+.table td:last-child{
+  padding-right:15px
+}
+.table-scroll{
+  margin-bottom:30px;
+  overflow-x:auto;
+  width:100%
+}
+.register-data-table th,.register-data-table td{
+  font-size:16px;
+  padding:15px;
+  vertical-align:top
+}
+.register-data-table th a,.register-data-table td a{
+  white-space:nowrap
+}
+.register-data-table th p,.register-data-table td p{
+  margin:0
+}
+.register-data-table th{
+  background-color:#dee0e2;
+  border-bottom:0;
+  border-right:2px solid #fff;
+  font-weight:normal;
+  min-width:280px;
+  position:relative;
+  vertical-align:middle
+}
+.register-data-table th.start-date,.register-data-table th.end-date,.register-data-table th.review-date,.register-data-table th:first-child{
+  min-width:120px
+}
+.register-data-table td{
+  border:none
+}
+.register-data-table tr:nth-child(even) td{
+  background:#f8f8f8
+}
+.register-data-table .table-header.active{
+  background-color:#005ea5;
+  color:#fff;
+  font-weight:bold
+}
+.registers-secondary-table p{
+  margin:0;
+  font-size:16px;
+  text-align: left;
+}
+
+.registers-secondary-table__row{
+  border:1px solid #bfc1c3
+}
+.registers-secondary-table__header,.registers-secondary-table__cell{
+  background:#f8f8f8;
+  font-size:16px;
+  padding:0;
+  vertical-align:top;
+}
+.registers-secondary-table__header:last-child,.registers-secondary-table__cell:last-child{
+  padding-right:0;
+  width:66%
+}
+.registers-secondary-table__header{
+  background:#dee0e2
+}
+
+.registers-secondary-table__header p{
+  font-weight:bold;
+}
+.registers-secondary-table__caption p{
+  font-weight:normal;
+  padding:0 0 1em 0;
+  text-align: left;
+  font-size: 18px;
+}

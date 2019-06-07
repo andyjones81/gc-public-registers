@@ -1,0 +1,79 @@
+
+/*------------------------------------*\
+  Header
+\*------------------------------------*/
+
+// GOV.UK Frontend toolkit overides
+#adminTheme {
+  #global-header {
+    background: govuk-colour(black);
+    h3,
+    a, 
+    p {
+      color: white; 
+    }
+    a:visited {
+      color: white;
+    }
+    .header-proposition #proposition-menu {
+      margin-top: 5px;
+    }
+  }
+  .header-wrapper {
+    max-width: none !important;
+    padding: 15px !important;  
+    @include mq($from: tablet) {
+      padding: 15px 30px !important;  
+    }
+  }
+
+  .header-proposition {
+    .content {
+      margin: 0 !important;
+    }
+  }
+
+  // Component styleshttp://localhost:3000/
+
+  // .proposition {
+  //   display: inline-block;
+  //   > * {
+  //     @include govuk-font(19);
+  //     display: inline-block;
+  //     margin: 0;
+  //   }
+  // }
+
+  .proposition__service-name {
+    text-decoration: none;
+    font-weight: 600; 
+  }
+
+  .proposition__authority {
+    @include govuk-font(19);
+    margin: 0;
+    margin-left: 5px;
+    display: none;
+    @include mq($from: tablet) {
+      display: inline-block;
+    }
+  }
+
+  .proposition__version {
+    @include govuk-font(16);
+    margin-left: 5px;
+  }
+
+
+  .user-menu {
+    @include govuk-font(16);
+    margin-top: 4px;
+    float: right;
+    p {
+      @include govuk-font(16);
+      display: inline;
+      margin-right: 10px;
+    }
+  }
+
+}

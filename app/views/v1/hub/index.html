@@ -1,0 +1,144 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+<nav>
+    <ul id="navigation" class="govuk-header__navigation text-right" aria-label="Top Level Navigation">
+        <li class="govuk-header__navigation-item">
+            <a class="govuk-header__link" href="#1">
+                Registers
+            </a>
+        </li>
+        <li class="govuk-header__navigation-item">
+            <a class="govuk-header__link" href="/">
+                Documentation
+            </a>
+        </li>
+
+    </ul>
+</nav>
+
+{% endblock %}
+
+{% block pageTitle %}
+Registers
+{% endblock %}
+
+{% block headerInfo %}
+<section class="gc-product-page gc-product-page--header">
+    <div class="govuk-header__container govuk-width-container">
+
+    <!-- <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Parent</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Service name</li>
+      </ol>
+    </div> -->
+
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+                <h1 class="govuk-heading-l govuk-!-margin-top-6">Registers</h1>
+                <p class="govuk-body-l">Use the registers to find and download information relating to gambling licenses, premises and regulatory activity.</p>
+
+                <div class="gc-register-search">
+                        <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-0">Search</h2>
+
+                    <form method="GET" action="results">
+                      <label for="search" class="govuk-label">Name, licence number, activity, domain and trading names</label>
+                      <div class="inner-form govuk-!-margin-bottom-3">
+                        <div class="input-field second-wrap">
+                          <input id="search" name="search" type="text" placeholder="Search" />
+                        </div>
+                        <div class="input-field third-wrap">
+                          <button class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the register</span>
+                            <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search"
+                              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+              <p class="govuk-body"><a href="govuk-link">Advanced search</a></p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-heading-l">
+                Collections
+        </h2>
+
+    </div>
+
+</div>
+
+<div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+    
+            <div class="gc-panel-card gc-panel-card-min-height gc-panel-card--noshadow">
+              <a class="gc-panel-card__link-wrapper" href="/{{version}}/operator/summary">
+                <div class="gc-panel-card__content">
+                  <h3 class="gc-panel-card__heading">Operator register</h3>
+                      <p class="gc-panel-card__description">Businesses who hold a licence to operate a gambling business</p>
+                </div>
+              </a>
+            </div>
+        
+          </div>
+
+          <div class="govuk-grid-column-one-third">
+    
+            <div class="gc-panel-card gc-panel-card-min-height gc-panel-card--noshadow">
+              <a class="gc-panel-card__link-wrapper" href="#">
+                <div class="gc-panel-card__content">
+                  <h3 class="gc-panel-card__heading">Personal register</h3>
+                      <p class="gc-panel-card__description">Individuals who hold a personal licence to work in the gambling industry</p>
+                </div>
+              </a>
+            </div>
+        
+          </div>
+
+          <div class="govuk-grid-column-one-third">
+    
+                <div class="gc-panel-card gc-panel-card-min-height gc-panel-card--noshadow">
+                  <a class="gc-panel-card__link-wrapper" href="#">
+                    <div class="gc-panel-card__content">
+                      <h3 class="gc-panel-card__heading">Premises register</h3>
+                          <p class="gc-panel-card__description">Download of gambling premises</p>
+                    </div>
+                  </a>
+                </div>
+            
+              </div>
+
+              <div class="govuk-grid-column-one-third">
+    
+                    <div class="gc-panel-card gc-panel-card-min-height gc-panel-card--noshadow">
+                      <a class="gc-panel-card__link-wrapper" href="#">
+                        <div class="gc-panel-card__content">
+                          <h3 class="gc-panel-card__heading">Sanctions register</h3>
+                              <p class="gc-panel-card__description">Regulatory sanctions and actions taken by the Gambling Commission</p>
+                        </div>
+                      </a>
+                    </div>
+                
+                  </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "admin_layout.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Registers prototypes</h1>
+
+    <p class="govuk-body">These are prototypes for various registers provided by the Gambling Commission. They are to
+      test ideas and are not real services.</p>
+
+      <p class="govuk-body">You can view the <a href="/changelog">changelog</a> to see what's changed across versions.</p>
+
+    <h2 class="govuk-heading-m">Services</h2>
+
+    <ul class="govuk-list">
+      <li>
+        <a class="govuk-link" href="{{ data['version'] }}/hub/">Hub</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">Operator register</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">Personal licence register</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">Premises register</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">Sanctions register</a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

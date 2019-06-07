@@ -1,0 +1,28 @@
+/*------------------------------------*\
+  Typography
+\*------------------------------------*/
+
+h1 {
+  @include govuk-font(36, $weight: bold);
+  display: inline-block;
+  margin-top: 0;
+}
+
+.subtitle {
+  @include govuk-font(19);
+  margin-bottom: 5px;
+  color: govuk-colour(grey-1);
+}
+
+.count {
+  @include govuk-font(19);
+  display: inline-block;
+  color: govuk-colour(grey-1);
+  margin: 0;
+  margin-left: 5px;
+}
+
+.column-two-thirds h2:first-child,
+.column-one-third h2:first-child {
+  margin-top: 0;
+}

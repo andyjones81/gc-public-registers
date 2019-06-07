@@ -1,0 +1,165 @@
+/*------------------------------------*\
+  Side navigation
+\*------------------------------------*/
+
+// Component styles
+
+.side-nav {
+  @include govuk-font(19);
+  float: left;
+  background: govuk-colour(grey-3);
+  width: 100%;
+  color: $la-blue;
+  overflow: hidden;
+  @include mq($from: desktop) {
+    width: 300px;
+    height: calc(100vh - 45px);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  &.open {
+    height: auto;
+  }
+}
+
+.side-nav a {
+  text-decoration: none;
+  color: inherit;
+  &:focus {
+    background: none;
+    outline: none;
+  }
+}
+
+.side-nav__item {
+  display: none;
+  a {
+    display: block;
+    overflow: hidden;
+    padding: 15px;
+    position: relative;
+  }
+  @include mq($from: desktop) {
+    display: block;
+    a {
+      padding: 12px 20px 11px 30px;  
+    }
+    .counter {
+      top: 11px;
+    }
+  }
+  .open & {
+    display: block;
+  }
+  &.active {
+    display: block;
+    a {
+      background: darken($la-blue,15%);
+      color: white;
+      // &:after {
+      //   content: '';
+      //   width: 0;
+      //   height: 0;
+      //   border-style: solid;
+      //   border-width: 7px 8px 7px 0;
+      //   border-color: transparent #ffffff transparent transparent;
+      //   position: absolute;
+      //   right: 0; top: 50%;
+      //   margin-top: -7px;
+      // }
+    }
+  }
+  a:hover {
+    background: $la-blue;
+    color: white;
+    // &:after {
+    //   content: '';
+    //   width: 0;
+    //   height: 0;
+    //   border-style: solid;
+    //   border-width: 7px 8px 7px 0;
+    //   border-color: transparent #ffffff transparent transparent;
+    //   position: absolute;
+    //   right: 0; top: 50%;
+    //   margin-top: -7px;
+    // }
+  }
+}
+
+
+
+.side-nav__item__sub {
+  display: none;
+  a {
+    display: block;
+    overflow: hidden;
+    padding: 15px;
+    position: relative;
+  }
+  @include mq($from: desktop) {
+    display: block;
+    a {
+      background: govuk-colour(grey-4);
+      padding: 12px 20px 11px 40px;  
+    }
+    .counter {
+      top: 11px;
+    }
+  }
+  .open & {
+    display: block;
+  }
+  &.active {
+    display: block;
+    a {
+      background: $la-blue;
+      color: #ffffff;
+      &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7px 8px 7px 0;
+        border-color: transparent #ffffff transparent transparent;
+        position: absolute;
+        right: 0; top: 50%;
+        margin-top: -7px;
+      }
+    }
+  }
+  a:hover {
+    background: $la-blue;
+    color: white;
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 7px 8px 7px 0;
+      border-color: transparent #ffffff transparent transparent;
+      position: absolute;
+      right: 0; top: 50%;
+      margin-top: -7px;
+    }
+  }
+}
+
+.counter {
+  display: inline-block;
+  position: absolute;
+  right: 15px; top: 12px;
+  font-size: 14px;
+  background: darken(govuk-colour(grey-4),15%);
+  padding: 5px 5px 1px;
+  border-radius: 3px;
+  min-width: 16px;
+  text-align: center;
+  line-height: 1.4;
+  .active &, a:hover & {
+    color: white;
+    background: darken($la-blue,25%);
+  }
+}

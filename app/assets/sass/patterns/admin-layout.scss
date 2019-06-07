@@ -1,0 +1,45 @@
+#adminTheme {
+  background: white;
+  @include mq($from: tablet) {
+    overflow: hidden;
+  }
+}
+
+// body {
+//   overflow: hidden;
+// }
+
+a,
+a:visited {
+	color: $la-blue;
+}
+
+#adminContent {
+  @include govuk-font(16);
+  overflow: auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 15px;
+  max-width: none;
+  float: left;
+  margin: 0;
+  background: white;
+  @include mq($from: tablet) {
+    height: calc(100vh - 60px);
+  }
+  @include mq($from: desktop) {
+    width: calc(100% - 300px);
+    padding: 47px 60px;
+  }
+}
+
+
+
+  
+  @media only screen and (min-width: 1600px) {
+  
+    .content-wrapper {
+      max-width: 70%;
+    }
+    }
+  

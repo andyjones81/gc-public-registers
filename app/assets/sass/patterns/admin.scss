@@ -1,0 +1,301 @@
+/* Overrides for the admin theme */
+@import "patterns/admin-typography";
+@import "patterns/admin-forms";
+@import "patterns/admin-header";
+@import "patterns/admin-side-nav";
+@import "patterns/admin-search";
+@import "patterns/admin-tables";
+@import "patterns/admin-layout";
+@import "patterns/admin-card";
+@import "patterns/govuk-overrides";
+
+.html-admin {
+	background: white;
+	body {
+		margin: 0;
+	}
+}
+
+.success-panel {
+	@include govuk-font(19);
+	background: rgba(govuk-colour(turquoise), 0.8);
+	color: white;
+	display: none;
+	padding: 0 60px;
+	margin: -30px 0 60px -60px;
+	width: 100%;
+	p {
+		color: white;
+		display: inline-block;
+		margin: govuk-spacing(4);
+		margin-left: 0;
+		margin-right: -4px;
+		width: 60%;
+	}
+	.success-panel__close {
+		color: white;
+		display: inline-block;
+		margin-right: -4px;
+		text-align: right;
+		width: 40%;
+	}
+	&.sign-in-success {
+		margin: 0;
+		padding: 0 30px;
+		width: auto;
+	}
+}
+
+.disable-side-bar-yes {
+	pointer-events: none;
+}
+
+.mobile-grid {
+	display: flex;
+	margin-bottom: $govuk-gutter / 2;
+}
+
+.mobile-grid-cell {
+	flex: 1;
+	padding: 0 15px;
+	&:first-child {
+		transform: translateX(-15px);
+		padding-right: 0;
+	}
+	&:last-child {
+		transform: translateX(15px);
+		padding-left: 0;
+	}
+	display: flex;
+	.align-bottom & {
+		align-items: flex-end;
+	}
+	
+	&.grid-cell-1-3 {
+		flex-basis: 33.3%;
+	}
+	&.grid-cell-1-2 {
+		flex-basis: 50%;
+	}
+	&.grid-cell-2-3 {
+		flex-basis: 66.6%;
+	}
+}
+
+.enforcer-view-image {
+	flex: 1;
+	img {
+		border: 2px solid govuk-colour(grey-2);
+		width: 100%;
+	}
+}
+
+.enforcer-view {
+	.hide-enforcer {
+		display: none !important;
+	}
+}
+
+.labels-with-heading {
+	margin: 0;
+	.label-with-heading {
+		position: relative;
+	}
+	.label, .heading {
+		display: block;
+	    margin: 0;
+	    vertical-align: top;
+	}
+	.label {
+		color: govuk-colour(grey-1);
+		font-size: 4vw;
+		margin: 0.63158em 0 0.21053em 0;
+	}
+	.heading {
+		@include govuk-font(36, $weight: bold);
+		font-size: 5.5vw;
+	}
+}
+
+#adminTheme {
+	.govuk-phase-banner {
+		margin-top: -20px;
+		margin-bottom: 15px;
+		@include mq($from: tablet) {
+		    margin-top: -40px;
+		    margin-bottom: 30px;
+		}
+	}
+	.header-wrapper {
+		max-width: none;
+	}
+	#global-header .header-proposition {
+		padding-top: 0;
+	}
+	#global-header .header-proposition #proposition-name {
+		@include govuk-font(19, $weight: bold);
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	#global-header.with-proposition .header-wrapper .header-proposition {
+		width: 100%;
+	}
+	.govuk-fieldset__legend {
+		@include govuk-font(19, $weight: bold);
+	}
+	.govuk-label,
+	.govuk-hint,
+	.govuk-fieldset__hint,
+	.govuk-select,
+	.govuk-body,
+	.govuk-list,
+	.govuk-file-upload
+	{
+		@include govuk-font(16);
+	}
+	.enforcer-view {
+		@include mq($until: tablet) {
+			.govuk-label,
+			.govuk-hint,
+			.govuk-button {
+				font-size: 19px;
+			}
+			.govuk-input {
+				font-size: 32px;
+				height: 55px;
+			}
+		}
+	}
+	.detail-small-font {
+		details, summary, details p, .govuk-button {
+			@include govuk-font(16);
+		}
+		details { margin-bottom: 0; }
+	}
+	.govuk-error-message {
+		@include govuk-font(16, $weight: bold);
+	}
+	// .fieldset-with-inputs .govuk-fieldset__legend {
+	// 	margin-bottom: 0;
+	// }
+	.govuk-fieldset__legend {
+		margin-bottom: 5px;
+	}
+	.govuk-check-your-answers__question{
+		@include govuk-font(16, $weight: bold);
+	}
+	.govuk-check-your-answers__answer,
+	.govuk-check-your-answers__change {
+		@include govuk-font(16);
+		img {
+			outline: 2px solid govuk-colour(grey-2);
+			border: 2px solid white;
+			width: 8rem;
+		}
+	}
+	.enforcer-view {
+		@include mq($until: tablet) {
+			.govuk-check-your-answers__question{
+				@include govuk-font(19, $weight: bold);
+			}
+			.govuk-check-your-answers__answer,
+			.govuk-check-your-answers__change {
+				@include govuk-font(19);
+			}
+		}
+	}
+	.search-filter {
+		display: inline-block;
+	}
+	thead tr {
+	  border-bottom: 2px solid govuk-colour(grey-3);
+	}
+	td {
+		@include govuk-font(16);
+		border-color: govuk-colour(grey-3);
+		a {
+			display: block;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	th {
+		@include govuk-font(16, $weight: bold);
+	}
+	.back-link-container {
+		margin-top: -15px;
+		@include mq($from: tablet) {
+			margin-top: -30px;
+			margin-bottom: 30px;
+		}
+	}
+	.system-error {
+		a {
+			color: $govuk-link-colour;
+			@include govuk-font(19);
+		}
+	}
+
+	.uniform-links {
+	  p, details, summary {
+	 	margin: 0;   
+	  }
+	  p, summary {
+	  	margin-bottom: 15px;
+	  }
+	}
+}
+
+.govuk-table__cell--has-tag {
+	padding: 0;
+	.govuk-tag {
+		float: none;
+	}
+}
+
+.application-status-change {
+	margin-bottom: 15px;
+	h2 {
+		display: inline-block;
+		margin-right: 15px;
+	}
+	fieldset {
+		margin-top: 15px;
+	}
+	.govuk-tag {
+		float: none;
+	}
+}
+
+.check-answers-heading-with-change {
+	@include mq($from: tablet) {
+		.check-answers-heading {
+			display: inline-block;
+			width: 60%;
+			margin-right: -4px;
+		}
+		.check-answers-change {
+			@include govuk-font(19);
+			display: inline-block;
+			width: 40%;
+			margin-right: -4px;
+			text-align: right;
+		}
+	}
+}
+
+.admin-width-container {
+	padding-left: 30px; 
+	padding-right: 30px;
+}
+
+.admin-page-header {
+	@include mq($from: tablet) {
+		margin-bottom: 30px;
+	}
+}
+

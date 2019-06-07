@@ -1,0 +1,64 @@
+/*------------------------------------*\
+  Tables
+\*------------------------------------*/
+
+.govuk-table__header {
+  &--sort, &--sorted-asc, &--sorted-desc {
+    &::after {
+      display: inline-block;
+      content: '';
+      background: url('../images/table-arrows.svg') no-repeat 6px 4px;
+      height: 12px;
+      width: 24px;
+    }
+  }
+  &--sorted-asc::after {
+    background-position: 6px -130px;
+  }
+  &--sorted-desc::after {
+    background-position: 6px -59px;
+  }
+}
+
+// Results per page
+.results-per-page,
+.pagination {
+  margin-top: 15px;
+  display: inline-block;
+  @include mq($until: tablet) {
+    display: block;
+    text-align: center;
+  }
+  p,
+  ul,
+  li {
+    display: inline-block;
+    @include govuk-font(19);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    // margin-left: 5px;
+  }
+  .page-active {
+    padding: 3px 8px;
+  }
+  a {
+    display: block;
+    padding: 4px 8px 2px;
+    &:hover {
+      background: govuk-colour(blue);
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+// Paginations
+.pagination {
+  @include mq($from: tablet) {
+    float: right;
+  }
+}

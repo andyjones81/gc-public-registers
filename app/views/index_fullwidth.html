@@ -1,0 +1,112 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+  aria-label="Show or hide Top Level Navigation">Menu</button>
+<nav>
+  <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">
+    <li class="govuk-header__navigation-item">
+      <a class="govuk-header__link" href="#1">
+        Navigation item 1
+      </a>
+    </li>
+    <li class="govuk-header__navigation-item">
+      <a class="govuk-header__link" href="#2">
+        Navigation item 2
+      </a>
+    </li>
+    <li class="govuk-header__navigation-item">
+      <a class="govuk-header__link" href="#3">
+        Navigation item 3
+      </a>
+    </li>
+  </ul>
+</nav>
+
+{% endblock %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block headerInfo %}
+<section class="gc-product-page gc-product-page--header">
+  <div class="govuk-header__container govuk-width-container">
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Parent</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Service name</li>
+      </ol>
+    </div>
+    <hr class="govuk-section-break govuk-section-break--visible">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l govuk-!-margin-top-6">Service page prototype kit</h1>
+        <p class="govuk-body-l">This is an example of a product page. It gives you a skeleton on which to build pages
+          for Gambling Commission services.</p>
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-m">
+      Summary
+    </h2>
+    <p>
+      Start off with a summary of the service, this should be more detailed than what is in the main header.
+    </p>
+
+    <h2 class="govuk-heading-m">
+      Repeat as necessary
+    </h2>
+    <p>
+      ...
+    </p>
+
+
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-m" id="subsection-title">
+        Subsection
+      </h2>
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li>
+            <a class="govuk-link" href="#">
+              Related link
+            </a>
+          </li>
+          <li>
+            <a class="govuk-link" href="#">
+              Related link
+            </a>
+          </li>
+          <li>
+            <a href="#" class="govuk-link govuk-!-font-weight-bold">
+              More <span class="govuk-visually-hidden">in Subsection</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+  </div>
+</div>
+
+{% endblock %}
