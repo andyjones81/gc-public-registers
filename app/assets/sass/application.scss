@@ -62,13 +62,16 @@ $path: "/public/images/";
 @import "components/_cookie-banner";
 @import "patterns/gc-core";
 
-.text-right{text-align: right;}
+.text-right {
+  text-align: right;
+}
 
 
-.gc-product-page{
-margin-top:20px;
-margin-bottom: -20px;
-background: $gcebonyshade;
+.gc-product-page {
+  margin-top: 20px;
+  margin-bottom: -20px;
+  background: $gcebonyshade;
+
   .govuk-breadcrumbs__list-item,
   .govuk-breadcrumbs__link,
   .govuk-heading-l,
@@ -76,14 +79,21 @@ background: $gcebonyshade;
   .govuk-body-l,
   .govuk-body,
   .govuk-label,
-  .govuk-link, a
-  {color: #fff}
+  .govuk-link,
+  a {
+    color: #fff
+  }
 }
 
-.gc-panel-card-min-height{height: 170px; min-height: 170px;}
+.gc-panel-card-min-height {
+  height: 170px;
+  min-height: 170px;
+}
 
 
 // Search
+
+
 
 .gc-register-search * {
   box-sizing: border-box;
@@ -124,6 +134,12 @@ background: $gcebonyshade;
   color: $black !important;
 }
 
+.gc-register-search--whitebg form .inner-form .input-field input {
+
+  border: 2px solid $black;
+
+}
+
 
 
 .gc-register-search form .inner-form .input-field input.placeholder {
@@ -158,6 +174,13 @@ background: $gcebonyshade;
   margin-left: 4px;
 }
 
+.gc-register-search--whitebg form .inner-form .input-field.third-wrap {
+
+  margin-left: 0px;
+
+}
+
+
 .gc-register-search form .inner-form .input-field.third-wrap .btn-search {
   height: 100%;
   width: 100%;
@@ -190,7 +213,7 @@ background: $gcebonyshade;
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 300px)  {
   .gc-register-search form .inner-form {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -236,83 +259,183 @@ background: $gcebonyshade;
 }
 
 
-.table{
-  margin-bottom:30px
+.table {
+  margin-bottom: 30px
 }
-.table .panel{
-  margin:30px 0
+
+.table .panel {
+  margin: 30px 0
 }
-.table td:last-child{
-  padding-right:15px
+
+.table td:last-child {
+  padding-right: 15px
 }
-.table-scroll{
-  margin-bottom:30px;
-  overflow-x:auto;
-  width:100%
+
+.table-scroll {
+  margin-bottom: 30px;
+  overflow-x: auto;
+  width: 100%
 }
-.register-data-table th,.register-data-table td{
-  font-size:16px;
-  padding:15px;
-  vertical-align:top
+
+.register-data-table th,
+.register-data-table td {
+  font-size: 16px;
+  padding: 15px;
+  vertical-align: top
 }
-.register-data-table th a,.register-data-table td a{
-  white-space:nowrap
+
+.register-data-table th a,
+.register-data-table td a {
+  white-space: nowrap
 }
-.register-data-table th p,.register-data-table td p{
-  margin:0
+
+.register-data-table th p,
+.register-data-table td p {
+  margin: 0
 }
-.register-data-table th{
-  background-color:#dee0e2;
-  border-bottom:0;
-  border-right:2px solid #fff;
-  font-weight:normal;
-  min-width:280px;
-  position:relative;
-  vertical-align:middle
+
+.register-data-table th {
+  background-color: #dee0e2;
+  border-bottom: 0;
+  border-right: 2px solid #fff;
+  font-weight: normal;
+  min-width: 280px;
+  position: relative;
+  vertical-align: middle
 }
-.register-data-table th.start-date,.register-data-table th.end-date,.register-data-table th.review-date,.register-data-table th:first-child{
-  min-width:120px
+
+.register-data-table th.start-date,
+.register-data-table th.end-date,
+.register-data-table th.review-date,
+.register-data-table th:first-child {
+  min-width: 120px
 }
-.register-data-table td{
-  border:none
+
+.register-data-table td {
+  border: none
 }
-.register-data-table tr:nth-child(even) td{
-  background:#f8f8f8
+
+.register-data-table tr:nth-child(even) td {
+  background: #f8f8f8
 }
-.register-data-table .table-header.active{
-  background-color:#005ea5;
-  color:#fff;
-  font-weight:bold
+
+.register-data-table .table-header.active {
+  background-color: #005ea5;
+  color: #fff;
+  font-weight: bold
 }
-.registers-secondary-table p{
-  margin:0;
-  font-size:16px;
+
+.registers-secondary-table p {
+  margin: 0;
+  font-size: 16px;
   text-align: left;
 }
 
-.registers-secondary-table__row{
-  border:1px solid #bfc1c3
-}
-.registers-secondary-table__header,.registers-secondary-table__cell{
-  background:#f8f8f8;
-  font-size:16px;
-  padding:0;
-  vertical-align:top;
-}
-.registers-secondary-table__header:last-child,.registers-secondary-table__cell:last-child{
-  padding-right:0;
-  width:66%
-}
-.registers-secondary-table__header{
-  background:#dee0e2
+.registers-secondary-table__row {
+  border: 1px solid #bfc1c3
 }
 
-.registers-secondary-table__header p{
-  font-weight:bold;
+.registers-secondary-table__header,
+.registers-secondary-table__cell {
+  background: #f8f8f8;
+  font-size: 16px;
+  padding: 0;
+  vertical-align: top;
 }
-.registers-secondary-table__caption p{
-  font-weight:normal;
-  padding:0 0 1em 0;
+
+.registers-secondary-table__header:last-child,
+.registers-secondary-table__cell:last-child {
+  padding-right: 0;
+  width: 66%
+}
+
+.registers-secondary-table__header {
+  background: #dee0e2
+}
+
+.registers-secondary-table__header p {
+  font-weight: bold;
+}
+
+.registers-secondary-table__caption p {
+  font-weight: normal;
+  padding: 0 0 1em 0;
   text-align: left;
   font-size: 18px;
+}
+
+.gc-tag-meta {
+  padding: 5px;
+  border: 1px solid $grey-1;
+  background: $grey-4;
+  font-size: 14px;
+}
+
+.gc-search-result {
+  margin-bottom: 5px;
+  padding: 15px 0px;
+  border-bottom: 1px solid $grey-2;
+
+  .govuk-body-s {
+    color: $grey-1;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .gc-search-result {
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 5px 1px $grey-2;
+    border-radius: 3px;
+    padding: 15px;
+    border-bottom: none;
+  }
+}
+
+.gc-filters {
+
+  .govuk-accordion {
+    border-bottom: 0px;
+  }
+
+  .govuk-accordion__section-button {
+    font-size: 16px;
+  }
+
+  .govuk-accordion__section-content {
+    padding: 15px;
+    border-left: 1px solid $grey-3;
+    border-right: 1px solid $grey-3;
+    border-bottom: 1px solid $grey-3;
+  }
+
+  .govuk-accordion__section {
+    margin-bottom: 15px;
+    border-top: 0px;
+  }
+
+  .govuk-accordion__section-header {
+    background: $grey-3;
+    padding: 0px 0px 15px 15px;
+  }
+  .govuk-accordion__section-header:hover {
+    background: $grey-3;
+  }
+
+
+  .govuk-checkboxes__label {
+    font-size: 16px;
+  }
+}
+
+
+.content-desktop {display: block;}
+.content-mobile {display: none;}
+
+@media screen and (max-width: 768px) {
+
+.content-desktop {display: none;}
+.content-mobile {display: block;}
+
+.gc-logo-image{max-width: 120px}
+
 }

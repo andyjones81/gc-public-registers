@@ -1,0 +1,15 @@
+{% for i in registerData.entries %}
+<div class="gc-search-result">
+    <h3 class="govuk-heading-s  govuk-!-margin-bottom-0">
+        <a href="">{{i.accountName}}</a>
+        <span class="gc-pull-right"><span class="govuk-tag">ACTIVE</span>
+    </h3>
+    <p class="govuk-body-s govuk-!-margin-bottom-2">Account number {{i.accountNumber}} </p>
+
+    <p class="govuk-body-s  govuk-!-margin-bottom-0">
+        Trading names:{% for tn in i.tradingNames %}
+        {{tn.name}},
+        {% endfor %}
+    </p>
+</div>
+{% endfor %}

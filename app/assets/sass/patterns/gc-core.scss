@@ -156,6 +156,10 @@ $govuk-blue: #005ea5;
   text-decoration: none;
 }
 
+.gc-panel-card__heading {
+  font-size: 18px;
+}
+
 .gc-panel-card__link-wrapper:hover .gc-panel-card__heading {
   text-decoration: underline;
 }
