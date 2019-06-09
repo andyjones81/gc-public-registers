@@ -1,5 +1,7 @@
 const version = "v1"
 const registerData = require('../../data/register.json')
+var device = require('device');
+var mydevice = device('put here user-agent string');
 
 exports.operator_summary_get = function (req, res) {
 
@@ -32,11 +34,27 @@ exports.operator_results_get = function (req, res) {
     var query = req.body.search;
     var count = 0;
 
-    // Query the file
+    // Device dependent result
 
-    res.render(version + '/operator/results', {
+
+ 
+if(mydevice.is('mobile'))
+ {
+    res.render(version + '/operator/results-mob', {
         version,
         count,
         registerData
     })
+ }
+else
+{
+ res.render(version + '/operator/results', {
+        version,
+        count,
+        registerData
+    })
+}
+   
+
+   
 }

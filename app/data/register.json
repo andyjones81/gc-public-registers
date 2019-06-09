@@ -674,7 +674,7 @@
       {
         "type": "Operator",
         "accountNumber": "38718",
-        "accountName": "Bonne Terre Limited",
+        "accountName": "This is a really long operator name Limited",
         "canonical": "bonne_terre_limited",
         "address": "",
         "licenses": [
