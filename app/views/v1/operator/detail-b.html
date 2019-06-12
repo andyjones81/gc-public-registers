@@ -1,0 +1,64 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+B - {{registerData.Account}}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner content-desktop">
+        <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+                alpha
+            </strong>
+            <span class="govuk-phase-banner__text">
+                This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+            </span>
+        </p>
+    </div>
+    
+    <div class="govuk-breadcrumbs content-desktop">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling businesses</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                    <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/results">Search results</a>
+                </li>
+            <li class="govuk-breadcrumbs__list-item">
+                Detail
+            </li>
+        </ol>
+    </div>
+    
+    
+    <div class="govuk-breadcrumbs content-mobile">
+            <a href="/{{version}}/operator/results" class="govuk-back-link">Back to search results</a>
+        </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            {{registerData.Account}}
+        </h1>
+
+    </div>
+    
+</div>
+
+
+    {% endblock %}

@@ -4,7 +4,7 @@
 
 <button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
   aria-label="Show or hide Top Level Navigation">Menu</button>
-  {% include "includes/nav.html" %}
+{% include "includes/nav.html" %}
 
 {% endblock %}
 
@@ -31,9 +31,12 @@ Public registers - Gambling Commission
       <div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-l govuk-!-margin-top-6">Public registers and datasets</h1>
-        <p class="govuk-body-l">We have made it easy to search and download information about licensed businesses and individuals, regulatory actions and other published datasets provided by the Gambling Commission.</p>
+        <p class="govuk-body">We have made it easy to search and download information about licensed businesses,
+          individuals and regulatory actions.</p>
 
-       
+        <p class="govuk-body">You can also download other published datasets provided by the Gambling Commission.</p>
+
+
 
       </div>
     </div>
@@ -45,64 +48,47 @@ Public registers - Gambling Commission
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h2 class="govuk-heading-l">
+    <h2 class="govuk-heading-m">
       Registers
     </h2>
-
   </div>
 
 </div>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-third">
 
-    <div class="gc-panel-card gc-panel-card-min-height gc-panel-card--noshadow">
-      <a class="gc-panel-card__link-wrapper" href="/{{version}}/operator/summary">
-        <div class="gc-panel-card__content">
-          <h3 class="gc-panel-card__heading">Operator register</h3>
-          <p class="gc-panel-card__description">Businesses who hold a licence to operate a gambling business</p>
-        </div>
-      </a>
-    </div>
+  <div class="govuk-grid-column-full">
 
+
+
+    
+    <ul class="register-themes">
+      <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/summary">
+              <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Operator licenses</h3>
+              <p class="register-theme__description govuk-body-s">Search or download information about gambling businesses</p>
+              <p class="register-theme__count govuk-body-s">{{countOL | numeral("0,0") }} records</p>
+          </a></li>
+          <li class="register-theme"><a class="register-theme__link" href="/{{version}}/personal/summary">
+            <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Personal licenses</h3>
+            <p class="register-theme__description govuk-body-s">Search or download information about licensed individuals</p>
+            <p class="register-theme__count govuk-body-s">{{countPL | numeral("0,0") }} records</p>
+        </a></li>
+        <li class="register-theme"><a class="register-theme__link" href="/{{version}}/sanctions/summary">
+          <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Regulatory actions</h3>
+          <p class="register-theme__description govuk-body-s">Search or download details of regulatory sanctions and actions</p>
+          <p class="register-theme__count govuk-body-s">-</p>
+      </a></li>
+          </ul>
   </div>
 
-  <div class="govuk-grid-column-one-third">
-
-    <div class="gc-panel-card gc-panel-card-min-height gc-panel-card--noshadow">
-      <a class="gc-panel-card__link-wrapper" href="#">
-        <div class="gc-panel-card__content">
-          <h3 class="gc-panel-card__heading">Personal register</h3>
-          <p class="gc-panel-card__description">Individuals who hold a personal licence to work in the gambling industry
-          </p>
-        </div>
-      </a>
-    </div>
-
-  </div>
-
-
-
-  <div class="govuk-grid-column-one-third">
-
-    <div class="gc-panel-card gc-panel-card-min-height gc-panel-card--noshadow">
-      <a class="gc-panel-card__link-wrapper" href="#">
-        <div class="gc-panel-card__content">
-          <h3 class="gc-panel-card__heading">Sanctions register</h3>
-          <p class="gc-panel-card__description">Regulatory sanctions and actions taken by the Gambling Commission</p>
-        </div>
-      </a>
-    </div>
-
-  </div>
 </div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h2 class="govuk-heading-l">
+    <h2 class="govuk-heading-m">
       Published datasets
     </h2>
-
+    <p class="govuk-body">You can't currently search these datasets, however you can download them for your own use.</p>
   </div>
 
 </div>
@@ -110,16 +96,17 @@ Public registers - Gambling Commission
 <div class="govuk-grid-row">
 
 
-  <div class="govuk-grid-column-one-third">
+  <div class="govuk-grid-column-full">
 
-    <div class="gc-panel-card gc-panel-card-min-height gc-panel-card--noshadow">
-      <a class="gc-panel-card__link-wrapper" href="#">
-        <div class="gc-panel-card__content">
-          <h3 class="gc-panel-card__heading">Premises</h3>
-          <p class="gc-panel-card__description">Download the premises register in CSV and ODS formats</p>
-        </div>
-      </a>
-    </div>
+
+
+    <ul class="register-themes">
+      <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/summary">
+              <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Premises</h3>
+              <p class="register-theme__description govuk-body-s">Download the premises register in CSV and ODS format</p>
+          </a></li>
+          
+          </ul>
 
   </div>
 
@@ -127,36 +114,38 @@ Public registers - Gambling Commission
 <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-third">
-      <h3 class="govuk-heading-m">
-        Current features
-      </h3>
-      <ul class="govuk-list govuk-list--bullet">
-          <li>Search and download regulatory sanctions and actions <span class="govuk-tag">new</span></li>
-          <li>Search and download gambling operators</li>
-          <li>Search and download licensed individuals</li>
-          <li>Download gambling premises dataset</li>
-        </ul>
-    </div>
-
-    <div class="govuk-grid-column-one-third">
-        <h3 class="govuk-heading-m">
-          Planned features
-        </h3>
-        <ul class="govuk-list govuk-list--bullet">
-            <li>Additional information on licensees</li>
-          </ul>
-      </div>
-
-      <div class="govuk-grid-column-one-third">
-          <h3 class="govuk-heading-m">
-            Useful information
-          </h3>
-          <ul class="govuk-list">
-              <li>
-                <a class="govuk-link" href="http://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx">Regulatory action</a></li>
-            </ul>
-        </div>
-  
+  <div class="govuk-grid-column-one-third">
+    <h3 class="govuk-heading-m">
+      Current features
+    </h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Search and download regulatory sanctions and actions <span class="govuk-tag">new</span></li>
+      <li>Search and download gambling operators</li>
+      <li>Search and download licensed individuals</li>
+      <li>Download gambling premises dataset</li>
+    </ul>
   </div>
+
+  <div class="govuk-grid-column-one-third">
+    <h3 class="govuk-heading-m">
+      Planned features
+    </h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Additional information on licensees</li>
+    </ul>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <h3 class="govuk-heading-m">
+      Useful information
+    </h3>
+    <ul class="govuk-list">
+      <li>
+        <a class="govuk-link"
+          href="http://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx">Regulatory
+          action</a></li>
+    </ul>
+  </div>
+
+</div>
 {% endblock %}

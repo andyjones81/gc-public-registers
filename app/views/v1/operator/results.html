@@ -26,7 +26,7 @@ Search the operator register
 <div class="govuk-breadcrumbs content-desktop">
     <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Public registers and datasets</a>
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
             <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Operator register information</a>
@@ -107,7 +107,7 @@ Search the operator register
                             <div class="govuk-accordion__section-header">
                                 <h2 class="govuk-accordion__section-heading">
                                     <span class="govuk-accordion__section-button" id="accordionSector">
-                                        Sector
+                                        Licensed for
                                     </span>
                                 </h2>
                             </div>
@@ -251,7 +251,7 @@ Search the operator register
                     <div class="govuk-accordion__section-header">
                         <h2 class="govuk-accordion__section-heading">
                             <span class="govuk-accordion__section-button" id="accordionSector">
-                                Sector
+                                Licensed for
                             </span>
                         </h2>
                     </div>
@@ -320,7 +320,7 @@ Search the operator register
                     <div class="govuk-accordion__section-header">
                         <h2 class="govuk-accordion__section-heading">
                             <span class="govuk-accordion__section-button" id="accordionStatus">
-                                Status
+                                Licence status
                             </span>
                         </h2>
                     </div>
@@ -398,30 +398,40 @@ Search the operator register
     </div>
     <div class="govuk-grid-column-two-thirds">
 
-        <p class="govuk-body-s  govuk-!-margin-bottom-2 "><span class="govuk-!-font-weight-bold">{{count}}</span>
-            results
+        <p class="govuk-body  govuk-!-margin-bottom-0 "><span class="govuk-!-font-weight-bold">{{registerData.length | numeral("0,0") }}</span>
+            results</p>
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 
-        </p>
-        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-
-        {% for i in registerData.entries %}
+        {% for i in registerData %}
         <div class="gc-search-result">
             <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
-                <a href="">{{i.accountName}}</a>
-                <span class="gc-pull-right"><span class="govuk-tag">ACTIVE</span></span>
+                    <a href="/{{version}}/operator/detail/{{i.AccountNo}}">{{i.Account}}</a>
+                <span class="gc-pull-right"><span class="govuk-tag">
+                        {% if i.DeterminationStatus === 'Granted' %}
+                      Active
+                      {% else %}
+                      {{i.DeterminationStatus}}
+                        {% endif %}
+
+                
+                   </span></span>
             </h3>
-            <p class="govuk-body-s govuk-!-margin-bottom-1">Account number: {{i.accountNumber}} </p>
+            <p class="govuk-body-s govuk-!-margin-bottom-1">Account number: {{i.AccountNo}} </p>
 
             <p class="govuk-body-s  govuk-!-margin-bottom-0">
-                Trading names:{% for tn in i.tradingNames %}
-                {{tn.name}},
+                {% if i.TradingAsTradingAsDetail.length > 0 %}
+                Trading names:{% for tn in i.TradingAs.TradingAsDetail %}
+                {{tn.TradingName}},
                 {% endfor %}
+                {% endif %}
             </p>
         </div>
         {% endfor %}
 
+     
+     
+      
 
 
     </div>

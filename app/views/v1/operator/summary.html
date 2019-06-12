@@ -4,7 +4,7 @@
 
 <button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
     aria-label="Show or hide Top Level Navigation">Menu</button>
-    {% include "includes/nav.html" %}
+{% include "includes/nav.html" %}
 
 {% endblock %}
 
@@ -14,27 +14,27 @@ Registers
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
-        <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
-        alpha
-      </strong>
-          <span class="govuk-phase-banner__text">
+    <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+            alpha
+        </strong>
+        <span class="govuk-phase-banner__text">
             This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-          </span>
-        </p>
-      </div>
-      <div class="govuk-breadcrumbs">
-            <ol class="govuk-breadcrumbs__list">
-              <li class="govuk-breadcrumbs__list-item">
-                <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Public registers and datasets</a>
-              </li>
-          
-              
-          
-                  <li class="govuk-breadcrumbs__list-item">
-                        Operator register information
-                      </li>
-            </ol>
-          </div>
+        </span>
+    </p>
+</div>
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Home</a>
+        </li>
+
+
+
+        <li class="govuk-breadcrumbs__list-item">
+            Operator register information
+        </li>
+    </ol>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -56,64 +56,44 @@ Registers
 </div>
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-third">
 
-        <div class="gc-panel-card gc-panel-card-min-height  gc-panel-card--noshadow">
-            <a class="gc-panel-card__link-wrapper" href="/{{version}}/operator/search">
-                <div class="gc-panel-card__content">
-                    <h2 class="gc-panel-card__heading">Search the register</h2>
-                    <p class="gc-panel-card__description">Businesses who hold a licence to operate a gambling business
-                    </p>
+        <div class="govuk-grid-column-full">
+        <ul class="register-themes">
+                <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/search">
+                        <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Search the register</h3>
+                        <p class="register-theme__description govuk-body-s">Businesses who hold a licence to operate a gambling business</p>
+                      
+                    </a></li>
+                    <li class="register-theme"><a class="register-theme__link" href="#">
+                      <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Download the data</h3>
+                      <p class="register-theme__description govuk-body-s">Get a copy of the data in CSV or ODS formats.</p>
+                  </a></li>
+                  <li class="register-theme"><a class="register-theme__link" href="/{{version}}/sanctions/summary">
+                    <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">API</h3>
+                    <p class="register-theme__description govuk-body-s">Use the API to get the data in JSON format.</p>
+                </a></li>
+                    </ul>
                 </div>
-            </a>
-        </div>
 
-    </div>
-
-    <div class="govuk-grid-column-one-third">
-
-        <div class="gc-panel-card gc-panel-card-min-height  gc-panel-card--noshadow">
-            <a class="gc-panel-card__link-wrapper" href="#">
-                <div class="gc-panel-card__content">
-                    <h2 class="gc-panel-card__heading">Download the data</h2>
-                    <p class="gc-panel-card__description">Get a copy of the data in CSV or ODS formats.</p>
-                </div>
-            </a>
-        </div>
-
-    </div>
-
-    <div class="govuk-grid-column-one-third">
-
-        <div class="gc-panel-card gc-panel-card-min-height  gc-panel-card--noshadow">
-            <a class="gc-panel-card__link-wrapper" href="#">
-                <div class="gc-panel-card__content">
-                    <h2 class="gc-panel-card__heading">API</h2>
-                    <p class="gc-panel-card__description">Use the API to get the data in JSON format.</p>
-                </div>
-            </a>
-        </div>
-
-    </div>
+ 
 
 
 </div>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
         <h2 class="govuk-heading-m">
             About the data
         </h2>
 
-        <p class="govuk-body">There are <span class="govuk-!-font-weight-bold">2,964</span> records and <b>9 fields</b>
+        <p class="govuk-body">There are <span class="govuk-!-font-weight-bold">{{countOL | numeral("0,0") }}</span>
+            records and <b>9 fields</b>
             in this register.</p>
 
-
- 
-
         <div class="govuk-inset-text">
-            Domain names and trading names are provided by the operator. The Gambling Commission cannot guarantee the accuracy of information provided by third parties.
+            Domain names and trading names are provided by the operator. The Gambling Commission cannot guarantee the
+            accuracy of information provided by third parties.
         </div>
 
         <table class="registers-secondary-table">
@@ -219,11 +199,11 @@ Registers
         <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
         <h2 class="govuk-heading-m govuk-!-margin-top-5">
-               Something wrong?
-            </h2>
-    
-            <p class="govuk-body">We aim to ensure the information provided in this register is correct.</p>
-            <p class="govuk-body">You can <a href="">tell us</a> if you think something doesn't look right.</p>
+            Something wrong?
+        </h2>
+
+        <p class="govuk-body">We aim to ensure the information provided in this register is correct.</p>
+        <p class="govuk-body">You can <a href="">tell us</a> if you think something doesn't look right.</p>
 
     </div>
 

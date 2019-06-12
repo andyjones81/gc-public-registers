@@ -1,0 +1,65 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+  aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Public registers - Gambling Commission
+{% endblock %}
+
+{% block headerInfo %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  
+    <form method="POST">
+
+ 
+
+    {% from "radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  classes: "govuk-radios--inline",
+  idPrefix: "ab",
+  name: "ab",
+  fieldset: {
+    legend: {
+      text: "Select a journey",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "A",
+      text: "A"
+    },
+    {
+      value: "B",
+      text: "B"
+    }
+  ]
+}) }} 
+
+<button type="submit" class="govuk-button">
+        Continue
+      </button>
+</form>
+
+  </div>
+
+</div>
+
+{% endblock %}

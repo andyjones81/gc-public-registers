@@ -9,6 +9,7 @@ const nunjucks = require('nunjucks')
 const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
 const cookieParser = require('cookie-parser')
+var numeralFilter = require('nunjucks-numeral-filter');
 
 // Run before other code to make sure variables from .env are available
 dotenv.config()

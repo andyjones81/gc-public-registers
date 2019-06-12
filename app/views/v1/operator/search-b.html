@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-Search the operator register
+Search the register of gambling businesses
 {% endblock %}
 
 {% block beforeContent %}
@@ -23,20 +23,19 @@ Search the operator register
     </p>
 </div>
 <div class="govuk-breadcrumbs">
-        <ol class="govuk-breadcrumbs__list">
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Public registers and datasets</a>
-          </li>
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Operator register information</a>
-          </li>
-          
-      
-              <li class="govuk-breadcrumbs__list-item">
-                   Search
-                  </li>
-        </ol>
-      </div>
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling businesses</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item">
+            Search
+        </li>
+    </ol>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -49,7 +48,7 @@ Search the operator register
             <form method="POST" action="results">
                 <label for="search" class="govuk-label">
                     <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">
-                        Search the operator licence register
+                        Search the register of gambling businesses
                     </h1>
                 </label>
                 <span class="govuk-hint">
@@ -85,9 +84,10 @@ Search the operator register
 </div>
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <h2 class="govuk-heading-m">Want the full register?</h2>
-        <p class="govuk-body">You can <a href="/{{version}}/operator/summary">download the full register</a> in in CSV
+        <h2 class="govuk-heading-m">Download the full register?</h2>
+        <p class="govuk-body">If you need information on several gambling businesses, you can <a href="/{{version}}/operator/summary">download the full register</a> in CSV
             and ODS formats.</p>
+            <p class="govuk-body">Additionally, you can also get the register data in <a href="/{{version}}/operator/summary">JSON</a> format.</p>
     </div>
     <div class="govuk-grid-column-one-third">
 
