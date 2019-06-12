@@ -12,8 +12,7 @@ exports.operator_summary_get = function (req, res) {
     var countOL = qs1.length;
 
     //Clear the search filters that may exist
-   req.session.data['status'] = null
-   req.session.data['sector'] = null
+
 
     var r = req.session.data['ab']
     if (r === 'A') {
@@ -51,6 +50,8 @@ exports.operator_search_get = function (req, res) {
 exports.operator_results_post = function (req, res) {
     console.log('post')
     // Value from the form
+
+    console.log('start')
     var query = req.session.data['search']
     var registerData = [];
     var r = req.session.data['ab']
@@ -61,6 +62,8 @@ exports.operator_results_post = function (req, res) {
     var qs1 = d.Accounts.Account.filter(function (value) {
         return value.RemoteStatus === 'Operator';
     });
+
+    console.log('qs1')
 
     if (query === undefined || query === null) {
         registerData = _.orderBy(qs1, ['Account'], ['asc']);
@@ -76,8 +79,14 @@ exports.operator_results_post = function (req, res) {
     var statusFilter = req.session.data['status']
     var sectorFilter = req.session.data['sector']
 
-    if (statusFilter !== undefined) {
+    console.log('filters - start')
 
+    console.log(statusFilter)
+    console.log(sectorFilter)
+    console.log('filters - end')
+
+    if (statusFilter !== undefined) {
+        console.log('inside the filtering')
         if (statusFilter.length !== 2) {
             registerData = _.filter(registerData, function (a) {
                 if (a.DeterminationStatus.indexOf((statusFilter)) !== -1)
