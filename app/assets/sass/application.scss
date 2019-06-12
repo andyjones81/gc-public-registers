@@ -66,6 +66,10 @@ $path: "/public/images/";
   text-align: right;
 }
 
+.gc-pull-right {
+  float: right;
+}
+
 
 .gc-product-page {
   margin-top: 20px;
@@ -432,6 +436,9 @@ $path: "/public/images/";
 .content-mobile {display: none;}
 
 @media screen and (max-width: 768px) {
+
+.gc-search-result > .govuk-heading-s{color: $govuk-blue;}
+ .gc-search-result  {text-decoration: none !important; }
 
 .content-desktop {display: none;}
 .content-mobile {display: block;}
