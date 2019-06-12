@@ -12,7 +12,8 @@ exports.operator_summary_get = function (req, res) {
     var countOL = qs1.length;
 
     //Clear the search filters that may exist
-
+    req.session.data['status'] = undefined
+    req.session.data['sector'] = undefined
 
     var r = req.session.data['ab']
     if (r === 'A') {
@@ -65,7 +66,7 @@ exports.operator_results_post = function (req, res) {
 
     console.log('qs1')
 
-    if (query === undefined || query === null) {
+    if (query === undefined) {
         registerData = _.orderBy(qs1, ['Account'], ['asc']);
     } else {
         registerData = _.filter(qs1, function (a) {

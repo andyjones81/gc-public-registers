@@ -74,11 +74,8 @@ Search the register of gambling businesses
                                 Filter 
                               </span>
                             </summary>
-                            <div class="govuk-details__text">
-                                    <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Filter</h2>
-
+                            <div class="govuk-details__text">                                   
                                     <div class="govuk-accordion" data-module="accordion" id="accordion-default">
-                    
                                         <div class="govuk-accordion__section ">
                                             <div class="govuk-accordion__section-header">
                                                 <h2 class="govuk-accordion__section-heading">
@@ -210,26 +207,26 @@ Search the register of gambling businesses
         {% for i in registerData %}
 
 
-       <a href="/{{version}}/operator/detail/{{i.AccountNo}}">  
+      
          <div class="gc-search-result">
             <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
-             <span class="gc-pull-right"><span class="govuk-tag"> {% if i.DeterminationStatus === 'Granted' %}
+             <span class="gc-pull-right"><span class="govuk-tag govuk-!-margin-left-2"> {% if i.DeterminationStatus === 'Granted' %}
                         Active
                         {% else %}
                         {{i.DeterminationStatus}}
-                        {% endif %}</span></span>   {{i.Account}}
+                        {% endif %}</span></span>   <a href="/{{version}}/operator/detail/{{i.AccountNo}}">   {{i.Account}}</a>
                
             </h3>
-            <p class="govuk-body-s govuk-!-margin-bottom-1">Account number: {{i.AccountNo}} </p>
+            <p class="govuk-body-s govuk-!-margin-bottom-1">Account {{i.AccountNo}} </p>
 
-            <p class="govuk-body-s  govuk-!-margin-bottom-0">
-                {% if i.TradingAsTradingAsDetail.length > 0 %}
+            <p class="govuk-body  govuk-!-margin-bottom-0">
+                {% if i.TradingAs.TradingAsDetail.length > 0 %}
                 Trading names:{% for tn in i.TradingAs.TradingAsDetail %}
                 {{tn.TradingName}},
                 {% endfor %}
                 {% endif %}
             </p>
-        </div></a>
+        </div>
 
 
 

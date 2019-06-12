@@ -248,10 +248,10 @@ Search the register of gambling businesses
                         {% endif %}</span></span>  {{i.Account}}</a> 
            
             </h3>
-            <p class="govuk-body-s govuk-!-margin-bottom-1">Account number: {{i.AccountNo}} </p>
+            <p class="govuk-body-s govuk-!-margin-bottom-1">Account {{i.AccountNo}} </p>
 
-            <p class="govuk-body-s  govuk-!-margin-bottom-0">
-                {% if i.TradingAsTradingAsDetail.length > 0 %}
+            <p class="govuk-body  govuk-!-margin-bottom-0">
+                {% if i.TradingAs.TradingAsDetail.length > 0 %}
                 Trading names:{% for tn in i.TradingAs.TradingAsDetail %}
                 {{tn.TradingName}},
                 {% endfor %}
