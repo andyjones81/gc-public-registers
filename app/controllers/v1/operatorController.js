@@ -11,6 +11,9 @@ exports.operator_summary_get = function (req, res) {
 
     var countOL = qs1.length;
 
+    //Clear the search filters that may exist
+   req.session.data['status'] = null
+   req.session.data['sector'] = null
 
     var r = req.session.data['ab']
     if (r === 'A') {
