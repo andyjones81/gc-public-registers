@@ -240,12 +240,12 @@ Search the register of gambling businesses
             
             <div class="gc-search-result">
             <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
-            <a href="/{{version}}/operator/detail/{{i.AccountNo}}">    {{i.Account}}</a> 
-                <span class="gc-pull-right"><span class="govuk-tag"> {% if i.DeterminationStatus === 'Granted' %}
+            <a href="/{{version}}/operator/detail/{{i.AccountNo}}">       <span class="gc-pull-right"><span class="govuk-tag"> {% if i.DeterminationStatus === 'Granted' %}
                         Active
                         {% else %}
                         {{i.DeterminationStatus}}
-                        {% endif %}</span></span>
+                        {% endif %}</span></span>  {{i.Account}}</a> 
+           
             </h3>
             <p class="govuk-body-s govuk-!-margin-bottom-1">Account number: {{i.AccountNo}} </p>
 
