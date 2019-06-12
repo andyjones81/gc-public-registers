@@ -1,5 +1,6 @@
 const version = "v1";
 const _ = require('lodash');
+var mobileDetect = require('mobile-detect')
 
 exports.operator_summary_get = function (req, res) {
     const d = require('../../data/register.json')
@@ -45,7 +46,7 @@ exports.operator_search_get = function (req, res) {
 }
 
 exports.operator_results_post = function (req, res) {
-console.log('post')
+    console.log('post')
     // Value from the form
     var query = req.session.data['search']
     var registerData = [];
@@ -75,11 +76,11 @@ console.log('post')
     if (statusFilter !== undefined) {
 
         if (statusFilter.length !== 2) {
-             registerData = _.filter(registerData, function (a) {
+            registerData = _.filter(registerData, function (a) {
                 if (a.DeterminationStatus.indexOf((statusFilter)) !== -1)
                     return a;
             });
-        } 
+        }
     }
 
     registerData = _.orderBy(registerData, ['Account'], ['asc']);
@@ -90,10 +91,22 @@ console.log('post')
             registerData
         })
     } else {
-        res.render(version + '/operator/results-b', {
-            version,
-            registerData
-        })
+         //Is this a mobile?
+
+         var md = new mobileDetect(req.headers['user-agent']);
+
+         if (md.mobile() !== null) {
+ 
+             res.render(version + '/operator/results-mob', {
+                 version,
+                 registerData
+             })
+         } else {
+             res.render(version + '/operator/results-b', {
+                 version,
+                 registerData
+             })
+         }
     }
 
 }
@@ -134,11 +147,11 @@ exports.operator_results_get = function (req, res) {
     if (statusFilter !== undefined) {
 
         if (statusFilter.length !== 2) {
-             registerData = _.filter(registerData, function (a) {
+            registerData = _.filter(registerData, function (a) {
                 if (a.DeterminationStatus.indexOf((statusFilter)) !== -1)
                     return a;
             });
-        } 
+        }
     }
 
     registerData = _.orderBy(registerData, ['Account'], ['asc']);
@@ -149,10 +162,25 @@ exports.operator_results_get = function (req, res) {
             registerData
         })
     } else {
-        res.render(version + '/operator/results-b', {
-            version,
-            registerData
-        })
+
+        //Is this a mobile?
+
+        var md = new mobileDetect(req.headers['user-agent']);
+
+        if (md.mobile() !== null) {
+
+            res.render(version + '/operator/results-mob', {
+                version,
+                registerData
+            })
+        } else {
+            res.render(version + '/operator/results-b', {
+                version,
+                registerData
+            })
+        }
+
+
     }
 
 }
