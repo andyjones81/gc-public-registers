@@ -323,7 +323,7 @@ with a status of "active"
 
                 {% for tn in result.domainNames.recordset %}
                 {% if tn.AccountNumber === accountNumber %}
-                <li>{{tn.DomainName}}</li>
+                <li>{{tn.DomainName | lower}}</li>
                 {% else %}
 
                 {% set hasDN = true %}

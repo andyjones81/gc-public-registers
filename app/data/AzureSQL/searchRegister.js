@@ -42,6 +42,7 @@ console.log('Query filter: ' + statusFilter)
         "or pr.account like '%" + strippedQuery + "%' " +
         "or dn.domainname like '%" + query + "%' " +
         "or tn.tradingname like'%" + query + "%' " + 
+        "or pr.accountno like'%" + query + "%' " + 
         "order by pr.account");
     } catch (err) {
       
