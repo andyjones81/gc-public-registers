@@ -1,0 +1,88 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Public registers - Gambling Commission
+{% endblock %}
+
+{% block headerInfo %}
+<section class="gc-product-page gc-product-page--header">
+    <div class="govuk-header__container govuk-width-container">
+
+        <!-- <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Parent</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Service name</li>
+      </ol>
+    </div> -->
+
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+                <h1 class="govuk-heading-l govuk-!-margin-top-6 ">Give us feedback</h1>
+                <p class="govuk-body">Feedback helps us make this service better for users.</p>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <form method="POST">
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="more-detail">
+                    What is your feedback?
+                </label>
+                <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5"
+                    aria-describedby="more-detail-hint"></textarea>
+            </div>
+
+            <h2 class="govuk-heading-m">Do you want a response?</h2>
+            <p class="govuk-body">Give us your name and email address and we'll get back in touch with you.</p>
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="name">
+                    Name
+                </label>
+                <input class="govuk-input" id="name" name="name" type="text">
+            </div>
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="email">
+                    Email address
+                </label>
+                <input class="govuk-input" id="email" name="email" type="text">
+            </div>
+
+            <button type="submit" class="govuk-button">
+                    Send feedback
+                  </button>
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

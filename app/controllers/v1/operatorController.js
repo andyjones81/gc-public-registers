@@ -1,6 +1,10 @@
 const version = "v1";
 const _ = require('lodash');
 var mobileDetect = require('mobile-detect')
+var Connection = require('tedious').Connection;
+var Request = require('tedious').Request;
+
+
 
 exports.operator_summary_get = function (req, res) {
     const d = require('../../data/register.json')
@@ -28,8 +32,8 @@ exports.operator_summary_get = function (req, res) {
         })
     }
 
-
 }
+  
 
 exports.operator_search_get = function (req, res) {
     const registerData = require('../../data/register.json')
@@ -50,10 +54,73 @@ exports.operator_search_get = function (req, res) {
 
 exports.operator_results_post = function (req, res) {
     console.log('post')
-    // Value from the form
 
-    console.log('start')
-    var query = req.session.data['search']
+    var searchResultData;
+
+// Create connection to database
+var config =
+{
+    authentication: {
+        options: {
+            userName: process.env.DBUser,
+            password: process.env.DBPassword
+        },
+        type: 'default'
+    },
+    server: process.env.DBServer,
+    options:
+    {
+        database: process.env.DBName,
+        encrypt: true
+    }
+}
+var connection = new Connection(config);
+
+
+
+
+function getOperators(query)
+{
+  var request = new Request(
+      "SELECT * from publicregisterreporting as pr " +
+      "left join [dbo].[AllDomainNames] as dn  on pr.accountno = dn.accountnumber "+
+      "left join [dbo].[AllTradingNames] as tn "+
+      "on pr.accountno = tn.accountno "+
+      "where pr.remotestatus = 'operator' "+
+      "and pr.account like '%"+ query +"%' "+
+      "or dn.domainname like '%"+ query +"%' "+
+      "or tn.tradingname like'%"+ query +"%' "+
+      "order by pr.account",
+
+      function(err, rowCount, rows)
+      {
+        searchResultData = rows;
+      }
+  );
+
+
+  connection.execSql(request);
+}
+
+var query = req.session.data['search']
+
+connection.on('connect', function(err)
+    {
+        if (err)
+        {
+            console.log(err)
+        }
+        else
+        {
+           getOperators(query)
+        }
+    }
+);
+
+
+
+    console.log(searchResultData)
+    
     var registerData = [];
     var r = req.session.data['ab']
     const d = require('../../data/register.json')
@@ -97,6 +164,7 @@ exports.operator_results_post = function (req, res) {
     }
 
     registerData = _.orderBy(registerData, ['Account'], ['asc']);
+
 
     if (r === 'A') {
         res.render(version + '/operator/results', {

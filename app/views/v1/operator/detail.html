@@ -13,32 +13,42 @@ A - {{registerData.Account}}
 {% endblock %}
 
 {% block beforeContent %}
-<div class="govuk-phase-banner content-desktop">
-        <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
-                alpha
-            </strong>
-            <span class="govuk-phase-banner__text">
-                This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-            </span>
-        </p>
-    </div>
+
     
-    <div class="govuk-breadcrumbs content-desktop">
-        <ol class="govuk-breadcrumbs__list">
-            <li class="govuk-breadcrumbs__list-item">
-                <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Home</a>
+{% if data['ab'] === 'B' %}
+<div class="govuk-breadcrumbs content-desktop">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling businesses</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/results">Search results</a>
             </li>
-            <li class="govuk-breadcrumbs__list-item">
-                <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling businesses</a>
+        <li class="govuk-breadcrumbs__list-item">
+            Detail
+        </li>
+    </ol>
+</div>
+{% else %}
+<div class="govuk-breadcrumbs content-desktop">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Home</a>
+        </li>
+          <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/{{version}}/hub/results">Search results</a>
             </li>
-            <li class="govuk-breadcrumbs__list-item">
-                    <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/results">Search results</a>
-                </li>
-            <li class="govuk-breadcrumbs__list-item">
-                Detail
-            </li>
-        </ol>
-    </div>
+        <li class="govuk-breadcrumbs__list-item">
+            Detail
+        </li>
+    </ol>
+</div>
+{% endif %}
+
+   
     
     
     <div class="govuk-breadcrumbs content-mobile">

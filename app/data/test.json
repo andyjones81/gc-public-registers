@@ -1,0 +1,85 @@
+{
+    "Accounts": {
+        "Account": [{
+                "AccountNo": "111111",
+                "CaseStatus": "Active",
+                "RemoteStatus": "ANT",
+                "Account": "Dogs Incorporated",
+                "DeterminationStatus": "Granted",
+                "TradingName": "Dogs R' Us",
+                "Towncity": "London",
+                "AccountProducts": {
+                    "AccountProduct": [{
+                        "RemoteStatus": "ANT",
+                        "DeterminationStatus": "Granted",
+                        "Product": "Bone"
+                    }]
+                },
+                "Domains": {
+                    "DomainDetail": [{
+                            "DomainName": "dogsrus.com",
+                            "AccountStatus": "Active"
+                        },
+                        {
+                            "DomainName": "dogshop.com",
+                            "AccountStatus": "Active"
+                        }
+                    ]
+                }
+            },
+            {
+                "AccountNo": "222222",
+                "CaseStatus": "Active",
+                "RemoteStatus": "ANT",
+                "Account": "Cats Incorporated",
+                "DeterminationStatus": "Granted",
+                "TradingName": "Cats R' Us",
+                "Towncity": "London",
+                "AccountProducts": {
+                    "AccountProduct": [{
+                        "RemoteStatus": "ANT",
+                        "DeterminationStatus": "Granted",
+                        "Product": "Collar"
+                    }]
+                }
+            },
+            {
+                "AccountNo": "888888",
+                "CaseStatus": "Active",
+                "RemoteStatus": "PAN",
+                "Account": "Jones Pedro",
+                "DeterminationStatus": "Granted",
+                "ApplicantTitle": "Mr",
+                "Applicantfirstname": "Pedro",
+                "Applicantsurname": "Jones",
+                "Towncity": "London",
+                "AccountProducts": {
+                    "AccountProduct": {
+                        "RemoteStatus": "PAN",
+                        "DeterminationStatus": "Granted",
+                        "Product": "ABC"
+                    }
+                }
+            },
+            {
+                "AccountNo": "999999",
+                "CaseStatus": "Active",
+                "RemoteStatus": "PAN",
+                "Account": "Lowe Martin",
+                "DeterminationStatus": "Granted",
+                "ApplicantTitle": "Mr",
+                "Applicantfirstname": "Lowe",
+                "Applicantsurname": "Martin",
+                "Towncity": "London",
+                "AccountProducts": {
+                    "AccountProduct": {
+                        "RemoteStatus": "PAN",
+                        "DeterminationStatus": "Granted",
+                        "Product": "ABC"
+                    }
+                }
+            }
+
+        ]
+    }
+}
