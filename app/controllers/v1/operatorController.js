@@ -50,6 +50,20 @@ exports.operator_search_get = function (req, res) {
     }
 }
 
+exports.operator_download_get = function (req, res) {
+
+    res.render(version + '/operator/download', {
+        version
+    })
+
+}
+
+exports.operator_api_get = function (req, res) {
+    res.render(version + '/operator/api', {
+        version
+    })
+}
+
 exports.operator_results_post = function (req, res) {
     console.log('post')
 
@@ -248,12 +262,38 @@ exports.operator_results_get = function (req, res) {
 
 
 exports.operator_detail_get = function (req, res) {
-    
+
+    console.log('Details')
+
+    var query = req.session.data['search']
+    var accountNo = req.params.id;
+
+    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+
+
+    var emptySearch = 'false';
+    let registerData = "";
+
+    if (query === '') {
+        emptySearch = 'true';
         res.render(version + '/operator/detail', {
-            version
-            
+            version,
+            emptySearch
         })
+    } else {
+        registerData = getRegisterData(accountNo);
 
+        registerData.then(result => {
 
+            res.render(version + '/operator/detail', {
+                version,
+                registerData,
+                result,
+                emptySearch
+            })
+
+        }).catch(err => {
+            console.log(err);
+        });
+    }
 }
-

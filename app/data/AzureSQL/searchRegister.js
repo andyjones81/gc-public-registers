@@ -1,14 +1,16 @@
 var config = require('../../data/AzureSQL/config');
 const sql = require('mssql');
 
+
 async function searchRegister(query, sectorFilter, statusFilter) {
     let sqlResult = {};
-
+    sql.close()
     await sql.connect(config)
 
     let q = getAccount(query, statusFilter);
     let tn = getTradingNames(query);
     let dn = getDomainNames(query);
+
 
     sqlResult['registerData'] = await q ;
     sqlResult['tradingNames'] = await tn ;

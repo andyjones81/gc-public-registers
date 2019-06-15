@@ -22,5 +22,7 @@ router.get('/' + version + '/operator/search', operator_Controller.operator_sear
 router.post('/' + version + '/operator/results', operator_Controller.operator_results_post);
 router.get('/' + version + '/operator/results', operator_Controller.operator_results_post);
 router.get('/' + version + '/operator/detail/:id', operator_Controller.operator_detail_get);
+router.get('/' + version + '/operator/api', operator_Controller.operator_api_get);
+router.get('/' + version + '/operator/download', operator_Controller.operator_download_get);
 
 module.exports = router
