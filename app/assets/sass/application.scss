@@ -689,3 +689,23 @@ code {
   font-size: 16px;
   white-space: inherit;
 }
+
+.alpha-tag {
+  background: $jaffa;
+  color: $white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
+  font-size: 14px;
+  font-size: 0.87rem;
+  line-height: 1.25;
+  display: inline-block;
+  padding: 5px 10px;
+  padding-bottom: 1px;
+  outline: 2px solid $white;
+  outline-offset: -2px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-right: 15px;
+}

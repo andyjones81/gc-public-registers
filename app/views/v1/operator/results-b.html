@@ -12,6 +12,12 @@
 Search the register of gambling businesses
 {% endblock %}
 
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+
 {% block beforeContent %}
 
 
@@ -43,7 +49,7 @@ Search the register of gambling businesses
     <div class="govuk-grid-column-two-thirds">
 
         <div class="gc-register-search gc-register-search--whitebg">
-                <form method="POST" action="results">
+            <form method="POST" action="results">
                 <label for="search" class="govuk-label">
                     <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">
                         Search the register of gambling businesses
@@ -70,7 +76,7 @@ Search the register of gambling businesses
                         </button>
                     </div>
                 </div>
-          </form>
+            </form>
 
 
         </div>
@@ -85,7 +91,7 @@ Search the register of gambling businesses
 <div class="govuk-grid-row">
 
     {% if emptySearch === 'true'%}
-    
+
     <div class="govuk-grid-column-two-thirds">
         <h3 class="govuk-heading-m">
             No results found
@@ -93,12 +99,12 @@ Search the register of gambling businesses
         <p class="govuk-body">If you want the full register, find out how to <a
                 href="/{{version}}/operator/summary">download the register</a> in different formats.</p>
     </div>
-    
+
     {% else %}
     <div class="govuk-grid-column-one-third">
-            <form method="POST" action="results">
-        <div class="gc-filters">
-           
+        <form method="POST" action="results">
+            <div class="gc-filters">
+
                 <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Filter</h2>
 
                 <div class="govuk-accordion" data-module="accordion" id="accordion-default">
@@ -211,53 +217,54 @@ Search the register of gambling businesses
                 <button type="submit" class="govuk-button">
                     Apply filter
                 </button>
-          
-
-            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 
-<p class="govuk-body">Download a file containing these results</p>
-            <a href="" role="button" class="govuk-button govuk-button--secondary">
-                CSV
-            </a>
-            <a href="" role="button" class="govuk-button govuk-button--secondary">
-                ODS
-            </a>
+                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-            <p class="govuk-body">
-             <a href="/{{version}}/operator/summary"  class="govuk-link">
-                   Download the full register
-                </a></p>
-        </div>
-</form>
+
+                <p class="govuk-body">Download a file containing these results</p>
+                <a href="" role="button" class="govuk-button govuk-button--secondary">
+                    CSV
+                </a>
+                <a href="" role="button" class="govuk-button govuk-button--secondary">
+                    ODS
+                </a>
+
+                <p class="govuk-body">
+                    <a href="/{{version}}/operator/summary" class="govuk-link">
+                        Download the full register
+                    </a></p>
+            </div>
+        </form>
     </div>
     <div class="govuk-grid-column-two-thirds">
 
-    
+
 
         {% if(result.registerData.recordset.length === 0)%}
 
-       
-            <h3 class="govuk-heading-m">
-                Nothing found for "{{data['search']}}"
 
-{% if data['status'] === undefined %}
-{% elseif data['status'] == 'Granted,Pending' %}
-with a status of "active or pending"
-{% elseif data['status'] == 'Pending' %}
-with a status of "pending"
-{% elseif data['status'] == 'Granted' %}
-with a status of "active"
-{% endif %}
+        <h3 class="govuk-heading-m">
+            Nothing found for "{{data['search']}}"
 
-            </h3>
-            <p class="govuk-body">Try searching for something else. You can search by business name, trading names, account
-                numbers and domain names.</p>
-    
-      {%else%}    <p class="govuk-body govuk-!-margin-bottom-2">
-          <span class="govuk-!-font-weight-bold">{{result.registerData.recordset.length | numeral("0,0") }}</span>
-        results</p>
-    <hr class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible"> {% endif %}
+            {% if data['status'] === undefined %}
+            {% elseif data['status'] == 'Granted,Pending' %}
+            with a status of "active or pending"
+            {% elseif data['status'] == 'Pending' %}
+            with a status of "pending"
+            {% elseif data['status'] == 'Granted' %}
+            with a status of "active"
+            {% endif %}
+
+        </h3>
+        <p class="govuk-body">Try searching for something else. You can search by business name, trading names, account
+            numbers and domain names.</p>
+
+        {%else%} <p class="govuk-body govuk-!-margin-bottom-2">
+            <span class="govuk-!-font-weight-bold">{{result.registerData.recordset.length | numeral("0,0") }}</span>
+            results</p>
+        <hr class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
+        {% endif %}
 
 
         {% for i in result.registerData.recordset %}
@@ -288,7 +295,8 @@ with a status of "active"
             {% endif %}
 
             {% endfor %}
-            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3 ">Trading names</p> {% endif %}
+            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3 ">Trading names</p>
+            {% endif %}
             <ul class="gc-search-result--tag">
 
 
@@ -315,7 +323,8 @@ with a status of "active"
             {% endif %}
 
             {% endfor %}
-            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3">Domain names</p> {% endif %}
+            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3">Domain names</p>
+            {% endif %}
 
             <ul class="gc-search-result--tag">
 

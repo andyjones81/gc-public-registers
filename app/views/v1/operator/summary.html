@@ -12,29 +12,26 @@
 Register of operators
 {% endblock %}
 
+
+
+
 {% block headerInfo %}
+
 <section class="gc-product-page gc-product-page--header">
     <div class="govuk-header__container govuk-width-container">
 
-
-
+         
+        <p class="gc-tag alpha-tag">ALPHA</p> We're testing this is a new service. <a href="/feedback">Give us feedback</a>.
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-
-
-                <div class="govuk-breadcrumbs">
-                    <ol class="govuk-breadcrumbs__list">
-                        <li class="govuk-breadcrumbs__list-item">
-                            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">Home</a>
-                        </li>
-                        <li class="govuk-breadcrumbs__list-item">
-                            Operators
-                        </li>
-                    </ol>
-                </div>
                 <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+            </div>
+        </div>
 
+        <div class="govuk-grid-row">
+           
+                <div class="govuk-grid-column-two-thirds">
                 <h1 class="govuk-heading-l govuk-!-margin-top-6">
                     Register of gambling operators
                 </h1>
@@ -111,14 +108,14 @@ Register of operators
                         <p class="register-theme__description govuk-body-s">Businesses who hold a licence to operate a gambling business</p>
                       
                     </a></li> -->
-            <li class="register-theme"><a class="register-theme__link" href="#">
+            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/download">
                     <h3
                         class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
                         Download the full register</h3>
                     <p class="register-theme__description govuk-body-s">Get a copy of the data in CSV or ODS formats.
                     </p>
                 </a></li>
-            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/sanctions/summary">
+            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/api">
                     <h3
                         class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
                         API</h3>

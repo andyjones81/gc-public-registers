@@ -8,6 +8,11 @@
 
 {% endblock %}
 
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
 {% block pageTitle %}
 A - {{registerData.Account}}
 {% endblock %}
@@ -94,7 +99,7 @@ A - {{registerData.Account}}
                 </tbody>
             </table>
 
-            
+
                    <table class="registers-secondary-table">
                         <thead class="registers-secondary-table__head">
                             <tr class="registers-secondary-table__row">
