@@ -92,7 +92,7 @@ Search the operator register
             <ul class="govuk-tabs__list">
                 <li class="govuk-tabs__list-item">
                     <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#past-day">
-                        Operator licence ({{registerData.length}})
+                        Operator licence ({{ result.registerData.recordset.length | numeral("0,0") }})
                     </a>
                 </li>
                 <li class="govuk-tabs__list-item">
@@ -109,40 +109,131 @@ Search the operator register
             </ul>
 
             <section class="govuk-tabs__panel" id="past-day">
-                <h2 class="govuk-heading-m">Operator results</h2>
+       
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds">         
+                        <h2 class="govuk-heading-m">{% if(result.registerData.recordset.length === 0)%} results</h2>
+                      
 
-                {% if registerData.length === 0%}
 
-                <p class="govuk-body">No records found in the operator register</p>
+                        <h3 class="govuk-heading-m">
+                            Nothing found for "{{data['search']}}"
 
-                {% else %}
+                            {% if data['status'] === undefined %}
+                            {% elseif data['status'] == 'Granted,Pending' %}
+                            with a status of "active or pending"
+                            {% elseif data['status'] == 'Pending' %}
+                            with a status of "pending"
+                            {% elseif data['status'] == 'Granted' %}
+                            with a status of "active"
+                            {% endif %}
 
-                {% for i in registerData %}
+                        </h3>
+                        <p class="govuk-body">Try searching for something else. You can search by business name, trading
+                            names, account
+                            numbers and domain names.</p>
 
-                <div class="gc-search-result">
-                    <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
-                        <a href="/{{version}}/operator/detail/{{i.AccountNo}}">
-                            <!-- <span class="gc-pull-right"><span class="govuk-tag"> {% if i.DeterminationStatus === 'Granted' %}
-                          Active
-                          {% else %}
-                          {{i.DeterminationStatus}}
-                          {% endif %}</span></span>--> {{i.Account}}</a>
-
-                    </h3>
-                    <p class="govuk-body-s govuk-!-margin-bottom-0">Account {{i.AccountNo}} </p>
-
-                    <p class="govuk-body  govuk-!-margin-top-1 govuk-!-margin-bottom-0">
-                        {% if i.TradingAs.TradingAsDetail.length > 0 %}
-                        Trading names:{% for tn in i.TradingAs.TradingAsDetail %}
-                        {{tn.TradingName}},
-                        {% endfor %}
+                        {%else%} <p class="govuk-body govuk-!-margin-bottom-2">
+                            <span
+                                class="govuk-!-font-weight-bold">{{result.registerData.recordset.length | numeral("0,0") }}</span>
+                            results</p>
+                        <hr
+                            class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
                         {% endif %}
-                    </p>
+
+
+                        {% for i in result.registerData.recordset %}
+
+                        {% set accountNumber = 0%}
+
+                        {% if accountNumber !== i.accountno %}
+                        {% set accountNumber = i.accountno%}
+
+                        <div class="gc-search-result">
+                            <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
+                                <a href="/{{version}}/operator/detail/{{i.accountno}}">
+                                    {{i.account}}</a>
+
+                            </h3>
+                            <p class="govuk-body-s govuk-!-margin-bottom-2">Account {{i.accountno}} </p>
+                            {% set hasTN = false %}
+                            {% for tn in result.tradingNames.recordset %}
+                            {% if tn.AccountNo === accountNumber %}
+
+
+                            {% set hasTN = true %}
+
+                            {% endif %}
+
+                            {% endfor %}
+                            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3 ">Trading
+                                names</p>
+                            {% endif %}
+                            <ul class="gc-search-result--tag">
+
+
+
+
+                                {% for tn in result.tradingNames.recordset %}
+                                {% if tn.AccountNo === accountNumber %}
+
+                                <li>{{tn.TradingName}}</li>
+
+
+                                {% endif %}
+
+                                {% endfor %}
+                            </ul>
+
+                            {% set hasTN = false %}
+                            {% for tn in result.domainNames.recordset %}
+                            {% if tn.AccountNumber === accountNumber %}
+
+
+                            {% set hasTN = true %}
+
+                            {% endif %}
+
+                            {% endfor %}
+                            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3">Domain
+                                names</p>
+                            {% endif %}
+
+                            <ul class="gc-search-result--tag">
+
+
+
+                                {% for tn in result.domainNames.recordset %}
+                                {% if tn.AccountNumber === accountNumber %}
+                                <li>{{tn.DomainName | lower}}</li>
+                                {% else %}
+
+                                {% set hasDN = true %}
+                                {% endif %}
+
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="govuk-grid-column-one-third">
+                        <div class="gc-right-aside">
+                            <p class="govuk-body">Download a file containing these results</p>
+                            <a href="" role="button" class="govuk-button govuk-button--secondary">
+                                CSV
+                            </a>
+                            <a href="" role="button" class="govuk-button govuk-button--secondary">
+                                ODS
+                            </a>
+
+                            <p class="govuk-body">
+                                <a href="/{{version}}/operator/summary" class="govuk-link">
+                                    Download the full register
+                                </a></p>
+                        </div>
+                    </div>
                 </div>
-
-                {% endfor %}
-
-                {% endif %}
 
             </section>
             <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
@@ -187,7 +278,7 @@ Search the operator register
 
     </div>
 
-   
+
 
 </div>
 

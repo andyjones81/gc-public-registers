@@ -47,80 +47,120 @@ exports.journey_post = function (req, res) {
         res.redirect('/' + version + '/hub/');
 }
 
-
-
-exports.hub_results_post = function (req, res) {
-        // console.log('post')
-        // Value from the form
-
-        // ('start')
-        var query = req.session.data['search']
+exports.hub_results_get = function (req, res) {
 
         var r = req.session.data['ab']
-        const d = require('../../data/register.json')
-        var registerData = d;
-        var plRegisterData = d;
+        const searchRegister = require('../../data/AzureSQL/searchRegister');
+        let query = req.session.data['search']
 
+        var statusFilter = req.session.data['status']
+        var sectorFilter = req.session.data['sector']
 
-        var qs1 = d.Accounts.Account.filter(function (value) {
-                return value.RemoteStatus === 'Operator';
-        });
+        var emptySearch = 'false';
+        let registerData = "";
 
-        var qs2 = d.Accounts.Account.filter(function (value) {
-                return value.RemoteStatus === 'Personal';
-        });
-
-
-
-
-        if (query !== undefined) {
-                registerData = _.filter(qs1, function (a) {
-                        if ((a.Account.toLowerCase().indexOf((query).toLowerCase()) !== -1) ||
-                                (a.AccountNo.indexOf((query)) !== -1))
-                                return a;
-                });
-        }
-
-        if (query !== undefined) {
-                plRegisterData = _.filter(qs2, function (a) {
-                        if ((a.Account.toLowerCase().indexOf((query).toLowerCase()) !== -1) ||
-                                (a.AccountNo.indexOf((query)) !== -1))
-                                return a;
-                });
-        }
-
-        registerData = _.orderBy(registerData, ['Account'], ['asc']);
-        plRegisterData = _.orderBy(plRegisterData, ['Applicantfirstname'], ['asc']);
-
-        console.log(plRegisterData)
-
-        if (r === 'A') {
-                res.render(version + '/hub/results', {
+        if (query === '') {
+                emptySearch = 'true';
+                res.render(version + '/operator/results-b', {
                         version,
-                        registerData,
-                        plRegisterData
+                        emptySearch
                 })
         } else {
-                //Is this a mobile?
+                registerData = searchRegister(query, sectorFilter, statusFilter);
 
-                var md = new mobileDetect(req.headers['user-agent']);
+                registerData.then(result => {
 
-                if (md.mobile() !== null) {
+                        if (r === 'A') {
+                                res.render(version + '/hub/results', {
+                                        version,
+                                        registerData,
+                                        result,
+                                        emptySearch
+                                })
+                        } else {
+                                var md = new mobileDetect(req.headers['user-agent']);
 
-                        res.render(version + '/hub/results', {
-                                version,
-                                registerData,
-                                plRegisterData
-                        })
-                } else {
-                        res.render(version + '/hub/results', {
-                                version,
-                                registerData,
-                                plRegisterData
-                        })
-                }
+                                if (md.mobile() !== null) {
+
+                                        res.render(version + '/hub/results-mob', {
+                                                version,
+                                                registerData,
+                                                result,
+                                                emptySearch
+                                        })
+                                } else {
+                                        res.render(version + '/hub/results-b', {
+                                                version,
+                                                registerData,
+                                                result,
+                                                emptySearch
+                                        })
+                                }
+                        }
+
+
+                }).catch(err => {
+                        //  console.log(err);
+                });
         }
 
 }
 
+exports.hub_results_post = function (req, res) {
 
+        var r = req.session.data['ab']
+        const searchRegister = require('../../data/AzureSQL/searchRegister');
+        let query = req.session.data['search']
+
+        var statusFilter = req.session.data['status']
+        var sectorFilter = req.session.data['sector']
+
+        var emptySearch = 'false';
+        let registerData = "";
+
+        if (query === '') {
+                emptySearch = 'true';
+                res.render(version + '/operator/results-b', {
+                        version,
+                        emptySearch
+                })
+        } else {
+                registerData = searchRegister(query, sectorFilter, statusFilter);
+
+                registerData.then(result => {
+
+                        if (r === 'A') {
+                                res.render(version + '/hub/results', {
+                                        version,
+                                        registerData,
+                                        result,
+                                        emptySearch
+                                })
+                        } else {
+                                var md = new mobileDetect(req.headers['user-agent']);
+
+                                if (md.mobile() !== null) {
+
+                                        res.render(version + '/hub/results-mob', {
+                                                version,
+                                                registerData,
+                                                result,
+                                                emptySearch
+                                        })
+                                } else {
+                                        res.render(version + '/hub/results-b', {
+                                                version,
+                                                registerData,
+                                                result,
+                                                emptySearch
+                                        })
+                                }
+                        }
+
+
+                }).catch(err => {
+                        //  console.log(err);
+                });
+        }
+
+}

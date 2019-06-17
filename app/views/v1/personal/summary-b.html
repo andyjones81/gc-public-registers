@@ -12,9 +12,6 @@
 Register of operators
 {% endblock %}
 
-
-
-
 {% block headerInfo %}
 <section class="gc-product-page gc-product-page--header">
     <div class="govuk-header__container govuk-width-container">
@@ -35,22 +32,20 @@ Register of operators
                 </li>
     
                 <li class="govuk-breadcrumbs__list-item">
-                    Gambling operators
+                    Personal licence holders
                 </li>
             </ol>
-    
 
 
         <div class="govuk-grid-row">
 
             <div class="govuk-grid-column-two-thirds">
                 <h1 class="govuk-heading-l govuk-!-margin-top-6">
-                    Register of gambling operators
+                    Register of personal licence holders
                 </h1>
 
                 <p class="govuk-body-l">
-                    Businesses that are applying for, or hold a licence to carry out gambling activities in the United
-                    Kingdom.
+                    Individuals who hold a personal licence allowing them to work in the gambling industry
                 </p>
 
             </div>
@@ -68,7 +63,7 @@ Register of operators
                             </h2>
                         </label>
                         <p id="search-hint" class="govuk-body">
-                            Search by business, trading or domain name, account or licence number
+                            Search by name, licence or account number
                         </p>
                         <div class="inner-form govuk-!-margin-bottom-3">
                             <div class="input-field second-wrap">
@@ -123,14 +118,14 @@ Register of operators
                         <p class="register-theme__description govuk-body-s">Businesses who hold a licence to operate a gambling business</p>
                       
                     </a></li> -->
-            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/download">
+            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/personal/download">
                     <h3
                         class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
                         Download the full register</h3>
                     <p class="register-theme__description govuk-body-s">Get a copy of the data in CSV or ODS formats.
                     </p>
                 </a></li>
-            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/api">
+            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/personal/api">
                     <h3
                         class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
                         API</h3>
@@ -151,17 +146,16 @@ Register of operators
         <p class="govuk-body">Last updated: {{ date | date('DD MMMM YYYY')}}</p>
 
         <p class="govuk-body">There are <span class="govuk-!-font-weight-bold">{{countOL | numeral("0,0") }}</span>
-            records and <b>9 fields</b>
+            records and <b>x fields</b>
             in this register.</p>
 
         <div class="govuk-inset-text">
-            Domain names and trading names are provided by the operator. The Gambling Commission cannot guarantee the
-            accuracy of information provided by third parties.
+            Any caveats to the data?
         </div>
 
         <table class="registers-secondary-table">
             <caption class="registers-secondary-table__caption">
-                <p class="govuk-body">The <b>9 fields</b> in this register</p>
+                <p class="govuk-body">The <b>x fields</b> in this register</p>
             </caption>
             <thead class="registers-secondary-table__head">
                 <tr class="registers-secondary-table__row">
@@ -176,86 +170,13 @@ Register of operators
             <tbody class="registers-secondary-table__body">
                 <tr class="registers-secondary-table__row">
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Account number</b></p>
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Field</b></p>
                     </td>
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The unique reference for the operator.</p>
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Description</p>
                     </td>
                 </tr>
-                <tr class="registers-secondary-table__row">
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Name</b></p>
-                    </td>
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The name of the operator.</p>
-                    </td>
-                </tr>
-                <tr class="registers-secondary-table__row">
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Status</b></p>
-                    </td>
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The status of the operator account.</p>
-                    </td>
-                </tr>
-                <tr class="registers-secondary-table__row">
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Head office address</b></p>
-                    </td>
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The head office address for the operator.
-                        </p>
-                    </td>
-                </tr>
-                <tr class="registers-secondary-table__row">
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Activities</b></p>
-                    </td>
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The current activities the operator is
-                            licensed to operate under.
-                        </p>
-                    </td>
-                </tr>
-                <tr class="registers-secondary-table__row">
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Sanctions</b></p>
-                    </td>
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Details of regulatory sanctions imposed on
-                            the operator by the Gambling Commission.
-                        </p>
-                    </td>
-                </tr>
-                <tr class="registers-secondary-table__row">
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Actions</b></p>
-                    </td>
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Details of actions taken by the Gambling
-                            Commission against the operator. These are not sanctions.
-                        </p>
-                    </td>
-                </tr>
-                <tr class="registers-secondary-table__row">
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Domain names</b></p>
-                    </td>
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The domain names the operator has
-                            registered to provide online gambling activities through.
-                        </p>
-                    </td>
-                </tr>
-                <tr class="registers-secondary-table__row">
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Trading names</b></p>
-                    </td>
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The trading names the operator trades under
-                        </p>
-                    </td>
-                </tr>
+               
             </tbody>
         </table>
 
