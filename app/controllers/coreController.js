@@ -1,5 +1,5 @@
 exports.home_get = function (req, res) {
-       res.render('core/index', {'home_class': 'active'})
+       res.redirect("v1/hub/")
 }
 
 exports.changelog_get = function (req, res) {
