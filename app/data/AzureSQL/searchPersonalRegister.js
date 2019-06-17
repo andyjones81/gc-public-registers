@@ -29,26 +29,31 @@ async function getAccount(query) {
         console.log(nameArray.length);
         if (nameArray.length === 1) {
        
-            return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.towncity, pr.Applicantfirstname, pr.Applicantsurname " +
+            return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.towncity, pr.Applicantfirstname, ProcessEndDate, pr.Applicantsurname " +
                 "FROM PublicRegisterReporting pr " +
-                "WHERE Applicantfirstname like'%" + nameArray[0] + "%' " +
-                "or Applicantsurname like'" + nameArray[0] + "%' " +
+                "WHERE Applicantfirstname like '%" + nameArray[0] + "%' " +
+                "or Applicantsurname like '" + nameArray[0] + "%' " +
+                "or accountno like '" + nameArray[0] + "%' " +
                 "and pr.RemoteStatus = 'Personal' " +
                 "order by pr.Applicantfirstname asc");
         } else if (nameArray.length > 1) {
         
-            return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.towncity, pr.Applicantfirstname, pr.Applicantsurname " +
-                "FROM PublicRegisterReporting pr " +
-                "WHERE Applicantfirstname like'%" + nameArray[0] + "%' " +
-                "and Applicantsurname like'" + nameArray[1] + "%' " +
-                "and pr.RemoteStatus = 'Personal'" +
+            return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.towncity, pr.Applicantfirstname,ProcessEndDate, pr.Applicantsurname " +
+                "FROM PublicRegisterReporting pr " +  
+                "WHERE Applicantfirstname like '%" + nameArray[0] + "%' " +
+                "and (Applicantsurname like '" + nameArray[1] + "%') " +
+                "and (pr.RemoteStatus = 'Personal') " +       
+                "or accountno like '" + nameArray[0] + "%' " +
+                "or accountno like '" + nameArray[1] + "%' " +       
                 "order by pr.Applicantfirstname asc");
         } else {
-            return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.towncity, pr.Applicantfirstname, pr.Applicantsurname " +
+            return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.towncity, pr.Applicantfirstname,ProcessEndDate, pr.Applicantsurname " +
                 "FROM PublicRegisterReporting pr " +
-                "WHERE Applicantfirstname like'%" + nameArray[0] + "%' " +
-                "and Applicantsurname like'" + nameArray[1] + "%' " +
+                "WHERE Applicantfirstname like '%" + nameArray[0] + "%' " +
+                "and Applicantsurname like '" + nameArray[1] + "%' " +
                 "and pr.RemoteStatus = 'Personal'" +
+                "or accountno like '" + nameArray[0] + "%' " +
+                "or accountno like '" + nameArray[1] + "%' " +
                 "order by pr.Applicantfirstname asc");
         }
 

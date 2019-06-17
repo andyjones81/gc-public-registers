@@ -1,0 +1,155 @@
+{% extends "layout_fullwidth.html" %}
+{% set data = result.registerData.recordset[0] %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+{{ data.Applicantfirstname }} {{ data.Applicantsurname }}- {{registerData.Account}}
+{% endblock %}
+
+{% block beforeContent %}
+
+
+<div class="govuk-breadcrumbs content-desktop">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/personal/summary">Personal licence register</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/personal/results">Search results</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            {{ data.Applicantfirstname }} {{ data.Applicantsurname }}
+        </li>
+    </ol>
+</div>
+
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            {{ data.Applicantfirstname }} {{ data.Applicantsurname }}
+        </h1>
+        <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s">
+                    Account number
+                </h2>
+                <p class="govuk-body">{{data.AccountNo}}</p>
+            </div>
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s">
+                    Licence started
+                </h2>
+                <p class="govuk-body">{{data.ProcessEndDate | date('DD MMMM YYYY')}}</p>
+            </div>
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s">
+                    Location
+                </h2>
+                <p class="govuk-body">{{data.towncity | upper}}</p>
+            </div>
+        </div>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+
+
+        <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-m">
+                            Licenses
+                        </h2>
+
+                {% for item in result.activities.recordset %}
+
+                {% if item.Product === 'PFL' %}
+
+                <div class="gc-search-result">
+
+
+                    <h2 class="govuk-heading-s">
+                        Personal functional licence
+                    </h2>
+                    <div class="govuk-tag">
+
+                        {{item.DeterminationStatus}}
+                    </div>
+                </div>
+
+
+
+                {% endif %}
+
+                {% if item.Product === 'PML - N' %}
+
+                <div class="gc-search-result">
+
+
+                    <h2 class="govuk-heading-s">
+                        Personal management licence - Non remote
+                    </h2>
+                    <div class="govuk-tag">
+
+                        {{item.DeterminationStatus}}
+                    </div>
+                </div>
+
+
+
+                {% endif %}
+
+                {% if item.Product === 'PML - R' %}
+
+                <div class="gc-search-result">
+
+
+                    <h2 class="govuk-heading-s">
+                        Personal management licence - Remote
+                    </h2>
+                    <div class="govuk-tag">
+
+                        {{item.DeterminationStatus}}
+                    </div>
+                </div>
+
+
+
+                {% endif %}
+
+
+                {% endfor %}
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
