@@ -92,7 +92,7 @@ exports.hub_results_post = function (req, res) {
         registerData = _.orderBy(registerData, ['Account'], ['asc']);
         plRegisterData = _.orderBy(plRegisterData, ['Applicantfirstname'], ['asc']);
 
-        // console.log(plRegisterData)
+        console.log(plRegisterData)
 
         if (r === 'A') {
                 res.render(version + '/hub/results', {
