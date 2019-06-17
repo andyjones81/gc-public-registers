@@ -32,7 +32,7 @@ async function getAccount(query) {
             return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.towncity, pr.Applicantfirstname, pr.Applicantsurname " +
                 "FROM PublicRegisterReporting pr " +
                 "WHERE Applicantfirstname like'%" + nameArray[0] + "%' " +
-                "or Applicantsurname like'%" + nameArray[0] + "%' " +
+                "or Applicantsurname like'" + nameArray[0] + "%' " +
                 "and pr.RemoteStatus = 'Personal' " +
                 "order by pr.Applicantfirstname asc");
         } else if (nameArray.length > 1) {
@@ -40,14 +40,14 @@ async function getAccount(query) {
             return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.towncity, pr.Applicantfirstname, pr.Applicantsurname " +
                 "FROM PublicRegisterReporting pr " +
                 "WHERE Applicantfirstname like'%" + nameArray[0] + "%' " +
-                "and Applicantsurname like'%" + nameArray[1] + "%' " +
+                "and Applicantsurname like'" + nameArray[1] + "%' " +
                 "and pr.RemoteStatus = 'Personal'" +
                 "order by pr.Applicantfirstname asc");
         } else {
             return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.towncity, pr.Applicantfirstname, pr.Applicantsurname " +
                 "FROM PublicRegisterReporting pr " +
                 "WHERE Applicantfirstname like'%" + nameArray[0] + "%' " +
-                "and Applicantsurname like'%" + nameArray[1] + "%' " +
+                "and Applicantsurname like'" + nameArray[1] + "%' " +
                 "and pr.RemoteStatus = 'Personal'" +
                 "order by pr.Applicantfirstname asc");
         }
