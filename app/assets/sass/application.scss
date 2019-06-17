@@ -378,25 +378,14 @@ $path: "/public/images/";
 .gc-search-result {
   margin-bottom: 5px;
   padding: 15px 0px;
-  border-bottom: 3px solid $grey-2;
+  border-bottom: 1px solid $grey-2;
 
   .govuk-body-s {
     color: $black;
   }
 }
 
-.gc-search-result {
-  margin-bottom: 20px;
-  box-shadow: 0px 0px 0px 1px $grey-2;
-  border-radius: 3px;
-  padding: 15px;
-  border-bottom: none;
-  background: $grey-4;
 
-  .govuk-body-s {
-    color: $black;
-  }
-}
 
 
 @media screen and (max-width: 767px) {

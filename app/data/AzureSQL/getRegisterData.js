@@ -30,7 +30,7 @@ async function getOLDetail(query) {
             return await sql.query("SELECT * from publicregisterreporting where accountno = "+query);
         } catch (err) {
           
-            console.log(err);
+            // console.log(err);
         }
 
     
@@ -42,7 +42,7 @@ async function getOLTradingNames(query) {
         return await sql.query("SELECT * from AllTradingNames where accountno = "+query);
     } catch (err) {
       
-        console.log(err);
+        // console.log(err);
     }
 }
 
@@ -52,7 +52,7 @@ async function getOLDomainNames(query) {
         return await sql.query("SELECT * from AllDomainNames where accountnumber = "+query);
     } catch (err) {
       
-        console.log(err);
+        // console.log(err);
     }
 }
 
@@ -62,7 +62,7 @@ async function getOLActivities(query) {
         return await sql.query("SELECT * from AccountProductsList where accountno = "+query);
     } catch (err) {
       
-        console.log(err);
+        // console.log(err);
     }
 }
 
@@ -72,7 +72,7 @@ async function getOLSanctions(query) {
         return await sql.query("SELECT * from sanctions where accountnumber = "+query);
     } catch (err) {
       
-        console.log(err);
+        // console.log(err);
     }
 }
 

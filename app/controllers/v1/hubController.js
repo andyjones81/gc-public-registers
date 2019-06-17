@@ -50,10 +50,10 @@ exports.journey_post = function (req, res) {
 
 
 exports.hub_results_post = function (req, res) {
-        console.log('post')
+        // console.log('post')
         // Value from the form
 
-        console.log('start')
+        // ('start')
         var query = req.session.data['search']
 
         var r = req.session.data['ab']
@@ -92,7 +92,7 @@ exports.hub_results_post = function (req, res) {
         registerData = _.orderBy(registerData, ['Account'], ['asc']);
         plRegisterData = _.orderBy(plRegisterData, ['Applicantfirstname'], ['asc']);
 
-        console.log(plRegisterData)
+        // console.log(plRegisterData)
 
         if (r === 'A') {
                 res.render(version + '/hub/results', {

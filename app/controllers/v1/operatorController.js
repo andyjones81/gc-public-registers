@@ -65,8 +65,8 @@ exports.operator_api_get = function (req, res) {
 }
 
 exports.operator_results_post = function (req, res) {
-    console.log('post')
-
+    // console.log('post')
+    var r = req.session.data['ab']
     const searchRegister = require('../../data/AzureSQL/searchRegister');
     let query = req.session.data['search']
     // are there any additional filters?
@@ -87,10 +87,18 @@ exports.operator_results_post = function (req, res) {
 
         registerData.then(result => {
 
-
-
+    if (r === 'A') {
+        res.render(version + '/operator/results', {
+            version,
+            registerData,
+            result,
+            emptySearch
+        })
+    } else {
 
             //Is this a mobile?
+
+
 
             var md = new mobileDetect(req.headers['user-agent']);
 
@@ -110,10 +118,11 @@ exports.operator_results_post = function (req, res) {
                     emptySearch
                 })
             }
+        }
 
 
         }).catch(err => {
-            console.log(err);
+           //  console.log(err);
         });
     }
 
@@ -187,7 +196,7 @@ exports.operator_results_post = function (req, res) {
 
 
 exports.operator_results_get = function (req, res) {
-    console.log('get')
+    // console.log('get')
     // Value from the form
     var query = req.session.data['search']
     var registerData = [];
@@ -214,9 +223,9 @@ exports.operator_results_get = function (req, res) {
     var statusFilter = req.session.data['status']
     var sectorFilter = req.session.data['sector']
 
-    console.log(query)
-    console.log(statusFilter)
-    console.log(sectorFilter)
+    // console.log(query)
+    // console.log(statusFilter)
+    // console.log(sectorFilter)
 
     if (statusFilter !== undefined) {
 
@@ -263,7 +272,7 @@ exports.operator_results_get = function (req, res) {
 
 exports.operator_detail_get = function (req, res) {
 
-    console.log('Details')
+    // console.log('Details')
 
     var query = req.session.data['search']
     var accountNo = req.params.id;
@@ -293,7 +302,7 @@ exports.operator_detail_get = function (req, res) {
             })
 
         }).catch(err => {
-            console.log(err);
+            // console.log(err);
         });
     }
 }

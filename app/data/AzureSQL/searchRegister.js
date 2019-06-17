@@ -23,7 +23,7 @@ async function searchRegister(query, sectorFilter, statusFilter) {
 async function getAccount(query, statusFilter) {
     try {
 
-console.log('Query filter: ' + statusFilter)
+// console.log('Query filter: ' + statusFilter)
 
         var strippedQuery = query.replace(/\s/g, '');
 
@@ -35,7 +35,7 @@ console.log('Query filter: ' + statusFilter)
        
         
 
-        console.log("Rendered status filter:" + statusFilter);
+        // console.log("Rendered status filter:" + statusFilter);
 
         return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.determinationstatus from publicregisterreporting as pr " +
         "inner join [dbo].[AllDomainNames] as dn  on pr.accountno = dn.accountnumber and pr.DeterminationStatus in('"+statusFilter+"') and pr.remotestatus = 'Operator' " +
@@ -48,7 +48,7 @@ console.log('Query filter: ' + statusFilter)
         "order by pr.account");
     } catch (err) {
       
-        console.log(err);
+        // console.log(err);
     }
 }
 
@@ -60,7 +60,7 @@ async function getTradingNames(query) {
         return await sql.query("SELECT * from AllTradingNames where tradingname like '%" + query + "%' or tradingname like '%" + strippedQuery + "%' ");
     } catch (err) {
       
-        console.log(err);
+        // console.log(err);
     }
 }
 
@@ -70,7 +70,7 @@ async function getDomainNames(query) {
         return await sql.query("SELECT * from AllDomainNames where domainname like'%" + query + "%' or domainname like '%" + strippedQuery + "%' ");
     } catch (err) {
       
-        console.log(err);
+        // console.log(err);
     }
 }
 
