@@ -6,6 +6,7 @@ var core_Controller = require('./controllers/coreController.js')
 var hub_Controller = require('./controllers/' + version + '/hubController.js')
 var operator_Controller = require('./controllers/' + version + '/operatorController.js')
 var personal_Controller = require('./controllers/' + version + '/personalController.js')
+var sanctions_Controller = require('./controllers/' + version + '/sanctionsController.js')
 
 router.get('/', core_Controller.home_get);
 router.get('/core/changelog', core_Controller.changelog_get);
@@ -36,5 +37,13 @@ router.post('/' + version + '/personal/results', personal_Controller.personal_re
 
 router.get('/' + version + '/personal/results', personal_Controller.personal_results_post);
 router.get('/' + version + '/personal/detail/:id', personal_Controller.personal_detail_get);
+
+// Sanctions
+router.get('/' + version + '/sanctions/summary', sanctions_Controller.sanctions_summary_get);
+router.post('/' + version + '/sanctions/results', sanctions_Controller.sanctions_results_post);
+router.get('/' + version + '/sanctions/results', sanctions_Controller.sanctions_results_post);
+router.get('/' + version + '/sanctions/detail/:id', sanctions_Controller.sanctions_detail_get);
+router.get('/' + version + '/sanctions/api', sanctions_Controller.sanctions_api_get);
+router.get('/' + version + '/sanctions/download', sanctions_Controller.sanctions_download_get);
 
 module.exports = router

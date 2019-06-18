@@ -23,7 +23,7 @@ async function searchRegister(query, sectorFilter, statusFilter) {
 async function getAccount(query, statusFilter) {
     try {
 
-// console.log('Query filter: ' + statusFilter)
+console.log('Query filter: ' + statusFilter)
 
         var strippedQuery = query.replace(/\s/g, '');
 
@@ -48,7 +48,7 @@ async function getAccount(query, statusFilter) {
         "order by pr.account");
     } catch (err) {
       
-        // console.log(err);
+    console.log(err);
     }
 }
 
