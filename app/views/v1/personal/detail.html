@@ -54,97 +54,310 @@
         <div class="govuk-grid-row">
 
             <div class="govuk-grid-column-one-third">
-                <h2 class="govuk-heading-s">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
                     Account number
                 </h2>
                 <p class="govuk-body">{{data.AccountNo}}</p>
             </div>
             <div class="govuk-grid-column-one-third">
-                <h2 class="govuk-heading-s">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
                     Licence started
                 </h2>
                 <p class="govuk-body">{{data.ProcessEndDate | date('DD MMMM YYYY')}}</p>
             </div>
             <div class="govuk-grid-column-one-third">
-                <h2 class="govuk-heading-s">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
                     Location
                 </h2>
-                <p class="govuk-body">{{data.towncity | upper}}</p>
+                <p class="govuk-body">{{data.towncity | capitalize}}</p>
             </div>
         </div>
 
-        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-4">
+            Licenses
+        </h2>
+
+
+        <!-- <div class="govuk-grid-row">
+
+            {% for item in result.activities.recordset %}
+
+            {% if item.Product === 'PFL' %}
+            <div class="govuk-grid-column-one-half">
+                <div class="gc-search-result">
+
+                    <p class="govuk-body">
+                        Personal functional licence
+                    </p>
+                    <div class="govuk-tag">
+
+                        {{item.DeterminationStatus}}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if item.Product === 'PML - N' %}
+            <div class="govuk-grid-column-one-half">
+                <div class="gc-search-result">
+
+
+                    <p class="govuk-body">
+                        Personal management licence<br />Non remote
+                    </p>
+                    <div class="govuk-tag">
+
+                        {{item.DeterminationStatus}}
+                    </div>
+                </div>
+            </div>
+
+
+            {% endif %}
+
+            {% if item.Product === 'PML - R' %}
+            <div class="govuk-grid-column-one-half">
+                <div class="gc-search-result">
+
+
+                    <p class="govuk-body">
+                        Personal management licence<br />Remote
+                    </p>
+                    <div class="govuk-tag">
+
+                        {{item.DeterminationStatus}}
+                    </div>
+                </div>
+            </div>
+
+
+            {% endif %}
+
+
+            {% endfor %}
+
+
+
+
+        </div> -->
 
 
 
         <div class="govuk-grid-row">
-
             <div class="govuk-grid-column-full">
-                    <h2 class="govuk-heading-m">
-                            Licenses
-                        </h2>
 
                 {% for item in result.activities.recordset %}
+
 
                 {% if item.Product === 'PFL' %}
 
                 <div class="gc-search-result">
-
-
-                    <h2 class="govuk-heading-s">
-                        Personal functional licence
-                    </h2>
-                    <div class="govuk-tag">
-
+                    <span class="govuk-tag gc-pull-right">
                         {{item.DeterminationStatus}}
-                    </div>
+                    </span>
+                    <p class="govuk-body">
+                        Personal functional licence
+                    </p>
+                    <details class="govuk-details  govuk-!-margin-bottom-0">
+                        <summary class="govuk-details__summary">
+                            <span class="govuk-details__summary-text">
+                                What you can do with this licence
+                            </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                            <p class="govuk-body">This licence allows you to carry out activities involving gaming or
+                                handling cash in relation to gambling. Currently, we only require casino employees to
+                                hold a Personal Functional Licence.</p>
+                            <p class="govuk-body">Examples of employees who should have personal functional licences
+                                are: </p>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>dealers/croupiers in respect of casino games </li>
+                                <li>cashiers</li>
+                                <li>inspectors</li>
+                                <li>pit bosses/gaming supervisors</li>
+                                <li>security staff/surveillance related to gambling activities.</li>
+                            </ul>
+
+                        </div>
+                    </details>
+
                 </div>
-
-
 
                 {% endif %}
 
                 {% if item.Product === 'PML - N' %}
-
                 <div class="gc-search-result">
-
-
-                    <h2 class="govuk-heading-s">
-                        Personal management licence - Non remote
-                    </h2>
-                    <div class="govuk-tag">
-
+                    <span class="govuk-tag gc-pull-right">
                         {{item.DeterminationStatus}}
-                    </div>
+                    </span>
+                    <p class="govuk-body">
+                        Personal management licence - Non remote
+                    </p>
+
+                    <details class="govuk-details  govuk-!-margin-bottom-0">
+                        <summary class="govuk-details__summary">
+                            <span class="govuk-details__summary-text">
+                                What you can do with this licence
+                            </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                            <p class="govuk-body">The licence allows the licensee to hold any of the following relevant
+                                management positions: </p>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>overall strategy and delivery of gambling operations</li>
+                                <li>financial planning, control and budgeting</li>
+                                <li>marketing and commercial development</li>
+                                <li>regulatory compliance</li>
+                                <li>gambling related IT provision and security</li>
+                                <li>where there is a regional structure, regional or area managers to whom
+                                    responsibility for gambling operations is delegated</li>
+                                <li>the director or trustee responsible for a society lottery</li>
+                                <li>casino and bingo site managers.</li>
+                            </ul>
+                            <p class="govuk-body">
+                                An individual who occupies more than one of these management positions only needs to
+                                hold one personal management licence (PML).
+                            </p>
+                            <p class="govuk-body">
+                                A PML allows the licensee to work in the non-remote sector, the remote sector or both.
+                            </p>
+                            <p class="govuk-body">
+                                An individual who works in both non-remote and remote sectors only needs to hold one
+                                PML. </p>
+                            <p class="govuk-body">
+                                You can see which sectors each PML applies to under the ‘licence activities’ heading on
+                                the register. Find out more about personal management licences. </p>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>Arcades</li>
+                                <li>Betting</li>
+                                <li>Bingo</li>
+                                <li>Casinos</li>
+                                <li>Gambling software</li>
+                                <li>Gaming machines</li>
+                                <li>Lotteries</li>
+                                <li>Remote</li>
+                            </ul>
+
+                        </div>
+                    </details>
+
                 </div>
-
-
-
                 {% endif %}
+
 
                 {% if item.Product === 'PML - R' %}
-
                 <div class="gc-search-result">
-
-
-                    <h2 class="govuk-heading-s">
-                        Personal management licence - Remote
-                    </h2>
-                    <div class="govuk-tag">
-
+                    <span class="govuk-tag gc-pull-right">
                         {{item.DeterminationStatus}}
-                    </div>
+                    </span>
+                    <p class="govuk-body">
+                        Personal management licence - Remote
+                    </p>
+
+                    <details class="govuk-details  govuk-!-margin-bottom-0">
+                        <summary class="govuk-details__summary">
+                            <span class="govuk-details__summary-text">
+                                What you can do with this licence
+                            </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                            <p class="govuk-body">The licence allows the licensee to hold any of the following relevant
+                                management positions: </p>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>overall strategy and delivery of gambling operations</li>
+                                <li>financial planning, control and budgeting</li>
+                                <li>marketing and commercial development</li>
+                                <li>regulatory compliance</li>
+                                <li>gambling related IT provision and security</li>
+                                <li>where there is a regional structure, regional or area managers to whom
+                                    responsibility for gambling operations is delegated</li>
+                                <li>the director or trustee responsible for a society lottery</li>
+                                <li>casino and bingo site managers.</li>
+                            </ul>
+
+                            <p class="govuk-body"> An individual who occupies more than one of these management
+                                positions only needs to hold one personal management licence. Find out more about
+                                personal management licences.
+                            </p>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>Arcades</li>
+                                <li>Betting</li>
+                                <li>Bingo</li>
+                                <li>Casinos</li>
+                                <li>Gambling software</li>
+                                <li>Gaming machines</li>
+                                <li>Lotteries</li>
+                                <li>Remote</li>
+                            </ul>
+
+
+                        </div>
+                    </details>
                 </div>
-
-
-
                 {% endif %}
+
+
 
 
                 {% endfor %}
 
             </div>
 
+
+        </div>
+
+        <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-full">
+                <h2 class="govuk-heading-m govuk-!-margin-top-4">
+                    Sanctions
+                </h2>
+
+                {% if result.sanctions.recordset.length === 0 %}
+                <p class="govuk-body">None recorded</p>
+                {%endif%}
+
+                <div class="gc-reg-action govuk-body">
+                    {% for item in result.sanctions.recordset %}
+
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-one-third">
+                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                Decision
+                            </h2>
+                            <p class="govuk-body">{{item.status}}</p>
+                        </div>
+
+                        <div class="govuk-grid-column-one-third">
+                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                Date of decision
+                            </h2>
+                            <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
+                        </div>
+
+                    </div>
+                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                        Outcome
+                    </h2>
+                    <p class="govuk-body">
+
+                        {{item.details | safe}}
+
+                        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+                    </p>
+
+                    {% endfor %}
+
+
+                </div>
+
+                <h2 class="govuk-heading-m govuk-!-margin-top-4">
+                    Other actions
+                </h2>
+                <p class="govuk-body">None recorded</p>
+            </div>
 
         </div>
     </div>

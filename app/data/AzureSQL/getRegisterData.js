@@ -69,10 +69,10 @@ async function getOLActivities(query) {
 async function getOLSanctions(query) {
     try {
 
-        return await sql.query("SELECT * from sanctions where accountnumber = "+query);
+        return await sql.query("SELECT sanctions.details, sanctions.decidedon, sanctionstatus.status from sanctions inner join sanctionstatus on sanctionstatus.id = sanctions.status where accountnumber = "+query);
     } catch (err) {
       
-        // console.log(err);
+        console.log(err);
     }
 }
 

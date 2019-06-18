@@ -33,6 +33,8 @@ router.get('/' + version + '/personal/summary', personal_Controller.personal_sum
 router.get('/' + version + '/personal/api', personal_Controller.personal_api_get);
 router.get('/' + version + '/personal/download', personal_Controller.personal_download_get);
 router.post('/' + version + '/personal/results', personal_Controller.personal_results_post);
+
+router.get('/' + version + '/personal/results', personal_Controller.personal_results_post);
 router.get('/' + version + '/personal/detail/:id', personal_Controller.personal_detail_get);
 
 module.exports = router
