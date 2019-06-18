@@ -1,5 +1,7 @@
 {% extends "layout_fullwidth.html" %}
 
+{% set olDetail = result.registerData.recordset[0] %}
+
 {% block headerContent %}
 
 <button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
@@ -14,14 +16,14 @@
 {% endblock %}
 
 {% block pageTitle %}
-A - {{registerData.Account}}
+{{olDetail.Account}}
 {% endblock %}
 
 {% block beforeContent %}
 
-    
+
 {% if data['ab'] === 'B' %}
-<div class="govuk-breadcrumbs content-desktop">
+<div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
             <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
@@ -30,196 +32,159 @@ A - {{registerData.Account}}
             <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling businesses</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-                <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/results">Search results</a>
-            </li>
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/results">Search results</a>
+        </li>
         <li class="govuk-breadcrumbs__list-item">
             Detail
         </li>
     </ol>
 </div>
 {% else %}
-<div class="govuk-breadcrumbs content-desktop">
-        <ol class="govuk-breadcrumbs__list">
-            <li class="govuk-breadcrumbs__list-item">
-                <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
-            </li>
-            <li class="govuk-breadcrumbs__list-item">
-                <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Operator register</a>
-            </li>
-            <li class="govuk-breadcrumbs__list-item">
-                    <a class="govuk-breadcrumbs__link" href="/{{version}}/hub/results">Search results</a>
-                </li>
-            <li class="govuk-breadcrumbs__list-item">
-                Detail
-            </li>
-        </ol>
-    </div>
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Operator register</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub/results">Search results</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            Detail
+        </li>
+    </ol>
+</div>
 {% endif %}
 
-   
-    
-    
-    <div class="govuk-breadcrumbs content-mobile">
-            <a href="/{{version}}/operator/results" class="govuk-back-link">Back to search results</a>
-        </div>
+
+
+
+<div class="govuk-breadcrumbs content-mobile">
+    <a href="/{{version}}/operator/results" class="govuk-back-link">Back to search results</a>
+</div>
 {% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
 
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
-        <h1 class="govuk-heading-l">
-           Account Data
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-2">
+            {{olDetail.Account}}
         </h1>
-
-        <table class="registers-secondary-table">
-                <thead class="registers-secondary-table__head">
-                    <tr class="registers-secondary-table__row">
-                        <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
-                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field</p>
-                        </th>
-                        <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
-                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Value</p>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="registers-secondary-table__body">
-{% for name, item in result.registerData.recordset[0] %}
-                    <tr class="registers-secondary-table__row">
-                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">{{name}}</p>
-                        </td>
-                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">{{item}}</p>
-                        </td>
-                    </tr>
-                   {% endfor %}
-                </tbody>
-            </table>
+        <p class="govuk-body-l">Account {{olDetail.AccountNo}}</p>
 
 
-                   <table class="registers-secondary-table">
-                        <thead class="registers-secondary-table__head">
-                            <tr class="registers-secondary-table__row">
-                                <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
-                                    <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field</p>
-                                </th>
-                                <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
-                                    <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Value</p>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="registers-secondary-table__body">
+        <div class="govuk-grid-row">
 
-                   {% for item in result.tradingNames.recordset %}
-                    <tr class="registers-secondary-table__row">
-                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">TradingName</p>
-                        </td>
-                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">{{item.TradingName}}</p>
-                        </td>
-                    </tr>
-                    <tr class="registers-secondary-table__row">
-                            <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                                <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Status</p>
-                            </td>
-                            <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                                <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">{{item.Status}}</p>
-                            </td>
-                        </tr>
-                   {% endfor %}
-                </tbody>
-            </table>
-                   <table class="registers-secondary-table">
-                        <thead class="registers-secondary-table__head">
-                            <tr class="registers-secondary-table__row">
-                                <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
-                                    <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field</p>
-                                </th>
-                                <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
-                                    <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Value</p>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="registers-secondary-table__body">
-                   {% for item in result.domainNames.recordset %}
-                    <tr class="registers-secondary-table__row">
-                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">DomainName</p>
-                        </td>
-                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">{{item.DomainName}}</p>
-                        </td>
-                    </tr>
-                    <tr class="registers-secondary-table__row">
-                            <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                                <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Status</p>
-                            </td>
-                            <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                                <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">{{item.AccountStatus}}</p>
-                            </td>
-                        </tr>
-                   {% endfor %}
-                </tbody>
-            </table>
-                   <table class="registers-secondary-table">
-                        <thead class="registers-secondary-table__head">
-                            <tr class="registers-secondary-table__row">
-                                <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
-                                    <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field</p>
-                                </th>
-                                <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
-                                    <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Value</p>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="registers-secondary-table__body">
-                   {% for item in result.activities.recordset %}
-                    <tr class="registers-secondary-table__row">
-                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">RemoteStatus</p>
-                        </td>
-                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">{{item.RemoteStatus}}</p>
-                        </td>
-                    </tr>
-                    <tr class="registers-secondary-table__row">
-                            <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                                <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">DeterminationStatus</p>
-                            </td>
-                            <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                                <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">{{item.DeterminationStatus}}</p>
-                            </td>
-                        </tr>
-                        <tr class="registers-secondary-table__row">
-                                <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                                    <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Department</p>
-                                </td>
-                                <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                                    <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">{{item.Department}}</p>
-                                </td>
-                            </tr>
-                            <tr class="registers-secondary-table__row">
-                                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Product</p>
-                                    </td>
-                                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">{{item.Product}}</p>
-                                    </td>
-                                </tr>
-                   {% endfor %}
-                </tbody>
-            </table>
+            <div class="govuk-grid-column-one-half">
+                <h2 class="govuk-heading-m">
+                    Head office address
+                </h2>
 
-      
-<pre><code> {{result | dump}}</code></pre>
+                <p class="govuk-body">
+                    {{olDetail.propertyname}}, {{olDetail.towncity}}, {{olDetail.postcode}}
+                </p>
+            </div>
+        </div>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                         <div class="govuk-tabs" data-module="tabs">
+                    <h2 class="govuk-tabs__title">
+                      Contents
+                    </h2>
+                  
+                    <ul class="govuk-tabs__list">
+                      <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#past-day">
+                          Overview
+                        </a>
+                      </li>
+                      <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab" href="#past-week">
+                          Trading names {{result.tradingNames.recordset.length}}
+                        </a>
+                      </li>
+                      <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab" href="#past-month">
+                          Domain names {{result.domainNames.recordset.length}}
+                        </a>
+                      </li>
+                      <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab" href="#past-year">
+                          Sanctions {{result.sanctions.recordset.length}}
+                        </a>
+                      </li>
+                    </ul>
+                  
+                    <section class="govuk-tabs__panel" id="past-day">
+                   
+                     
+                            <h3 class="govuk-heading-m">
+                                Licenses
+                            </h3>
+            
+                            <ul class="govuk-list">
+                                {% for i in result.activities.recordset %}
+            
+                                <li>{{i.Product}}</li>
+            
+                                {% endfor %}
+                            </ul>
+            
+                       
+                    </section>
+                    <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
+                   
+                            <h3 class="govuk-heading-m">
+                                    Trading names
+                                </h3>
+                
+                                <ul class="govuk-list">
+                                    {% for i in result.tradingNames.recordset %}
+                
+                                    <li>{{i.TradingName}}</li>
+                
+                                    {% endfor %}
+                                </ul>
+                
+                    </section>
+                    <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
+                  
+                            <h3 class="govuk-heading-m">
+                                    Domain names
+                                </h3>
+                
+                                <ul class="govuk-list">
+                                    {% for i in result.domainNames.recordset %}
+                
+                                    <li>{{i.DomainName}}</li>
+                
+                                    {% endfor %}
+                                </ul>
+                  
+                    </section>
+                    <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
+                     
+                  
+                    </section>
+                  </div>
+                </div>
+            </div>
+
+       
+
+        </div>
+
+
 
     </div>
 
 </div>
 
 
-    {% endblock %}
+{% endblock %}
