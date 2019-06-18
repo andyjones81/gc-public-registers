@@ -70,121 +70,172 @@
 
 <div class="govuk-grid-row">
 
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            {{olDetail.Account }}
+        </h1>
+        <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                    Account number
+                </h2>
+                <p class="govuk-body">{{olDetail.AccountNo}}</p>
+            </div>
+
+            <div class="govuk-grid-column-two-thirds">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                    Head office address
+                </h2>
+                <address class="govuk-body">
+
+                    {{olDetail.propertyname}}<br />
+
+                    {% if olDetail.street !== null %}
+                    {{olDetail.street}} <br />
+                    {% endif %}
+
+                    {{olDetail.towncity | capitalize}}<br /> {{olDetail.postcode | upper}}
+
+
+                </address>
+            </div>
+        </div>
+    </div>
+
+
     <div class="govuk-grid-column-full">
 
-        <h1 class="govuk-heading-l govuk-!-margin-bottom-2">
-            {{olDetail.Account}}
-        </h1>
-        <p class="govuk-body-l">Account {{olDetail.AccountNo}}</p>
 
 
         <div class="govuk-grid-row">
-
-            <div class="govuk-grid-column-one-half">
-                <h2 class="govuk-heading-m">
-                    Head office address
-                </h2>
-
-                <p class="govuk-body">
-                    {{olDetail.propertyname}}, {{olDetail.towncity}}, {{olDetail.postcode}}
-                </p>
-            </div>
-        </div>
-
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-full">
-                         <div class="govuk-tabs" data-module="tabs">
+            <div class="govuk-grid-column-full">
+                <div class="govuk-tabs" data-module="tabs">
                     <h2 class="govuk-tabs__title">
-                      Contents
+                        Contents
                     </h2>
-                  
+
                     <ul class="govuk-tabs__list">
-                      <li class="govuk-tabs__list-item">
-                        <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#past-day">
-                          Overview
-                        </a>
-                      </li>
-                      <li class="govuk-tabs__list-item">
-                        <a class="govuk-tabs__tab" href="#past-week">
-                          Trading names {{result.tradingNames.recordset.length}}
-                        </a>
-                      </li>
-                      <li class="govuk-tabs__list-item">
-                        <a class="govuk-tabs__tab" href="#past-month">
-                          Domain names {{result.domainNames.recordset.length}}
-                        </a>
-                      </li>
-                      <li class="govuk-tabs__list-item">
-                        <a class="govuk-tabs__tab" href="#past-year">
-                          Sanctions {{result.sanctions.recordset.length}}
-                        </a>
-                      </li>
-                    </ul>
-                  
-                    <section class="govuk-tabs__panel" id="past-day">
-                   
-                     
-                            <h3 class="govuk-heading-m">
+                        <li class="govuk-tabs__list-item">
+                            <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#past-day">
                                 Licenses
-                            </h3>
-            
-                            <ul class="govuk-list">
-                                {% for i in result.activities.recordset %}
-            
-                                <li>{{i.Product}}</li>
-            
-                                {% endfor %}
-                            </ul>
-            
-                       
+                            </a>
+                        </li>
+                        <li class="govuk-tabs__list-item">
+                            <a class="govuk-tabs__tab" href="#past-week">
+                                Trading names ({{result.tradingNames.recordset.length}})
+                            </a>
+                        </li>
+                        <li class="govuk-tabs__list-item">
+                            <a class="govuk-tabs__tab" href="#past-month">
+                                Domain names ({{result.domainNames.recordset.length}})
+                            </a>
+                        </li>
+                        <li class="govuk-tabs__list-item">
+                            <a class="govuk-tabs__tab" href="#past-year">
+                                Sanctions ({{result.sanctions.recordset.length}})
+                            </a>
+                        </li>
+                    </ul>
+
+                    <section class="govuk-tabs__panel" id="past-day">
+                            <div class="govuk-grid-row">
+                                    <div class="govuk-grid-column-two-thirds">
+                        {% for RemoteStatus, Product in result.activities.recordset | groupby("RemoteStatus") %}
+
+                        {% set type = Product[0].DeterminationStatus %}
+
+                        <div class="gc-search-result">
+                            <span class="govuk-tag gc-pull-right">
+                                {{type}}
+                            </span>
+
+                            <h3 class="govuk-heading-m"> {{ RemoteStatus }}</h3>
+
+                            <p class="govuk-body">
+                                <ul class="govuk-list">
+
+                                    {% for item in Product %}
+                                    <li>{{ item.Product }}</li>
+                                    {% endfor %}
+
+                                </ul>
+                            </p>
+
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                    <div class="govuk-grid-column-one-third">
+                            <aside class="app-related-items" role="complementary">
+                                    <h2 class="govuk-heading-m" id="subsection-title">
+                                      Information
+                                    </h2>
+                                    <nav role="navigation" aria-labelledby="subsection-title">
+                                      <ul class="govuk-list govuk-!-font-size-16">
+                                        <li>
+                                          <a class="govuk-link" href="#">
+                                            Licence types
+                                          </a>
+                                        </li>
+                                        
+                                      </ul>
+                                    </nav>
+                                  </aside>
+                    </div>
+                </div>
+
                     </section>
                     <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
-                   
-                            <h3 class="govuk-heading-m">
-                                    Trading names
-                                </h3>
-                
-                                <ul class="govuk-list">
-                                    {% for i in result.tradingNames.recordset %}
-                
-                                    <li>{{i.TradingName}}</li>
-                
-                                    {% endfor %}
-                                </ul>
-                
+
+                        <h3 class="govuk-heading-m">
+                            Trading names
+                        </h3>
+
+                        <ul class="govuk-list">
+                            {% for i in result.tradingNames.recordset %}
+
+                            <li>{{i.TradingName}}</li>
+
+                            {% endfor %}
+                        </ul>
+
                     </section>
                     <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
-                  
-                            <h3 class="govuk-heading-m">
-                                    Domain names
-                                </h3>
-                
-                                <ul class="govuk-list">
-                                    {% for i in result.domainNames.recordset %}
-                
-                                    <li>{{i.DomainName}}</li>
-                
-                                    {% endfor %}
-                                </ul>
-                  
+
+                        <h3 class="govuk-heading-m">
+                            Domain names
+                        </h3>
+
+                        <ul class="govuk-list">
+                            {% for i in result.domainNames.recordset %}
+
+                            <li>{{i.DomainName}}</li>
+
+                            {% endfor %}
+                        </ul>
+
                     </section>
                     <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
-                     
-                  
+
+
                     </section>
-                  </div>
                 </div>
             </div>
-
-       
-
         </div>
 
 
 
     </div>
 
+
+
 </div>
+
+</div>
+
+
 
 
 {% endblock %}
