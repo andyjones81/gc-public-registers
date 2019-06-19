@@ -119,7 +119,7 @@
                     <ul class="govuk-tabs__list">
                         <li class="govuk-tabs__list-item">
                             <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#past-day">
-                                Licenses
+                                Licences
                             </a>
                         </li>
                         <li class="govuk-tabs__list-item">
@@ -140,55 +140,145 @@
                     </ul>
 
                     <section class="govuk-tabs__panel" id="past-day">
-                            <div class="govuk-grid-row">
-                                    <div class="govuk-grid-column-two-thirds">
-                        {% for RemoteStatus, Product in result.activities.recordset | groupby("RemoteStatus") %}
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-two-thirds">
+                                <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Licences</h2>
 
-                        {% set type = Product[0].DeterminationStatus %}
+                                <p class="govuk-body">Only licences which have a start date in the last 3 years are
+                                    shown.</p>
 
-                        <div class="gc-search-result">
-                            <span class="govuk-tag gc-pull-right">
-                                {{type}}
-                            </span>
 
-                            <h3 class="govuk-heading-m"> {{ RemoteStatus }}</h3>
+                                {% for licence in result.newLicenceInfo.recordset %}
 
-                            <p class="govuk-body">
-                                <ul class="govuk-list">
 
-                                    {% for item in Product %}
-                                    <li>{{ item.Product }}</li>
-                                    {% endfor %}
+                                <div class="gc-search-result">
+                                    <span class="govuk-tag {{licence.Status | lower}} gc-pull-right">
+                                        {{licence.Status}}
+                                    </span>
 
-                                </ul>
-                            </p>
+                                    <span class="govuk-caption-m">{{licence.LicenceNo}}</span>
+                                    <h3 class="govuk-heading-m govuk-!-margin-bottom-2"> {{ licence.Type }}</h3>
 
-                        </div>
+                                    {% if licence.End !== null %}
 
-                        {% endfor %}
-                    </div>
-                    <div class="govuk-grid-column-one-third">
-                            <aside class="app-related-items" role="complementary">
+                                    <p class="govuk-body">Licence held between {{licence.Start | date('DD MMMM YYYY')}}
+                                        and {{licence.End | date('DD MMMM YYYY')}}</p>
+
+                                    <details class="govuk-details govuk-!-margin-bottom-0">
+                                        <summary class="govuk-details__summary">
+                                            <span class="govuk-details__summary-text">
+                                                Activities held on this licence
+                                            </span>
+                                        </summary>
+                                        <div class="govuk-details__text">
+                                            <ul class="govuk-list">
+
+                                                {% for item in result.newLicenceActivityInfo.recordset %}
+
+                                                {% if item.licenceid === licence.LicenceId %}
+                                                <li>{{item.Product}}</li>
+                                                {% endif %}
+
+
+                                                {% endfor %}
+
+                                            </ul>
+                                        </div>
+                                    </details>
+
+                                    {% else %}
+                                    <p class="govuk-body">Current licence held from
+                                        {{licence.Start | date('DD MMMM YYYY')}}
+                                    </p>
+                                    <details class="govuk-details govuk-!-margin-bottom-0">
+                                        <summary class="govuk-details__summary">
+                                            <span class="govuk-details__summary-text">
+                                                Activities held on this licence
+                                            </span>
+                                        </summary>
+                                        <div class="govuk-details__text">
+                                            <ul class="govuk-list">
+
+                                                {% for item in result.newLicenceActivityInfo.recordset %}
+
+                                                {% if item.licenceid === licence.LicenceId %}
+                                                <li>{{item.Product}}</li>
+                                                {% endif %}
+
+
+
+                                                <!-- <li>{{ item.Product }}</li> -->
+                                                {% endfor %}
+
+                                            </ul>
+                                        </div>
+                                    </details>
+
+
+                                    {% endif %}
+
+
+                                </div>
+
+                                {% endfor %}
+
+
+
+
+
+
+
+                                <!-- {% for RemoteStatus, Product in result.activities.recordset | groupby("RemoteStatus") %}
+
+                                {% set type = Product[0].DeterminationStatus %}
+
+                                <div class="gc-search-result">
+                                    <span class="govuk-tag gc-pull-right">
+                                        {{type}}
+                                    </span>
+
+                                    <h3 class="govuk-heading-m"> {{ RemoteStatus }}</h3>
+
+                                    <p class="govuk-body">
+                                        <ul class="govuk-list">
+
+                                            {% for item in Product %}
+                                            <li>{{ item.Product }}</li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </p>
+
+                                </div>
+
+                                {% endfor %} -->
+                            </div>
+                            <div class="govuk-grid-column-one-third">
+                                <aside class="app-related-items" role="complementary">
                                     <h2 class="govuk-heading-m" id="subsection-title">
-                                      Information
+                                        Information
                                     </h2>
                                     <nav role="navigation" aria-labelledby="subsection-title">
-                                      <ul class="govuk-list govuk-!-font-size-16">
-                                        <li>
-                                          <a class="govuk-link" href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Types-of-operating-licence.aspx" target="_Blank">
-                                            Information about licensing
-                                          </a>
-                                        </li>
-                                        <li>
-                                                <a class="govuk-link" href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx" target="_Blank">
-                                                  Licence conditions and codes of practice
+                                        <ul class="govuk-list govuk-!-font-size-16">
+                                            <li>
+                                                <a class="govuk-link"
+                                                    href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Types-of-operating-licence.aspx"
+                                                    target="_Blank">
+                                                    Information about licensing
                                                 </a>
-                                              </li>
-                                      </ul>
+                                            </li>
+                                            <li>
+                                                <a class="govuk-link"
+                                                    href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
+                                                    target="_Blank">
+                                                    Licence conditions and codes of practice
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </nav>
-                                  </aside>
-                    </div>
-                </div>
+                                </aside>
+                            </div>
+                        </div>
 
                     </section>
                     <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
@@ -223,7 +313,81 @@
                     </section>
                     <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
 
+                        <div class="govuk-grid-row">
 
+                            <div class="govuk-grid-column-two-thirds">
+
+                                <h3 class="govuk-heading-m">
+                                    Sanctions
+                                </h3>
+
+                                {% if result.sanctions.recordset.length === 0 %}
+                                <p class="govuk-body">None recorded</p>
+                                {%endif%}
+
+                                <div class="gc-reg-action govuk-body">
+                                    {% for item in result.sanctions.recordset %}
+
+                                    <div class="govuk-grid-row">
+                                        <div class="govuk-grid-column-one-half">
+                                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                                Decision
+                                            </h2>
+                                            <p class="govuk-body">{{item.status}}</p>
+                                        </div>
+
+                                        <div class="govuk-grid-column-one-half">
+                                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                                Date of decision
+                                            </h2>
+                                            <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
+                                        </div>
+
+                                    </div>
+                                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                        Outcome
+                                    </h2>
+                                    <p class="govuk-body">
+
+                                        {{item.details | safe}}
+
+                                        <hr
+                                            class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+                                    </p>
+
+                                    {% endfor %}
+
+
+                                </div>
+
+                                <h2 class="govuk-heading-m govuk-!-margin-top-4">
+                                    Other actions
+                                </h2>
+                                <p class="govuk-body">None recorded</p>
+                            </div>
+
+                            <div class="govuk-grid-column-one-third">
+                                <aside class="app-related-items" role="complementary">
+                                    <h2 class="govuk-heading-m" id="subsection-title">
+                                        Related information
+                                    </h2>
+                                    <nav role="navigation" aria-labelledby="subsection-title">
+                                        <ul class="govuk-list govuk-!-font-size-16">
+
+                                            <li>
+                                                <a class="govuk-link"
+                                                    href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
+                                                    target="_Blank">
+                                                    Licence conditions and codes of practice
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </nav>
+                                </aside>
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>

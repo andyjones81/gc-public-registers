@@ -11,13 +11,17 @@ async function getRegisterData(query) {
     let tn = getOLTradingNames(query);
     let dn = getOLDomainNames(query);
     let san = getOLSanctions(query);
-    let act = getOLActivities(query);
+    let act = getOLActivities(query);    
+    let newlics = getNewLicences(query);
+    let newacts = getNewLicenceActivities(query);
 
     sqlResult['registerData'] = await q ;
     sqlResult['tradingNames'] = await tn ;
     sqlResult['domainNames'] = await dn ;
     sqlResult['activities'] = await act ;    
-    sqlResult['sanctions'] = await san ;
+    sqlResult['sanctions'] = await san ;    
+    sqlResult['newLicenceInfo'] = await newlics ;    
+    sqlResult['newLicenceActivityInfo'] = await newacts ;
 
     sql.close()
     return sqlResult;
@@ -73,6 +77,28 @@ async function getOLSanctions(query) {
     } catch (err) {
       
         console.log(err);
+    }
+}
+
+
+
+async function getNewLicences(query) {
+    try {
+
+        return await sql.query("SELECT * from Licenses where accountno = "+query + " and start > '2016-06-18' and status in ('Active','Suspended', 'Surrendered') order by start desc" );
+    } catch (err) {
+      
+        // console.log(err);
+    }
+}
+
+async function getNewLicenceActivities(query) {
+    try {
+
+        return await sql.query("SELECT distinct(Product), licenceid, start from Licenses inner join licenceactivities on Licenses.licencerowid = licenceactivities.licencerowid where accountno = " +query+ " and start > '2016-06-18' and status in ('Active','Suspended', 'Surrendered') order by start desc");
+    } catch (err) {
+      
+         console.log(err);
     }
 }
 
