@@ -43,7 +43,7 @@ async function getOLDetail(query) {
 async function getOLTradingNames(query) {
     try {
 
-        return await sql.query("SELECT * from AllTradingNames where accountno = "+query);
+        return await sql.query("SELECT * from AllTradingNames where accountno = "+query +" order by status");
     } catch (err) {
       
         // console.log(err);
@@ -53,10 +53,9 @@ async function getOLTradingNames(query) {
 async function getOLDomainNames(query) {
     try {
 
-        return await sql.query("SELECT * from AllDomainNames where accountnumber = "+query);
+        return await sql.query("SELECT * from AllDomainNames where accountnumber = "+query + " order by AccountStatus, DomainName asc");
     } catch (err) {
-      
-        // console.log(err);
+              console.log(err);
     }
 }
 
@@ -85,7 +84,7 @@ async function getOLSanctions(query) {
 async function getNewLicences(query) {
     try {
 
-        return await sql.query("SELECT * from Licenses where accountno = "+query + " and start > '2016-06-18' and status in ('Active','Suspended', 'Surrendered') order by start desc" );
+        return await sql.query("SELECT * from Licenses where accountno = "+query + " and start > '2016-06-18' and status in ('Active','Suspended', 'Surrendered', 'Revoked','Lapsed') order by start desc" );
     } catch (err) {
       
         // console.log(err);
@@ -95,7 +94,7 @@ async function getNewLicences(query) {
 async function getNewLicenceActivities(query) {
     try {
 
-        return await sql.query("SELECT distinct(Product), licenceid, start from Licenses inner join licenceactivities on Licenses.licencerowid = licenceactivities.licencerowid where accountno = " +query+ " and start > '2016-06-18' and status in ('Active','Suspended', 'Surrendered') order by start desc");
+        return await sql.query("SELECT distinct(Product), licenceid from Licenses inner join licenceactivities on Licenses.licencerowid = licenceactivities.licencerowid where accountno = " + query + " and [status] in('Active', 'Superseded', 'Revoked', 'Surrendered', 'Lapsed')");
     } catch (err) {
       
          console.log(err);

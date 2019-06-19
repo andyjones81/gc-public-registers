@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-{{olDetail.Account}}
+A - {{olDetail.Account}}
 {% endblock %}
 
 {% block beforeContent %}
@@ -134,7 +134,7 @@
                         </li>
                         <li class="govuk-tabs__list-item">
                             <a class="govuk-tabs__tab" href="#past-year">
-                                Sanctions ({{result.sanctions.recordset.length}})
+                                Regulatory actions ({{result.sanctions.recordset.length}})
                             </a>
                         </li>
                     </ul>
@@ -144,8 +144,7 @@
                             <div class="govuk-grid-column-two-thirds">
                                 <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Licences</h2>
 
-                                <p class="govuk-body">Only licences which have a start date in the last 3 years are
-                                    shown.</p>
+
 
 
                                 {% for licence in result.newLicenceInfo.recordset %}
@@ -156,8 +155,8 @@
                                         {{licence.Status}}
                                     </span>
 
-                                    <span class="govuk-caption-m">{{licence.LicenceNo}}</span>
-                                    <h3 class="govuk-heading-m govuk-!-margin-bottom-2"> {{ licence.Type }}</h3>
+                                    <span class="govuk-caption-s">{{licence.LicenceNo}}</span>
+                                    <h3 class="govuk-heading-s govuk-!-margin-bottom-2"> {{ licence.Type }}</h3>
 
                                     {% if licence.End !== null %}
 
@@ -199,6 +198,8 @@
                                         <div class="govuk-details__text">
                                             <ul class="govuk-list">
 
+
+
                                                 {% for item in result.newLicenceActivityInfo.recordset %}
 
                                                 {% if item.licenceid === licence.LicenceId %}
@@ -206,8 +207,6 @@
                                                 {% endif %}
 
 
-
-                                                <!-- <li>{{ item.Product }}</li> -->
                                                 {% endfor %}
 
                                             </ul>
@@ -256,7 +255,7 @@
                             <div class="govuk-grid-column-one-third">
                                 <aside class="app-related-items" role="complementary">
                                     <h2 class="govuk-heading-m" id="subsection-title">
-                                        Information
+                                        Related information
                                     </h2>
                                     <nav role="navigation" aria-labelledby="subsection-title">
                                         <ul class="govuk-list govuk-!-font-size-16">
@@ -264,7 +263,7 @@
                                                 <a class="govuk-link"
                                                     href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Types-of-operating-licence.aspx"
                                                     target="_Blank">
-                                                    Information about licensing
+                                                    Licensed activity information
                                                 </a>
                                             </li>
                                             <li>
@@ -287,13 +286,40 @@
                             Trading names
                         </h3>
 
-                        <ul class="govuk-list">
-                            {% for i in result.tradingNames.recordset %}
+                        {% if result.tradingNames.recordset.length === 0 %}
 
-                            <li>{{i.TradingName}}</li>
+                        <p class="govuk-body">No trading names</p>
+                        {% endif %}
 
-                            {% endfor %}
-                        </ul>
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-two-thirds">
+
+                                {% for status, i in result.tradingNames.recordset | groupby ('Status') %}
+
+                                <table class="govuk-table">
+
+                                    <thead class="govuk-table__head">
+                                        <tr class="govuk-table__row">
+                                            <th class="govuk-table__header" scope="col">{{status}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="govuk-table__body">
+                                        {% for name in i %}
+                                        <tr class="govuk-table__row">
+                                            <td class="govuk-table__cell" scope="row">{{name.TradingName}}</td>
+                                        </tr>
+                                        {% endfor %}
+
+
+
+                                    </tbody>
+                                </table>
+
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
 
                     </section>
                     <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
@@ -302,13 +328,41 @@
                             Domain names
                         </h3>
 
-                        <ul class="govuk-list">
-                            {% for i in result.domainNames.recordset %}
 
-                            <li>{{i.DomainName}}</li>
+                        {% if result.domainNames.recordset.length === 0 %}
 
-                            {% endfor %}
-                        </ul>
+                        <p class="govuk-body">No domain names</p>
+                        {% endif %}
+
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-two-thirds">
+
+                                {% for status, i in result.domainNames.recordset  | groupby ('AccountStatus') %}
+
+                                <table class="govuk-table">
+
+                                    <thead class="govuk-table__head">
+                                        <tr class="govuk-table__row">
+                                            <th class="govuk-table__header" scope="col">{{status}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="govuk-table__body">
+                                        {% for name in i %}
+                                        <tr class="govuk-table__row">
+                                            <td class="govuk-table__cell" scope="row">{{name.DomainName | lower}}</td>
+                                        </tr>
+                                        {% endfor %}
+
+
+
+                                    </tbody>
+                                </table>
+
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
 
                     </section>
                     <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
@@ -392,17 +446,8 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
-
-
-
 </div>
-
-</div>
-
 
 
 
