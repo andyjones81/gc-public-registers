@@ -105,7 +105,7 @@ exports.sanctions_results_post = function (req, res) {
 
 
         }).catch(err => {
-            //  console.log(err);
+             console.log(err);
         });
     }
 

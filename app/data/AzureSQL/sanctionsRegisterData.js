@@ -38,7 +38,7 @@ async function getAllSanctions(query) {
     }
 }
 
-async function getSanctions(query) {
+async function searchSanctions(query) {
     try {
 
         console.log('get sanctions query');

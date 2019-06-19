@@ -1,0 +1,141 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Search the regulatory sanctions and actions register 
+{% endblock %}
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/sanctions/summary">Regulatory sanctions and actions</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item">
+            Search
+        </li>
+    </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Search the regulatory sanctions and actions register
+        </h1>
+
+        <div class="gc-register-search gc-register-search--whitebg">
+
+            <form method="POST" action="results">
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="search">
+                        Search by business or individual name, trading name or account number
+                    </label>
+                    <input class="govuk-input" id="search" name="search" type="text">
+                </div>
+
+                <details class="govuk-details">
+                    <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Additional search options
+                        </span>
+                    </summary>
+                    <div class="govuk-details__text">
+
+                        <p>You can limit your search to decision made.</p>
+                        
+                        
+                        <div class="govuk-grid-column-one-half">
+                            <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                        <h1 class="govuk-fieldset__heading">
+                                            Decision outcome
+                                        </h1>
+
+                                    </legend>
+                                    <div class="govuk-checkboxes govuk-checkboxes--small">
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-1"
+                                                name="organisation" type="checkbox" value="hmrc">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-1">
+                                                Additional or amended conditions
+                                            </label> </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-2"
+                                                name="organisation" type="checkbox" value="employment-tribunal">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                                                Financial penalty
+                                            </label> </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-3"
+                                                name="organisation" type="checkbox" value="MOD">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
+                                                Revocation
+                                            </label> </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Suspension
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Warning
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="govuk-grid-row">
+
+
+                            <div class="govuk-grid-column-full">
+
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <button type="submit" class="govuk-button">
+                    Search
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <h3 class="govuk-heading-m">
+            Help us make this service better
+        </h3>
+        <p class="govuk-body"><a href="/feedback" target="_Blank">Give us feedback</a> about this service, it takes just
+            1 minute.</p>
+    </div>
+
+    {% endblock %}
