@@ -277,6 +277,7 @@ exports.operator_detail_get = function (req, res) {
     var query = req.session.data['search']
     var accountNo = req.params.id;
 
+    var r = req.session.data['ab']
     const getRegisterData = require('../../data/AzureSQL/getRegisterData');
 
 
@@ -293,13 +294,22 @@ exports.operator_detail_get = function (req, res) {
         registerData = getRegisterData(accountNo);
 
         registerData.then(result => {
-
+            if (r === 'A') {
             res.render(version + '/operator/detail', {
                 version,
                 registerData,
                 result,
                 emptySearch
             })
+        }
+        else{
+            res.render(version + '/operator/detail-b', {
+                version,
+                registerData,
+                result,
+                emptySearch
+            })
+        }
 
         }).catch(err => {
             // console.log(err);

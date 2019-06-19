@@ -19,6 +19,7 @@ exports.home_get = function (req, res) {
 
                 var countOL = qs1.length;
                 var countPL = qs2.length;
+                var countActions = 79;
 
                 var r = req.session.data['ab']
 
@@ -26,13 +27,15 @@ exports.home_get = function (req, res) {
                         res.render(version + '/hub/index', {
                                 version,
                                 countOL,
-                                countPL
+                                countPL,
+                                countActions
                         })
                 } else {
                         res.render(version + '/hub/index-b', {
                                 version,
                                 countOL,
-                                countPL
+                                countPL,
+                                countActions
                         })
                 }
         }
