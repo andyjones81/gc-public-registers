@@ -81,9 +81,9 @@ Search the operator register
 </div>
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">         
+    <div class="govuk-grid-column-two-thirds">
         <h2 class="govuk-heading-m">{% if(result.registerData.recordset.length === 0)%} results</h2>
-      
+
 
 
         <h3 class="govuk-heading-m">
@@ -104,11 +104,9 @@ Search the operator register
             numbers and domain names.</p>
 
         {%else%} <p class="govuk-body govuk-!-margin-bottom-2">
-            <span
-                class="govuk-!-font-weight-bold">{{result.registerData.recordset.length | numeral("0,0") }}</span>
+            <span class="govuk-!-font-weight-bold">{{result.registerData.recordset.length | numeral("0,0") }}</span>
             results</p>
-        <hr
-            class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
+        <hr class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
         {% endif %}
 
 

@@ -56,22 +56,23 @@ exports.sanctions_results_post = function (req, res) {
     console.log(query)
 
     var emptySearch = 'false';
-    let registerData = "";
+    let registerData = sanctionsRegisterData(query);
 
     if (query === '') {
         console.log('Empty query')
         emptySearch = 'true';
         res.render(version + '/sanctions/results-b', {
             version,
-            emptySearch
+            emptySearch,
+            registerData
         })
     } else {
 
         console.log('Search PL data')
-        registerData = sanctionsRegisterData(query);
-        console.log('Data:' + registerData)
-        registerData.then(result => {
 
+
+
+        registerData.then(result => {
             if (r === 'A') {
                 res.render(version + '/sanctions/results', {
                     version,
@@ -105,75 +106,11 @@ exports.sanctions_results_post = function (req, res) {
 
 
         }).catch(err => {
-             console.log(err);
+            console.log(err);
         });
     }
 
-    // var r = req.session.data['ab']
-    // const d = require('../../data/register.json')
 
-
-
-    // var qs1 = d.Accounts.Account.filter(function (value) {
-    //     return value.RemoteStatus === 'sanctions';
-    // });
-
-    // console.log('qs1')
-
-    // if (query === undefined) {
-    //     registerData = _.orderBy(qs1, ['Account'], ['asc']);
-    // } else {
-    //     registerData = _.filter(qs1, function (a) {
-    //         if ((a.Account.toLowerCase().indexOf((query).toLowerCase()) !== -1) ||
-    //             (a.AccountNo.indexOf((query)) !== -1))
-    //             return a;
-    //     });
-    // }
-
-    // 
-
-    // console.log('filters - start')
-
-    // console.log(statusFilter)
-    // console.log(sectorFilter)
-    // console.log('filters - end')
-
-    // if (statusFilter !== undefined) {
-    //     console.log('inside the filtering')
-    //     if (statusFilter.length !== 2) {
-    //         registerData = _.filter(registerData, function (a) {
-    //             if (a.DeterminationStatus.indexOf((statusFilter)) !== -1)
-    //                 return a;
-    //         });
-    //     }
-    // }
-
-    // registerData = _.orderBy(registerData, ['Account'], ['asc']);
-
-
-    // if (r === 'A') {
-    //     res.render(version + '/sanctions/results', {
-    //         version,
-    //         registerData
-    //     })
-    // } else {
-    //     //Is this a mobile?
-
-    //     var md = new mobileDetect(req.headers['user-agent']);
-
-    //     if (md.mobile() !== null) {
-
-    //         res.render(version + '/sanctions/results-mob', {
-    //             version,
-    //             registerData
-    //         })
-    //     } else {
-    //         res.render(version + '/sanctions/results-b', {
-    //             version,
-    //             registerData
-    //         })
-    //     }
-    // }
 
 }
 
@@ -248,6 +185,25 @@ exports.sanctions_results_get = function (req, res) {
 
 
     }
+
+}
+
+exports.sanctions_full_get = function (req, res) {
+
+    var r = req.session.data['ab']
+    const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
+    let registerData = sanctionsRegisterData("all");
+
+    registerData.then(result => {
+
+        res.render(version + '/sanctions/full', {
+            version,
+            result
+        })
+
+    }).catch(err => {
+        console.log(err);
+    });
 
 }
 

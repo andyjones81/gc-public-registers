@@ -27,7 +27,7 @@ Search the regulatory sanctions and actions register
             <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/sanctions/summary">Regulatory sanctions and actions register information</a>
+                <a class="govuk-breadcrumbs__link" href="/{{version}}/sanctions/summary">Regulatory actions</a>
         </li>
 
         <li class="govuk-breadcrumbs__list-item">
@@ -38,7 +38,8 @@ Search the regulatory sanctions and actions register
 
 
 <div class="govuk-breadcrumbs content-mobile">
-    <a href="/{{version}}/sanctions/summary" class="govuk-back-link">Back to Regulatory sanctions and actions register information</a>
+    <a href="/{{version}}/sanctions/summary" class="govuk-back-link">Back to Regulatory sanctions and actions register
+        information</a>
 </div>
 {% endblock %}
 
@@ -51,13 +52,13 @@ Search the regulatory sanctions and actions register
         <div class="gc-register-search gc-register-search--whitebg">
             <form method="POST" action="results">
                 <label for="search" class="govuk-label">
-                    <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">
-                        Search the regulatory sanctions and actions register
-                    </h1>
+                        <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">
+                                Search the regulatory actions register
+                            </h1>
 
                 </label>
                 <span class="govuk-hint">
-                    You can search by business or trading name, licence or account number.
+                        You can search by business, trading or individual name, or account number.
                 </span>
                 <div class="inner-form govuk-!-margin-bottom-3">
                     <div class="input-field second-wrap">
@@ -82,15 +83,13 @@ Search the regulatory sanctions and actions register
         </div>
     </div>
 
-    <div class="govuk-grid-column-one-third">
 
-    </div>
 
 </div>
 
 <div class="govuk-grid-row">
 
-    {% if emptySearch === 'true'%}
+    {% if emptySearch === 'true' or result.searchedSanctions.recordset.length === 0%}
 
     <div class="govuk-grid-column-two-thirds">
         <h3 class="govuk-heading-m">
@@ -98,6 +97,7 @@ Search the regulatory sanctions and actions register
         </h3>
         <p class="govuk-body">If you want the full register, find out how to <a
                 href="/{{version}}/sanctions/summary">download the register</a> in different formats.</p>
+                
     </div>
 
     {% else %}

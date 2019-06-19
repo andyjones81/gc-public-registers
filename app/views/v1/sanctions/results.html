@@ -26,12 +26,10 @@ Search the regulatory sanctions and actions register
             <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/sanctions/summary">Regulatory sanctions and actions register information</a>
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/sanctions/summary">Regulatory actions</a>
         </li>
 
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/sanctions/search">Search</a>
-        </li>
+
         <li class="govuk-breadcrumbs__list-item">
             Results
         </li>
@@ -48,15 +46,12 @@ Search the regulatory sanctions and actions register
         <div class="gc-register-search gc-register-search--whitebg">
             <form method="POST" action="results">
                 <label for="search" class="govuk-label">
-                    <h1 class="govuk-heading-l  govuk-!-margin-bottom-3 content-desktop">
-                        Search the regulatory sanctions and actions register
-                    </h1>
-                    <h1 class="govuk-heading-m  govuk-!-margin-bottom-3 content-mobile">
-                        Search the regulatory sanctions and actions register
+                    <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">
+                        Search the regulatory actions register
                     </h1>
                 </label>
                 <span class="govuk-hint content-desktop">
-                    You can search by business or trading name, licence or account number.
+                    You can search by business, trading or individual name, or account number.
                 </span>
                 <div class="inner-form govuk-!-margin-bottom-3">
                     <div class="input-field second-wrap">
@@ -79,145 +74,68 @@ Search the regulatory sanctions and actions register
 
 
         </div>
+
+
+
+        <p class="govuk-body  govuk-!-margin-bottom-0 "><span
+            class="govuk-!-font-weight-bold">{{result.searchedSanctions.recordset.length | numeral("0,0") }}</span>
+        results</p>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+  
+
+            {% for i in result.searchedSanctions.recordset | sort('account')| sort('Applicantfirstname') %}
+       
+            <div class="gc-search-result">
+
+             
+
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+                    {% if i.remotestatus === 'Operator' %}
+                    <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
+                        {{i.account}}</a>
+                    {% else %}
+                    <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}">
+                        {{i.Applicantfirstname}} {{i.Applicantsurname}}  </a>
+                    {% endif %}
+                   
+    
+                </h3>
+                <p class="govuk-body-s govuk-!-margin-bottom-2">Decision date {{i.decidedon | date('DD MMMM YYYY')}}</p>    
+                 <span class="govuk-tag">{{i.status}}</span>
+            </div>
+
+            {% endfor %} 
+
     </div>
 
     <div class="govuk-grid-column-one-third">
-
-    </div>
+            <aside class="app-related-items" role="complementary">
+                <h2 class="govuk-heading-m" id="subsection-title">
+                    Related information
+                </h2>
+                <nav role="navigation" aria-labelledby="subsection-title">
+                    <ul class="govuk-list govuk-!-font-size-16">
+                        <li>
+                            <a class="govuk-link"
+                                href="http://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx"
+                                target="_Blank">
+                                Regulatory action
+                            </a>
+                        </li>
+                        <li>
+                            <a class="govuk-link"
+                                href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
+                                target="_Blank">
+                                Licence conditions and codes of practice
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
 
 </div>
 
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-third">
-        <details class="govuk-details content-mobile">
-            <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                    Additional filters
-                </span>
-            </summary>
-            <div class="govuk-details__text">
-                <div class="gc-filters">
-                    <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Filter</h2>
-                    <div class="govuk-accordion" data-module="accordion" id="accordion-default">                     
-                </div>
-            </div>
-        </details>
-    </div>
-    <div class="govuk-grid-column-one-third">
 
-        <!-- <div class="gc-filters content-desktop">
-            <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Filter</h2>
-            <div class="govuk-accordion" data-module="accordion" id="accordion-default">
-
-                <div class="govuk-accordion__section ">
-                    <div class="govuk-accordion__section-header">
-                        <h2 class="govuk-accordion__section-heading">
-                            <span class="govuk-accordion__section-button" id="accordionStatus">
-                                Decision
-                            </span>
-                        </h2>
-                    </div>
-                    <div id="accordionStatusContent" class="govuk-accordion__section-content"
-                        aria-labelledby="accordionStatus">
-                        <div class="govuk-form-group">
-                            <fieldset class="govuk-fieldset">
-
-                                <div class="govuk-checkboxes govuk-checkboxes--small">
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="status-1" name="status"
-                                            type="checkbox" value="Additional-or-amended-conditions 
-                                            ">
-                                        <label class="govuk-label govuk-checkboxes__label" for="status-1">
-                                            Additional or amended conditions 
-                                        </label> </div>
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="status-2" name="status"
-                                            type="checkbox" value="Financial-penalty">
-                                        <label class="govuk-label govuk-checkboxes__label" for="status-2">
-                                            Financial penalty
-                                        </label> </div>
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="status-3" name="status"
-                                            type="checkbox" value="Revocation">
-                                        <label class="govuk-label govuk-checkboxes__label" for="status-3">
-                                            Revocation
-                                        </label> </div>
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="status-4" name="status"
-                                            type="checkbox" value="Suspension">
-                                        <label class="govuk-label govuk-checkboxes__label" for="status-4">
-                                            Suspension
-                                        </label> </div>
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="status-5" name="status"
-                                            type="checkbox" value="Warning">
-                                        <label class=" govuk-label govuk-checkboxes__label" for="status-5">
-                                            Warning
-                                        </label> </div>
-                                    </div>
-                            </fieldset>
-                        </div>
-                    </div>
-                </div> -->
-
-            </div>
-            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-            <h2 class="govuk-heading-m">Downloads</h2>
-
-            <a href="" role="button" class="govuk-button govuk-button--secondary">
-                CSV
-            </a>
-            <a href="" role="button" class="govuk-button govuk-button--secondary">
-                ODS
-            </a>
-            <a href="" role="button" class="govuk-button govuk-button--secondary">
-                Get JSON
-            </a>
-        </div>
-
-    </div>
-    <div class="govuk-grid-column-two-thirds">
-
-        <p class="govuk-body  govuk-!-margin-bottom-0 "><span class="govuk-!-font-weight-bold">{{registerData.length | numeral("0,0") }}</span>
-            results</p>
-        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-
-        {% for i in registerData %}
-        <div class="gc-search-result">
-            <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
-                    <a href="/{{version}}/sanctions/detail/{{i.AccountNo}}">{{i.Account}}</a>
-                <span class="gc-pull-right"><span class="govuk-tag">
-                        {% if i.DeterminationStatus === 'Granted' %}
-                      Active
-                      {% else %}
-                      {{i.DeterminationStatus}}
-                        {% endif %}
-
-                
-                   </span></span>
-            </h3>
-            <p class="govuk-body-s govuk-!-margin-bottom-1">Account number: {{i.AccountNo}} </p>
-
-            <p class="govuk-body-s  govuk-!-margin-bottom-0">
-                {% if i.TradingAsTradingAsDetail.length > 0 %}
-                Trading names:{% for tn in i.TradingAs.TradingAsDetail %}
-                {{tn.TradingName}},
-                {% endfor %}
-                {% endif %}
-            </p>
-        </div>
-        {% endfor %}
-
- 
-    </div>
-
-    <div class="govuk-grid-column-full">  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        <h3 class="govuk-heading-m">
-          Help us make this service better
-        </h3>
-       <p class="govuk-body"><a href="/feedback" target="_Blank">Give us feedback</a> about this service, it takes just 1 minute.</p>
-      </div>
-</div>
 {% endblock %}
