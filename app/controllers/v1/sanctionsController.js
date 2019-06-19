@@ -9,9 +9,9 @@ exports.sanctions_summary_get = function (req, res) {
     req.session.data['status'] = undefined
     req.session.data['sector'] = undefined
 
-        res.render(version + '/sanctions/summary', {
+    res.render(version + '/sanctions/summary', {
         version
-          })
+    })
 
 }
 
@@ -48,11 +48,11 @@ exports.sanctions_api_get = function (req, res) {
 }
 
 exports.sanctions_results_post = function (req, res) {
-     console.log('sanctions: POST')
+    console.log('sanctions: POST')
     var r = req.session.data['ab']
-    const searchRegister = require('../../data/AzureSQL/searchsanctionsRegister');
+    const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
     let query = req.session.data['search']
- 
+
     console.log(query)
 
     var emptySearch = 'false';
@@ -66,48 +66,46 @@ exports.sanctions_results_post = function (req, res) {
             emptySearch
         })
     } else {
-        
+
         console.log('Search PL data')
-        registerData = searchRegister(query);
-        console.log('Data:' +registerData)
+        registerData = sanctionsRegisterData(query);
+        console.log('Data:' + registerData)
         registerData.then(result => {
 
-    if (r === 'A') {
-        res.render(version + '/sanctions/results', {
-            version,
-            registerData,
-            result,
-            emptySearch
-        })
-    } else {
-
-            //Is this a mobile?
-
-
-
-            var md = new mobileDetect(req.headers['user-agent']);
-
-            if (md.mobile() !== null) {
-
-                res.render(version + '/sanctions/results-mob', {
-                    version,
-                    registerData,
-                    result,
-                    emptySearch
-                })
-            } else {
+            if (r === 'A') {
                 res.render(version + '/sanctions/results', {
                     version,
                     registerData,
                     result,
                     emptySearch
                 })
+            } else {
+
+                //Is this a mobile?
+
+                var md = new mobileDetect(req.headers['user-agent']);
+
+                if (md.mobile() !== null) {
+
+                    res.render(version + '/sanctions/results-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch
+                    })
+                } else {
+                    res.render(version + '/sanctions/results', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch
+                    })
+                }
             }
-        }
 
 
         }).catch(err => {
-           //  console.log(err);
+            //  console.log(err);
         });
     }
 
