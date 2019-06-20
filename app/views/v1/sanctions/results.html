@@ -71,71 +71,63 @@ Search the regulatory sanctions and actions register
                     </div>
                 </div>
             </form>
-
-
         </div>
 
-
-
         <p class="govuk-body  govuk-!-margin-bottom-0 "><span
-            class="govuk-!-font-weight-bold">{{result.searchedSanctions.recordset.length | numeral("0,0") }}</span>
-        results</p>
-    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                class="govuk-!-font-weight-bold">{{result.searchedSanctions.recordset.length | numeral("0,0") }}</span>
+            results</p>
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-  
+        {% for i in result.searchedSanctions.recordset | sort('account')| sort('Applicantfirstname') %}
 
-            {% for i in result.searchedSanctions.recordset | sort('account')| sort('Applicantfirstname') %}
-       
-            <div class="gc-search-result">
+        <div class="gc-search-result">
 
-             
+            <ul class="gc-search-result--tag gc-pull-right">
+                <li>{{i.remotestatus}}</li>
+            </ul>
 
-                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                    {% if i.remotestatus === 'Operator' %}
-                    <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
-                        {{i.account}}</a>
-                    {% else %}
-                    <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}">
-                        {{i.Applicantfirstname}} {{i.Applicantsurname}}  </a>
-                    {% endif %}
-                   
-    
-                </h3>
-                <p class="govuk-body-s govuk-!-margin-bottom-2">Decision date {{i.decidedon | date('DD MMMM YYYY')}}</p>    
-                 <span class="govuk-tag">{{i.status}}</span>
-            </div>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+                {% if i.remotestatus === 'Operator' %}
+                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
+                    {{i.account}}</a>
+                {% else %}
+                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}">
+                    {{i.Applicantfirstname}} {{i.Applicantsurname}} </a>
+                {% endif %}
 
-            {% endfor %} 
+            </h3>
+            <p class="govuk-body-s govuk-!-margin-bottom-2">Decision date {{i.decidedon | date('DD MMMM YYYY')}}</p>
+            <span class="govuk-tag">{{i.status}}</span>
+        </div>
+
+        {% endfor %}
 
     </div>
 
     <div class="govuk-grid-column-one-third">
-            <aside class="app-related-items" role="complementary">
-                <h2 class="govuk-heading-m" id="subsection-title">
-                    Related information
-                </h2>
-                <nav role="navigation" aria-labelledby="subsection-title">
-                    <ul class="govuk-list govuk-!-font-size-16">
-                        <li>
-                            <a class="govuk-link"
-                                href="http://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx"
-                                target="_Blank">
-                                Regulatory action
-                            </a>
-                        </li>
-                        <li>
-                            <a class="govuk-link"
-                                href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
-                                target="_Blank">
-                                Licence conditions and codes of practice
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
-        </div>
-
+        <aside class="app-related-items" role="complementary">
+            <h2 class="govuk-heading-m" id="subsection-title">
+                Related information
+            </h2>
+            <nav role="navigation" aria-labelledby="subsection-title">
+                <ul class="govuk-list govuk-!-font-size-16">
+                    <li>
+                        <a class="govuk-link"
+                            href="http://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx"
+                            target="_Blank">
+                            Regulatory action
+                        </a>
+                    </li>
+                    <li>
+                        <a class="govuk-link"
+                            href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
+                            target="_Blank">
+                            Licence conditions and codes of practice
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
 </div>
-
-
 {% endblock %}

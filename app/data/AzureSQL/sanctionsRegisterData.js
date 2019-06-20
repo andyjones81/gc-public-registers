@@ -23,7 +23,7 @@ async function getAllSanctions(query) {
 
         console.log('get sanctions all');
 
-        return await sql.query("SELECT sa.Id, ss.status, pr.AccountNo, sa.decidedon, pr.account, pr.Applicantfirstname, pr.Applicantsurname, pr.remotestatus " +
+        return await sql.query("SELECT sa.Id, ss.status, pr.AccountNo, sa.decidedon, pr.account, pr.Applicantfirstname, pr.Applicantsurname, pr.remotestatus, no.decidedon " +
             "FROM [Sanctions] as sa  " + 
             "INNER JOIN [PublicRegisterReporting] as pr  " + 
             "ON pr.AccountNo = sa.AccountNumber  " + 
