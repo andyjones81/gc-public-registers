@@ -97,41 +97,31 @@ Search the operator register
                 </li>
                 <li class="govuk-tabs__list-item">
                     <a class="govuk-tabs__tab" href="#past-week">
-                        Personal licence ({{plRegisterData.length}})
+                        Personal licence ({{ result.personalData.recordset.length | numeral("0,0") }})
                     </a>
                 </li>
                 <li class="govuk-tabs__list-item">
                     <a class="govuk-tabs__tab" href="#past-month">
-                        Sanctions
+                        Sanctions ({{ result.searchedSanctions.recordset.length | numeral("0,0") }})
                     </a>
                 </li>
 
             </ul>
 
             <section class="govuk-tabs__panel" id="past-day">
-       
-                <div class="govuk-grid-row">
-                    <div class="govuk-grid-column-two-thirds">         
-                        <h2 class="govuk-heading-m">{% if(result.registerData.recordset.length === 0)%} results</h2>
-                      
 
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds"> {% if(result.registerData.recordset.length === 0)%}
 
                         <h3 class="govuk-heading-m">
-                            Nothing found for "{{data['search']}}"
+                            Nothing found for "{{data['search']}}" in the register of gambling operators.
 
-                            {% if data['status'] === undefined %}
-                            {% elseif data['status'] == 'Granted,Pending' %}
-                            with a status of "active or pending"
-                            {% elseif data['status'] == 'Pending' %}
-                            with a status of "pending"
-                            {% elseif data['status'] == 'Granted' %}
-                            with a status of "active"
-                            {% endif %}
 
                         </h3>
-                        <p class="govuk-body">Try searching for something else. You can search by business name, trading
-                            names, account
-                            numbers and domain names.</p>
+                        {% if result.personalData.recordset.length > 0%}
+                        <p class="govuk-body">There are matches in the register of <a href="#past-week">personal licence
+                                holders</a>.</p>
+                        {% endif %}
 
                         {%else%} <p class="govuk-body govuk-!-margin-bottom-2">
                             <span
@@ -218,7 +208,7 @@ Search the operator register
                         {% endfor %}
                     </div>
                     <div class="govuk-grid-column-one-third">
-                        <div class="gc-right-aside">
+                        <!-- <div class="gc-right-aside">
                             <p class="govuk-body">Download a file containing these results</p>
                             <a href="" role="button" class="govuk-button govuk-button--secondary">
                                 CSV
@@ -231,46 +221,115 @@ Search the operator register
                                 <a href="/{{version}}/operator/summary" class="govuk-link">
                                     Download the full register
                                 </a></p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
             </section>
             <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
-                <h2 class="govuk-heading-m">Personal licence results</h2>
-                {% if plRegisterData.length === 0%}
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds">
 
-                <p class="govuk-body">No records found in the personal licence register</p>
+                        {% if(result.personalData.recordset.length === 0)%}
 
-                {% else %}
-                {% for i in plRegisterData %}
-
-
-
-                <div class="gc-search-result">
-                    <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
-                        <a href="/{{version}}/operator/detail/{{i.AccountNo}}">
-                            <!-- <span class="gc-pull-right"><span class="govuk-tag"> {% if i.DeterminationStatus === 'Granted' %}
-                          Active
-                          {% else %}
-                          {{i.DeterminationStatus}}
-                          {% endif %}</span></span>--> {{i.Applicantfirstname}} {{i.Applicantsurname}} </a>
-
-                    </h3>
-                    <p class="govuk-body-s govuk-!-margin-bottom-0">Account {{i.AccountNo}} </p>
+                        <h3 class="govuk-heading-m">
+                            Nothing found for "{{data['search']}}" in the register of personal licence holders.
 
 
+                        </h3>
+                        {% if result.registerData.recordset.length > 0%}
+                        <p class="govuk-body">There are matches in the register of <a href="#past-day">operator licence
+                                holders</a>.</p>
+                        {% endif %}
+
+                        {%else%} <p class="govuk-body govuk-!-margin-bottom-2">
+                            <span
+                                class="govuk-!-font-weight-bold">{{result.personalData.recordset.length | numeral("0,0") }}</span>
+                            results</p>
+                        <hr
+                            class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
+                        {% endif %}
+
+
+                        {% for i in result.personalData.recordset %}
+
+                        {% set accountNumber = 0%}
+
+                        {% if accountNumber !== i.accountno %}
+                        {% set accountNumber = i.accountno%}
+
+                        <div class="gc-search-result">
+                            <ul class="gc-search-result--tag gc-pull-right">
+
+                                <li>{{i.towncity | capitalize}}</li>
+                            </ul>
+                            <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
+                                <a href="/{{version}}/personal/detail/{{i.accountno}}">
+                                    {{i.Applicantfirstname}} {{i.Applicantsurname | upper}}</a>
+
+                            </h3>
+                            <p class="govuk-body-s govuk-!-margin-bottom-2">Account {{i.accountno}} </p>
+
+
+
+
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                    </div>
                 </div>
-
-
-                {% endfor %}
-                {% endif %}
-
 
             </section>
             <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
-                <h2 class="govuk-heading-m">Sanctions</h2>
 
+
+
+
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds">
+
+                        {% if(result.searchedSanctions.recordset.length === 0)%}
+
+                        <h3 class="govuk-heading-m">
+                            Nothing found for "{{data['search']}}" in the register of regulatory actions.
+                        </h3>
+
+
+                        {%else%}
+                        <p class="govuk-body govuk-!-margin-bottom-2">
+                                <span
+                                    class="govuk-!-font-weight-bold">{{result.searchedSanctions.recordset.length | numeral("0,0") }}</span>
+                                results</p>
+                            <hr
+                                class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
+                        {% for i in result.searchedSanctions.recordset %}
+
+                        <div class="gc-search-result">
+
+                            <ul class="gc-search-result--tag gc-pull-right">
+                                <li>{{i.remotestatus}}</li>
+                            </ul>
+
+                            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+                                {% if i.remotestatus === 'Operator' %}
+                                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
+                                    {{i.account}}</a>
+                                {% else %}
+                                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}">
+                                    {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
+                                {% endif %}
+
+                            </h3>
+                            <p class="govuk-body-s govuk-!-margin-bottom-2">Decision date
+                                {{i.decidedon | date('DD MMMM YYYY')}}</p>
+                            <span class="govuk-tag">{{i.status}}</span>
+                        </div>
+
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
 
             </section>
 
@@ -281,5 +340,7 @@ Search the operator register
 
 
 </div>
+
+
 
 {% endblock %}

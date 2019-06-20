@@ -53,7 +53,7 @@ exports.journey_post = function (req, res) {
 exports.hub_results_get = function (req, res) {
 
         var r = req.session.data['ab']
-        const searchRegister = require('../../data/AzureSQL/searchRegister');
+        const searchRegister = require('../../data/AzureSQL/searchFullRegister');
         let query = req.session.data['search']
 
         var statusFilter = req.session.data['status']
@@ -85,14 +85,14 @@ exports.hub_results_get = function (req, res) {
 
                                 if (md.mobile() !== null) {
 
-                                        res.render(version + '/hub/results-mob', {
+                                        res.render(version + '/hub/results', {
                                                 version,
                                                 registerData,
                                                 result,
                                                 emptySearch
                                         })
                                 } else {
-                                        res.render(version + '/hub/results-b', {
+                                        res.render(version + '/hub/results', {
                                                 version,
                                                 registerData,
                                                 result,
@@ -112,7 +112,7 @@ exports.hub_results_get = function (req, res) {
 exports.hub_results_post = function (req, res) {
 
         var r = req.session.data['ab']
-        const searchRegister = require('../../data/AzureSQL/searchRegister');
+        const searchRegister = require('../../data/AzureSQL/searchFullRegister');
         let query = req.session.data['search']
 
         var statusFilter = req.session.data['status']
@@ -144,14 +144,14 @@ exports.hub_results_post = function (req, res) {
 
                                 if (md.mobile() !== null) {
 
-                                        res.render(version + '/hub/results-mob', {
+                                        res.render(version + '/hub/results', {
                                                 version,
                                                 registerData,
                                                 result,
                                                 emptySearch
                                         })
                                 } else {
-                                        res.render(version + '/hub/results-b', {
+                                        res.render(version + '/hub/results', {
                                                 version,
                                                 registerData,
                                                 result,
