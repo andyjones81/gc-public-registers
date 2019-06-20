@@ -303,12 +303,26 @@ exports.operator_detail_get = function (req, res) {
             })
         }
         else{
+
+            var md = new mobileDetect(req.headers['user-agent']);
+
+            if (md.mobile() !== null) {
+
+            res.render(version + '/operator/detail-mob', {
+                version,
+                registerData,
+                result,
+                emptySearch
+            })
+        }else{
+            
             res.render(version + '/operator/detail-b', {
                 version,
                 registerData,
                 result,
                 emptySearch
             })
+        }
         }
 
         }).catch(err => {
