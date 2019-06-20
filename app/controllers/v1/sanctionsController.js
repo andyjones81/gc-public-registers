@@ -172,12 +172,12 @@ exports.sanctions_results_get = function (req, res) {
 
         if (md.mobile() !== null) {
 
-            res.render(version + '/sanctions/results-mob', {
+            res.render(version + '/sanctions/results', {
                 version,
                 registerData
             })
         } else {
-            res.render(version + '/sanctions/results-b', {
+            res.render(version + '/sanctions/results', {
                 version,
                 registerData
             })

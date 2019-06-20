@@ -42,7 +42,7 @@ Search the operator register
     <div class="govuk-grid-column-two-thirds">
 
         <div class="gc-register-search gc-register-search--whitebg">
-            <form method="POST" action="/{{version}}/hub/results">
+            <form method="POST" action="/{{version}}/operator/results">
                 <label for="search" class="govuk-label">
                     <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">
                         Search the register
@@ -82,9 +82,9 @@ Search the operator register
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <h2 class="govuk-heading-m">{% if(result.registerData.recordset.length === 0)%} results</h2>
+    
 
-
+{% if(result.registerData.recordset.length === 0)%}
 
         <h3 class="govuk-heading-m">
             Nothing found for "{{data['search']}}"
@@ -99,10 +99,7 @@ Search the operator register
             {% endif %}
 
         </h3>
-        <p class="govuk-body">Try searching for something else. You can search by business name, trading
-            names, account
-            numbers and domain names.</p>
-
+       
         {%else%} <p class="govuk-body govuk-!-margin-bottom-2">
             <span class="govuk-!-font-weight-bold">{{result.registerData.recordset.length | numeral("0,0") }}</span>
             results</p>
@@ -186,7 +183,7 @@ Search the operator register
         {% endfor %}
     </div>
     <div class="govuk-grid-column-one-third">
-        <div class="gc-right-aside">
+        <!-- <div class="gc-right-aside">
             <p class="govuk-body">Download a file containing these results</p>
             <a href="" role="button" class="govuk-button govuk-button--secondary">
                 CSV
@@ -199,7 +196,7 @@ Search the operator register
                 <a href="/{{version}}/operator/summary" class="govuk-link">
                     Download the full register
                 </a></p>
-        </div>
+        </div> -->
     </div>
 </div>
 

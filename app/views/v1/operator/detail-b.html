@@ -49,7 +49,7 @@ A - {{olDetail.Account}}
             <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling business register </a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub/results">Search results</a>
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/results">Search results</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
             Detail
@@ -145,7 +145,12 @@ A - {{olDetail.Account}}
                                 <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Licences</h2>
 
 
-
+                                {% if result.newLicenceInfo.recordset.length === 0 %}
+                                <div class="govuk-inset-text">
+                                        Licence information is not yet available as the application for an operating licence is being processed.
+                                      </div>
+                                {% endif %}
+                                
 
                                 {% for licence in result.newLicenceInfo.recordset %}
 
@@ -175,7 +180,7 @@ A - {{olDetail.Account}}
                                                 {% for item in result.newLicenceActivityInfo.recordset %}
 
                                                 {% if item.licenceid === licence.LicenceId %}
-                                                <li>{{item.Product}}</li>
+                                                <li class="govuk-body-s">{{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}</li>
                                                 {% endif %}
 
 
@@ -203,7 +208,7 @@ A - {{olDetail.Account}}
                                                 {% for item in result.newLicenceActivityInfo.recordset %}
 
                                                 {% if item.licenceid === licence.LicenceId %}
-                                                <li>{{item.Product}}</li>
+                                                <li class="govuk-body-s">{{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}</li>
                                                 {% endif %}
 
 

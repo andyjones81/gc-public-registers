@@ -113,18 +113,18 @@ Register of operators
 
 
         <ul class="register-themes">
-            <!-- <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/search">
-                        <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Search the register</h3>
-                        <p class="register-theme__description govuk-body-s">Businesses who hold a licence to operate a gambling business</p>
-                      
-                    </a></li> -->
-            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/personal/download">
-                    <h3
-                        class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
-                        Download the full register</h3>
-                    <p class="register-theme__description govuk-body-s">Get a copy of the data in CSV or ODS formats.
-                    </p>
-                </a></li>
+                <li class="register-theme"><a class="register-theme__link" href="/public/blank.csv">
+                    <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Download in CSV format</h3>
+                    <p class="register-theme__description govuk-body-s"></p>
+                    <p class="register-theme__count govuk-body-s">2.8mb</p>
+                  
+                </a></li> 
+                <li class="register-theme"><a class="register-theme__link" href="/public/blank.ods">
+                     <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Download in ODS format</h3>
+                     <p class="register-theme__description govuk-body-s">Excel compatible</p>
+                     <p class="register-theme__count govuk-body-s">962kb</p>
+                   
+                 </a></li> 
             <li class="register-theme"><a class="register-theme__link" href="/{{version}}/personal/api">
                     <h3
                         class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
@@ -145,41 +145,88 @@ Register of operators
 
         <p class="govuk-body">Last updated: {{ date | date('DD MMMM YYYY')}}</p>
 
-        <p class="govuk-body">There are <span class="govuk-!-font-weight-bold">{{countOL | numeral("0,0") }}</span>
-            records and <b>x fields</b>
+        <p class="govuk-body">There are <span class="govuk-!-font-weight-bold">{{23940 | numeral("0,0") }}</span>
+            records and <b>6 fields</b>
             in this register.</p>
 
-        <div class="govuk-inset-text">
-            Any caveats to the data?
-        </div>
+     
 
         <table class="registers-secondary-table">
-            <caption class="registers-secondary-table__caption">
-                <p class="govuk-body">The <b>x fields</b> in this register</p>
-            </caption>
-            <thead class="registers-secondary-table__head">
-                <tr class="registers-secondary-table__row">
-                    <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field name</p>
-                    </th>
-                    <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field description</p>
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="registers-secondary-table__body">
-                <tr class="registers-secondary-table__row">
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Field</b></p>
-                    </td>
-                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Description</p>
-                    </td>
-                </tr>
-               
-            </tbody>
-        </table>
+                <caption class="registers-secondary-table__caption">
+                    <p class="govuk-body">The <b>6 fields</b> in this register</p>
+                </caption>
+                <thead class="registers-secondary-table__head">
+                    <tr class="registers-secondary-table__row">
+                        <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field name</p>
+                        </th>
+                        <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field description</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="registers-secondary-table__body">
+                    <tr class="registers-secondary-table__row">
+                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Account number</b></p>
+                        </td>
+                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The unique reference for the licence holder.</p>
+                        </td>
+                    </tr>
+                    <tr class="registers-secondary-table__row">
+                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Name</b></p>
+                        </td>
+                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The full name of the licence holder.</p>
+                        </td>
+                    </tr>
+                  
+                    <tr class="registers-secondary-table__row">
+                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Location</b></p>
+                        </td>
+                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The home town or city for the licensee.
+                            </p>
+                        </td>
+                    </tr>
 
+                    <tr class="registers-secondary-table__row">
+                            <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                                <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Licenses</b></p>
+                            </td>
+                            <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                                <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The licence the individual holds and the status of the licence
+                                </p>
+                            </td>
+                        </tr>
+                   
+                    <tr class="registers-secondary-table__row">
+                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Sanctions</b></p>
+                        </td>
+                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Details of regulatory sanctions imposed on
+                                the operator by the Gambling Commission.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr class="registers-secondary-table__row">
+                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Actions</b></p>
+                        </td>
+                        <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                            <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Details of actions taken by the Gambling
+                                Commission against the operator. These are not sanctions.
+                            </p>
+                        </td>
+                    </tr>
+                   
+                   
+                </tbody>
+            </table>
 
 
     </div>

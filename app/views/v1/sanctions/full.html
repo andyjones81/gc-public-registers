@@ -16,9 +16,7 @@ Full regulatory actions register
 {% include "includes/beta.html" %}
 {% endblock %}
 
-
 {% block beforeContent %}
-
 
 <div class="govuk-breadcrumbs content-desktop">
     <ol class="govuk-breadcrumbs__list">
@@ -28,7 +26,6 @@ Full regulatory actions register
         <li class="govuk-breadcrumbs__list-item">
             <a class="govuk-breadcrumbs__link" href="/{{version}}/sanctions/summary">Regulatory action register</a>
         </li>
-
 
         <li class="govuk-breadcrumbs__list-item">
             Results
@@ -43,87 +40,84 @@ Full regulatory actions register
 
     <div class="govuk-grid-column-two-thirds">
 
-            <h1 class="govuk-heading-l" id="subsection-title">
-                   Register of regulatory sanctions
-                </h1>
+        <h1 class="govuk-heading-l" id="subsection-title">
+            Register of regulatory sanctions
+        </h1>
 
-                <p class="govuk-body">There are {{result.allSanctions.recordset.length}} entries in the register of regulatory actions.</p>
+        <p class="govuk-body">There are {{result.allSanctions.recordset.length}} entries in the register of regulatory
+            actions.</p>
 
+        {% for i in result.allSanctions.recordset %}
 
-            {% for i in result.allSanctions.recordset %}
-       
-            <div class="gc-search-result">
+        <div class="gc-search-result">
 
-             
+            <ul class="gc-search-result--tag gc-pull-right">
+                <li>{{i.remotestatus}}</li>
+            </ul>
 
-                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                    {% if i.remotestatus === 'Operator' %}
-                    <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
-                        {{i.account}}</a>
-                    {% else %}
-                    <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}">
-                        {{i.Applicantfirstname}} {{i.Applicantsurname}}  </a>
-                    {% endif %}
-                   
-    
-                </h3>
-                <p class="govuk-body-s govuk-!-margin-bottom-2">Decision date {{i.decidedon | date('DD MMMM YYYY')}}</p>    
-                 <span class="govuk-tag">{{i.status}}</span>
-            </div>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+                {% if i.remotestatus === 'Operator' %}
+                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
+                    {{i.account}}</a>
+                {% else %}
+                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}">
+                    {{i.Applicantfirstname}} {{i.Applicantsurname}} </a>
+                {% endif %}
+            </h3>
 
-            {% endfor %} 
+            <p class="govuk-body-s govuk-!-margin-bottom-2">Decision date {{i.decidedon | date('DD MMMM YYYY')}}</p>
+            <span class="govuk-tag">{{i.status}}</span>
+        </div>
+
+        {% endfor %}
 
     </div>
 
     <div class="govuk-grid-column-one-third">
-            <aside class="app-related-items" role="complementary">
-               
-                    <h2 class="govuk-heading-m" id="subsection-title">
-                            Sanctions register
-                        </h2>
+        <aside class="app-related-items" role="complementary">
 
-             
+            <h2 class="govuk-heading-m" id="subsection-title">
+                Sanctions register
+            </h2>
 
-                    <nav role="navigation" aria-labelledby="subsection-title">
-                            <ul class="govuk-list govuk-!-font-size-16">
-                                <li>
-                                        <a href="/{{version}}/sanctions/download" class="govuk-link">
-                                            Download the full register
-                                        </a>
-                                </li>
-                                <li>
-                                    <a class="govuk-link"
-                                        href="/{{version}}/sanctions/summary"
-                                        target="_Blank">
-                                        Register information
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+            <nav role="navigation" aria-labelledby="subsection-title">
+                <ul class="govuk-list govuk-!-font-size-16">
+                    <li>
+                        <a href="/{{version}}/sanctions/summary" class="govuk-link">
+                            Download the full register
+                        </a>
+                    </li>
+                    <li>
+                        <a class="govuk-link" href="/{{version}}/sanctions/summary" target="_Blank">
+                            Register information
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-                        <h2 class="govuk-heading-m" id="subsection-title">
-                                Related information
-                            </h2>
-                            <nav role="navigation" aria-labelledby="subsection-title">
-                                <ul class="govuk-list govuk-!-font-size-16">
-                                    <li>
-                                        <a class="govuk-link"
-                                            href="http://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx"
-                                            target="_Blank">
-                                            Regulatory action
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="govuk-link"
-                                            href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
-                                            target="_Blank">
-                                            Licence conditions and codes of practice
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-            </aside>
-        </div>
+            <h2 class="govuk-heading-m" id="subsection-title">
+                Related information
+            </h2>
+            <nav role="navigation" aria-labelledby="subsection-title">
+                <ul class="govuk-list govuk-!-font-size-16">
+                    <li>
+                        <a class="govuk-link"
+                            href="http://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx"
+                            target="_Blank">
+                            Regulatory action
+                        </a>
+                    </li>
+                    <li>
+                        <a class="govuk-link"
+                            href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
+                            target="_Blank">
+                            Licence conditions and codes of practice
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
 
 </div>
 
