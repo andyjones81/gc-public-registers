@@ -279,7 +279,7 @@ exports.operator_detail_get = function (req, res) {
 
     var r = req.session.data['ab']
     const getRegisterData = require('../../data/AzureSQL/getRegisterData');
-
+    var md = new mobileDetect(req.headers['user-agent']);
 
     var emptySearch = 'false';
     let registerData = "";
@@ -295,6 +295,14 @@ exports.operator_detail_get = function (req, res) {
 
         registerData.then(result => {
             if (r === 'A') {
+                if (md.mobile() !== null) { 
+            res.render(version + '/operator/detail-mob', {
+                version,
+                registerData,
+                result,
+                emptySearch
+            })
+        }else{
             res.render(version + '/operator/detail', {
                 version,
                 registerData,
@@ -302,9 +310,10 @@ exports.operator_detail_get = function (req, res) {
                 emptySearch
             })
         }
+        }
         else{
 
-            var md = new mobileDetect(req.headers['user-agent']);
+           
 
             if (md.mobile() !== null) {
 
