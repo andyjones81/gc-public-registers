@@ -137,6 +137,14 @@ A - {{olDetail.Account}}
                                 Regulatory actions ({{result.sanctions.recordset.length}})
                             </a>
                         </li>
+
+                        {% if feCHData.items.length > 0 %}
+                        <li class="govuk-tabs__list-item">
+                                <a class="govuk-tabs__tab" href="#chData">
+                                   CH Data
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
 
                     <section class="govuk-tabs__panel" id="past-day">
@@ -448,11 +456,55 @@ A - {{olDetail.Account}}
                             </div>
                         </div>
                     </section>
+{% if feCHData.items.length > 0 %}
+
+<section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="chData">
+
+<h3 class="govuk-heading-m">Companies House information</h3>
+<div class="govuk-grid-row">
+
+<div class="govuk-grid-column-one-third">
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+           Company number
+        </h2>
+        <p class="govuk-body">05310821</p>
+    </div>
+</div>
+
+<h3 class="govuk-heading-s">Officers</h3>
+
+    {% for i in feCHData.items %}
+   
+   
+    <div class="gc-search-result">
+            <span class="govuk-tag gc-pull-right">
+                {{i.officer_role}}
+            </span>
+
+          
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-2"> <a href="https://beta.companieshouse.gov.uk{{i.links.officer.appointments}}" target="_Blank"> {{i.name}}</a>
+               </h3>
+
+           
+            <p class="govuk-body">Appointed {{item.appointed_on | date('DD MMMM YYYY')}}
+              </p>
+
+                   
+
+        </div>
+
+    {% endfor %} 
+
+    </section>
+
+{% endif %}
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 

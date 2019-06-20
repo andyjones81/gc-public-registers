@@ -87,42 +87,42 @@ exports.operator_results_post = function (req, res) {
 
         registerData.then(result => {
 
-    if (r === 'A') {
-        res.render(version + '/operator/results', {
-            version,
-            registerData,
-            result,
-            emptySearch
-        })
-    } else {
-
-            //Is this a mobile?
-
-
-
-            var md = new mobileDetect(req.headers['user-agent']);
-
-            if (md.mobile() !== null) {
-
-                res.render(version + '/operator/results-mob', {
+            if (r === 'A') {
+                res.render(version + '/operator/results', {
                     version,
                     registerData,
                     result,
                     emptySearch
                 })
             } else {
-                res.render(version + '/operator/results-b', {
-                    version,
-                    registerData,
-                    result,
-                    emptySearch
-                })
+
+                //Is this a mobile?
+
+
+
+                var md = new mobileDetect(req.headers['user-agent']);
+
+                if (md.mobile() !== null) {
+
+                    res.render(version + '/operator/results-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch
+                    })
+                } else {
+                    res.render(version + '/operator/results-b', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch
+                    })
+                }
             }
-        }
 
 
         }).catch(err => {
-           //  console.log(err);
+            //  console.log(err);
         });
     }
 
@@ -281,6 +281,29 @@ exports.operator_detail_get = function (req, res) {
     const getRegisterData = require('../../data/AzureSQL/getRegisterData');
     var md = new mobileDetect(req.headers['user-agent']);
 
+    let chData = "";
+    let feCHData = {};
+
+    if (accountNo === "3238") {
+
+      
+        var auth = "Basic " + new Buffer(process.env.CompaniesHouseAPIKey + ":").toString("base64");
+        var request = require('request');
+        var url = "https://api.companieshouse.gov.uk/company/05310821/officers";
+        
+        request.get( {
+            url : url,
+            headers : {
+                "Authorization" : auth
+            }
+          }, function(error, response, body) {
+            feCHData = JSON.parse(response.body) 
+            console.log(feCHData)       
+          } );
+               
+    }
+
+
     var emptySearch = 'false';
     let registerData = "";
 
@@ -295,44 +318,47 @@ exports.operator_detail_get = function (req, res) {
 
         registerData.then(result => {
             if (r === 'A') {
-                if (md.mobile() !== null) { 
-            res.render(version + '/operator/detail-mob', {
-                version,
-                registerData,
-                result,
-                emptySearch
-            })
-        }else{
-            res.render(version + '/operator/detail', {
-                version,
-                registerData,
-                result,
-                emptySearch
-            })
-        }
-        }
-        else{
+                if (md.mobile() !== null) {
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData
+                    })
+                } else {
+                    res.render(version + '/operator/detail', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData
+                    })
+                }
+            } else {
 
-           
 
-            if (md.mobile() !== null) {
 
-            res.render(version + '/operator/detail-mob', {
-                version,
-                registerData,
-                result,
-                emptySearch
-            })
-        }else{
-            
-            res.render(version + '/operator/detail-b', {
-                version,
-                registerData,
-                result,
-                emptySearch
-            })
-        }
-        }
+                if (md.mobile() !== null) {
+
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData
+                    })
+                } else {
+
+                    res.render(version + '/operator/detail-b', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData
+                    })
+                }
+            }
 
         }).catch(err => {
             // console.log(err);

@@ -12,9 +12,9 @@ async function searchRegister(query, sectorFilter, statusFilter) {
     let dn = getDomainNames(query);
 
 
-    sqlResult['registerData'] = await q ;
-    sqlResult['tradingNames'] = await tn ;
-    sqlResult['domainNames'] = await dn ;
+    sqlResult['registerData'] = await q;
+    sqlResult['tradingNames'] = await tn;
+    sqlResult['domainNames'] = await dn;
 
     sql.close()
     return sqlResult;
@@ -23,32 +23,32 @@ async function searchRegister(query, sectorFilter, statusFilter) {
 async function getAccount(query, statusFilter) {
     try {
 
-console.log('Query filter: ' + statusFilter)
+        console.log('Query filter: ' + statusFilter)
 
         var strippedQuery = query.replace(/\s/g, '');
 
-    
-        
-        if(statusFilter === undefined || statusFilter.length === 2){
+
+
+        if (statusFilter === undefined || statusFilter.length === 2) {
             statusFilter = "Pending'" + ",'Granted";
         }
-       
-        
+
+
 
         // console.log("Rendered status filter:" + statusFilter);
 
         return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.determinationstatus from publicregisterreporting as pr " +
-        "left join [dbo].[AllDomainNames] as dn  on pr.accountno = dn.accountnumber and pr.DeterminationStatus in('"+statusFilter+"') and pr.remotestatus = 'Operator' " +
-        "inner join [dbo].[AllTradingNames] as tn on pr.accountno = tn.accountno " +
-        "where pr.account like '%" + query + "%' " +
-        "or pr.account like '%" + strippedQuery + "%' " +
-        "or dn.domainname like '%" + query + "%' " +
-        "or tn.tradingname like'%" + query + "%' " + 
-        "or pr.accountno like'%" + query + "%' " + 
-        "order by pr.account");
+            "left join [dbo].[AllDomainNames] as dn  on pr.accountno = dn.accountnumber and pr.DeterminationStatus in('" + statusFilter + "') and pr.remotestatus = 'Operator' " +
+            "inner join [dbo].[AllTradingNames] as tn on pr.accountno = tn.accountno " +
+            "where pr.account like '%" + query + "%' " +
+            "or pr.account like '%" + strippedQuery + "%' " +
+            "or dn.domainname like '%" + query + "%' " +
+            "or tn.tradingname like'%" + query + "%' " +
+            "or pr.accountno like'%" + query + "%' " +
+            "order by pr.account");
     } catch (err) {
-      
-    console.log(err);
+
+        console.log(err);
     }
 }
 
@@ -59,7 +59,7 @@ async function getTradingNames(query) {
 
         return await sql.query("SELECT * from AllTradingNames where tradingname like '%" + query + "%' or tradingname like '%" + strippedQuery + "%' ");
     } catch (err) {
-      
+
         // console.log(err);
     }
 }
@@ -69,7 +69,7 @@ async function getDomainNames(query) {
         var strippedQuery = query.replace(/\s/g, '');
         return await sql.query("SELECT * from AllDomainNames where domainname like'%" + query + "%' or domainname like '%" + strippedQuery + "%' ");
     } catch (err) {
-      
+
         // console.log(err);
     }
 }

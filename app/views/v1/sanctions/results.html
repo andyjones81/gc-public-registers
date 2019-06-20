@@ -92,7 +92,7 @@ Search the regulatory actions register
                     {{i.account}}</a>
                 {% else %}
                 <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}">
-                    {{i.Applicantfirstname}} {{i.Applicantsurname}} </a>
+                    {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
                 {% endif %}
 
             </h3>
