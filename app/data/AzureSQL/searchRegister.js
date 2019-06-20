@@ -38,7 +38,7 @@ console.log('Query filter: ' + statusFilter)
         // console.log("Rendered status filter:" + statusFilter);
 
         return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.determinationstatus from publicregisterreporting as pr " +
-        "inner join [dbo].[AllDomainNames] as dn  on pr.accountno = dn.accountnumber and pr.DeterminationStatus in('"+statusFilter+"') and pr.remotestatus = 'Operator' " +
+        "left join [dbo].[AllDomainNames] as dn  on pr.accountno = dn.accountnumber and pr.DeterminationStatus in('"+statusFilter+"') and pr.remotestatus = 'Operator' " +
         "inner join [dbo].[AllTradingNames] as tn on pr.accountno = tn.accountno " +
         "where pr.account like '%" + query + "%' " +
         "or pr.account like '%" + strippedQuery + "%' " +
