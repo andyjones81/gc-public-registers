@@ -60,9 +60,10 @@ Register of regulatory sanctions
                 <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
                     {{i.account}}</a>
                 {% else %}
-                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}">
-                    {{i.Applicantfirstname}} {{i.Applicantsurname}} </a>
+                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
+                    {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
                 {% endif %}
+
             </h3>
 
             <p class="govuk-body-s govuk-!-margin-bottom-2">Decision date {{i.decidedon | date('DD MMMM YYYY')}}</p>
