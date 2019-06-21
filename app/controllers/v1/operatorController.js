@@ -284,12 +284,13 @@ exports.operator_detail_get = function (req, res) {
     let chData = "";
     let feCHData = {};
 
-    if (accountNo === "3238") {
+    if (process.env.EnableCh === 'true') {
 
+        var chNumber = '05310821'
       
         var auth = "Basic " + new Buffer(process.env.CompaniesHouseAPIKey + ":").toString("base64");
         var request = require('request');
-        var url = "https://api.companieshouse.gov.uk/company/05310821/officers";
+        var url = "https://api.companieshouse.gov.uk/company/"+chNumber+"/officers";
         
         request.get( {
             url : url,

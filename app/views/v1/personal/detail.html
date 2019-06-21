@@ -153,9 +153,13 @@
                 {% if item.Product === 'PFL' %}
 
                 <div class="gc-search-result">
-                    <span class="govuk-tag gc-pull-right">
-                        {{item.DeterminationStatus}}
-                    </span>
+                        <span class="govuk-tag {{item.DeterminationStatus | lower}} gc-pull-right">
+                                {% if item.DeterminationStatus === 'Granted' %}
+                               Active
+                                {%else%}
+                                {{item.DeterminationStatus}}
+                                {%endif%}
+                            </span>
                     <p class="govuk-body">
                         Personal functional licence
                     </p>
@@ -188,9 +192,13 @@
 
                 {% if item.Product === 'PML - N' %}
                 <div class="gc-search-result">
-                    <span class="govuk-tag gc-pull-right">
-                        {{item.DeterminationStatus}}
-                    </span>
+                        <span class="govuk-tag {{item.DeterminationStatus | lower}} gc-pull-right">
+                                {% if item.DeterminationStatus === 'Granted' %}
+                               Active
+                                {%else%}
+                                {{item.DeterminationStatus}}
+                                {%endif%}
+                            </span>
                     <p class="govuk-body">
                         Personal management licence - Non remote
                     </p>
@@ -248,9 +256,13 @@
 
                 {% if item.Product === 'PML - R' %}
                 <div class="gc-search-result">
-                    <span class="govuk-tag gc-pull-right">
-                        {{item.DeterminationStatus}}
-                    </span>
+                        <span class="govuk-tag {{item.DeterminationStatus | lower}} gc-pull-right">
+                                {% if item.DeterminationStatus === 'Granted' %}
+                               Active
+                                {%else%}
+                                {{item.DeterminationStatus}}
+                                {%endif%}
+                            </span>
                     <p class="govuk-body">
                         Personal management licence - Remote
                     </p>

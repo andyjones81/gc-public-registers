@@ -375,14 +375,15 @@ $path: "/public/images/";
   font-size: 14px;
 }
 
-.gc-search-result {
-  margin-bottom: 5px;
-  padding: 15px 0px;
+.gc-search-result-a {
+  margin-bottom: 20px;
   border-bottom: 1px solid $grey-2;
+  padding: 5px 0px 15px 0px;
+  .govuk-details__summary-text {
+    text-decoration: underline;
+    font-size: 16px;
 
-  .govuk-body-s {
-    color: $black;
-  }
+}
 }
 
 .gc-search-result {
@@ -727,5 +728,5 @@ code {
 address{font-style: normal;}
 
 
-.govuk-tag.active{background-color: $gcapple}
+.govuk-tag.active, .govuk-tag.granted {background-color: $gcapple}
 .govuk-tag.suspended{background-color: $govuk-blue}
