@@ -11,6 +11,7 @@ var sanctions_Controller = require('./controllers/' + version + '/sanctionsContr
 var premises_Controller = require('./controllers/' + version + '/premisesController.js')
 
 router.get('/', core_Controller.home_get);
+router.post('/feedback', core_Controller.feedback_post);
 router.get('/core/changelog', core_Controller.changelog_get);
 
 
