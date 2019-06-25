@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-Register of regulatory sanctions and actions
+Register of regulatory action
 {% endblock %}
 
 {% block headerInfo %}
@@ -44,11 +44,11 @@ Register of regulatory sanctions and actions
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 <h1 class="govuk-heading-l govuk-!-margin-top-6">
-                    Register of regulatory sanctions and actions
+                    Register of regulatory action
                 </h1>
 
                 <p class="govuk-body-l">
-                    Regulatory sanctions and actions taken by the Gambling Commission against licence holder
+                    Regulatory action taken by the Gambling Commission against licence holder
                 </p>
 
             </div>
@@ -116,19 +116,19 @@ Register of regulatory sanctions and actions
 
 
         <ul class="register-themes">
-           <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/search">
+           <li class="register-theme"><a class="register-theme__link" href="/{{version}}/gamblingbusinesses/search">
                         <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Search the register</h3>
                         <p class="register-theme__description govuk-body-s">Search by business or individual name, trading name or account number</p>
                       
                     </a></li>
-            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/download">
+            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/gamblingbusinesses/download">
                     <h3
                         class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
                         Download the full register</h3>
                     <p class="register-theme__description govuk-body-s">Get a copy of the data in CSV or ODS formats.
                     </p>
                 </a></li>
-            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/api">
+            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/gamblingbusinesses/api">
                     <h3
                         class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
                         API</h3>
@@ -152,7 +152,7 @@ Register of regulatory sanctions and actions
             records and <b>6 fields</b>
             in this register.</p>
         <div class="govuk-inset-text">
-            Trading names are provided by the operator. The Gambling Commission cannot guarantee the
+            Trading names are provided by the gambling businesses. The Gambling Commission cannot guarantee the
             accuracy of information provided by third parties.
         </div>
 
@@ -176,7 +176,7 @@ Register of regulatory sanctions and actions
                         <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Account number</b></p>
                     </td>
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The unique reference for the operator.</p>
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The unique reference for the gambling business.</p>
                     </td>
                 </tr>
                 <tr class="registers-secondary-table__row">
@@ -184,7 +184,7 @@ Register of regulatory sanctions and actions
                         <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Name</b></p>
                     </td>
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The name of the operator.</p>
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The name of the gambling business.</p>
                     </td>
                 </tr>
                 <tr class="registers-secondary-table__row">
@@ -192,7 +192,7 @@ Register of regulatory sanctions and actions
                         <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Status</b></p>
                     </td>
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The status of the operator account.</p>
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The status of the gambling business account.</p>
                     </td>
                 </tr>
                 <tr class="registers-secondary-table__row">
@@ -200,7 +200,7 @@ Register of regulatory sanctions and actions
                         <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Head office address</b></p>
                     </td>
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The head office address for the operator.
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The head office address for the gambling business.
                         </p>
                     </td>
                 </tr>
@@ -209,7 +209,7 @@ Register of regulatory sanctions and actions
                         <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Activities</b></p>
                     </td>
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The current activities the operator is
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The current activities the gambling business is
                             licensed to operate under.
                         </p>
                     </td>
@@ -220,7 +220,7 @@ Register of regulatory sanctions and actions
                     </td>
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
                         <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Details of regulatory sanctions imposed on
-                            the operator by the Gambling Commission.
+                            the gambling business by the Gambling Commission.
                         </p>
                     </td>
                 </tr>
@@ -230,7 +230,7 @@ Register of regulatory sanctions and actions
                     </td>
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
                         <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Details of actions taken by the Gambling
-                            Commission against the operator. These are not sanctions.
+                            Commission against the gambling business. These are not sanctions.
                         </p>
                     </td>
                 </tr>
@@ -239,7 +239,7 @@ Register of regulatory sanctions and actions
                         <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Domain names</b></p>
                     </td>
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The domain names the operator has
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The domain names the gambling business has
                             registered to provide online gambling activities through.
                         </p>
                     </td>
@@ -249,7 +249,7 @@ Register of regulatory sanctions and actions
                         <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Trading names</b></p>
                     </td>
                     <td class="govuk-!-padding-0 registers-secondary-table__cell">
-                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The trading names the operator trades under
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The trading names the gambling business trades under
                         </p>
                     </td>
                 </tr>

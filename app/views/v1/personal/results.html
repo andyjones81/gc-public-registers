@@ -57,7 +57,7 @@ Search the personal licence register
 
                 </label>
                 <span class="govuk-hint">
-                        Search by name, licence or account number
+                        Search by name or account number
                 </span>
                 <div class="inner-form govuk-!-margin-bottom-3">
                     <div class="input-field second-wrap">
@@ -257,8 +257,7 @@ Search the personal licence register
             {% endif %}
 
         </h3>
-        <p class="govuk-body">Try searching for something else. You can search by business name, trading names, account
-            numbers and domain names.</p>
+        
 
         {%else%} <p class="govuk-body govuk-!-margin-bottom-2">
             <span class="govuk-!-font-weight-bold">{{result.registerData.recordset.length | numeral("0,0") }}</span>

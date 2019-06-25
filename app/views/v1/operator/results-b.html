@@ -27,7 +27,7 @@ Search the register of gambling businesses
             <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling business register</a>
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling businesses register</a>
         </li>
 
         <li class="govuk-breadcrumbs__list-item">
@@ -38,7 +38,7 @@ Search the register of gambling businesses
 
 
 <div class="govuk-breadcrumbs content-mobile">
-    <a href="/{{version}}/operator/summary" class="govuk-back-link">Back to gambling business register</a>
+    <a href="/{{version}}/operator/summary" class="govuk-back-link">Back to gambling businesses register</a>
 </div>
 {% endblock %}
 
@@ -57,7 +57,7 @@ Search the register of gambling businesses
 
                 </label>
                 <span class="govuk-hint">
-                    Search by business, trading or domain name, account or licence number
+                    Search by business, trading or domain name, or licence number
                 </span>
                 <div class="inner-form govuk-!-margin-bottom-3">
                     <div class="input-field second-wrap">
@@ -96,7 +96,7 @@ Search the register of gambling businesses
         <h3 class="govuk-heading-m">
             No results found
         </h3>
-        <p class="govuk-body">If you want the full register, find out how to <a
+        <p class="govuk-body">If you want to view the full register, find out how to <a
                 href="/{{version}}/operator/summary">download the register</a> in different formats.</p>
     </div>
 
@@ -295,7 +295,7 @@ Search the register of gambling businesses
             {% endif %}
 
             {% endfor %}
-            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3 ">Trading names</p>
+            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3 ">Trading name matches</p>
             {% endif %}
             <ul class="gc-search-result--tag">
 
@@ -323,7 +323,7 @@ Search the register of gambling businesses
             {% endif %}
 
             {% endfor %}
-            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3">Domain names</p>
+            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3">Domain name matches</p>
             {% endif %}
 
             <ul class="gc-search-result--tag">
