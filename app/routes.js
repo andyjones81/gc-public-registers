@@ -7,6 +7,7 @@ var hub_Controller = require('./controllers/' + version + '/hubController.js')
 var operator_Controller = require('./controllers/' + version + '/operatorController.js')
 var personal_Controller = require('./controllers/' + version + '/personalController.js')
 var sanctions_Controller = require('./controllers/' + version + '/sanctionsController.js')
+var sanctionsInternal_Controller = require('./controllers/' + version + '/sanctionsInternalController.js')
 
 var premises_Controller = require('./controllers/' + version + '/premisesController.js')
 
@@ -51,5 +52,13 @@ router.get('/' + version + '/sanctions/full', sanctions_Controller.sanctions_ful
 
 // Premises
 router.get('/' + version + '/premises/summary', premises_Controller.premises_summary_get);
+
+
+
+// Sanctions Internal Administraton
+router.get('/' + version + '/sanctions/internal/', sanctionsInternal_Controller.sanctionsInternal_Home_get);
+
+
+
 
 module.exports = router

@@ -1,0 +1,86 @@
+{% extends "layout_fullwidth_internal.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Public registers and datasets
+{% endblock %}
+
+{% block headerInfo %}
+<section class="gc-product-page gc-product-page--header">
+    <div class="govuk-header__container govuk-width-container">
+        <div class="govuk-!-padding-bottom-2">
+            <div class="gc-tag alpha-tag">ALPHA</div> This is new, <a href="/feedback" target="_Blank">give us
+                feedback</a>.
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+
+        <ul class="govuk-list gc-vertical-side-nav">
+            <li>
+                <a class="govuk-link active" href="#" onclick="openCity(event, 'x1')">Dashboard</a>
+            </li>
+            <li>
+                <a class="govuk-link" href="#" onclick="openCity(event, 'x2')">View sanctions</a>
+            </li>
+            <li>
+                <a class="govuk-link" href="#" onclick="openCity(event, 'x3')">View financial settlements</a>
+            </li>
+            <li>
+                <a class="govuk-link" href="#">Add a sanction</a>
+            </li>
+
+
+        </ul>
+    </div>
+    <div class="gc-grid-column-three-quarters">
+
+        <div id="x1" class="tabcontent active">
+      
+                <span class="govuk-caption-m">govuk-caption-m</span>
+                <h3 class="govuk-heading-m">govuk-heading-m</h3>
+
+
+        </div>
+
+     
+
+      
+        <script>
+            function openCity(evt, cityName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+    </div>
+
+
+</div>
+
+
+{% endblock %}
