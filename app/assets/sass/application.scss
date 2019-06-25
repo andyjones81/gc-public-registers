@@ -732,10 +732,11 @@ address{font-style: normal;}
 .govuk-tag.suspended{background-color: $govuk-blue}
 
 .gc-vertical-side-nav{
-li{background: $grey-4;}
-  li a { font-size: 14px; padding: 10px; display: block; text-decoration: none;border-left: 5px solid $grey-4}
-  li a:hover, li a.active { border-left: 5px solid $gcebony}
-  li a.active { font-weight: 700;}
+  list-style: none; padding:0px; margin:0px;
+li{background: $grey-4; list-style: none; margin-bottom: 5px}
+  li  { font-size: 14px; padding: 10px; display: block; text-decoration: none;border-left: 5px solid $grey-4}
+  li:hover, li.active { border-left: 5px solid $gcebony; cursor: pointer;}
+  li.active { font-weight: 700;}
 }
 * {box-sizing: border-box}
 body {font-family: "Lato", sans-serif;}
