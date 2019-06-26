@@ -57,6 +57,9 @@ router.get('/' + version + '/premises/summary', premises_Controller.premises_sum
 
 // Sanctions Internal Administraton
 router.get('/' + version + '/sanctions/internal/', sanctionsInternal_Controller.sanctionsInternal_Home_get);
+router.get('/' + version + '/sanctions/internal/dashboard', sanctionsInternal_Controller.sanctionsInternal_Dashboard_get);
+router.get('/' + version + '/sanctions/internal/viewsanctions', sanctionsInternal_Controller.sanctionsInternal_ViewSanctions_get);
+router.get('/' + version + '/sanctions/internal/addsanction', sanctionsInternal_Controller.sanctionsInternal_AddSanction_get);
 
 
 

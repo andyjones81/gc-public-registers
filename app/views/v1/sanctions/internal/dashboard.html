@@ -1,86 +1,64 @@
+{% extends "admin_layout_int.html" %}
 {% extends "layout_fullwidth_internal.html" %}
-
-{% block headerContent %}
-
-<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
-    aria-label="Show or hide Top Level Navigation">Menu</button>
-{% include "includes/nav.html" %}
-
-{% endblock %}
-
 {% block pageTitle %}
-Public registers and datasets
+Registers Prototypes
 {% endblock %}
-
-{% block headerInfo %}
-<section class="gc-product-page gc-product-page--header">
-    <div class="govuk-header__container govuk-width-container">
-        <div class="govuk-!-padding-bottom-2">
-            <div class="gc-tag alpha-tag">ALPHA</div> This is new, <a href="/feedback" target="_Blank">give us
-                feedback</a>.
-        </div>
-    </div>
-</section>
-{% endblock %}
-
 {% block content %}
 
-
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-quarter">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Dashboard</h1>
 
-        <ul class="govuk-list gc-vertical-side-nav">
-            <li>
-                <a class="govuk-link active" href="#" onclick="openCity(event, 'x1')">Dashboard</a>
-            </li>
-            <li>
-                <a class="govuk-link" href="#" onclick="openCity(event, 'x2')">View sanctions</a>
-            </li>
-            <li>
-                <a class="govuk-link" href="#" onclick="openCity(event, 'x3')">View financial settlements</a>
-            </li>
-            <li>
-                <a class="govuk-link" href="#">Add a sanction</a>
-            </li>
-
-
-        </ul>
     </div>
-    <div class="gc-grid-column-three-quarters">
-
-        <div id="x1" class="tabcontent active">
-      
-                <span class="govuk-caption-m">govuk-caption-m</span>
-                <h3 class="govuk-heading-m">govuk-heading-m</h3>
-
-
-        </div>
-
-     
-
-      
-        <script>
-            function openCity(evt, cityName) {
-                var i, tabcontent, tablinks;
-                tabcontent = document.getElementsByClassName("tabcontent");
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                }
-                tablinks = document.getElementsByClassName("tablinks");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", "");
-                }
-                document.getElementById(cityName).style.display = "block";
-                evt.currentTarget.className += " active";
-            }
-
-            // Get the element with id="defaultOpen" and click on it
-            document.getElementById("defaultOpen").click();
-        </script>
-    </div>
-
-
 </div>
 
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption">Action required</caption>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="col">Account name</th>
+                    <th class="govuk-table__header" scope="col">Account number</th>
+                    <th class="govuk-table__header" scope="col">Type</th>
+                    <th class="govuk-table__header" scope="col">Decision date</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">£109.80 per week</td>
+                    <td class="govuk-table__cell">£109.80 per week</td>
+                    <td class="govuk-table__cell">£109.80 per week</td>
+                    <td class="govuk-table__cell">£109.80 per week</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+
+        <ul class="register-themes">
+            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/summary">
+                    <h3
+                        class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
+                        Active sanctions</h3>
+                    <p class="register-theme__count govuk-body-s">79</p>
+                </a></li>
+            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/personal/summary">
+                    <h3
+                        class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
+                        Active actions</h3>
+                    <p class="register-theme__count govuk-body-s">42</p>
+                </a></li>
+            <li class="register-theme"><a class="register-theme__link" href="/{{version}}/sanctions/summary">
+                    <h3
+                        class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
+                        Settlements</h3>
+                    <p class="register-theme__count govuk-body-s">87</p>
+                </a></li>
+        </ul>
+    </div>
+</div>
 
 {% endblock %}

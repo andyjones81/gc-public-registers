@@ -7,7 +7,7 @@ async function searchRegister(query, sectorFilter, statusFilter) {
     sql.close()
     await sql.connect(config)
 
-    let q = getAccount(query, statusFilter);
+    let q = getAccount(query, statusFilter, sectorFilter);
     let tn = getTradingNames(query);
     let dn = getDomainNames(query);
 
@@ -20,17 +20,17 @@ async function searchRegister(query, sectorFilter, statusFilter) {
     return sqlResult;
 }
 
-async function getAccount(query, statusFilter) {
+async function getAccount(query, statusFilter, sectorFilter) {
     try {
 
-        console.log('Query filter: ' + statusFilter)
+        console.log('Status filter: ' + statusFilter)
+        console.log('Sector filter: ' + sectorFilter)
 
         var strippedQuery = query.replace(/\s/g, '');
 
-
-
-        if (statusFilter === undefined || statusFilter.length === 2) {
-            statusFilter = "Pending'" + ",'Granted";
+        if(statusFilter === undefined)
+        {
+            statusFilter = "inner join [dbo].[AccountProductsList] as ap on ap.AccountNo = pr.AccountNo and ap.DeterminationStatus in('Pending', 'Lapsed', 'Forfeited', 'Granted', 'Revoked', 'Surrendered', 'Suspended') ";
         }
 
 
@@ -38,9 +38,9 @@ async function getAccount(query, statusFilter) {
         // console.log("Rendered status filter:" + statusFilter);
 
         return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.determinationstatus from publicregisterreporting as pr " +
-            "left join [dbo].[AllDomainNames] as dn  on pr.accountno = dn.accountnumber and pr.DeterminationStatus in('" + statusFilter + "') and pr.remotestatus = 'Operator' " +
+            "left join [dbo].[AllDomainNames] as dn  on pr.accountno = dn.accountnumber and pr.remotestatus = 'Operator' " +
             "inner join [dbo].[AllTradingNames] as tn on pr.accountno = tn.accountno " +
-            "where pr.account like '%" + query + "%' " +
+                 "where pr.account like '%" + query + "%' " +
             "or pr.account like '%" + strippedQuery + "%' " +
             "or dn.domainname like '%" + query + "%' " +
             "or tn.tradingname like'%" + query + "%' " +
