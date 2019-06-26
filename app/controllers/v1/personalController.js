@@ -278,9 +278,11 @@ exports.personal_detail_get = function (req, res) {
 
     var query = req.session.data['search']
     var accountNo = req.params.id;
+    var r = req.session.data['ab']
 
     const getRegisterData = require('../../data/AzureSQL/getRegisterData');
 
+    console.log("Detail Get: " + r)
 
     var emptySearch = 'false';
     let registerData = "";
@@ -300,7 +302,8 @@ exports.personal_detail_get = function (req, res) {
                 version,
                 registerData,
                 result,
-                emptySearch
+                emptySearch, 
+                r
             })
 
         }).catch(err => {
