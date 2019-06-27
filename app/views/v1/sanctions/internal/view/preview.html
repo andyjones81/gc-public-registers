@@ -72,14 +72,31 @@ When should this be published?
                             
 
                                 <div class="govuk-grid-row">
-                                    <div class="govuk-grid-column-one-half">
+                                    <div class="govuk-grid-column-two-thirds">
                                         <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
                                             Decision
                                         </h2>
-                                        <p class="govuk-body">{{data['outcome']}}</p>
+                                        <p class="govuk-body">            {% for i in outcomeResultArray %}
+
+
+
+                                                {% if i === 'Had they not surrendered their licence' %}
+                                                ({{i}})
+                                                {% else %}
+                                    
+                                                {% if loop.last %}
+                                                {% else %}
+                                                {{i}}<br />
+                                                {% endif %}
+                                    
+                                                {% endif %}
+                                    
+                                    
+                                    
+                                                {% endfor %}</p>
                                     </div>
 
-                                    <div class="govuk-grid-column-one-half">
+                                    <div class="govuk-grid-column-one-third">
                                         <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
                                             Date of decision
                                         </h2>

@@ -50,7 +50,7 @@ exports.sanctionsInternal_AddSanction_get = function (req, res) {
 
         req.session.data['cya'] = null;
         req.session.data['reg-type'] = null;
-        req.session.data['account-number'] = null; 
+        req.session.data['account-number'] = null;
         req.session.data['outcome'] = null;
         req.session.data['content'] = null;
         req.session.data['decision-day'] = null;
@@ -116,10 +116,7 @@ exports.sanctionsInternal_Add_Licensee_post = function (req, res) {
         let actionType = req.session.data['reg-type']
 
         if (actionType === 'Sanction') {
-
-           
-                res.redirect('/' + version + '/sanctions/internal/add/confirmlicensee')
-            
+            res.redirect('/' + version + '/sanctions/internal/add/confirmlicensee')
         } else if (actionType === 'Action') {
             res.redirect('/' + version + '/sanctions/internal/add/confirmlicensee')
         } else {
@@ -133,9 +130,29 @@ exports.sanctionsInternal_Add_ConfirmLicensee_get = function (req, res) {
     if (enabled !== 'true') {
         res.render('denied')
     } else {
-        res.render(version + '/sanctions/internal/add/confirmlicensee', {
-            version
-        })
+
+
+        var accountNo = req.session.data['account-number'];
+
+        // Who is the licensee?
+        // Get the data
+
+        const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+        let registerData = getRegisterData(accountNo);
+
+        registerData.then(result => {
+
+            res.render(version + '/sanctions/internal/add/confirmlicensee', {
+                version,
+                result
+            })
+
+        }).catch(err => {
+            // console.log(err);
+        });
+
+
+    
     }
 }
 
@@ -310,9 +327,31 @@ exports.sanctionsInternal_Add_Check_get = function (req, res) {
 
         req.session.data['cya'] = "Y";
 
-        res.render(version + '/sanctions/internal/add/check', {
-            version
-        })
+
+        // Build the nice version of the sanctions list
+
+        var outcome = req.session.data['outcome']
+        var outcomeResultArray = outcome.toString().split(',');
+        
+        console.log(outcome)
+
+        var accountNo = req.session.data['account-number'];
+        const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+        let registerData = getRegisterData(accountNo);
+
+        registerData.then(result => {
+
+            res.render(version + '/sanctions/internal/add/check', {
+                version,
+                outcomeResultArray,
+                result
+            })
+
+        }).catch(err => {
+            // console.log(err);
+        });
+
+      
     }
 }
 
@@ -342,6 +381,28 @@ exports.sanctionsInternal_Add_Complete_get = function (req, res) {
     } else {
         res.render(version + '/sanctions/internal/add/complete', {
             version
+        })
+    }
+}
+
+exports.sanctionsInternal_View_Preview_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+
+        req.session.data['cya'] = "Y";
+
+        // Build the nice version of the sanctions list
+
+        var outcome = req.session.data['outcome']
+        var outcomeResultArray = outcome.toString().split(',');
+        
+        console.log(outcome)
+
+        res.render(version + '/sanctions/internal/view/preview', {
+            version,
+            outcomeResultArray
         })
     }
 }

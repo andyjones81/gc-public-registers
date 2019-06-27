@@ -87,4 +87,6 @@ router.post('/' + version + '/sanctions/internal/add/check', sanctionsInternal_C
 router.get('/' + version + '/sanctions/internal/add/complete', sanctionsInternal_Controller.sanctionsInternal_Add_Complete_get);
 
 
+router.get('/' + version + '/sanctions/internal/view/preview', sanctionsInternal_Controller.sanctionsInternal_View_Preview_get);
+
 module.exports = router
