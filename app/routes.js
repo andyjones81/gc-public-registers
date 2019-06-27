@@ -59,9 +59,32 @@ router.get('/' + version + '/premises/summary', premises_Controller.premises_sum
 router.get('/' + version + '/sanctions/internal/', sanctionsInternal_Controller.sanctionsInternal_Home_get);
 router.get('/' + version + '/sanctions/internal/dashboard', sanctionsInternal_Controller.sanctionsInternal_Dashboard_get);
 router.get('/' + version + '/sanctions/internal/viewsanctions', sanctionsInternal_Controller.sanctionsInternal_ViewSanctions_get);
-router.get('/' + version + '/sanctions/internal/addsanction', sanctionsInternal_Controller.sanctionsInternal_AddSanction_get);
 
+router.get('/' + version + '/sanctions/internal/add/start', sanctionsInternal_Controller.sanctionsInternal_AddSanction_get);
+router.post('/' + version + '/sanctions/internal/add/start', sanctionsInternal_Controller.sanctionsInternal_AddSanction_post);
 
+router.get('/' + version + '/sanctions/internal/add/licensee', sanctionsInternal_Controller.sanctionsInternal_Add_Licensee_get);
+router.post('/' + version + '/sanctions/internal/add/licensee', sanctionsInternal_Controller.sanctionsInternal_Add_Licensee_post);
+
+router.get('/' + version + '/sanctions/internal/add/confirmlicensee', sanctionsInternal_Controller.sanctionsInternal_Add_ConfirmLicensee_get);
+router.post('/' + version + '/sanctions/internal/add/confirmlicensee', sanctionsInternal_Controller.sanctionsInternal_Add_ConfirmLicensee_post);
+
+router.get('/' + version + '/sanctions/internal/add/status', sanctionsInternal_Controller.sanctionsInternal_Add_Status_get);
+router.post('/' + version + '/sanctions/internal/add/status', sanctionsInternal_Controller.sanctionsInternal_Add_Status_post);
+
+router.get('/' + version + '/sanctions/internal/add/details', sanctionsInternal_Controller.sanctionsInternal_Add_Details_get);
+router.post('/' + version + '/sanctions/internal/add/details', sanctionsInternal_Controller.sanctionsInternal_Add_Details_post);
+
+router.get('/' + version + '/sanctions/internal/add/decisiondate', sanctionsInternal_Controller.sanctionsInternal_Add_DecisionDate_get);
+router.post('/' + version + '/sanctions/internal/add/decisiondate', sanctionsInternal_Controller.sanctionsInternal_Add_DecisionDate_post);
+
+router.get('/' + version + '/sanctions/internal/add/publishdate', sanctionsInternal_Controller.sanctionsInternal_Add_PublishDate_get);
+router.post('/' + version + '/sanctions/internal/add/publishdate', sanctionsInternal_Controller.sanctionsInternal_Add_PublishDate_post);
+
+router.get('/' + version + '/sanctions/internal/add/check', sanctionsInternal_Controller.sanctionsInternal_Add_Check_get);
+router.post('/' + version + '/sanctions/internal/add/check', sanctionsInternal_Controller.sanctionsInternal_Add_Check_post);
+
+router.get('/' + version + '/sanctions/internal/add/complete', sanctionsInternal_Controller.sanctionsInternal_Add_Complete_get);
 
 
 module.exports = router

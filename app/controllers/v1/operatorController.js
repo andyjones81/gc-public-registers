@@ -2,6 +2,7 @@ const version = "v1";
 const _ = require('lodash');
 const mobileDetect = require('mobile-detect');
 const sql = require("mssql");
+const winston = require('winston')
 
 exports.operator_summary_get = function (req, res) {
     const d = require('../../data/register.json')

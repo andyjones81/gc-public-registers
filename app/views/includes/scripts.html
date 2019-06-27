@@ -2,24 +2,51 @@
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 
 {% for scriptUrl in extensionConfig.scripts %}
-  <script src="{{scriptUrl}}"></script>
+<script src="{{scriptUrl}}"></script>
 {% endfor %}
 
 <script src="/public/javascripts/application.js"></script>
 
 {% if useAutoStoreData %}
-  <script src="/public/javascripts/auto-store-data.js"></script>
+<script src="/public/javascripts/auto-store-data.js"></script>
 {% endif %}
 
 
 <script type="text/javascript">
-
-var mouseflowCrossDomainSupport = true;
+  var mouseflowCrossDomainSupport = true;
   window._mfq = window._mfq || [];
-  (function() {
-      var mf = document.createElement("script");
-      mf.type = "text/javascript"; mf.async = true;
-      mf.src = "//cdn.mouseflow.com/projects/d0c80df0-d9c7-4c50-a669-17e2f4026483.js";
-      document.getElementsByTagName("head")[0].appendChild(mf);
+  (function () {
+    var mf = document.createElement("script");
+    mf.type = "text/javascript";
+    mf.async = true;
+    mf.src = "//cdn.mouseflow.com/projects/d0c80df0-d9c7-4c50-a669-17e2f4026483.js";
+    document.getElementsByTagName("head")[0].appendChild(mf);
   })();
+</script>
+
+
+<script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+
+<script>
+  ClassicEditor
+    .create(document.querySelector('#editor'), {
+      toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList'],
+      heading: {
+        options: [{
+            model: 'heading3',
+            view: 'h3',
+            title: 'Heading',
+            class: 'ck-heading_heading3'
+          },
+          {
+            model: 'paragraph',
+            title: 'Normal text',
+            class: 'ck-heading_paragraph'
+          }
+        ]
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
 </script>

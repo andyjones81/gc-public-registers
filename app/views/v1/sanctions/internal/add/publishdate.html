@@ -1,7 +1,7 @@
 <!-- {% extends "admin_layout_int.html" %} -->
 {% extends "layout_fullwidth_internal.html" %}
 {% block pageTitle %}
-Date of the decision
+When should this be published?
 {% endblock %}
 {% block beforeContent %}
 <a href="/{{version}}/sanctions/internal/add/details" class="govuk-back-link">Back</a>
@@ -16,37 +16,37 @@ Date of the decision
         
 
             <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset" aria-describedby="decision-hint" role="group">
+                    <fieldset class="govuk-fieldset" aria-describedby="publish-on-hint" role="group">
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                             <span class="govuk-caption-l">Regulatory sanction</span>
-                            <h1 class="govuk-heading-l">Date of the decision</h1>
+                            <h1 class="govuk-heading-l">When should this be published? </h1>
                       </legend>
-                      <span id="decision-hint" class="govuk-hint">
+                      <span id="publish-on-hint" class="govuk-hint">
                         For example, {{date | date('DD MM YYYY')}}
                       </span>
-                      <div class="govuk-date-input" id="decision">
+                      <div class="govuk-date-input" id="publish-on">
                         <div class="govuk-date-input__item">
                           <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="decision-day">
+                            <label class="govuk-label govuk-date-input__label" for="publish-on-day">
                               Day
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="decision-day" name="decision-day" type="number" pattern="[0-9]*">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="publish-on-day" name="publish-on-day" type="number" pattern="[0-9]*">
                           </div>
                         </div>
                         <div class="govuk-date-input__item">
                           <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="decision-month">
+                            <label class="govuk-label govuk-date-input__label" for="publish-on-month">
                               Month
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="decision-month" name="decision-month" type="number" pattern="[0-9]*">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="publish-on-month" name="publish-on-month" type="number" pattern="[0-9]*">
                           </div>
                         </div>
                         <div class="govuk-date-input__item">
                           <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="decision-year">
+                            <label class="govuk-label govuk-date-input__label" for="publish-on-year">
                               Year
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="decision-year" name="decision-year" type="number" pattern="[0-9]*">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="publish-on-year" name="publish-on-year" type="number" pattern="[0-9]*">
                           </div>
                         </div>
                       </div>

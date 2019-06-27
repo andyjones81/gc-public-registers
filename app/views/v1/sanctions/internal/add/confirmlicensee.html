@@ -1,0 +1,37 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+What is the licence number?
+{% endblock %}
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/add/license" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+                <span class="govuk-caption-l">Regulatory sanction</span>
+            <h1 class="govuk-heading-l">Is this the correct licensee?</h1>
+
+            <div class="govuk-inset-text">Account number: <span class="govuk-!-font-weight-bold">1611</span><br/>Account name: <span class="govuk-!-font-weight-bold">Ladbrokes Betting & Gaming Limited</span></div>
+            
+            <p class="govuk-body">This isn't the correct licensee. <a href="/{{version}}/sanctions/internal/add/license">Search again</a>.</p>
+
+            <button type="submit" class="govuk-button">
+                It's correct, continue
+            </button>
+
+
+        </form>
+
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}

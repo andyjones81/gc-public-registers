@@ -1,0 +1,39 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+Details of the sanction
+{% endblock %}
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/add/status" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+                <span class="govuk-caption-l">Regulatory sanction</span>
+            <h1 class="govuk-heading-l">Details of the sanction</h1>
+
+            <div class="govuk-form-group">
+            <textarea name="content" id="editor">{{data['content']}}</textarea>
+        </div>
+
+            <button type="submit" class="govuk-button">
+                Save and continue
+            </button>
+
+
+        </form>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
