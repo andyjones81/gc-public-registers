@@ -47,6 +47,19 @@ exports.sanctionsInternal_AddSanction_get = function (req, res) {
     if (enabled !== 'true') {
         res.render('denied')
     } else {
+
+        req.session.data['cya'] = null;
+        req.session.data['reg-type'] = null;
+        req.session.data['account-number'] = null; 
+        req.session.data['outcome'] = null;
+        req.session.data['content'] = null;
+        req.session.data['decision-day'] = null;
+        req.session.data['decision-month'] = null;
+        req.session.data['decision-year'] = null;
+        req.session.data['publish-on-day'] = null;
+        req.session.data['publish-on-month'] = null;
+        req.session.data['publish-on-year'] = null;
+
         res.render(version + '/sanctions/internal/add/start', {
             version
         })
@@ -62,8 +75,14 @@ exports.sanctionsInternal_AddSanction_post = function (req, res) {
         // Where are we going to next?
         let actionType = req.session.data['reg-type']
 
+
         if (actionType === 'Sanction') {
-            res.redirect('/' + version + '/sanctions/internal/add/licensee')
+
+            if (req.session.data['cya'] === 'Y') {
+                res.redirect('/' + version + '/sanctions/internal/add/check')
+            } else {
+                res.redirect('/' + version + '/sanctions/internal/add/licensee')
+            }
         } else if (actionType === 'Action') {
             res.redirect('/' + version + '/sanctions/internal/add/licensee')
         } else {
@@ -97,7 +116,10 @@ exports.sanctionsInternal_Add_Licensee_post = function (req, res) {
         let actionType = req.session.data['reg-type']
 
         if (actionType === 'Sanction') {
-            res.redirect('/' + version + '/sanctions/internal/add/confirmlicensee')
+
+           
+                res.redirect('/' + version + '/sanctions/internal/add/confirmlicensee')
+            
         } else if (actionType === 'Action') {
             res.redirect('/' + version + '/sanctions/internal/add/confirmlicensee')
         } else {
@@ -128,7 +150,12 @@ exports.sanctionsInternal_Add_ConfirmLicensee_post = function (req, res) {
         let actionType = req.session.data['reg-type']
 
         if (actionType === 'Sanction') {
-            res.redirect('/' + version + '/sanctions/internal/add/status')
+
+            if (req.session.data['cya'] === 'Y') {
+                res.redirect('/' + version + '/sanctions/internal/add/check')
+            } else {
+                res.redirect('/' + version + '/sanctions/internal/add/status')
+            }
         } else if (actionType === 'Action') {
             res.redirect('/' + version + '/sanctions/internal/add/status')
         } else {
@@ -159,7 +186,12 @@ exports.sanctionsInternal_Add_Status_post = function (req, res) {
         let actionType = req.session.data['reg-type']
 
         if (actionType === 'Sanction') {
-            res.redirect('/' + version + '/sanctions/internal/add/details')
+
+            if (req.session.data['cya'] === 'Y') {
+                res.redirect('/' + version + '/sanctions/internal/add/check')
+            } else {
+                res.redirect('/' + version + '/sanctions/internal/add/details')
+            }
         } else if (actionType === 'Action') {
             res.redirect('/' + version + '/sanctions/internal/add/details')
         } else {
@@ -189,7 +221,12 @@ exports.sanctionsInternal_Add_Details_post = function (req, res) {
         let actionType = req.session.data['reg-type']
 
         if (actionType === 'Sanction') {
-            res.redirect('/' + version + '/sanctions/internal/add/decisiondate')
+
+            if (req.session.data['cya'] === 'Y') {
+                res.redirect('/' + version + '/sanctions/internal/add/check')
+            } else {
+                res.redirect('/' + version + '/sanctions/internal/add/decisiondate')
+            }
         } else if (actionType === 'Action') {
             res.redirect('/' + version + '/sanctions/internal/add/decisiondate')
         } else {
@@ -219,7 +256,12 @@ exports.sanctionsInternal_Add_DecisionDate_post = function (req, res) {
         let actionType = req.session.data['reg-type']
 
         if (actionType === 'Sanction') {
-            res.redirect('/' + version + '/sanctions/internal/add/publishdate')
+
+            if (req.session.data['cya'] === 'Y') {
+                res.redirect('/' + version + '/sanctions/internal/add/check')
+            } else {
+                res.redirect('/' + version + '/sanctions/internal/add/publishdate')
+            }
         } else if (actionType === 'Action') {
             res.redirect('/' + version + '/sanctions/internal/add/publishdate')
         } else {
@@ -249,7 +291,9 @@ exports.sanctionsInternal_Add_PublishDate_post = function (req, res) {
         let actionType = req.session.data['reg-type']
 
         if (actionType === 'Sanction') {
+
             res.redirect('/' + version + '/sanctions/internal/add/check')
+
         } else if (actionType === 'Action') {
             res.redirect('/' + version + '/sanctions/internal/add/check')
         } else {
@@ -263,6 +307,9 @@ exports.sanctionsInternal_Add_Check_get = function (req, res) {
     if (enabled !== 'true') {
         res.render('denied')
     } else {
+
+        req.session.data['cya'] = "Y";
+
         res.render(version + '/sanctions/internal/add/check', {
             version
         })

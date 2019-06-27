@@ -30,7 +30,7 @@ When should this be published?
                             <label class="govuk-label govuk-date-input__label" for="publish-on-day">
                               Day
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="publish-on-day" name="publish-on-day" type="number" pattern="[0-9]*">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="publish-on-day" value="{{data['publish-on-day']}}" name="publish-on-day" type="number" pattern="[0-9]*">
                           </div>
                         </div>
                         <div class="govuk-date-input__item">
@@ -38,7 +38,7 @@ When should this be published?
                             <label class="govuk-label govuk-date-input__label" for="publish-on-month">
                               Month
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="publish-on-month" name="publish-on-month" type="number" pattern="[0-9]*">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="publish-on-month" value="{{data['publish-on-month']}}" name="publish-on-month" type="number" pattern="[0-9]*">
                           </div>
                         </div>
                         <div class="govuk-date-input__item">
@@ -46,7 +46,7 @@ When should this be published?
                             <label class="govuk-label govuk-date-input__label" for="publish-on-year">
                               Year
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="publish-on-year" name="publish-on-year" type="number" pattern="[0-9]*">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="publish-on-year"  value="{{data['publish-on-year']}}" name="publish-on-year" type="number" pattern="[0-9]*">
                           </div>
                         </div>
                       </div>

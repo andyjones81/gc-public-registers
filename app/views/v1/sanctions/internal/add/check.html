@@ -12,19 +12,146 @@ When should this be published?
 
         <form method="POST">
 
-            <h1 class="govuk-heading-l">Check your answers before continuing </h1>
+            <h1 class="govuk-heading-l">Check before continuing </h1>
+
+            <dl class="app-check-your-answers app-check-your-answers--short">
 
 
+                <div class="app-check-your-answers__contents">
+                  <dt class="app-check-your-answers__question">
+                   Type of action
+                  </dt>
+                  <dd class="app-check-your-answers__answer">
+                    {{data['reg-type'] | title }}
+                  </dd>
+                  <dd class="app-check-your-answers__change">
+                    <a href="/{{version}}/sanctions/internal/add/start">
+                      Change<span class="govuk-visually-hidden"> answer</span>
+                    </a>
+                  </dd>
+                </div>
+        
+                <div class="app-check-your-answers__contents">
+                    <dt class="app-check-your-answers__question">
+                     Licensee
+                    </dt>
+                    <dd class="app-check-your-answers__answer">
+                      {{data['account-number'] }}<br/>
+                      Ladbrokes Betting & Gaming Limited
+                    </dd>
+                    <dd class="app-check-your-answers__change">
+                      <a href="/{{version}}/sanctions/internal/add/confirmlicensee">
+                        Change<span class="govuk-visually-hidden"> answer</span>
+                      </a>
+                    </dd>
+                  </div>
+        
+                  <div class="app-check-your-answers__contents">
+                    <dt class="app-check-your-answers__question">
+                     Outcome
+                    </dt>
+                    <dd class="app-check-your-answers__answer">
+                      {{data['outcome'] }}
+                    </dd>
+                    <dd class="app-check-your-answers__change">
+                      <a href="/{{version}}/sanctions/internal/add/status">
+                        Change<span class="govuk-visually-hidden"> answer</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="app-check-your-answers__contents">
+                    <dt class="app-check-your-answers__question">
+                     Details
+                    </dt>
+                    <dd class="app-check-your-answers__answer">
+                      {{data['content'] | safe }}
+                    </dd>
+                    <dd class="app-check-your-answers__change">
+                      <a href="/{{version}}/sanctions/internal/add/details">
+                        Change<span class="govuk-visually-hidden"> answer</span>
+                      </a>
+                    </dd>
+                  </div>
 
-            <button type="submit" class="govuk-button">
-                Create sanction
-            </button>
+                  <div class="app-check-your-answers__contents">
+                    <dt class="app-check-your-answers__question">
+                     Decision date
+                    </dt>
+                    <dd class="app-check-your-answers__answer">
+                        {% set decisiondate %}
+
+                  {{data['decision-month']}}/{{data['decision-day']}}/{{data['decision-year']}}
+                  {%
+                  endset %}
+
+                  {{decisiondate | date('DD MMMM YYYY')}}
+                    </dd>
+                    <dd class="app-check-your-answers__change">
+                      <a href="/{{version}}/sanctions/internal/add/decisiondate">
+                        Change<span class="govuk-visually-hidden"> answer</span>
+                      </a>
+                    </dd>
+                  </div>
+        
+                  <div class="app-check-your-answers__contents">
+                    <dt class="app-check-your-answers__question">
+                     Publish date
+                    </dt>
+                    <dd class="app-check-your-answers__answer">
+                        {% set publishDate %}
+
+                  {{data['publish-on-month']}}/{{data['publish-on-day']}}/{{data['publish-on-year']}}
+                  {%
+                  endset %}
+
+                  {{publishDate | date('DD MMMM YYYY')}}
+                    </dd>
+                    <dd class="app-check-your-answers__change">
+                      <a href="/{{version}}/sanctions/internal/add/publishdate">
+                        Change<span class="govuk-visually-hidden"> answer</span>
+                      </a>
+                    </dd>
+                  </div>
+                
+
+              </dl>
+                 
+        
+              <h2 class="govuk-heading-m">Continue to submit this sanction</h2>
+              <p class="govuk-body">You can edit the details before it goes live on the register.</p>
+              <form method="POST" action="/{{version}}/{{appJourney.submit}}">
+                <div class="govuk-form-group">
+                  <button class="govuk-button" type="submit">
+                    Submit sanction
+                  </button>
+                </div>
 
 
         </form>
 
 
 
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+            Preview
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+            <ul class="govuk-list govuk-!-font-size-16">
+
+                <li>
+                    <a class="govuk-link"
+                        href="/{{version}}/sanctions/internal/view/preview#action"
+                        target="_Blank">
+                        Preview the sanction as it would be displayed on the register
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </aside>
     </div>
 </div>
 
