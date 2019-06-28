@@ -15,8 +15,9 @@ When should this be published?
     <form method="POST">
 
       <h1 class="govuk-heading-l">Check before continuing </h1>
+      <p class="govuk-body">Check the details of this sanction before submitting. You can also preview it before saving.</p>
 
-      <dl class="app-check-your-answers app-check-your-answers--short">
+      <dl class="app-check-your-answers app-check-your-answers--short govuk-!-margin-top-9">
 
 
         <div class="app-check-your-answers__contents">
@@ -65,10 +66,7 @@ When should this be published?
             ({{i}})
             {% else %}
 
-            {% if loop.last %}
-            {% else %}
             {{i}}<br />
-            {% endif %}
 
             {% endif %}
 
