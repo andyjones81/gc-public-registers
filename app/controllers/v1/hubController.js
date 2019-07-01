@@ -43,9 +43,7 @@ exports.home_get = function (req, res) {
 
 exports.journey_post = function (req, res) {
 
-        if (req.body.ab === undefined) {
-                req.session.data['ab'] = 'A'
-        }
+        req.session.data['ab'] = process.env.journey        
 
         res.redirect('/' + version + '/hub/');
 }
