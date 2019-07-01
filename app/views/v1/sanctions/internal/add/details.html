@@ -1,13 +1,13 @@
 <!-- {% extends "admin_layout_int.html" %} -->
 {% extends "layout_fullwidth_internal.html" %}
 {% block pageTitle %}
-Details of the sanction
+Details of the {{data['reg-type'] | lower }}
 {% endblock %}
 {% block beforeContent %}
 
 
 
-{% if data['reg-type'] === 'sanction' %}
+{% if data['reg-type'] === 'Sanction' %}
          <a href="/{{version}}/sanctions/internal/add/status" class="govuk-back-link">Back</a>
 {% else %}
         <a href="/{{version}}/sanctions/internal/add/licensee" class="govuk-back-link">Back</a>
@@ -21,8 +21,8 @@ Details of the sanction
     <div class="govuk-grid-column-full">
 
         <form method="POST">
-                <span class="govuk-caption-l">Regulatory sanction</span>
-            <h1 class="govuk-heading-l">Details of the sanction</h1>
+                <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
+            <h1 class="govuk-heading-l">Details of the {{data['reg-type'] | lower }}</h1>
 
             <div class="govuk-form-group">
             <textarea name="content" id="editor">{{data['content']}}</textarea>

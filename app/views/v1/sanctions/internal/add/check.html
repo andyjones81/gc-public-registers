@@ -15,7 +15,7 @@ When should this be published?
     <form method="POST">
 
       <h1 class="govuk-heading-l">Check before continuing </h1>
-      <p class="govuk-body">Check the details of this sanction before submitting. You can also preview it before saving.</p>
+      <p class="govuk-body">Check the details of this {{data['reg-type'] | lower }} before submitting. You can also preview it before saving.</p>
 
       <dl class="app-check-your-answers app-check-your-answers--short govuk-!-margin-top-9">
 
@@ -50,6 +50,8 @@ When should this be published?
           </dd>
         </div>
 
+{% if data['reg-type'] === 'Sanction' %}
+
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
             Outcome
@@ -82,6 +84,9 @@ When should this be published?
             </a>
           </dd>
         </div>
+
+        
+        {% endif %}
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
             Details
@@ -140,12 +145,12 @@ When should this be published?
       </dl>
 
 
-      <h2 class="govuk-heading-m">Continue to submit this sanction</h2>
+      <h2 class="govuk-heading-m">Continue to submit this {{data['reg-type'] | lower }}</h2>
       <p class="govuk-body">You can edit the details before it goes live on the register.</p>
       <form method="POST" action="/{{version}}/{{appJourney.submit}}">
         <div class="govuk-form-group">
           <button class="govuk-button" type="submit">
-            Submit sanction
+            Submit {{data['reg-type'] | lower }}
           </button>
         </div>
 
@@ -166,7 +171,7 @@ When should this be published?
 
           <li>
             <a class="govuk-link" href="/{{version}}/sanctions/internal/view/preview#action" target="_Blank">
-              Preview the sanction as it would be displayed on the register
+              Preview the {{data['reg-type'] | lower }} as it would be displayed on the register
             </a>
           </li>
 

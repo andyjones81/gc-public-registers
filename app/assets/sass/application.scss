@@ -61,6 +61,7 @@ $path: "/public/images/";
 @import 'patterns/govuk-panels';
 @import "components/_cookie-banner";
 @import "patterns/gc-core";
+@import "patterns/gc-currency-input";
 
 .text-right {
   text-align: right;
@@ -745,3 +746,4 @@ body {font-family: "Lato", sans-serif;}
 
 
 .gc-grid-column-three-quarters{width: 75%; float: left; padding-left: 30px;}
+

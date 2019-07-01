@@ -89,4 +89,15 @@ router.get('/' + version + '/sanctions/internal/add/complete', sanctionsInternal
 
 router.get('/' + version + '/sanctions/internal/view/preview', sanctionsInternal_Controller.sanctionsInternal_View_Preview_get);
 
+router.get('/' + version + '/sanctions/internal/add/financial', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_get);
+router.post('/' + version + '/sanctions/internal/add/financial', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_post);
+
+router.get('/' + version + '/sanctions/internal/add/financial-list', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_List_get);
+router.post('/' + version + '/sanctions/internal/add/financial-list', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_List_post);
+
+router.get('/' + version + '/sanctions/internal/add/financial-add', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_Add_get);
+router.post('/' + version + '/sanctions/internal/add/financial-add', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_Add_post);
+
+router.get('/' + version + '/sanctions/internal/add/financial-remove/:id', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_Remove_get);
+
 module.exports = router

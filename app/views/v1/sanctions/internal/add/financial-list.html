@@ -1,0 +1,68 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+Are there any financial settlements being made?
+{% endblock %}
+
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/add/financial" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
+        <h1 class="govuk-heading-l">Financial settlements</h1>
+
+        <p class="govuk-body">You can add multiple settlements here. (This replaces the spreadsheet)</p>
+
+        <form method="POST">
+
+
+
+            {% if items.length > 0 %}
+
+
+
+            {% for i in items %}
+
+            <div class="gc-search-result">
+                <div class="gc-pull-right"><a href="/{{version}}/sanctions/internal/add/financial-remove/{{i.id}}">Remove</a></div>
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">{{i.outcome}}</h2>
+                <p class="govuk-body govuk-!-margin-bottom-1">£{{i.amount}}</p>
+                <p class="govuk-body govuk-!-margin-bottom-0">{{i.detail}}</p>
+            </div>
+
+            {% endfor %}
+
+
+
+            <p class="govuk-body"><a href="/{{version}}/sanctions/internal/add/financial-add">Add another settlement</a>
+            </p>
+            {% else %}
+
+            <div class="govuk-inset-text">
+                No settlements added. <a href="/{{version}}/sanctions/internal/add/financial-add">Add a settlement</a>
+            </div>
+            {% endif %}
+
+
+
+            <button type="submit" class="govuk-button">
+                Save and continue
+            </button>
+
+
+        </form>
+
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}

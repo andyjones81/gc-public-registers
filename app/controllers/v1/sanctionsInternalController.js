@@ -1,6 +1,7 @@
 const version = "v1";
 const sql = require("mssql");
-const enabled = process.env.RegActionInternalEnabled
+const enabled = process.env.RegActionInternalEnabled;
+const crypto = require("crypto");
 
 exports.sanctionsInternal_Home_get = function (req, res) {
 
@@ -152,7 +153,7 @@ exports.sanctionsInternal_Add_ConfirmLicensee_get = function (req, res) {
         });
 
 
-    
+
     }
 }
 
@@ -174,12 +175,12 @@ exports.sanctionsInternal_Add_ConfirmLicensee_post = function (req, res) {
                 res.redirect('/' + version + '/sanctions/internal/add/status')
             }
         } else if (actionType === 'Action') {
-              if (req.session.data['cya'] === 'Y') {
+            if (req.session.data['cya'] === 'Y') {
                 res.redirect('/' + version + '/sanctions/internal/add/check')
             } else {
                 res.redirect('/' + version + '/sanctions/internal/add/details')
             }
-            
+
         } else {
             res.redirect('/' + version + '/sanctions/internal/add/start')
         }
@@ -250,7 +251,7 @@ exports.sanctionsInternal_Add_Details_post = function (req, res) {
                 res.redirect('/' + version + '/sanctions/internal/add/decisiondate')
             }
         } else if (actionType === 'Action') {
-            res.redirect('/' + version + '/sanctions/internal/add/decisiondate')
+            res.redirect('/' + version + '/sanctions/internal/add/financial')
         } else {
             res.redirect('/' + version + '/sanctions/internal/add/start')
         }
@@ -335,10 +336,10 @@ exports.sanctionsInternal_Add_Check_get = function (req, res) {
 
         // Build the nice version of the sanctions list
 
-        var outcome = req.session.data['outcome']
-        var outcomeResultArray = outcome.toString().split(',');
-        
-        console.log(outcome)
+        if (req.session.data['reg-type'] === 'Sanction') {
+            var outcome = req.session.data['outcome']
+            var outcomeResultArray = outcome.toString().split(',');
+        }
 
         var accountNo = req.session.data['account-number'];
         const getRegisterData = require('../../data/AzureSQL/getRegisterData');
@@ -356,7 +357,7 @@ exports.sanctionsInternal_Add_Check_get = function (req, res) {
             // console.log(err);
         });
 
-      
+
     }
 }
 
@@ -402,12 +403,138 @@ exports.sanctionsInternal_View_Preview_get = function (req, res) {
 
         var outcome = req.session.data['outcome']
         var outcomeResultArray = outcome.toString().split(',');
-        
+
         console.log(outcome)
 
         res.render(version + '/sanctions/internal/view/preview', {
             version,
             outcomeResultArray
         })
+    }
+}
+
+
+
+exports.sanctionsInternal_Add_Financial_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+        res.render(version + '/sanctions/internal/add/financial', {
+            version
+        })
+    }
+}
+
+exports.sanctionsInternal_Add_Financial_Add_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+        res.render(version + '/sanctions/internal/add/financial-add', {
+            version
+        })
+    }
+}
+
+exports.sanctionsInternal_Add_Financial_List_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+        let items = req.session.data['items']
+
+        res.render(version + '/sanctions/internal/add/financial-list', {
+            version,
+            items
+        })
+    }
+}
+
+exports.sanctionsInternal_Add_Financial_Remove_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+
+        // Remove the entry from the array 
+
+        var listOfItems = [];
+
+        if (req.session.data['items'] !== undefined) {
+            listOfItems = req.session.data['items'];
+        }
+
+        console.log(listOfItems);
+
+        var id = req.params.id;
+        console.log(id);
+
+        var r = listOfItems.filter(item => item.id !== id);
+        req.session.data['items'] = r;
+
+        res.redirect('/'+ version + '/sanctions/internal/add/financial-list')
+    }
+}
+
+
+exports.sanctionsInternal_Add_Financial_post = function (req, res) {
+    if (enabled !== 'true') {
+        res.redirect('denied')
+    } else {
+
+
+        console.log(req.session.data['reg-type'])
+
+        // Where are we going to next?
+        let actionType = req.session.data['reg-type']
+        let financialSettlement = req.session.data['financial-settlement']
+
+        if (financialSettlement === 'yes') {
+            res.redirect('/' + version + '/sanctions/internal/add/financial-list')
+        } else {
+            res.redirect('/' + version + '/sanctions/internal/add/decisiondate')
+        }
+    }
+}
+
+
+exports.sanctionsInternal_Add_Financial_Add_post = function (req, res) {
+    if (enabled !== 'true') {
+        res.redirect('denied')
+    } else {
+
+        var listOfItems = [];
+
+        if (req.session.data['items'] !== undefined) {
+            listOfItems = req.session.data['items'];
+        }
+
+        // Save details in to session and redirect to list
+        let outcome = req.session.data['financial-settlement-outcome']
+        let amount = req.session.data['amount']
+        let detail = req.session.data['settlement-detail']
+
+        listOfItems.push({
+            outcome: outcome,
+            amount: amount,
+            detail: detail,
+            id: crypto.randomBytes(16).toString("hex")
+        })
+
+        req.session.data['items'] = listOfItems
+
+        res.redirect('/' + version + '/sanctions/internal/add/financial-list')
+    }
+}
+
+exports.sanctionsInternal_Add_Financial_List_post = function (req, res) {
+    if (enabled !== 'true') {
+        res.redirect('denied')
+    } else {
+
+        // Save details in to session and redirect to list
+
+        res.redirect('/' + version + '/sanctions/internal/add/decisiondate')
     }
 }

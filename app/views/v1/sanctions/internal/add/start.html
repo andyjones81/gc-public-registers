@@ -1,7 +1,7 @@
 <!-- {% extends "admin_layout_int.html" %} -->
 {% extends "layout_fullwidth_internal.html" %}
 {% block pageTitle %}
-What do you want to add?
+What do you want to create?
 {% endblock %}
 {% block content %}
 
@@ -12,13 +12,13 @@ What do you want to add?
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="reg-type-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                            <span class="govuk-caption-l">Regulatory actions</span>
+                        <span class="govuk-caption-l">Register</span>
                         <h1 class="govuk-fieldset__heading">
-                            What do you want to add?
+                            What do you want to create?
                         </h1>
                     </legend>
                     <span id="reg-type-hint" class="govuk-hint">
-                        Select what type of action you are adding. You can add details of settlements as part of the process of adding a sanction or action.
+
                     </span>
                     <div class="govuk-radios">
                         <div class="govuk-radios__item">
@@ -26,23 +26,24 @@ What do you want to add?
                                 value="Sanction">
                             <label class="govuk-label govuk-radios__label" for="reg-type-1">
                                 Sanction
-                            </label> </div>
+                            </label>
+                        </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="reg-type-2" name="reg-type" type="radio"
                                 value="Action">
                             <label class="govuk-label govuk-radios__label" for="reg-type-2">
                                 Action
-                            </label> </div>
+                            </label>
+                        </div>                      
 
                     </div>
                 </fieldset>
 
-
             </div>
 
             <button type="submit" class="govuk-button">
-                    Save and continue
-                  </button>
+                Save and continue
+            </button>
 
 
         </form>
