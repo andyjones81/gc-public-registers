@@ -4,7 +4,15 @@
 Details of the sanction
 {% endblock %}
 {% block beforeContent %}
-<a href="/{{version}}/sanctions/internal/add/status" class="govuk-back-link">Back</a>
+
+
+
+{% if actionType == 'sanction' %}
+         <a href="/{{version}}/sanctions/internal/add/status" class="govuk-back-link">Back</a>
+{% else %}
+        <a href="/{{version}}/sanctions/internal/add/licensee" class="govuk-back-link">Back</a>
+ {% endif %}
+     
 {% endblock %}
 
 {% block content %}

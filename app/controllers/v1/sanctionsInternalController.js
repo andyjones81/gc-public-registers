@@ -174,7 +174,7 @@ exports.sanctionsInternal_Add_ConfirmLicensee_post = function (req, res) {
                 res.redirect('/' + version + '/sanctions/internal/add/status')
             }
         } else if (actionType === 'Action') {
-            res.redirect('/' + version + '/sanctions/internal/add/status')
+            res.redirect('/' + version + '/sanctions/internal/add/details')
         } else {
             res.redirect('/' + version + '/sanctions/internal/add/start')
         }
