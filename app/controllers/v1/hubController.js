@@ -4,8 +4,10 @@ var mobileDetect = require('mobile-detect')
 
 exports.home_get = function (req, res) {
 
+        req.session.data['ab'] = process.env.journey
+
         if (req.session.data['ab'] === undefined) {
-                res.render(version + '/hub/journey');
+                 
         } else {
 
                 const d = require('../../data/register.json')
@@ -43,7 +45,9 @@ exports.home_get = function (req, res) {
 
 exports.journey_post = function (req, res) {
 
-        req.session.data['ab'] = process.env.journey        
+        
+                req.session.data['ab'] = process.env.journey
+        
 
         res.redirect('/' + version + '/hub/');
 }

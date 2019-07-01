@@ -7,7 +7,7 @@ Details of the sanction
 
 
 
-{% if actionType == 'sanction' %}
+{% if data['reg-type'] === 'sanction' %}
          <a href="/{{version}}/sanctions/internal/add/status" class="govuk-back-link">Back</a>
 {% else %}
         <a href="/{{version}}/sanctions/internal/add/licensee" class="govuk-back-link">Back</a>
