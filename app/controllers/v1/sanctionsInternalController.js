@@ -526,6 +526,8 @@ exports.sanctionsInternal_Add_Financial_Add_post = function (req, res) {
 
         req.session.data['items'] = listOfItems
 
+        console.log(listOfItems)
+
         res.redirect('/' + version + '/sanctions/internal/add/financial-list')
     }
 }
@@ -542,24 +544,32 @@ exports.sanctionsInternal_Add_Financial_List_post = function (req, res) {
 
          if(req.session.data['settlementArray'] === undefined){
              // This is the first record, so lets create an array object           
-             req.session.data['settlementArray'] = [];
              
-             var settlementDetails = [];
-                     
-             // Add the data to the array
-             settlementDetails.push({
-                 type: req.session.data['reg-type'],
-                 accountNumber: req.session.data['account-number'],
-                 details: req.session.data['content'],
-                 settlements: req.session.data['items'],                 
-                 id: crypto.randomBytes(16).toString("hex")
-             });
+             
+             var listOfItems = [];
 
-             // Add to the session
-             req.session.data['settlementArray'] = settlementDetails;
+             if (req.session.data['settlements'] !== undefined) {
+                 listOfItems = req.session.data['settlements'];
+             }
      
-             // Check it's got the expected data.
-             console.log("Settlement array: " + req.session.data['settlementArray']);
+             // Save details in to session and redirect to list
+             let outcome = req.session.data['reg-type']
+             let amount = req.session.data['account-number']
+             let detail = req.session.data['content']
+             let items = JSON.stringify(req.session.data['items'])
+     
+             listOfItems.push({
+                 outcome: outcome,
+                 amount: amount,
+                 detail: detail,
+                 items: items,
+                 id: crypto.randomBytes(16).toString("hex")
+             })
+     
+             req.session.data['settlements'] = JSON.stringify(listOfItems);
+                     
+             console.log(JSON.stringify(listOfItems))
+
          }
          else{
              // There is something in the array so the user has added another record.
@@ -568,11 +578,6 @@ exports.sanctionsInternal_Add_Financial_List_post = function (req, res) {
              
          }
 
-
-    
-         // Create an array for storing the added settlements
-         
-         req.session.data['settlementArray'] = settlementArray;
 
         res.redirect('/' + version + '/sanctions/internal/add/decisiondate')
     }
