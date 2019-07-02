@@ -49,6 +49,8 @@ exports.sanctionsInternal_AddSanction_get = function (req, res) {
         res.render('denied')
     } else {
 
+       
+
         req.session.data['cya'] = null;
         req.session.data['reg-type'] = null;
         req.session.data['account-number'] = null;
@@ -162,8 +164,7 @@ exports.sanctionsInternal_Add_ConfirmLicensee_post = function (req, res) {
         res.redirect('denied')
     } else {
 
-        console.log("licence post")
-
+        
         // Where are we going to next?
         let actionType = req.session.data['reg-type']
 
@@ -344,13 +345,14 @@ exports.sanctionsInternal_Add_Check_get = function (req, res) {
         var accountNo = req.session.data['account-number'];
         const getRegisterData = require('../../data/AzureSQL/getRegisterData');
         let registerData = getRegisterData(accountNo);
-
+        let items = req.session.data['items']
         registerData.then(result => {
 
             res.render(version + '/sanctions/internal/add/check', {
                 version,
                 outcomeResultArray,
-                result
+                result,
+                items
             })
 
         }).catch(err => {
@@ -533,7 +535,44 @@ exports.sanctionsInternal_Add_Financial_List_post = function (req, res) {
         res.redirect('denied')
     } else {
 
-        // Save details in to session and redirect to list
+         // If this is the first time in, the session won't contain an array
+         // However, if this is a settlement with multiple operators, user will go back to the operator search page to start another entry
+         
+         console.log("Settlement array: " + req.session.data['settlementArray']);
+
+         if(req.session.data['settlementArray'] === undefined){
+             // This is the first record, so lets create an array object           
+             req.session.data['settlementArray'] = [];
+             
+             var settlementDetails = [];
+                     
+             // Add the data to the array
+             settlementDetails.push({
+                 type: req.session.data['reg-type'],
+                 accountNumber: req.session.data['account-number'],
+                 details: req.session.data['content'],
+                 settlements: req.session.data['items'],                 
+                 id: crypto.randomBytes(16).toString("hex")
+             });
+
+             // Add to the session
+             req.session.data['settlementArray'] = settlementDetails;
+     
+             // Check it's got the expected data.
+             console.log("Settlement array: " + req.session.data['settlementArray']);
+         }
+         else{
+             // There is something in the array so the user has added another record.
+             // Get the array
+             var settlementArray = req.session.data['settlementArray'];
+             
+         }
+
+
+    
+         // Create an array for storing the added settlements
+         
+         req.session.data['settlementArray'] = settlementArray;
 
         res.redirect('/' + version + '/sanctions/internal/add/decisiondate')
     }
