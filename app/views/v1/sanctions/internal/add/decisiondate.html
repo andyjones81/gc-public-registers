@@ -4,7 +4,7 @@
 Date of the decision
 {% endblock %}
 {% block beforeContent %}
-<a href="/{{version}}/sanctions/internal/add/details" class="govuk-back-link">Back</a>
+<a href="/{{version}}/sanctions/internal/add/licenseelist" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -21,7 +21,7 @@ Date of the decision
                     <fieldset class="govuk-fieldset" aria-describedby="decision-hint" role="group">
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                             <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
-                            <h1 class="govuk-heading-l">Date of the decision</h1>
+                            <h1 class="govuk-heading-l">Date published</h1>
                       </legend>
                       <span id="decision-hint" class="govuk-hint">
                         For example, {{date | date('DD MM YYYY')}}

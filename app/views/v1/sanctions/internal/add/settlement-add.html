@@ -1,0 +1,80 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+Are there any financial settlements being made?
+{% endblock %}
+
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/add/settlement-list" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                        <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
+                        <h1 class="govuk-heading-l">What is the outcome of the settlement?</h1>
+                    </legend>
+                    <div class="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="settlement-outcome-1" name="settlement-outcome"
+                                type="radio" value="Divestment">
+                            <label class="govuk-label govuk-radios__label" for="settlement-outcome-1">
+                                Divestment
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="settlement-outcome-2" name="settlement-outcome"
+                                type="radio" value="Payment in lieu of penalty">
+                            <label class="govuk-label govuk-radios__label" for="settlement-outcome-2">
+                                Payment in lieu of penalty
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="settlement-outcome-3" name="settlement-outcome"
+                                type="radio" value="Commission charges">
+                            <label class="govuk-label govuk-radios__label" for="settlement-outcome-3">
+                                Commission charges
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="settlement-outcome-4" name="settlement-outcome"
+                                type="radio" value="Conditions applied to the licence">
+                            <label class="govuk-label govuk-radios__label" for="settlement-outcome-4">
+                                Conditions applied to the licence
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="settlement-outcome-4" name="settlement-outcome"
+                                type="radio" value="Public statement">
+                            <label class="govuk-label govuk-radios__label" for="settlement-outcome-4">
+                                Public statement
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="settlement-outcome-4" name="settlement-outcome"
+                                type="radio" value="Other action">
+                            <label class="govuk-label govuk-radios__label" for="settlement-outcome-4">
+                                Other action
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

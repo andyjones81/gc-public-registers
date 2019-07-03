@@ -747,3 +747,21 @@ body {font-family: "Lato", sans-serif;}
 
 .gc-grid-column-three-quarters{width: 75%; float: left; padding-left: 30px;}
 
+
+.govuk-radios__divider {
+
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #0b0c0c;
+  margin-bottom: 10px;
+  text-align: left;
+  font-weight: 700;
+  width: 100%;
+}
+
+.govuk-table__cell > p {margin-bottom:0px;}
+
+.sanctions-dashboard{
+  .card{min-height: 225px;}
+}

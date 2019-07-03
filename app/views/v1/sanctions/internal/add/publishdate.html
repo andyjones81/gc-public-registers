@@ -4,7 +4,7 @@
 When should this be published?
 {% endblock %}
 {% block beforeContent %}
-<a href="/{{version}}/sanctions/internal/add/details" class="govuk-back-link">Back</a>
+<a href="/{{version}}/sanctions/internal/add/settlement-list" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -19,7 +19,7 @@ When should this be published?
                     <fieldset class="govuk-fieldset" aria-describedby="publish-on-hint" role="group">
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                             <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
-                            <h1 class="govuk-heading-l">When should this be published? </h1>
+                            <h1 class="govuk-heading-l">When should this go live on the public register? </h1>
                       </legend>
                       <span id="publish-on-hint" class="govuk-hint">
                         For example, {{date | date('DD MM YYYY')}}

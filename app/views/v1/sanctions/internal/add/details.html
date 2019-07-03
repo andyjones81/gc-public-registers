@@ -8,11 +8,11 @@ Details of the {{data['reg-type'] | lower }}
 
 
 {% if data['reg-type'] === 'Sanction' %}
-         <a href="/{{version}}/sanctions/internal/add/status" class="govuk-back-link">Back</a>
+<a href="/{{version}}/sanctions/internal/add/status" class="govuk-back-link">Back</a>
 {% else %}
-        <a href="/{{version}}/sanctions/internal/add/licensee" class="govuk-back-link">Back</a>
- {% endif %}
-     
+<a href="/{{version}}/sanctions/internal/add/licensee" class="govuk-back-link">Back</a>
+{% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -21,12 +21,12 @@ Details of the {{data['reg-type'] | lower }}
     <div class="govuk-grid-column-full">
 
         <form method="POST">
-                <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
+            <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
             <h1 class="govuk-heading-l">Details of the {{data['reg-type'] | lower }}</h1>
-
+            <span class="govuk-hint">This information is displayed on the public register.</span>
             <div class="govuk-form-group">
-            <textarea name="content" id="editor">{{data['content']}}</textarea>
-        </div>
+                <textarea name="content" id="editor" class="editor">{{data['content']}}</textarea>
+            </div>
 
             <button type="submit" class="govuk-button">
                 Save and continue

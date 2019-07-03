@@ -89,15 +89,25 @@ router.get('/' + version + '/sanctions/internal/add/complete', sanctionsInternal
 
 router.get('/' + version + '/sanctions/internal/view/preview', sanctionsInternal_Controller.sanctionsInternal_View_Preview_get);
 
-router.get('/' + version + '/sanctions/internal/add/financial', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_get);
-router.post('/' + version + '/sanctions/internal/add/financial', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_post);
+// router.get('/' + version + '/sanctions/internal/add/settlement', sanctionsInternal_Controller.sanctionsInternal_Add_settlement_get);
+// router.post('/' + version + '/sanctions/internal/add/settlement', sanctionsInternal_Controller.sanctionsInternal_Add_settlement_post);
 
-router.get('/' + version + '/sanctions/internal/add/financial-list', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_List_get);
-router.post('/' + version + '/sanctions/internal/add/financial-list', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_List_post);
+router.get('/' + version + '/sanctions/internal/add/settlement-list', sanctionsInternal_Controller.sanctionsInternal_Add_Settlement_List_get);
+router.post('/' + version + '/sanctions/internal/add/settlement-list', sanctionsInternal_Controller.sanctionsInternal_Add_Settlement_List_post);
 
-router.get('/' + version + '/sanctions/internal/add/financial-add', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_Add_get);
-router.post('/' + version + '/sanctions/internal/add/financial-add', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_Add_post);
+router.get('/' + version + '/sanctions/internal/add/settlement-add', sanctionsInternal_Controller.sanctionsInternal_Add_Settlement_Add_get);
+router.post('/' + version + '/sanctions/internal/add/settlement-add', sanctionsInternal_Controller.sanctionsInternal_Add_Settlement_Add_post);
 
-router.get('/' + version + '/sanctions/internal/add/financial-remove/:id', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_Remove_get);
+router.get('/' + version + '/sanctions/internal/add/financial-settlement-add', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_Settlement_Add_get);
+router.post('/' + version + '/sanctions/internal/add/financial-settlement-add', sanctionsInternal_Controller.sanctionsInternal_Add_Financial_Settlement_Add_post);
+
+router.get('/' + version + '/sanctions/internal/add/nonfinancial-settlement-add', sanctionsInternal_Controller.sanctionsInternal_Add_NonFinancial_Settlement_Add_get);
+router.post('/' + version + '/sanctions/internal/add/nonfinancial-settlement-add', sanctionsInternal_Controller.sanctionsInternal_Add_NonFinancial_Settlement_Add_post);
+
+router.get('/' + version + '/sanctions/internal/add/licenseelist', sanctionsInternal_Controller.sanctionsInternal_Add_LicenseeList_get);
+router.post('/' + version + '/sanctions/internal/add/licenseelist', sanctionsInternal_Controller.sanctionsInternal_Add_LicenseeList_post);
+
+
+router.get('/' + version + '/sanctions/internal/add/settlement-remove/:id', sanctionsInternal_Controller.sanctionsInternal_Add_Settlement_Remove_get);
 
 module.exports = router

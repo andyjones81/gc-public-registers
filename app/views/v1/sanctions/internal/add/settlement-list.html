@@ -5,7 +5,7 @@ Are there any financial settlements being made?
 {% endblock %}
 
 {% block beforeContent %}
-<a href="/{{version}}/sanctions/internal/add/financial" class="govuk-back-link">Back</a>
+<a href="/{{version}}/sanctions/internal/add/details" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -15,10 +15,11 @@ Are there any financial settlements being made?
 
 
         <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
-        <h1 class="govuk-heading-l">Financial settlements</h1>
+        <h1 class="govuk-heading-l">Regulatory settlements</h1>
 
-        <p class="govuk-body">You can add multiple settlements and these go into the settlements register. Records created here are not published externally</p>
-
+        <p class="govuk-body">You can add multiple settlements and these go into the settlements register. These are not published on the public register. </p>
+    </div>
+    <div class="govuk-grid-column-full">
         <form method="POST">
 
 
@@ -39,12 +40,20 @@ Are there any financial settlements being made?
 
                     {% for i in items %}
 
-                <tr class="govuk-table__row govuk-body-s">
-                        <th class="govuk-table__header" scope="row">{{i.outcome | capitalize}}</th>
-                        <td class="govuk-table__cell">£{{i.amount | numeral("0,0")}}</td>
-                        <td class="govuk-table__cell"><span class="">{{i.detail}}</span></td>
+                <tr class="govuk-table__row">
+                        <td class="govuk-table__cell" scope="row">{{i.outcome | capitalize}}</td>
+                        <td class="govuk-table__cell">
+
+                            {% if i.amount !== 'N/A' %}
+                            £{{i.amount | numeral("0,0")}}
+                            {% else %}
+                           Non financial
+                            {% endif %}
+
+                        </td>
+                        <td class="govuk-table__cell" title="{{i.detail | safe}}">{{i.detail | safe}}</td>
                         
-                        <td class="govuk-table__cell"><a href="/{{version}}/sanctions/internal/add/financial-remove/{{i.id}}">Remove</a></td>
+                        <td class="govuk-table__cell"><a href="/{{version}}/sanctions/internal/add/settlement-remove/{{i.id}}">Remove</a></td>
 
                     </tr>
                     {% endfor %}
@@ -52,11 +61,11 @@ Are there any financial settlements being made?
 
                 </tbody>
             </table>
-<p class="govuk-body"><a href="/{{version}}/sanctions/internal/add/financial-add">Add another settlement</a></p>
+<p class="govuk-body"><a href="/{{version}}/sanctions/internal/add/settlement-add">Add another settlement</a></p>
             {% else %}
 
             <div class="govuk-inset-text">
-                No settlements added. <a href="/{{version}}/sanctions/internal/add/financial-add">Add a settlement</a>
+                No settlements added. <a href="/{{version}}/sanctions/internal/add/settlement-add">Add a settlement</a>
             </div>
             {% endif %}
 
