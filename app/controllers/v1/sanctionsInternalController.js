@@ -34,10 +34,23 @@ exports.sanctionsInternal_ViewSanctions_get = function (req, res) {
         res.render('denied')
     } else {
 
+        const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
+        let registerData = sanctionsRegisterData("all");
+    
+        registerData.then(result => {
+    
+console.log('get view sanctions')
 
-        res.render(version + '/sanctions/internal/viewsanctions', {
-            version
-        })
+            res.render(version + '/sanctions/internal/view/sanctions', {
+                version,
+                result
+            })
+    
+        }).catch(err => {
+            console.log(err);
+        });
+
+      
     }
 
 }
@@ -699,5 +712,108 @@ exports.sanctionsInternal_Add_LicenseeList_post = function (req, res) {
 
             res.redirect('/' + version + '/sanctions/internal/add/decisiondate')
         }
+    }
+}
+
+exports.sanctionsInternal_View_Sanctions_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+        res.render(version + '/sanctions/internal/view/sanctions', {
+            version
+        })
+    }
+}
+
+exports.sanctionsInternal_View_AllSanctions_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+
+        const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
+        let registerData = sanctionsRegisterData("all");
+    
+        registerData.then(result => {
+    
+console.log('get view sanctions')
+
+            res.render(version + '/sanctions/internal/view/allsanctions', {
+                version,
+                result
+            })
+    
+        }).catch(err => {
+            console.log(err);
+        });
+
+      
+    }
+
+}
+exports.sanctionsInternal_View_AllArchiveSanctions_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+
+        const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
+        let registerData = sanctionsRegisterData("all");
+    
+        registerData.then(result => {
+    
+console.log('get view sanctions')
+
+            res.render(version + '/sanctions/internal/view/allarchivesanctions', {
+                version,
+                result
+            })
+    
+        }).catch(err => {
+            console.log(err);
+        });
+
+      
+    }
+
+}
+
+exports.sanctionsInternal_View_SanctionDetail_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+
+        const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
+        let registerData = sanctionsRegisterData("all");
+        var id = req.params.id;
+        registerData.then(result => {
+    
+console.log('get view sanctions')
+
+            res.render(version + '/sanctions/internal/view/detail', {
+                version,
+                result,
+                id
+            })
+    
+        }).catch(err => {
+            console.log(err);
+        });
+
+      
+    }
+
+}
+
+exports.sanctionsInternal_View_InternalResults_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+        res.render(version + '/sanctions/internal/view/internalresults', {
+            version
+        })
     }
 }

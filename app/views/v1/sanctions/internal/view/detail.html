@@ -1,0 +1,90 @@
+{% extends "admin_layout_int.html" %}
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+Registers Prototypes
+{% endblock %}
+
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/view/sanctions#live" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        {% for i in result.allSanctions.recordset %}
+
+        {% if i.AccountNo === id%}
+        <div class="gc-panel gc-panel--information">
+
+            {% if i.AccountNo === '39470' %}
+
+            <p class="govuk-body">This entry is going live on the public register on 21 July 2019</p>
+
+            {% elseif i.AccountNo === '33875' %}
+
+            <p class="govuk-body">This entry is going to be removed from the public register and archived on 5 July 2019</p>
+
+            {% else %}
+            <p class="govuk-body">This entry is live on the public register</p>
+            {% endif %}
+        </div>
+        <div class="gc-pull-right"><a href="/public/sanction.odt" class="govuk-button" role="button">Export</a> <a
+                href="/{{version}}/sanctions/internal/edit/{{i.AccountNo}}" class="govuk-button" role="button">Edit</a>
+        </div>
+
+        <span class="govuk-caption-l">Sanction register</span>
+
+
+
+        <h1 class="govuk-heading-l">
+            {{i.AccountNo}} -
+            {%if i.remotestatus === 'Operator' %}
+            {{i.account}}
+            {% else %}
+            {{i.Applicantfirstname}} {{i.Applicantsurname}}
+            {% endif %}
+
+
+        </h1>
+
+
+
+        <ul class="gc-search-result--tag">
+
+            <li>{{i.remotestatus}} </li>
+            <li>{{i.status}} </li>
+            <li>{{i.decidedon | date('DD MMMM YYYY')}} </li>
+        </ul>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+        <p class="govuk-body">{{i.Details | safe}}</p>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+        <h2 class="govuk-heading-m">Additional information</h2>
+        {%if i.remotestatus === 'Operator' %}
+        <a href="/{{version}}/operator/detail/{{i.AccountNo}}" target="_Blank">View public register entry</a>
+        {% else %}
+        <a href="/{{version}}/personal/detail/{{i.AccountNo}}" target="_Blank">View public register entry</a>
+        {% endif %}
+
+
+    </div>
+
+
+    {%endif%}
+
+
+
+    {% endfor %}
+
+</div>
+
+
+
+
+{% endblock %}

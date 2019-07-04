@@ -8,10 +8,12 @@ async function sanctionsRegisterData(query) {
     await sql.connect(config)
 
     let all = getAllSanctions(query);
-    let q = searchSanctions(query);
+    let q = searchSanctions(query);    
+    let set = getAllSettlements(query);
 
     sqlResult['allSanctions'] = await all;
     sqlResult['searchedSanctions'] = await q;
+    sqlResult['allSettlements'] = await set;
 
 
     sql.close()
@@ -22,6 +24,24 @@ async function getAllSanctions(query) {
     try {
 
         console.log('get sanctions all');
+
+        return await sql.query("SELECT sa.Id, ss.status, pr.AccountNo, sa.decidedon, pr.account, pr.Applicantfirstname, sa.Details, pr.Applicantsurname, pr.remotestatus " +
+            "FROM [Sanctions] as sa  " + 
+            "INNER JOIN [PublicRegisterReporting] as pr  " + 
+            "ON pr.AccountNo = sa.AccountNumber  " + 
+            "INNER JOIN [SanctionStatus] as ss  " + 
+            "ON sa.[Status] = ss.Id  " + 
+            "where sa.Enabled = 1 order by sa.decidedon desc");
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function getAllSettlements(query) {
+    try {
+
+        console.log('get settlements all');
 
         return await sql.query("SELECT sa.Id, ss.status, pr.AccountNo, sa.decidedon, pr.account, pr.Applicantfirstname, pr.Applicantsurname, pr.remotestatus " +
             "FROM [Sanctions] as sa  " + 

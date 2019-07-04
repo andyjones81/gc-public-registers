@@ -18,14 +18,14 @@ Registers Prototypes
                     <div class="card">
                         <div class="card-body">
                             <h3 class="govuk-heading-s">Sanctions</h3>
-                            <h3 class="govuk-heading-l govuk-!-margin-bottom-1">76</h3>
+                            <h3 class="govuk-heading-l govuk-!-margin-bottom-1">78</h3>
                             <p class="govuk-body-s govuk-!-margin-bottom-1">Active</p>
                         </div>
                         <div class="card-action">
                             <ul class="govuk-list govuk-body-s">
-                                <li><a class="govuk-link" href="/{{version}}/reportevent/list">View the register
+                                <li><a class="govuk-link" href="/{{version}}/sanctions/internal/view/sanctions">View the register
                                     </a></li> 
-                                <li><a class="govuk-link" href="/{{version}}/reportevent/start">Download as doc
+                                <li><a class="govuk-link" href="/public/sanctions.odt">Download ODT
                                     </a></li>                           
                             </ul>
                         </div>
@@ -40,9 +40,9 @@ Registers Prototypes
                             </div>
                             <div class="card-action">
                                 <ul class="govuk-list govuk-body-s">
-                                    <li><a class="govuk-link" href="/{{version}}/reportevent/list">View the register
+                                    <li><a class="govuk-link" href="/{{version}}/sanctions/internal/view/settlements">View the register
                                         </a></li>
-                                    <li><a class="govuk-link" href="/{{version}}/reportevent/start">Download as doc
+                                    <li><a class="govuk-link" href="/public/settlements.odt">Download ODT
                                         </a></li>
                                 </ul>
                             </div>
@@ -53,45 +53,44 @@ Registers Prototypes
             <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Changes to the register</h2>
             <p class="govuk-body">Entries going live or coming off the register</p>
 
-            <table class="govuk-table">
+            <table class="govuk-table sortable">
                     <thead class="govuk-table__head">
                       <tr class="govuk-table__row  govuk-body-s">
-                        <th class="govuk-table__header" scope="col">Account</th>
-                        <th class="govuk-table__header" scope="col">Type</th>
-                        <th class="govuk-table__header" scope="col">Action</th>
-                        <th class="govuk-table__header" scope="col">Date</th>
+                        <th class="govuk-table__header" aria-sort="none" scope="col">Account</th>
+                        <th class="govuk-table__header" aria-sort="none" scope="col">Type</th>
+                        <th class="govuk-table__header" aria-sort="none" scope="col">Action</th>
+                        <th class="govuk-table__header" aria-sort="descending" scope="col">Date</th>
                       </tr>
                     </thead>
                     <tbody class="govuk-table__body govuk-body-s">
                      
                       <tr class="govuk-table__row">
-                            <td class="govuk-table__cell" scope="row"><a href="#">39470 - Maxent</a></td>
+                            <td class="govuk-table__cell" scope="row"><a href="/{{version}}/sanctions/internal/view/detail/39470">39470 - Maxent</a></td>
                             <td class="govuk-table__cell">Sanction</td>
                             <td class="govuk-table__cell">Adding</td>
-                            <td class="govuk-table__cell">21 May 2019</td>
+                            <td class="govuk-table__cell">21 July 2019</td>
                           </tr>
-                          <tr class="govuk-table__row">
-                                <td class="govuk-table__cell" scope="row"><a href="#">1805 - Wah Sang Yu</a></td>
-                                <td class="govuk-table__cell">Sanction</td>
-                                <td class="govuk-table__cell">Adding</td>
-                                <td class="govuk-table__cell">8 Apr 2019</td>
-                              </tr>
+                        
                               <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell" scope="row">338705 - Richard Andrew O'Neill</td>
+                                    <td class="govuk-table__cell" scope="row"><a href="/{{version}}/sanctions/internal/view/detail/33875">33875 - Richard Andrew O'Neill</a></td>
                                     <td class="govuk-table__cell">Sanction</td>
                                     <td class="govuk-table__cell">Archiving</td>
                                     <td class="govuk-table__cell">5 Jul 2019</td>
                                   </tr>
                     </tbody>
                   </table>
+
+                 
+
+
     
     </div>
     <div class="govuk-grid-column-one-third">
 
-         
+            <aside class="app-related-items" role="complementary">
 
             <div class="gc-register-search gc-register-search--whitebg">
-                    <form method="POST" action="results">
+                    <form method="GET" action="./view/internalresults">
                         <label for="search" class="govuk-label">
                          <h2 class="govuk-heading-m  govuk-!-margin-bottom-1">Search the registers</h2>
         
@@ -101,8 +100,7 @@ Registers Prototypes
                         </span>
                         <div class="inner-form govuk-!-margin-bottom-3">
                             <div class="input-field second-wrap">
-                                <input id="search" name="search" type="text" placeholder="Search"
-                                    value="{{ data['search'] }}" />
+                                <input id="isearch" name="isearch" type="text" placeholder="Search" />
                             </div>
                             <div class="input-field third-wrap">
                                 <button class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
@@ -126,9 +124,10 @@ Registers Prototypes
                     <li><a class="govuk-link" href="/{{version}}/sanctions/internal/add/start">Add a sanction or settlement</a></li>   
                     <li><a class="govuk-link" href="https://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx" target="_Blank">Regulatory actions (GC Website)</a></li>                  
                 </ul> 
-    
+            </aside>
     </div>
 </div>
+
 
 
 {% endblock %}

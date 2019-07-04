@@ -1,6 +1,6 @@
 <!-- Javascript -->
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
-
+<script src="/public/javascripts/hmcts.js"></script>
 {% for scriptUrl in extensionConfig.scripts %}
 <script src="{{scriptUrl}}"></script>
 {% endfor %}
@@ -44,3 +44,7 @@
       console.log(error);
     });
 </script> 
+
+<script>
+    new HMCTSFrontend.SortableTable({ table: $('.sortable')[0]});
+  </script>

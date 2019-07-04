@@ -1,4 +1,4 @@
-var config = require('../../data/AzureSQL/config');
+var config = require('./config');
 const sql = require('mssql');
 
 

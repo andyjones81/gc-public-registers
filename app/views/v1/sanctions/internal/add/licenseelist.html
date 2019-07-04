@@ -17,7 +17,9 @@ What account is the {{data['reg-type'] | lower }} for?
         {% set overallTotal = 0 %}
         {% for i in settlementData %}
         {% for i in i.items %}
+{% if i.amount !== 'N/A'%}
         {% set overallTotal = overallTotal | float + i.amount | float %}
+{%endif%}
         {% endfor %}
         {% endfor %}
 

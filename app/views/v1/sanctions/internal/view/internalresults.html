@@ -1,0 +1,45 @@
+{% extends "admin_layout_int.html" %}
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+Registers Prototypes
+{% endblock %}
+
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/dashboard" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+                <h1 class="govuk-heading-l">Search results</h1>
+
+        <p class="govuk-body">1 result found</p>
+
+     
+
+        <div class="gc-search-result">
+
+            <span class="govuk-!-font-weight-bold">Account 39470</span>
+
+
+            <h2 class="govuk-heading-m">
+              <a href="/{{version}}/sanctions/internal/view/detail/39470">Maxent Limited</a> 
+            </h2>
+
+            <ul class="gc-search-result--tag">
+
+                <li>Operator </li>
+                <li>Revoked </li>
+                <li>21 May 2019</li>
+            </ul>
+
+        </div>
+     
+
+    </div>
+</div>
+
+
+
+{% endblock %}

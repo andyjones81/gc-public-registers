@@ -110,4 +110,12 @@ router.post('/' + version + '/sanctions/internal/add/licenseelist', sanctionsInt
 
 router.get('/' + version + '/sanctions/internal/add/settlement-remove/:id', sanctionsInternal_Controller.sanctionsInternal_Add_Settlement_Remove_get);
 
+
+
+router.get('/' + version + '/sanctions/internal/view/sanctions', sanctionsInternal_Controller.sanctionsInternal_ViewSanctions_get);
+router.get('/' + version + '/sanctions/internal/view/allsanctions', sanctionsInternal_Controller.sanctionsInternal_View_AllSanctions_get);
+router.get('/' + version + '/sanctions/internal/view/allarchivesanctions', sanctionsInternal_Controller.sanctionsInternal_View_AllArchiveSanctions_get);
+router.get('/' + version + '/sanctions/internal/view/detail/:id', sanctionsInternal_Controller.sanctionsInternal_View_SanctionDetail_get);
+router.get('/' + version + '/sanctions/internal/view/internalresults', sanctionsInternal_Controller.sanctionsInternal_View_InternalResults_get);
+
 module.exports = router
