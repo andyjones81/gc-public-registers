@@ -43,13 +43,10 @@ async function getAllSettlements(query) {
 
         console.log('get settlements all');
 
-        return await sql.query("SELECT sa.Id, ss.status, pr.AccountNo, sa.decidedon, pr.account, pr.Applicantfirstname, pr.Applicantsurname, pr.remotestatus " +
-            "FROM [Sanctions] as sa  " + 
-            "INNER JOIN [PublicRegisterReporting] as pr  " + 
-            "ON pr.AccountNo = sa.AccountNumber  " + 
-            "INNER JOIN [SanctionStatus] as ss  " + 
-            "ON sa.[Status] = ss.Id  " + 
-            "where sa.Enabled = 1 order by sa.decidedon desc");
+        return await sql.query("SELECT pr.AccountNo, n.decidedon, pr.account, pr.Applicantfirstname, pr.Applicantsurname, pr.remotestatus, n.details "+
+        "FROM [dbo].[Notes] as n "+
+        "inner join [dbo].[PublicRegisterReporting] as pr "+
+        "on pr.AccountNo = n.AccountNumber order by n.decidedon desc");
 
     } catch (err) {
         console.log(err);

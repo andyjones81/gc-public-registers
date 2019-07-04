@@ -1,0 +1,80 @@
+{% extends "admin_layout_int.html" %}
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+Registers Prototypes
+{% endblock %}
+
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/view/settlements" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        {% for i in result.allSettlements.recordset %}
+
+        {% if i.AccountNo === id%}
+        <div class="gc-panel gc-panel--information">
+           
+            <p class="govuk-body">This entry is live on the public register</p>
+          
+        </div>
+        <div class="gc-pull-right"><a href="/public/sanction.odt" class="govuk-button" role="button">Export</a> <a
+                href="/{{version}}/sanctions/internal/edit/{{i.AccountNo}}" class="govuk-button" role="button">Edit</a>
+        </div>
+
+        <span class="govuk-caption-l">Settlements register</span>
+
+
+
+        <h1 class="govuk-heading-l">
+            {{i.AccountNo}} -
+            {%if i.remotestatus === 'Operator' %}
+            {{i.account}}
+            {% else %}
+            {{i.Applicantfirstname}} {{i.Applicantsurname}}
+            {% endif %}
+
+
+        </h1>
+
+
+
+        <ul class="gc-search-result--tag">
+
+            <li>{{i.remotestatus}} </li>
+            <li>{{i.decidedon | date('DD MMMM YYYY')}} </li>
+        </ul>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+        <p class="govuk-body">{{i.details | safe}}</p>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+        <h2 class="govuk-heading-m">Additional information</h2>
+        {%if i.remotestatus === 'Operator' %}
+        <a href="/{{version}}/operator/detail/{{i.AccountNo}}" target="_Blank">View public register entry</a>
+        {% else %}
+        <a href="/{{version}}/personal/detail/{{i.AccountNo}}" target="_Blank">View public register entry</a>
+        {% endif %}
+
+
+    </div>
+
+
+    {%endif%}
+
+
+
+    {% endfor %}
+
+</div>
+
+
+
+
+{% endblock %}

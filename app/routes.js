@@ -118,4 +118,9 @@ router.get('/' + version + '/sanctions/internal/view/allarchivesanctions', sanct
 router.get('/' + version + '/sanctions/internal/view/detail/:id', sanctionsInternal_Controller.sanctionsInternal_View_SanctionDetail_get);
 router.get('/' + version + '/sanctions/internal/view/internalresults', sanctionsInternal_Controller.sanctionsInternal_View_InternalResults_get);
 
+
+
+router.get('/' + version + '/sanctions/internal/view/settlements', sanctionsInternal_Controller.sanctionsInternal_ViewSettlements_get);
+router.get('/' + version + '/sanctions/internal/view/allsettlements', sanctionsInternal_Controller.sanctionsInternal_View_AllSettlements_get);
+router.get('/' + version + '/sanctions/internal/view/settlementdetail/:id', sanctionsInternal_Controller.sanctionsInternal_View_SettlementDetail_get);
 module.exports = router

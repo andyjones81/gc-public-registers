@@ -715,16 +715,7 @@ exports.sanctionsInternal_Add_LicenseeList_post = function (req, res) {
     }
 }
 
-exports.sanctionsInternal_View_Sanctions_get = function (req, res) {
 
-    if (enabled !== 'true') {
-        res.render('denied')
-    } else {
-        res.render(version + '/sanctions/internal/view/sanctions', {
-            version
-        })
-    }
-}
 
 exports.sanctionsInternal_View_AllSanctions_get = function (req, res) {
 
@@ -740,6 +731,34 @@ exports.sanctionsInternal_View_AllSanctions_get = function (req, res) {
 console.log('get view sanctions')
 
             res.render(version + '/sanctions/internal/view/allsanctions', {
+                version,
+                result
+            })
+    
+        }).catch(err => {
+            console.log(err);
+        });
+
+      
+    }
+
+}
+
+
+exports.sanctionsInternal_View_AllSettlements_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+
+        const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
+        let registerData = sanctionsRegisterData("all");
+    
+        registerData.then(result => {
+    
+console.log('get view sanctions')
+
+            res.render(version + '/sanctions/internal/view/allsettlements', {
                 version,
                 result
             })
@@ -816,4 +835,61 @@ exports.sanctionsInternal_View_InternalResults_get = function (req, res) {
             version
         })
     }
+}
+
+
+exports.sanctionsInternal_ViewSettlements_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+
+        const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
+        let registerData = sanctionsRegisterData("all");
+    
+        registerData.then(result => {
+    
+console.log('get view sanctions')
+
+            res.render(version + '/sanctions/internal/view/settlements', {
+                version,
+                result
+            })
+    
+        }).catch(err => {
+            console.log(err);
+        });
+
+      
+    }
+
+}
+
+
+exports.sanctionsInternal_View_SettlementDetail_get = function (req, res) {
+
+    if (enabled !== 'true') {
+        res.render('denied')
+    } else {
+
+        const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
+        let registerData = sanctionsRegisterData("all");
+        var id = req.params.id;
+        registerData.then(result => {
+    
+console.log('get view sanctions')
+
+            res.render(version + '/sanctions/internal/view/settlementdetail', {
+                version,
+                result,
+                id
+            })
+    
+        }).catch(err => {
+            console.log(err);
+        });
+
+      
+    }
+
 }
