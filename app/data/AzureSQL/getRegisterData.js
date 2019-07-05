@@ -82,6 +82,7 @@ async function getOLSanctions(query) {
 
 async function getNotes(query) {
     try {
+        console.log('get notes for ' + query)
 
         return await sql.query("SELECT * from notes where accountnumber = " + query + " and enabled = 1");
     } catch (err) {

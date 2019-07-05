@@ -53,7 +53,7 @@
             {{ data.Applicantfirstname }} {{ data.Applicantsurname }}
         </h1>
 
-       
+
 
 
 
@@ -65,27 +65,27 @@
 
     <div class="govuk-grid-column-full">
 
-            <div class="govuk-grid-row">
+        <div class="govuk-grid-row">
 
-                    <div class="govuk-grid-column-one-third">
-                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                            Account number
-                        </h2>
-                        <p class="govuk-body">{{data.AccountNo}}</p>
-                    </div>
-                    <div class="govuk-grid-column-one-third">
-                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                            Licence started
-                        </h2>
-                        <p class="govuk-body">{{data.ProcessEndDate | date('DD MMMM YYYY')}}</p>
-                    </div>
-                    <div class="govuk-grid-column-one-third">
-                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                            Location
-                        </h2>
-                        <p class="govuk-body">{{data.towncity | capitalize}}</p>
-                    </div>
-                </div>
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                    Account number
+                </h2>
+                <p class="govuk-body">{{data.AccountNo}}</p>
+            </div>
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                    Licence started
+                </h2>
+                <p class="govuk-body">{{data.ProcessEndDate | date('DD MMMM YYYY')}}</p>
+            </div>
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                    Location
+                </h2>
+                <p class="govuk-body">{{data.towncity | capitalize}}</p>
+            </div>
+        </div>
 
 
         <div class="govuk-grid-row">
@@ -343,80 +343,88 @@
 
                                 {% if result.sanctions.recordset.length === 0 %}
                                 <p class="govuk-body">None recorded</p>
-                                {%endif%}
+                                {% else %}
+                                <div class="govuk-inset-text">
+                                    <div class="gc-reg-action govuk-body">
+                                        {% for item in result.sanctions.recordset %}
 
-                                <div class="gc-reg-action govuk-body">
-                                    {% for item in result.sanctions.recordset %}
+                                        <div class="govuk-grid-row">
+                                            <div class="govuk-grid-column-one-half">
+                                                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                                    Decision
+                                                </h2>
+                                                <p class="govuk-body">{{item.status}}</p>
+                                            </div>
 
-                                    <div class="govuk-grid-row">
-                                        <div class="govuk-grid-column-one-half">
-                                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                                Decision
-                                            </h2>
-                                            <p class="govuk-body">{{item.status}}</p>
+                                            <div class="govuk-grid-column-one-half">
+                                                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                                    Date of decision
+                                                </h2>
+                                                <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
+                                            </div>
+
                                         </div>
+                                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                            Outcome
+                                        </h2>
+                                        <p class="govuk-body">
 
-                                        <div class="govuk-grid-column-one-half">
-                                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                                Date of decision
-                                            </h2>
-                                            <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
-                                        </div>
+                                            {{item.details | safe}}
+
+                                            <hr
+                                                class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+                                        </p>
+
+                                        {% endfor %}
+
 
                                     </div>
-                                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                        Outcome
-                                    </h2>
-                                    <p class="govuk-body">
-
-                                        {{item.details | safe}}
-
-                                        <hr
-                                            class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-                                    </p>
-
-                                    {% endfor %}
-
 
                                 </div>
+                                {%endif%}
+
 
                                 <h2 class="govuk-heading-m govuk-!-margin-top-4">
                                     Other actions
                                 </h2>
                                 {% if result.notes.recordset.length === 0 %}
                                 <p class="govuk-body">None recorded</p>
-                                {%endif%}
+                                {% else %}
+                                <div class="govuk-inset-text">
+                                    <div class="gc-reg-action govuk-body">
+                                        {% for item in result.notes.recordset %}
 
-                                <div class="gc-reg-action govuk-body">
-                                    {% for item in result.notes.recordset %}
+                                        <div class="govuk-grid-row">
 
-                                    <div class="govuk-grid-row">
+                                            <div class="govuk-grid-column-one-half">
+                                                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                                    Date of publication
+                                                </h2>
+                                                <p class="govuk-body">{{item.DecidedOn | date('DD MMMM YYYY')}}</p>
+                                            </div>
 
-                                        <div class="govuk-grid-column-one-half">
-                                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                                Date of publication
-                                            </h2>
-                                            <p class="govuk-body">{{item.DecidedOn | date('DD MMMM YYYY')}}</p>
                                         </div>
+                                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                            Outcome
+                                        </h2>
+                                        <p class="govuk-body">
+
+                                            {{item.Details | safe}}
+
+                                            <hr
+                                                class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+                                        </p>
+
+                                        {% endfor %}
+
 
                                     </div>
-                                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                        Outcome
-                                    </h2>
-                                    <p class="govuk-body">
-
-                                        {{item.Details | safe}}
-
-                                        <hr
-                                            class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-                                    </p>
-
-                                    {% endfor %}
-
-
                                 </div>
+                                {%endif%}
+
+
                             </div>
 
                             <div class="govuk-grid-column-one-third">
@@ -477,32 +485,32 @@
                     <section class="govuk-tabs__panel" id="past-day">
                         <div class="govuk-grid-row">
 
-                                <div class="govuk-grid-column-one-third">
+                            <div class="govuk-grid-column-one-third">
 
-                                        <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
-                                            Account number
-                                        </h2>
-                                        <p class="govuk-body">{{data.AccountNo}}</p>
-                
-                                        <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
-                                            Location
-                                        </h2>
-                
-                                        <p class="govuk-body">{{data.towncity | capitalize}}</p>
+                                <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
+                                    Account number
+                                </h2>
+                                <p class="govuk-body">{{data.AccountNo}}</p>
 
-                                        <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
-                                                Licence started
-                                            </h2>
-                                            <p class="govuk-body">{{data.ProcessEndDate | date('DD MMMM YYYY')}}</p>
-                                    </div>
+                                <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
+                                    Location
+                                </h2>
+
+                                <p class="govuk-body">{{data.towncity | capitalize}}</p>
+
+                                <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
+                                    Licence started
+                                </h2>
+                                <p class="govuk-body">{{data.ProcessEndDate | date('DD MMMM YYYY')}}</p>
+                            </div>
 
                             <div class="govuk-grid-column-two-thirds">
                                 <div class="govuk-grid-row">
                                     <div class="govuk-grid-column-full">
 
-                                            <h3 class="govuk-heading-m">
-                                                    Licences
-                                                </h3>
+                                        <h3 class="govuk-heading-m">
+                                            Licences
+                                        </h3>
 
                                         {% for item in result.activities.recordset %}
 
@@ -700,89 +708,124 @@
 
 
                             </div>
-                            
+
                         </div>
 
                     </section>
 
                     <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
 
-                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-row">
 
-                            <div class="govuk-grid-column-two-thirds">
-
-                                    <h2 class="govuk-heading-m">
+                                    <div class="govuk-grid-column-two-thirds">
+        
+                                        <h3 class="govuk-heading-m">
                                             Sanctions
-                        
-                                        </h2>
-                        
-                                        <details class="govuk-details">
-                                            <summary class="govuk-details__summary">
-                                                <span class="govuk-details__summary-text">
-                                                    What are sanctions?
-                                                </span>
-                                            </summary>
-                                            <div class="govuk-details__text">
-                                                Text </div>
-                                        </details>
+                                        </h3>
+        
                                         {% if result.sanctions.recordset.length === 0 %}
                                         <p class="govuk-body">None recorded</p>
-                                        {%endif%}
-                        
-                        
-                        
-                                        <div class="gc-reg-action govuk-body">
-                                            {% for item in result.sanctions.recordset %}
-                        
-                                            <div class="govuk-grid-row">
-                                                <div class="govuk-grid-column-one-half">
-                                                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                                        Decision
-                                                    </h2>
-                                                    <p class="govuk-body">{{item.status}}</p>
+                                        {% else %}
+                                        <div class="govuk-inset-text">
+                                            <div class="gc-reg-action govuk-body">
+                                                {% for item in result.sanctions.recordset %}
+        
+                                                <div class="govuk-grid-row">
+                                                    <div class="govuk-grid-column-one-half">
+                                                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                                            Decision
+                                                        </h2>
+                                                        <p class="govuk-body">{{item.status}}</p>
+                                                    </div>
+        
+                                                    <div class="govuk-grid-column-one-half">
+                                                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                                            Date of decision
+                                                        </h2>
+                                                        <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
+                                                    </div>
+        
                                                 </div>
-                        
-                                                <div class="govuk-grid-column-one-half">
-                                                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                                        Date of decision
-                                                    </h2>
-                                                    <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
-                                                </div>
-                        
+                                                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                                    Outcome
+                                                </h2>
+                                                <p class="govuk-body">
+        
+                                                    {{item.details | safe}}
+        
+                                                   
+                                                </p>
+        
+                                                {% endfor %}
+        
+        
                                             </div>
-                                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                                Outcome
-                                            </h2>
-                                            <p class="govuk-body">
-                        
-                                                {{item.details | safe}}
-                        
-                                                <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-                        
-                                            </p>
-                        
-                                            {% endfor %}
-                        
-                        
+        
                                         </div>
-                        
+                                        {%endif%}
+        
+        
                                         <h2 class="govuk-heading-m govuk-!-margin-top-4">
                                             Other actions
                                         </h2>
-                                        <details class="govuk-details">
-                                            <summary class="govuk-details__summary">
-                                                <span class="govuk-details__summary-text">
-                                                    What are other actions?
-                                                </span>
-                                            </summary>
-                                            <div class="govuk-details__text">
-                                                Text </div>
-                                        </details>
+                                        {% if result.notes.recordset.length === 0 %}
                                         <p class="govuk-body">None recorded</p>
-                            </div>
-
-                            
-                        </div>
+                                        {% else %}
+                                        <div class="govuk-inset-text">
+                                            <div class="gc-reg-action govuk-body">
+                                                {% for item in result.notes.recordset %}
+        
+                                                <div class="govuk-grid-row">
+        
+                                                    <div class="govuk-grid-column-one-half">
+                                                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                                            Date of publication
+                                                        </h2>
+                                                        <p class="govuk-body">{{item.DecidedOn | date('DD MMMM YYYY')}}</p>
+                                                    </div>
+        
+                                                </div>
+                                                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                                    Outcome
+                                                </h2>
+                                                <p class="govuk-body">
+        
+                                                    {{item.Details | safe}}
+        
+                                                 
+                                                </p>
+        
+                                                {% endfor %}
+        
+        
+                                            </div>
+                                        </div>
+                                        {%endif%}
+        
+        
+                                    </div>
+        
+                                    <div class="govuk-grid-column-one-third">
+                                        <aside class="app-related-items" role="complementary">
+                                            <h2 class="govuk-heading-m" id="subsection-title">
+                                                Related information
+                                            </h2>
+                                            <nav role="navigation" aria-labelledby="subsection-title">
+                                                <ul class="govuk-list govuk-!-font-size-16">
+        
+                                                    <li>
+                                                        <a class="govuk-link"
+                                                            href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
+                                                            target="_Blank">
+                                                            Licence conditions and codes of practice
+                                                        </a>
+                                                    </li>
+        
+                                                </ul>
+                                            </nav>
+                                        </aside>
+                                    </div>
+                                </div>
                     </section>
                 </div>
 
