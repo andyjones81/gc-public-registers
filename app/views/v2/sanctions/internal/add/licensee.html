@@ -1,0 +1,41 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+What account is the {{data['reg-type'] | lower }} for?
+{% endblock %}
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/add/start" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+                <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
+            <h1 class="govuk-heading-l">What account is the {{data['reg-type'] | lower }} for?</h1>
+
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-width-one-third" for="account-number">
+                    Account number
+                </label>
+                <input class="govuk-input  govuk-!-width-one-third" id="account-number" name="account-number"
+                    type="text">
+            </div>
+
+            <button type="submit" class="govuk-button">
+                Save and continue
+            </button>
+
+
+        </form>
+
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}

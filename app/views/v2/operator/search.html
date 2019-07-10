@@ -1,0 +1,218 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Search the operator register
+{% endblock %}
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling operator register information</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item">
+            Search
+        </li>
+    </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Search the operator register
+        </h1>
+
+        <div class="gc-register-search gc-register-search--whitebg">
+
+            <form method="POST" action="results">
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="search">
+                        You can search by business or trading name, licence or account number and domain
+                        names
+                    </label>
+                    <input class="govuk-input" id="search" name="search" type="text">
+                </div>
+
+                <details class="govuk-details">
+                    <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Additional search options
+                        </span>
+                    </summary>
+                    <div class="govuk-details__text">
+
+                        <p>You can limit your search to selected sectors and licence status.</p>
+                        <p>Select all the options that you want to restrict your search by.</p>
+
+
+                        <div class="govuk-grid-column-one-half">
+                            <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                        <h1 class="govuk-fieldset__heading">
+                                            Sectors
+                                        </h1>
+
+                                    </legend>
+                                    <div class="govuk-checkboxes govuk-checkboxes--small">
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-1"
+                                                name="organisation" type="checkbox" value="hmrc">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-1">
+                                                Arcades
+                                            </label> </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-2"
+                                                name="organisation" type="checkbox" value="employment-tribunal">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                                                Betting
+                                            </label> </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-3"
+                                                name="organisation" type="checkbox" value="MOD">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
+                                                Bingo
+                                            </label> </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Casino
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Gambling software
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Gaming machines
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Lotteries
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Remote (Online)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="govuk-grid-column-one-half">
+                            <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                        <h1 class="govuk-fieldset__heading">
+                                            Licence status
+                                        </h1>
+
+                                    </legend>
+                                    <div class="govuk-checkboxes govuk-checkboxes--small">
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-1"
+                                                name="organisation" type="checkbox" value="hmrc">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-1">
+                                                Active
+                                            </label> </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-2"
+                                                name="organisation" type="checkbox" value="employment-tribunal">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                                                Expired
+                                            </label> </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-3"
+                                                name="organisation" type="checkbox" value="MOD">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
+                                                Forefited
+                                            </label> </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Lapsed
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Revoked
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Surrendered
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="organisation-4"
+                                                name="organisation" type="checkbox" value="DfT">
+                                            <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                                Suspended
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="govuk-grid-row">
+
+
+                            <div class="govuk-grid-column-full">
+
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <button type="submit" class="govuk-button">
+                    Search
+                </button>
+            </form>
+        </div>
+    </div>
+  
+    {% endblock %}

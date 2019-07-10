@@ -1,0 +1,232 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+When should this be published?
+{% endblock %}
+
+
+{% block content %}
+
+{% set datax = result.registerData.recordset[0] %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="POST">
+
+      <h1 class="govuk-heading-l">Check before continuing </h1>
+      <p class="govuk-body">Check the details of this {{data['reg-type'] | lower }} before submitting. You can also
+        preview it before saving.</p>
+
+      <dl class="app-check-your-answers app-check-your-answers--short govuk-!-margin-top-9">
+
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Type of action
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{data['reg-type'] | title }}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/{{version}}/sanctions/internal/add/start">
+              Change<span class="govuk-visually-hidden"> answer</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Licensee
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{datax.RemoteStatus}}
+            <br />{{datax.AccountNo}}
+            <br />{{datax.Account}}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/{{version}}/sanctions/internal/add/confirmlicensee">
+              Change<span class="govuk-visually-hidden"> answer</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['reg-type'] === 'Sanction' %}
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Outcome
+          </dt>
+          <dd class="app-check-your-answers__answer">
+
+
+
+            {% for i in outcomeResultArray %}
+
+
+
+            {% if i === 'Had they not surrendered their licence' %}
+            ({{i}})
+            {% else %}
+
+            {{i}}<br />
+
+            {% endif %}
+
+
+
+            {% endfor %}
+
+
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/{{version}}/sanctions/internal/add/status">
+              Change<span class="govuk-visually-hidden"> answer</span>
+            </a>
+          </dd>
+        </div>
+
+
+        {% endif %}
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Details
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{data['content'] | safe }}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/{{version}}/sanctions/internal/add/details">
+              Change<span class="govuk-visually-hidden"> answer</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Decision date
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {% set decisiondate %}
+
+            {{data['decision-month']}}/{{data['decision-day']}}/{{data['decision-year']}}
+            {%
+                  endset %}
+
+            {{decisiondate | date('DD MMMM YYYY')}}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/{{version}}/sanctions/internal/add/decisiondate">
+              Change<span class="govuk-visually-hidden"> answer</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Publish date
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {% set publishDate %}
+
+            {{data['publish-on-month']}}/{{data['publish-on-day']}}/{{data['publish-on-year']}}
+            {%
+                  endset %}
+
+            {{publishDate | date('DD MMMM YYYY')}}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="/{{version}}/sanctions/internal/add/publishdate">
+              Change<span class="govuk-visually-hidden"> answer</span>
+            </a>
+          </dd>
+        </div>
+
+
+      </dl>
+
+
+      {% if items.length > 0 %}
+
+      <h2 class="govuk-heading-m">Records being added to the financial settlements register</h2>
+      <p class="govuk-body">These are not displayed externally</p>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption"></caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Outcome</th>
+            <th class="govuk-table__header" scope="col">Amount</th>
+            <th class="govuk-table__header" scope="col">Details</th>
+            <th class="govuk-table__header" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+
+          {% for i in items %}
+
+          <tr class="govuk-table__row govuk-body-s">
+            <th class="govuk-table__header" scope="row">{{i.outcome | capitalize}}</th>
+            <td class="govuk-table__cell">£{{i.amount | numeral("0,0")}}</td>
+            <td class="govuk-table__cell"><span class="">{{i.detail}}</span></td>
+
+            <td class="govuk-table__cell"><a
+                href="/{{version}}/sanctions/internal/add/financial-list">Change</a></td>
+
+          </tr>
+          {% endfor %}
+
+
+        </tbody>
+      </table>
+      <p class="govuk-body"><a href="/{{version}}/sanctions/internal/add/financial-add">Add another settlement</a></p>
+      {% else %}
+
+      <div class="govuk-inset-text">
+        No settlements added. <a href="/{{version}}/sanctions/internal/add/financial-add">Add a settlement</a>
+      </div>
+      {% endif %}
+
+
+
+      <h2 class="govuk-heading-m">Continue to submit this {{data['reg-type'] | lower }}</h2>
+      <p class="govuk-body">You can edit the details before it goes live on the register.</p>
+      <form method="POST" action="/{{version}}/{{appJourney.submit}}">
+        <div class="govuk-form-group">
+          <button class="govuk-button" type="submit">
+            Submit {{data['reg-type'] | lower }}
+          </button>
+        </div>
+
+
+      </form>
+
+
+
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-m" id="subsection-title">
+        Preview
+      </h2>
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+
+          <li>
+            <a class="govuk-link" href="/{{version}}/sanctions/internal/view/preview#action" target="_Blank">
+              Preview the {{data['reg-type'] | lower }} as it would be displayed on the register
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

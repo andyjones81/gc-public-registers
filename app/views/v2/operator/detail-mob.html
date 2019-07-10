@@ -1,0 +1,354 @@
+{% extends "layout_fullwidth.html" %}
+
+{% set olDetail = result.registerData.recordset[0] %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+A - {{olDetail.Account}}
+{% endblock %}
+
+{% block beforeContent %}
+
+
+
+
+
+
+
+
+<a href="/{{version}}/operator/summary" class="govuk-back-link">Search the register</a>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            {{olDetail.Account }}
+        </h1>
+
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+            Account number: <span class="govuk-body">{{olDetail.AccountNo}}</span>
+        </h2>
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-4">Licences ({{result.newLicenceInfo.recordset.length}})</h2>
+
+
+        {% if result.newLicenceInfo.recordset.length === 0 %}
+        <div class="govuk-inset-text">
+            Licence information is not yet available as the application for an operating licence is being processed.
+        </div>
+        {% endif %}
+
+
+        {% for licence in result.newLicenceInfo.recordset %}
+
+
+        <div class="gc-search-result">
+            <span class="govuk-tag {{licence.Status | lower}} gc-pull-right">
+                {{licence.Status}}
+            </span>
+
+            <p class="govuk-caption-s govuk-!-margin-bottom-0">{{licence.LicenceNo}}</p>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-2"> {{ licence.Type }}</h3>
+
+            {% if licence.End !== null %}
+
+            <p class="govuk-body">Licence held between <br>{{licence.Start | date('DD MMMM YYYY')}}
+                and {{licence.End | date('DD MMMM YYYY')}}</p>
+
+            <details class="govuk-details govuk-!-margin-bottom-0">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        Activities held on this licence
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    <ul class="govuk-list">
+
+                        {% for item in result.newLicenceActivityInfo.recordset %}
+
+                        {% if item.licenceid === licence.LicenceId %}
+                        <li class="govuk-body-s">
+                            {{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}</li>
+                        {% endif %}
+
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </details>
+
+            {% else %}
+            <p class="govuk-body">Current licence held from
+                {{licence.Start | date('DD MMMM YYYY')}}
+            </p>
+            <details class="govuk-details govuk-!-margin-bottom-0">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        Activities held on this licence
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    <ul class="govuk-list">
+
+
+
+                        {% for item in result.newLicenceActivityInfo.recordset %}
+
+                        {% if item.licenceid === licence.LicenceId %}
+                        <li class="govuk-body-s">
+                            {{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}</li>
+                        {% endif %}
+
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </details>
+
+
+            {% endif %}
+
+
+        </div>
+
+        {% endfor %}
+
+
+
+        <div class="govuk-accordion" data-module="accordion" id="accordion-default">
+
+            <div class="govuk-accordion__section ">
+                <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading">
+                        <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                            Head office address
+                        </span>
+                    </h2>
+                </div>
+                <div id="accordion-default-content-1" class="govuk-accordion__section-content"
+                    aria-labelledby="accordion-default-heading-1">
+                  
+                    <address class="govuk-body">
+
+                        {{olDetail.propertyname}}<br />
+
+                        {% if olDetail.street !== null %}
+                        {{olDetail.street}} <br />
+                        {% endif %}
+
+                        {{olDetail.towncity | capitalize}}<br /> {{olDetail.postcode | upper}}
+
+
+                    </address>
+                </div>
+            </div>
+            <div class="govuk-accordion__section ">
+                <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading">
+                        <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+                            Domain names ({{result.domainNames.recordset.length}})
+                        </span>
+                    </h2>
+                </div>
+                <div id="accordion-default-content-2" class="govuk-accordion__section-content"
+                    aria-labelledby="accordion-default-heading-2">
+                    {% if result.domainNames.recordset.length === 0 %}
+
+                    <p class="govuk-body">No domain names</p>
+                    {% endif %}
+
+                 
+
+                            {% for status, i in result.domainNames.recordset  | groupby ('AccountStatus') %}
+
+                            <table class="govuk-table">
+
+                                <thead class="govuk-table__head">
+                                    <tr class="govuk-table__row">
+                                        <th class="govuk-table__header" scope="col">{{status}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="govuk-table__body">
+                                    {% for name in i %}
+                                    <tr class="govuk-table__row">
+                                        <td class="govuk-table__cell" scope="row">{{name.DomainName | lower}}</td>
+                                    </tr>
+                                    {% endfor %}
+
+
+
+                                </tbody>
+                            </table>
+
+
+                            {% endfor %}
+
+             
+            </div>
+            <div class="govuk-accordion__section ">
+                <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading">
+                        <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                            Trading names ({{(result.tradingNames.recordset.length)}})
+                        </span>
+                    </h2>
+                </div>
+                <div id="accordion-default-content-3" class="govuk-accordion__section-content"
+                    aria-labelledby="accordion-default-heading-3">
+                    {% if result.tradingNames.recordset.length === 0 %}
+
+                    <p class="govuk-body">No trading names</p>
+                    {% endif %}
+
+
+
+                    {% for status, i in result.tradingNames.recordset | groupby ('Status') %}
+
+                    <table class="govuk-table">
+
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th class="govuk-table__header" scope="col">{{status}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            {% for name in i %}
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell" scope="row">{{name.TradingName}}</td>
+                            </tr>
+                            {% endfor %}
+
+
+
+                        </tbody>
+                    </table>
+
+
+                    {% endfor %}
+
+
+
+
+                </div>
+                <div class="govuk-accordion__section ">
+                    <div class="govuk-accordion__section-header">
+                        <h2 class="govuk-accordion__section-heading">
+                            <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                                Regulatory actions ({{result.sanctions.recordset.length + result.notes.recordset.length}})
+                            </span>
+                        </h2>
+                    </div>
+                    <div id="accordion-default-content-4" class="govuk-accordion__section-content"
+                        aria-labelledby="accordion-default-heading-4">
+                        <h3 class="govuk-heading-m">
+                                Sanctions
+                            </h3>
+
+                            {% if result.sanctions.recordset.length === 0 %}
+                            <p class="govuk-body">None recorded</p>
+                            {%endif%}
+
+                            <div class="gc-reg-action govuk-body">
+                                {% for item in result.sanctions.recordset %}
+
+                                <div class="govuk-grid-row">
+                                    <div class="govuk-grid-column-one-half">
+                                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                            Decision
+                                        </h2>
+                                        <p class="govuk-body">{{item.status}}</p>
+                                    </div>
+
+                                    <div class="govuk-grid-column-one-half">
+                                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                            Date of decision
+                                        </h2>
+                                        <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
+                                    </div>
+
+                                </div>
+                                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                    Outcome
+                                </h2>
+                                <p class="govuk-body">
+
+                                    {{item.details | safe}}
+
+                                    <hr
+                                        class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+                                </p>
+
+                                {% endfor %}
+
+
+                            </div>
+                            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+                            <h2 class="govuk-heading-m govuk-!-margin-top-4">
+                                Other actions
+                            </h2>
+                            {% if result.notes.recordset.length === 0 %}
+                            <p class="govuk-body">None recorded</p>
+                            {%endif%}
+
+                            <div class="gc-reg-action govuk-body">
+                                {% for item in result.notes.recordset %}
+
+                                <div class="govuk-grid-row">
+                                    
+                                    <div class="govuk-grid-column-one-half">
+                                        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                            Date of decision
+                                        </h3>
+                                        <p class="govuk-body">{{item.DecidedOn | date('DD MMMM YYYY')}}</p>
+                                    </div>
+
+                                </div>
+                                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                    Outcome
+                                </h2>
+                                <p class="govuk-body">
+
+                                    {{item.Details | safe}}
+
+                                    <hr
+                                        class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+                                </p>
+
+                                {% endfor %}
+
+
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    {% endblock %}

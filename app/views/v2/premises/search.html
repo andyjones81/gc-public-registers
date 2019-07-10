@@ -1,0 +1,203 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Search the operator register
+{% endblock %}
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/premises/summary">Premises register information</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item">
+            Search
+        </li>
+    </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Gambling premises register
+        </h1>
+    </div>
+
+</div>
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-third">
+        <div class="gc-register-search gc-register-search--whitebg">
+            <form method="GET" action="./view/internalresults">
+                <label for="search" class="govuk-label">
+                    <h2 class="govuk-heading-s  govuk-!-margin-bottom-1">Postcode, street or town</h2>
+
+                </label>
+
+                <div class="inner-form govuk-!-margin-bottom-3">
+                    <div class="input-field second-wrap">
+                        <input id="isearch" name="isearch" type="text" placeholder="Search" />
+                    </div>
+                    <div class="input-field third-wrap">
+                        <button class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
+                                register</span>
+                            <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas"
+                                data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="currentColor"
+                                    d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+
+        <form method="POST" action="results">
+
+
+
+            <div class="gc-filters">
+
+                <h2 class="govuk-heading-m">Filters</h2>
+
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                            <h3 class="govuk-fieldset__heading">
+                                Type
+                            </h3>
+                        </legend>
+                        <div class="govuk-checkboxes govuk-checkboxes--small">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="organisation-1" name="organisation"
+                                    type="checkbox" value="hmrc">
+                                <label class="govuk-label govuk-checkboxes__label" for="organisation-1">
+                                    Adult Gaming Centre
+                                </label> </div>
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="organisation-2" name="organisation"
+                                    type="checkbox" value="employment-tribunal">
+                                <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                                    Betting Intermediary
+                                </label> </div>
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="organisation-3" name="organisation"
+                                    type="checkbox" value="MOD">
+                                <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
+                                    Betting Shop
+                                </label> </div>
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="organisation-4" name="organisation"
+                                    type="checkbox" value="DfT">
+                                <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                                    Bingo
+                                </label> </div>
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="organisation-5" name="organisation"
+                                    type="checkbox" value="DfT">
+                                <label class="govuk-label govuk-checkboxes__label" for="organisation-5">
+                                    Casino
+                                </label> </div>
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="organisation-6" name="organisation"
+                                    type="checkbox" value="DfT">
+                                <label class="govuk-label govuk-checkboxes__label" for="organisation6">
+                                        Family Entertainment Centre
+                                </label> </div>
+                                <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="organisation-7" name="organisation"
+                                            type="checkbox" value="DfT">
+                                        <label class="govuk-label govuk-checkboxes__label" for="organisation-7">
+                                                Machine Technical
+                                        </label> </div>
+                                        <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="organisation-8" name="organisation"
+                                                    type="checkbox" value="DfT">
+                                                <label class="govuk-label govuk-checkboxes__label" for="organisation-8">
+                                                        Pool Betting
+                                                </label> </div>
+                                                <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="organisation-9" name="organisation"
+                                                            type="checkbox" value="DfT">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="organisation-9">
+                                                                Unknown
+                                                        </label> </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <button type="submit" class="govuk-button">
+                    Apply filters
+                </button>
+
+
+            </div>
+        </form>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+
+            <div class="govuk-tabs" data-module="tabs">
+                    <h2 class="govuk-tabs__title">
+                      Contents
+                    </h2>
+                  
+                    <ul class="govuk-tabs__list">
+                      <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab" href="#past-day">
+                          Results
+                        </a>
+                      </li>
+                      <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#past-week">
+                         Map
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  
+                    <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-day">
+                     
+                  
+                    </section>
+                    <section class="govuk-tabs__panel" id="past-week">
+                            <div id="map"></div>
+                           
+                  
+                    </section>
+
+                  </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

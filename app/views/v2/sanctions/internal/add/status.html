@@ -1,0 +1,96 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+What is the licence number?
+{% endblock %}
+
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/add/licensee" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <form method="POST">
+
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="outcome-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <span class="govuk-caption-l">Regulatory sanction</span>
+                        <h1 class="govuk-fieldset__heading">
+                            What is the outcome?
+                        </h1>
+                    </legend>
+                    <span id="outcome-hint" class="govuk-hint">
+                        Select all that apply.
+                    </span>
+                    <div class="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="outcome-1" name="outcome" type="checkbox"
+                                value="Conditions attached to the licence" {{ checked("outcome", "Conditions attached to the licence") }}>
+                            <label class="govuk-label govuk-checkboxes__label" for="outcome-1">
+                                Conditions attached to the licence
+                            </label> </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="outcome-2" name="outcome" type="checkbox"
+                                value="Financial penalty"  {{ checked("outcome", "Financial penalty") }}>
+                            <label class="govuk-label govuk-checkboxes__label" for="outcome-2">
+                                Financial penalty
+                            </label> </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="outcome-3" name="outcome" type="checkbox"
+                                value="Revoked" {{ checked("outcome", "Revoked") }}>
+                            <label class="govuk-label govuk-checkboxes__label" for="outcome-3">
+                                Revoked
+                            </label> </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="outcome-4" name="outcome" type="checkbox"
+                                value="Revoked - Stayed until the outcome of appeal" {{ checked("outcome", "Revoked - Stayed until the outcome of appeal") }}>
+                            <label class="govuk-label govuk-checkboxes__label" for="outcome-4">
+                                Revoked - Stayed until the outcome of appeal
+                            </label> </div>                          
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="outcome-5" name="outcome" type="checkbox"
+                                value="Terminated" {{ checked("outcome", "Terminated") }}>
+                            <label class="govuk-label govuk-checkboxes__label" for="outcome-5">
+                                Terminated
+                            </label> </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="outcome-6" name="outcome" type="checkbox"
+                                value="Warning" {{ checked("outcome", "Warning") }}>
+                            <label class="govuk-label govuk-checkboxes__label" for="outcome-6">
+                                Warning
+                            </label> </div>
+                        <h2 class="govuk-heading-m">
+                            Additional status
+                        </h2>
+                       
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="outcome-8" name="outcome" type="checkbox"
+                                value="Had they not surrendered their licence" {{ checked("outcome", "Had they not surrendered their licence") }}>
+                            <label class="govuk-label govuk-checkboxes__label" for="outcome-8">
+                                Had they not surrendered their licence
+                            </label> </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button">
+                Save and continue
+            </button>
+
+
+        </form>
+
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}

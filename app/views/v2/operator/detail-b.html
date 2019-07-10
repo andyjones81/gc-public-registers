@@ -1,0 +1,676 @@
+{% extends "layout_fullwidth.html" %}
+
+{% set olDetail = result.registerData.recordset[0] %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+{{olDetail.Account}}
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling business register</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/results">Search results</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            Detail
+        </li>
+    </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+
+
+
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
+            {{olDetail.Account }}
+        </h1>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    Account number
+                </h2>
+                <p class="govuk-body"> {{olDetail.AccountNo }}</p>
+            </div>
+            <div class="govuk-grid-column-two-thirds">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    Head office address
+                </h2>
+                {% if olDetail.towncity === null or olDetail.postcode === null %}
+                <p class="govuk-body">Address not available</p>
+                {% else %}
+
+                <address class="govuk-body">
+
+                    {{olDetail.propertyname}}<br>
+
+                    {% if olDetail.street !== null %} {{olDetail.street}},{% endif %}
+
+                    {{olDetail.towncity | capitalize}}, {{olDetail.postcode | upper}}
+
+
+                </address>
+                {% endif %}
+            </div>
+        </div>
+
+
+
+        <hr class="govuk-section-break govuk-section-break--visible gc-break govuk-!-margin-bottom-7">
+
+    </div>
+
+    <div class="govuk-grid-column-one-quarter">
+
+        <!-- <ul class="gc-register-tabs">
+            <li class="selected"><a href="">Summary</a></li>
+            <li><a href="">Trading names</a></li>
+            <li><a href="">Domain names</a></li>
+            <li><a href="">Regulatory action</a></li>
+            <li><a href="">People</a></li>
+            <li><a href="">Premises</a></li>
+        </ul> -->
+
+        <nav class="app-subnav">
+
+            <ul class="app-subnav__section">
+
+                <li class="app-subnav__section-item  app-subnav__section-item--current">
+                    <a class="app-subnav__link govuk-link" href="/components/accordion/">Licence summary</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.tradingNames.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link" href="/components/back-link/">Trading names</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.domainNames.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link" href="/components/breadcrumbs/">Domain names</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link" href="/components/breadcrumbs/">Sanctions</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.notes.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link" href="/components/breadcrumbs/">Settlements</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">0</span>
+                    <a class="app-subnav__link govuk-link" href="/components/breadcrumbs/">Premises</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">0</span>
+                    <a class="app-subnav__link govuk-link" href="/components/breadcrumbs/">People</a>
+                </li>
+
+            </ul>
+
+
+
+        </nav>
+
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+                <h2 class="govuk-heading-m">
+                    Licence summary
+                </h2>
+
+
+
+
+
+                {% if result.newLicenceInfo.recordset.length === 0 %}
+                <div class="govuk-inset-text">
+                    Licence information is not yet available as the application for an operating licence
+                    is being processed.
+                </div>
+                {% endif %}
+
+
+                {% for licence in result.newLicenceInfo.recordset %}
+
+
+
+
+
+                <div class="gc-search-result">
+                    <span class="govuk-tag {{licence.Status | lower}} gc-pull-right">
+                        {{licence.Status}}
+                    </span>
+
+                    <span class="govuk-caption-s">{{licence.LicenceNo}}</span>
+                    <h3 class="govuk-heading-s govuk-!-margin-bottom-2"> {{ licence.Type }}</h3>
+
+                    {% if licence.End !== null %}
+
+                    <p class="govuk-body">Licence held between {{licence.Start | date('DD MMMM YYYY')}}
+                        and {{licence.End | date('DD MMMM YYYY')}}</p>
+
+                    <details class="govuk-details govuk-!-margin-bottom-0">
+                        <summary class="govuk-details__summary">
+                            <span class="govuk-details__summary-text">
+                                Activities currently held on this licence
+                            </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                            <ul class="govuk-list">
+
+                                {% for item in result.newLicenceActivityInfo.recordset %}
+
+                                {% if item.licenceid === licence.LicenceId %}
+                                <li class="govuk-body-s">
+                                    {{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}
+                                </li>
+                                {% endif %}
+
+
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </details>
+
+                    {% else %}
+                    <p class="govuk-body">Licence held from
+                        {{licence.AnniversaryDate | date('DD MMMM YYYY')}}
+                    </p>
+                    <details class="govuk-details govuk-!-margin-bottom-0">
+                        <summary class="govuk-details__summary">
+                            <span class="govuk-details__summary-text">
+                                Activities currently held on this licence
+                            </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                            <ul class="govuk-list">
+
+
+
+                                {% for item in result.newLicenceActivityInfo.recordset %}
+
+                                {% if item.licenceid === licence.LicenceId %}
+                                <li class="govuk-body-s">
+                                    {{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}
+                                </li>
+                                {% endif %}
+
+
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </details>
+
+
+                    {% endif %}
+
+
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="govuk-tabs" data-module="tabs">
+        <h2 class="govuk-tabs__title">
+            Contents
+        </h2>
+
+        <ul class="govuk-tabs__list">
+            <li class="govuk-tabs__list-item">
+                <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#licence">
+                    Licence
+                </a>
+            </li>
+            <li class="govuk-tabs__list-item">
+                <a class="govuk-tabs__tab" href="#trading">
+                    Trading names ({{result.tradingNames.recordset.length}})
+                </a>
+            </li>
+            <li class="govuk-tabs__list-item">
+                <a class="govuk-tabs__tab" href="#domain">
+                    Domain names ({{result.domainNames.recordset.length}})
+                </a>
+            </li>
+            <li class="govuk-tabs__list-item">
+                <a class="govuk-tabs__tab" href="#action">
+                    Regulatory action ({{result.sanctions.recordset.length + result.notes.recordset.length}})
+                </a>
+            </li>
+        </ul>
+
+        <section class="govuk-tabs__panel" id="licence">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-third">
+
+                    <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
+                        Account number
+                    </h2>
+                    <p class="govuk-body"> {{olDetail.AccountNo }}</p>
+
+                    <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
+                        Head office address
+                    </h2>
+
+                    {% if olDetail.towncity === null or olDetail.postcode === null %}
+                    <p class="govuk-body">Address not available</p>
+                    {% else %}
+
+                    <address class="govuk-body">
+
+                        {{olDetail.propertyname}}<br />
+
+                        {% if olDetail.street !== null %}
+                        {{olDetail.street}} <br />
+                        {% endif %}
+
+                        {{olDetail.towncity | capitalize}}<br /> {{olDetail.postcode | upper}}
+
+
+                    </address>
+                    {% endif %}
+                </div>
+                <div class="govuk-grid-column-two-thirds">
+                    <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
+                        Licences
+                    </h2>
+                    {% if result.newLicenceInfo.recordset.length === 0 %}
+                    <div class="govuk-inset-text">
+                        Licence information is not yet available as the application for an operating licence
+                        is being processed.
+                    </div>
+                    {% endif %}
+
+
+                    {% for licence in result.newLicenceInfo.recordset %}
+
+
+                    <div class="gc-search-result">
+                        <span class="govuk-tag {{licence.Status | lower}} gc-pull-right">
+                            {{licence.Status}}
+                        </span>
+
+                        <span class="govuk-caption-s">{{licence.LicenceNo}}</span>
+                        <h3 class="govuk-heading-s govuk-!-margin-bottom-2"> {{ licence.Type }}</h3>
+
+                        {% if licence.End !== null %}
+
+                        <p class="govuk-body">Licence held between {{licence.Start | date('DD MMMM YYYY')}}
+                            and {{licence.End | date('DD MMMM YYYY')}}</p>
+
+                        <details class="govuk-details govuk-!-margin-bottom-0">
+                            <summary class="govuk-details__summary">
+                                <span class="govuk-details__summary-text">
+                                    Activities held on this licence
+                                </span>
+                            </summary>
+                            <div class="govuk-details__text">
+                                <ul class="govuk-list">
+
+                                    {% for item in result.newLicenceActivityInfo.recordset %}
+
+                                    {% if item.licenceid === licence.LicenceId %}
+                                    <li class="govuk-body-s">
+                                        {{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}
+                                    </li>
+                                    {% endif %}
+
+
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                        </details>
+
+                        {% else %}
+                        <p class="govuk-body">Current licence held from
+                            {{licence.Start | date('DD MMMM YYYY')}}
+                        </p>
+                        <details class="govuk-details govuk-!-margin-bottom-0">
+                            <summary class="govuk-details__summary">
+                                <span class="govuk-details__summary-text">
+                                    Activities held on this licence
+                                </span>
+                            </summary>
+                            <div class="govuk-details__text">
+                                <ul class="govuk-list">
+
+
+
+                                    {% for item in result.newLicenceActivityInfo.recordset %}
+
+                                    {% if item.licenceid === licence.LicenceId %}
+                                    <li class="govuk-body-s">
+                                        {{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}
+                                    </li>
+                                    {% endif %}
+
+
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                        </details>
+
+
+                        {% endif %}
+
+
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="govuk-tabs__panel" id="trading">
+            {% if result.tradingNames.recordset.length === 0 %}
+
+            <p class="govuk-body">No trading names</p>
+            {% endif %}
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+
+                    {% for status, i in result.tradingNames.recordset | groupby ('Status') %}
+
+                    <table class="govuk-table">
+
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th class="govuk-table__header" scope="col">{{status}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            {% for name in i %}
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell" scope="row">{{name.TradingName}}</td>
+                            </tr>
+                            {% endfor %}
+
+
+
+                        </tbody>
+                    </table>
+
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+        <section class="govuk-tabs__panel" id="domain">
+            {% if result.domainNames.recordset.length === 0 %}
+
+            <p class="govuk-body">No domain names</p>
+            {% endif %}
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+
+                    {% for status, i in result.domainNames.recordset  | groupby ('AccountStatus') %}
+
+                    <table class="govuk-table">
+
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                                <th class="govuk-table__header" scope="col">{{status}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                            {% for name in i %}
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell" scope="row">{{name.DomainName | lower}}</td>
+                            </tr>
+                            {% endfor %}
+
+
+
+                        </tbody>
+                    </table>
+
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+        <section class="govuk-tabs__panel" id="action">
+            <h2 class="govuk-heading-m">
+                Sanctions
+
+            </h2>
+
+            <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        What are sanctions?
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    <p>When a licence holder has not followed rules and regulations aimed at ensuring gambling is fair,
+                        safe and crime-free, we can take action and impose the following sanctions:
+                    </p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>Give the licensee a warning</li>
+                        <li>Add, remove, or amend a condition to the licence</li>
+                        <li>Suspend a licence</li>
+                        <li>Revoke a licence</li>
+                        <li>Impose a financial penalty</li>
+                    </ul>
+                </div>
+            </details>
+            {% if result.sanctions.recordset.length === 0 %}
+            <p class="govuk-body">None recorded</p>
+            {% else %}
+            <div class="govuk-inset-text">
+                <div class="gc-reg-action govuk-body">
+                    {% for item in result.sanctions.recordset %}
+
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-one-half">
+                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                Decision
+                            </h2>
+                            <p class="govuk-body">{{item.status}}</p>
+                        </div>
+
+                        <div class="govuk-grid-column-one-half">
+                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                Date of decision
+                            </h2>
+                            <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
+                        </div>
+
+                    </div>
+                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                        Outcome
+                    </h2>
+                    <p class="govuk-body">
+
+                        {{item.details | safe}}
+
+
+                    </p>
+
+                    {% endfor %}
+
+
+                </div>
+            </div>
+            {%endif%}
+
+
+
+
+
+            <h2 class="govuk-heading-m govuk-!-margin-top-4">
+                Other actions
+            </h2>
+            <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        What are other actions?
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    <p>Following an investigation into a licence holder we may enter into a regulatory settlement. These
+                        take place, for example, where the licence holder has been open and transparent with us and has
+                        shown a willingness to suggest actions that prevent the need for a more formal sanction.
+                </div>
+                </p>
+
+            </details>
+
+
+            {% if result.notes.recordset.length === 0 %}
+            <p class="govuk-body">None recorded</p>
+            {% else %}
+            <div class="govuk-inset-text">
+                <div class="gc-reg-action govuk-body">
+                    {% for item in result.notes.recordset %}
+
+                    <div class="govuk-grid-row">
+
+                        <div class="govuk-grid-column-one-half">
+                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                Date of publication
+                            </h2>
+                            <p class="govuk-body">{{item.DecidedOn | date('DD MMMM YYYY')}}</p>
+                        </div>
+
+                    </div>
+                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                        Outcome
+                    </h2>
+                    <p class="govuk-body">
+
+                        {{item.Details | safe}}
+
+                    </p>
+
+                    {% endfor %}
+
+
+                </div>
+            </div>
+            {%endif%}
+
+
+
+
+        </section>
+    </div> -->
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    </div>
+
+
+
+    <div class="govuk-grid-column-one-third">
+
+        <h2 class="govuk-heading-m">
+            Related information
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link"
+                        href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Types-of-operating-licence.aspx"
+                        target="_Blank">
+                        Licensed activity information
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link"
+                        href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
+                        target="_Blank">
+                        Licence conditions and codes of practice
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link"
+                        href=" https://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx"
+                        target="_Blank">
+                        Regulatory action
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+        <h2 class="govuk-heading-m">
+            Complaints
+        </h2>
+        <p class="govuk-body">If you want to make a complaint about a gambling business, you can <a class="govuk-link"
+                href="https://www.gamblingcommission.gov.uk/for-the-public/Your-rights/Complaints.aspx" target="_Blank">
+                find information on our website
+            </a> about how to do this.
+
+
+        </p>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+        <h2 class="govuk-heading-m">
+            Help and support
+        </h2>
+        <p class="govuk-body">If you or someone you know is struggling with gambling activity, you can find the details
+            of <a
+                href="https://www.gamblingcommission.gov.uk/for-the-public/Safer-gambling/Getting-help-to-control-your-gambling.aspx#Organisations_that_provide_help"
+                target="_blank">organisations who can help</a> on our website.</p>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "admin_layout_int.html" %}
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+Registers Prototypes
+{% endblock %}
+
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/view/sanctions#archive" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="gc-pull-right"><a href="/public/sanctions.odt" class="govuk-button" role="button">Export all</a></div>
+        <h1 class="govuk-heading-l">Archive sanctions register</h1>
+        <p class="govuk-body">This register contains the details of sanctions which are over 3 years old.</p>
+
+
+        <p class="govuk-body">There are 0 entries in this register.</p>
+
+       
+
+        <div class="gc-search-result">
+
+           
+
+            <p class="govuk-body">We don't have the archive data in a database. We will need to migrate it all over.</p>
+
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}

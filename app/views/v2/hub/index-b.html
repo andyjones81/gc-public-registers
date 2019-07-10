@@ -1,0 +1,209 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+  aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Public registers and datasets
+{% endblock %}
+
+{% block headerInfo %}
+<section class="gc-product-page gc-product-page--header">
+  <div class="govuk-header__container govuk-width-container">
+    <div class="govuk-!-padding-bottom-2">
+      <div class="gc-tag alpha-tag">ALPHA</div> This is new, <a href="/feedback" target="_Blank">give us
+        feedback</a>.
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+      </div>
+    </div>
+    <!-- <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Parent</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Service name</li>
+      </ol>
+    </div> -->
+
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l govuk-!-margin-top-6">Public registers and datasets</h1>
+        <p class="govuk-body-l">We've made it easy to search and download information about licensed gambling
+          businesses,
+          individuals and regulatory actions.</p>
+
+        <p class="govuk-body">You can also download other published datasets provided by the Gambling Commission.</p>
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds v2">
+
+    <h2 class="govuk-heading-m">
+      Registers
+    </h2>
+
+    <ul class="register-themes">
+      <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/summary">
+          <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Gambling
+            businesses</h3>
+          <p class="register-theme__description govuk-body-s">Search or download information about gambling businesses
+          </p>
+          <p class="register-theme__count govuk-body-s">{{3354 | numeral("0,0") }} records</p>
+        </a></li>
+      <li class="register-theme"><a class="register-theme__link" href="/{{version}}/personal/summary">
+          <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Personal
+            licence holders</h3>
+          <p class="register-theme__description govuk-body-s">Search or download information about licensed individuals
+          </p>
+          <p class="register-theme__count govuk-body-s">{{23940 | numeral("0,0") }} records</p>
+        </a></li>
+      <li class="register-theme"><a class="register-theme__link" href="/{{version}}/sanctions/summary">
+          <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
+            Regulatory actions</h3>
+          <p class="register-theme__description govuk-body-s">Search or download details of regulatory actions</p>
+          <p class="register-theme__count govuk-body-s">{{105 | numeral("0,0") }} records</p>
+        </a></li>
+      <li class="register-theme"><a class="register-theme__link" href="/{{version}}/premises/summary">
+          <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Premises
+          </h3>
+          <p class="register-theme__description govuk-body-s">Search and view premises licensed for gambling activity</p>
+          <p class="register-theme__count govuk-body-s">{{13958 | numeral("0,0") }} records</p>
+        </a></li>
+    </ul>
+
+    <h2 class="govuk-heading-m">
+      Datasets
+    </h2>
+
+    <ul class="register-themes">
+      <li class="register-theme"><a class="register-theme__link register-theme-secondary"
+          href="/{{version}}/operator/summary">
+          <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Annual
+            gambling stats</h3>
+          <p class="register-theme__description govuk-body-s">Dataset of gambling data
+          </p>
+          <p class="register-theme__count govuk-body-s">PDF</p>
+        </a></li>
+    </ul>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+
+    <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
+
+    <aside class="app-related-items" role="complementary">
+
+      <h2 class="govuk-heading-s" id="subsection-title">
+        Related
+      </h2>
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+
+          <li><a class="govuk-link" href="#">How to complain about a gambling business</a></li>
+          <li><a class="govuk-link" href="#">Safer gambling</a></li>
+          <li><a class="govuk-link" href="#">Getting an operating licence</a></li>
+          <li><a class="govuk-link" href="#">Getting a personal licence</a></li>
+          <li><a class="govuk-link" href="#">Licence Conditions and Codes of Practice</a></li>
+          
+          <li><a class="govuk-link" href="#">Regulatory action</a></li>
+        </ul>
+      </nav>
+
+
+      <h2 class="govuk-heading-s" id="other-subsection-title">
+        News
+      </h2>
+      <nav role="navigation" aria-labelledby="other-subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+
+          {% for i in news.items %}
+
+          <li>
+            <a class="govuk-link" href="/gc/news/story/{{ i.fields.slug }}">
+              {{i.fields.newsTitle}}</a>
+            <br>
+            <p class="govuk-body-s gc-meta  govuk-!-margin-top-1">
+              {{i.fields.publicationDate | date('DD MMMM YYYY')}}
+            </p>
+          </li>
+
+          {% endfor %}
+
+          <li>
+            <a href="#" class="govuk-link govuk-!-font-weight-bold">
+              More <span class="govuk-visually-hidden">news</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </aside>
+
+  </div>
+
+</div>
+
+
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible gc-break">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <h3 class="govuk-heading-m">
+      Current features
+    </h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Search and download regulatory actions <span class="govuk-tag">new</span></li>
+      <li>Search and download information on gambling operators</li>
+      <li>Search and download information on licensed individuals</li>
+      <li>Download the gambling premises dataset</li>
+    </ul>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <h3 class="govuk-heading-m">
+      Planned features
+    </h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Additional information on businesses</li>
+      <li>Companies house information</li>
+    </ul>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <h3 class="govuk-heading-m">
+      Useful information
+    </h3>
+    <ul class="govuk-list">
+      <li>
+        <a class="govuk-link"
+          href="http://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx">Regulatory
+          action</a></li>
+    </ul>
+  </div>
+
+
+</div>
+{% endblock %}

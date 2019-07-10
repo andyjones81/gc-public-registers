@@ -1,0 +1,51 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+When should this be published?
+{% endblock %}
+
+
+{% block content %}
+
+{% set publishDate %}
+
+{{data['publish-on-month']}}/{{data['publish-on-day']}}/{{data['publish-on-year']}}
+{%  endset %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+
+        <div class="gc-panel gc-panel--complete">
+            <h1 class="govuk-heading-l">{{data['reg-type']}} submitted</h1>
+            <p class="govuk-body">
+                This will automatically be published on the register on {{publishDate | date('DD MMMM YYYY')}} until {{publishDate | date("add", 3, "years") | date('DD MMMM YYYY')}}
+            </p>
+        </div>
+
+
+        <h2 class="govuk-heading-m">What happens next</h2>
+        <p class="govuk-body">You can <a href="/{{version}}/sanctions/internal/view/detail/{{182}}">view the details</a>
+            of this {{data['reg-type'] | lower}}.</p>
+
+
+
+        <h2 class="govuk-heading-m">What do you want to do now?</h2>
+        <p class="govuk-body"><a href="/{{version}}/sanctions/internal/add/start">Add another sanction or action.</a>
+        </p>
+        <p class="govuk-body">Return to <a href="/{{version}}/sanctions/internal/dashboard">the dashboard</a></p>
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

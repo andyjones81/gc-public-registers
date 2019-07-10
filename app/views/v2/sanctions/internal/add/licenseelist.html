@@ -1,0 +1,160 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+What account is the {{data['reg-type'] | lower }} for?
+{% endblock %}
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/add/start" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
+        <h1 class="govuk-heading-l">Settlement summary</h1>
+
+        {% set overallTotal = 0 %}
+        {% for i in settlementData %}
+        {% for i in i.items %}
+{% if i.amount !== 'N/A'%}
+        {% set overallTotal = overallTotal | float + i.amount | float %}
+{%endif%}
+        {% endfor %}
+        {% endfor %}
+
+        <p class="govuk-body">There are <span class="govuk-!-font-weight-bold">{{settlementData.length}}</span> licensees in this action and the settlement total is <span class="govuk-!-font-weight-bold">£{{overallTotal | numeral("0,0")}}</span></p>
+
+      
+
+    </div>
+    <div class="govuk-grid-column-full">
+        <form method="POST">
+
+  <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+         
+            <h2 class="govuk-heading-m">Settlement breakdown</h2>
+            {% for i in settlementData %}       
+
+                      <div class="gc-search-result">
+                <p class="govuk-body govuk-!-font-weight-bold">{{i.account}} - {{i.accountname}}</p>
+
+                <details class="govuk-details">
+                    <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                            Public register summary
+                        </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                        {{i.detail | safe}}
+                    </div>
+                </details>
+
+                <table class="govuk-table govuk-body-s govuk-!-margin-bottom-0">
+                    <caption class="govuk-table__caption"></caption>
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th class="govuk-table__header  govuk-!-width-one-quarter" scope="col">Outcome</th>
+                            <th class="govuk-table__header  govuk-!-width-one-quarter" scope="col">Amount</th>
+                            <th class="govuk-table__header govuk-!-width-one-half" scope="col">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body govuk-body-s">
+
+
+                        {% set total = 0 %}
+
+                        {% for i in i.items %}
+
+
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell" scope="row">{{i.outcome}}</td>
+                            <td class="govuk-table__cell" scope="row"> {% if i.amount !== 'N/A' %}
+                                {% set total = total | float + i.amount | float %}
+
+                                £{{i.amount | numeral("0,0")}}
+                                {% else %}
+                                Non financial
+                                {% endif %}</td>
+                            <td class="govuk-table__cell" scope="row">{{i.detail | safe}} </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                        {% if total !== 0 %}
+                        <tr class="govuk-table__row">
+                            <th class="govuk-table__header" scope="row">Total</th>
+                            <td class="govuk-table__header" scope="row"> {% if total !== 0 %}
+                                £{{total | numeral("0,0")}}
+
+                                {% endif %}</td>
+                            <td class="govuk-table__cell" scope="row"> </td>
+
+
+                        </tr>
+                        {% endif %}
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            {% endfor %}
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+    <div class="govuk-grid-column-two-thirds">
+
+
+
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="other-licensees-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h2 class="govuk-fieldset__heading govuk-!-margin-top-6">
+                        Are there any other licensees involved in this settlement?
+                    </h2>
+                </legend>
+
+                <div class="govuk-radios govuk-radios--inline">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="other-licensees-1" name="other-licensees" type="radio"
+                            value="yes">
+                        <label class="govuk-label govuk-radios__label" for="other-licensees-1">
+                            Yes
+                        </label> </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="other-licensees-2" name="other-licensees" type="radio"
+                            value="no">
+                        <label class="govuk-label govuk-radios__label" for="other-licensees-2">
+                            No
+                        </label> </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <button type="submit" class="govuk-button">
+            Continue
+        </button>
+
+
+        </form>
+
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}

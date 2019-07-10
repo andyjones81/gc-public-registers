@@ -21,6 +21,7 @@
     "browser-sync": "^2.11.1",
     "client-sessions": "^0.8.0",
     "companies-house-api-es6": "^1.1.1",
+    "contentful": "^7.8.1",
     "cookie-parser": "^1.4.3",
     "cross-spawn": "^6.0.5",
     "del": "^3.0.0",

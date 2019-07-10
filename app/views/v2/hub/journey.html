@@ -1,0 +1,48 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+  aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Public register prototype
+{% endblock %}
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  
+<h1 class="govuk-heading-l">Public registers</h1>
+<p class="govuk-body-l">This is a prototype of a new service. This is not a live service.</p>
+
+<p class="govuk-body">We are asking you to try out this prototype and provide feedback on the service.</p>
+  
+  
+<p class="govuk-body">This service contains information provided in the current live public registers provided by the Gambling Commission.</p>
+
+<p class="govuk-body">As this is a prototype, it may contain errors. If you encounter anything which prevents you from using the service, please email <a href="mailto:userresearch@gamblingcommission.gov.uk">userresearch@gamblingcommission.gov.uk</a></p>
+
+ <p class="govuk-body">If you are happy with this and have provided consent to take part in user research, please continue. </p>
+    <form method="POST">
+
+       
+<button type="submit" class="govuk-button">
+        Continue to the prototype
+      </button>
+</form>
+
+  </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "admin_layout_int.html" %}
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+Registers Prototypes
+{% endblock %}
+
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/view/settlements" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="gc-pull-right"><a href="/public/sanctions.odt" class="govuk-button" role="button">Export all</a></div>
+        <h1 class="govuk-heading-l">Live settlements register</h1>
+
+        <p class="govuk-body">There are {{result.allSettlements.recordset.length}} entries in this register </p>
+
+        {% for i in result.allSettlements.recordset %}
+
+        <div class="gc-search-result">
+
+            <span class="govuk-!-font-weight-bold">Account {{i.AccountNo}}</span>
+
+
+            <h2 class="govuk-heading-m">
+                {%if i.remotestatus === 'Operator' %}
+                {{i.account}}
+                {% else %}
+                {{i.Applicantfirstname}} {{i.Applicantsurname}}
+                {% endif %}
+            </h2>
+
+            <ul class="gc-search-result--tag">
+
+                <li>{{i.remotestatus}} </li>
+                <li>{{i.decidedon | date('DD MMMM YYYY')}} </li>
+            </ul>
+
+
+            <p class="govuk-body-s">{{i.details | safe}}</p>
+
+        </div>
+
+
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+{% endblock %}

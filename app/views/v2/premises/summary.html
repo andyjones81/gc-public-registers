@@ -1,0 +1,279 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Premises dataset
+{% endblock %}
+
+
+
+
+{% block headerInfo %}
+<section class="gc-product-page gc-product-page--header">
+    <div class="govuk-header__container govuk-width-container">
+        <div class="govuk-!-padding-bottom-2">
+            <div class="gc-tag alpha-tag">ALPHA</div> This is new, <a href="/feedback" target="_Blank">give us
+                feedback</a>.
+        </div>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full govuk-!-padding-bottom-2">
+                <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+            </div>
+        </div>
+
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+            </li>
+
+            <li class="govuk-breadcrumbs__list-item">
+                Premises register
+            </li>
+        </ol>
+
+
+
+        <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-l govuk-!-margin-top-6">
+                    Register of premises licensed for gambling
+                </h1>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <a href="/{{version}}/premises/search" class="govuk-button govuk-button-start">Search the register</a>
+
+        <h2 class="govuk-heading-m">
+            Use the data
+        </h2>
+        <ul class="register-themes">
+            <li class="register-theme"><a class="register-theme__link" href="/public/prem.csv">
+                    <h3
+                        class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
+                        Download in CSV format</h3>
+                    <p class="register-theme__description govuk-body-s">2.8mb</p>
+
+                </a></li>
+            <li class="register-theme"><a class="register-theme__link" href="/public/prem.ods">
+                    <h3
+                        class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
+                        Download in ODS format</h3>
+                    <p class="register-theme__description govuk-body-s">962kb</p>
+
+                </a></li>
+        </ul>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <h2 class="govuk-heading-m">
+            About the data
+        </h2>
+
+        <p class="govuk-body">Last updated: {{ date | date('DD MMMM YYYY')}}</p>
+
+
+        <p class="govuk-body">There are <span class="govuk-!-font-weight-bold">{{13985 | numeral("0,0") }}</span>
+            records and <b>15 fields</b>
+            in this register.</p>
+
+        <div class="govuk-inset-text">
+            For accurate premises information, you should contact the relevant Licensing Authority, as they maintain an
+            accurate and up-to-date register for their local area.
+
+        </div>
+
+        <table class="registers-secondary-table">
+            <caption class="registers-secondary-table__caption">
+                <p class="govuk-body">The <b>15 fields</b> in this register</p>
+            </caption>
+            <thead class="registers-secondary-table__head">
+                <tr class="registers-secondary-table__row">
+                    <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field name</p>
+                    </th>
+                    <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="registers-secondary-table__body">
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Account_Number</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The unique reference for the licence
+                            holder.</p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Account_Name</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The name of the licence holder.</p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Trading Names</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The trading names the licence holder trades
+                            under. This is only applicable to operator accounts.</p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Applicant_Property_name</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The name of the property the Operator
+                            operates the business from.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Applicant_Address1</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The first line of the Operator's address.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Applicant_City</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The city the Operator is based in.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Applicant_Postcode</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The postcode of the address the Operator is
+                            based in.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>premises_Address1</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The first line of the licensed premises
+                            address.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>premises_Address2</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The second line of the licensed premises
+                            address.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>premises_City</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The city the licensed premises address is
+                            in.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>premises_Postcode</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The postcode of the licensed premises
+                            address.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>StatusDate</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The date associated with the current status
+                            of the licence.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Activity</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The type of activity associated with the
+                            premises.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Local_Authority_Name</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The licensing authority responsible for
+                            issuing the licence.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>LicenceStatus</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The status of the licence associated with
+                            the premises.
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}

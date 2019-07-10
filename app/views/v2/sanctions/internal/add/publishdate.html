@@ -1,0 +1,72 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+When should this be published?
+{% endblock %}
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/add/settlement-list" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+        
+
+            <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset" aria-describedby="publish-on-hint" role="group">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                            <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
+                            <h1 class="govuk-heading-l">When should this go live on the public register? </h1>
+                      </legend>
+                      <span id="publish-on-hint" class="govuk-hint">
+                        For example, {{date | date('DD MM YYYY')}}
+                      </span>
+                      <div class="govuk-date-input" id="publish-on">
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="publish-on-day">
+                              Day
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="publish-on-day" value="{{data['publish-on-day']}}" name="publish-on-day" type="number" pattern="[0-9]*">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="publish-on-month">
+                              Month
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="publish-on-month" value="{{data['publish-on-month']}}" name="publish-on-month" type="number" pattern="[0-9]*">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="publish-on-year">
+                              Year
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="publish-on-year"  value="{{data['publish-on-year']}}" name="publish-on-year" type="number" pattern="[0-9]*">
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+
+            <button type="submit" class="govuk-button">
+                Save and continue
+            </button>
+
+
+        </form>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

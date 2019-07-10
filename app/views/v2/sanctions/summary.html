@@ -1,0 +1,250 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Register of regulatory actions
+{% endblock %}
+
+
+
+
+{% block headerInfo %}
+<section class="gc-product-page gc-product-page--header">
+    <div class="govuk-header__container govuk-width-container">
+        <div class="govuk-!-padding-bottom-2">
+            <div class="gc-tag alpha-tag">ALPHA</div> This is new, <a href="/feedback" target="_Blank">give us
+                feedback</a>.
+        </div>
+        <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full govuk-!-padding-bottom-2">
+                    <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+    
+                </div>
+            </div>
+    
+            <ol class="govuk-breadcrumbs__list">
+                <li class="govuk-breadcrumbs__list-item">
+                    <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+                </li>
+    
+                <li class="govuk-breadcrumbs__list-item">
+                    Regulatory action register
+                </li>
+            </ol>
+    
+
+
+        <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-l govuk-!-margin-top-6">
+                    Register of regulatory actions
+                </h1>
+
+                <p class="govuk-body-l">
+                    Regulatory action taken by the Gambling Commission against operators and individuals.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-two-thirds">
+
+                <div class="gc-register-search">
+                    <form method="POST" action="results">
+                        <label for="search" class="govuk-label">
+                            <h2 class="govuk-heading-m  govuk-!-margin-bottom-3">
+                                Search the register
+                            </h2>
+                        </label>
+                        <p id="search-hint" class="govuk-body">
+                            Search by business or individual name, trading name or account number
+                        </p>
+                        <div class="inner-form govuk-!-margin-bottom-3">
+                            <div class="input-field second-wrap">
+                                <input id="search" name="search" type="text" placeholder="Search" />
+                            </div>
+                            <div class="input-field third-wrap">
+                                <button class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
+                                        register</span>
+                                    <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas"
+                                        data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 512 512">
+                                        <path fill="currentColor"
+                                            d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+
+            <div class="govuk-grid-column-one-third">
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-full">
+
+
+        <ul class="register-themes">
+             <li class="register-theme"><a class="register-theme__link" href="/{{version}}/sanctions/full">
+                        <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">View the full register</h3>
+                        <p class="register-theme__description govuk-body-s">View all the entries in the register</p>
+                      
+                    </a></li> 
+                   
+        </ul>
+
+        <h2 class="govuk-heading-m">
+                Use the data
+            </h2>
+
+        <ul class="register-themes">
+               
+                       <li class="register-theme"><a class="register-theme__link" href="/public/prem.csv">
+                           <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Download in CSV format</h3>
+                           <p class="register-theme__description govuk-body-s">2.8mb</p>
+                         
+                       </a></li> 
+                       <li class="register-theme"><a class="register-theme__link" href="/public/prem.ods">
+                            <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Download in ODS format</h3>
+                            <p class="register-theme__description govuk-body-s">962kb</p>
+                          
+                        </a></li> 
+               <li class="register-theme"><a class="register-theme__link" href="/{{version}}/sanctions/api">
+                       <h3
+                           class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
+                           API</h3>
+                       <p class="register-theme__description govuk-body-s">Use the API to get the data in JSON format.</p>
+                   </a></li>
+           </ul>
+    </div>
+
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <h2 class="govuk-heading-m">
+            About the data
+        </h2>
+
+        <p class="govuk-body">Last updated: {{ date | date('DD MMMM YYYY')}}</p>
+
+        <p class="govuk-body">There are <span class="govuk-!-font-weight-bold">{{79 | numeral("0,0") }}</span>
+            records and <b>6 fields</b>
+            in this register.</p>
+
+        <div class="govuk-inset-text">
+            Trading names are provided by the operator. The Gambling Commission cannot guarantee the
+            accuracy of information provided by third parties.
+        </div>
+
+        <table class="registers-secondary-table">
+            <caption class="registers-secondary-table__caption">
+                <p class="govuk-body">The <b>6 fields</b> in this register</p>
+            </caption>
+            <thead class="registers-secondary-table__head">
+                <tr class="registers-secondary-table__row">
+                    <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field name</p>
+                    </th>
+                    <th class="registers-secondary-table__header govuk-!-padding-0" scope="col">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Field description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="registers-secondary-table__body">
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Operator or individual</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The name of the operator or individual.</p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Trading names</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The trading names the operator trades under. This is only applicable to operator accounts. </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Licence type</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The type of licence the operator or individual operates under.</p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Decison</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The action taken by the Gambling Commission against the operator or individual.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Date of decision</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">The date the action was taken. This is written in DD MMMM YYYY format, for example 23 July 2018.
+                        </p>
+                    </td>
+                </tr>
+                <tr class="registers-secondary-table__row">
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3"><b>Details of decision</b></p>
+                    </td>
+                    <td class="govuk-!-padding-0 registers-secondary-table__cell">
+                        <p class="govuk-!-margin-bottom-0 govuk-!-padding-3">Details of regulatory action imposed on
+                            the operator or individual by the Gambling Commission.
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}

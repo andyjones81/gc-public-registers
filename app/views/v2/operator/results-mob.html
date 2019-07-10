@@ -1,0 +1,370 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Search the register of gambling businesses
+{% endblock %}
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+
+<div class="govuk-breadcrumbs content-desktop">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling business register</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item">
+            Results
+        </li>
+    </ol>
+</div>
+
+
+<div class="govuk-breadcrumbs content-mobile">
+    <a href="/{{version}}/operator/summary" class="govuk-back-link">Back to gambling businesses</a>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+        <div class="gc-register-search gc-register-search--whitebg">
+            <form method="POST" action="results">
+                <label for="search" class="govuk-label">
+                    <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">
+                        Search the register of gambling businesses
+                    </h1>
+
+                </label>
+                <span class="govuk-hint">
+                    Search by business, trading or domain name, account or licence number
+                </span>
+                <div class="inner-form govuk-!-margin-bottom-3">
+                    <div class="input-field second-wrap">
+                        <input id="search" name="search" type="text" placeholder="Search"
+                            value="{{ data['search'] }}" />
+                    </div>
+                    <div class="input-field third-wrap">
+                        <button class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
+                                register</span>
+                            <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas"
+                                data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="currentColor"
+                                    d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+
+</div>
+
+<div class="govuk-grid-row">
+
+    {% if emptySearch === 'true'%}
+
+    <div class="govuk-grid-column-two-thirds">
+        <h3 class="govuk-heading-m">
+            No results found
+        </h3>
+        <p class="govuk-body">If you want the full register, find out how to <a
+                href="/{{version}}/operator/summary">download the register</a> in different formats.</p>
+    </div>
+
+    {% else %}
+    <div class="govuk-grid-column-one-third">
+           <div class="gc-pull-right govuk-body">{{result.registerData.recordset.length | numeral("0,0") }} results</div>
+        <details class="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Filter
+                </span>
+            </summary>
+            <div class="govuk-details__text">
+
+
+                <form method="POST" action="results">
+                    <div class="gc-filters">
+
+                        <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Filter</h2>
+
+                        <div class="govuk-accordion" data-module="accordion" id="accordion-default">
+
+                            <div class="govuk-accordion__section ">
+                                <div class="govuk-accordion__section-header">
+                                    <h2 class="govuk-accordion__section-heading">
+                                        <span class="govuk-accordion__section-button" id="accordionSector">
+                                            Licensed for
+                                        </span>
+                                    </h2>
+                                </div>
+                                <div id="accordionSectorContent" class="govuk-accordion__section-content"
+                                    aria-labelledby="accordionSector">
+                                    <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset">
+
+                                            <div class="govuk-checkboxes govuk-checkboxes--small">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="sector-1" name="sector"
+                                                        type="checkbox" value="Arcades">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="sector-1">
+                                                        Arcades
+                                                    </label> </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="sector-2" name="sector"
+                                                        type="checkbox" value="Betting">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="sector-2">
+                                                        Betting
+                                                    </label> </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="sector-3" name="sector"
+                                                        type="checkbox" value="Bingo">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="sector-3">
+                                                        Bingo
+                                                    </label> </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="sector-4" name="sector"
+                                                        type="checkbox" value="Casino">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="sector-4">
+                                                        Casino
+                                                    </label> </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="sector-5" name="sector"
+                                                        type="checkbox" value="Gambling software">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="sector-5">
+                                                        Gambling software
+                                                    </label> </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="sector-6" name="sector"
+                                                        type="checkbox" value="Gaming machine">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="sector-6">
+                                                        Gaming machine
+                                                    </label> </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="sector-7" name="sector"
+                                                        type="checkbox" value="Lotteries">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="sector-7">
+                                                        Lotteries
+                                                    </label> </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="sector-8" name="sector"
+                                                        type="checkbox" value="Remote">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="sector-8">
+                                                        Remote
+                                                    </label> </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="govuk-accordion__section ">
+                                <div class="govuk-accordion__section-header">
+                                    <h2 class="govuk-accordion__section-heading">
+                                        <span class="govuk-accordion__section-button" id="accordionStatus">
+                                            Account status
+                                        </span>
+                                    </h2>
+                                </div>
+                                <div id="accordionStatusContent" class="govuk-accordion__section-content"
+                                    aria-labelledby="accordionStatus">
+                                    <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset">
+
+                                            <div class="govuk-checkboxes govuk-checkboxes--small">
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="status-1" name="status"
+                                                        type="checkbox" value="Granted"
+                                                        {{ checked("status", "Granted") }}>
+                                                    <label class="govuk-label govuk-checkboxes__label" for="status-1">
+                                                        Active
+                                                    </label> </div>
+
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="status-7" name="status"
+                                                        type="checkbox" value="Pending"
+                                                        {{ checked("status", "Pending") }}>
+                                                    <label class="govuk-label govuk-checkboxes__label" for="status-7">
+                                                        Pending
+                                                    </label> </div>
+
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <button type="submit" class="govuk-button">
+                            Apply filter
+                        </button>
+
+
+                    </div>
+
+                </form>
+            </div>
+        </details>
+
+
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+
+
+        {% if(result.registerData.recordset.length === 0)%}
+
+
+        <h3 class="govuk-heading-m">
+            Nothing found for "{{data['search']}}"
+
+            {% if data['status'] === undefined %}
+            {% elseif data['status'] == 'Granted,Pending' %}
+            with a status of "active or pending"
+            {% elseif data['status'] == 'Pending' %}
+            with a status of "pending"
+            {% elseif data['status'] == 'Granted' %}
+            with a status of "active"
+            {% endif %}
+
+        </h3>
+        <p class="govuk-body">Try searching for something else. You can search by business name, trading names, account
+            numbers and domain names.</p>
+
+        {%else%} 
+        <hr class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
+        {% endif %}
+
+
+        {% for i in result.registerData.recordset %}
+
+        {% set accountNumber = 0%}
+
+        {% if accountNumber !== i.accountno %}
+        {% set accountNumber = i.accountno%}
+
+        <div class="gc-search-result">
+            <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
+                <a href="/{{version}}/operator/detail/{{i.accountno}}">
+                    <!-- <span class="gc-pull-right"><span class="govuk-tag"> {% if i.determinationstatus === 'Granted' %}
+                            Active
+                            {% else %}
+                            {{i.determinationstatus}}
+                            {% endif %}</span></span>--> {{i.account}}</a> 
+
+            </h3>
+            <p class="govuk-body-s govuk-!-margin-bottom-2">Account {{i.accountno}} </p>
+            {% set hasTN = false %}
+            {% for tn in result.tradingNames.recordset %}
+            {% if tn.AccountNo === accountNumber %}
+
+
+            {% set hasTN = true %}
+
+            {% endif %}
+
+            {% endfor %}
+            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3 ">Trading names</p>
+            {% endif %}
+            <ul class="gc-search-result--tag">
+
+
+
+
+                {% for tn in result.tradingNames.recordset %}
+                {% if tn.AccountNo === accountNumber %}
+
+                <li>{{tn.TradingName}}</li>
+
+
+                {% endif %}
+
+                {% endfor %}
+            </ul>
+
+            {% set hasTN = false %}
+            {% for tn in result.domainNames.recordset %}
+            {% if tn.AccountNumber === accountNumber %}
+
+
+            {% set hasTN = true %}
+
+            {% endif %}
+
+            {% endfor %}
+            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3">Domain names</p>
+            {% endif %}
+
+            <ul class="gc-search-result--tag">
+
+
+
+                {% for tn in result.domainNames.recordset %}
+                {% if tn.AccountNumber === accountNumber %}
+                <li>{{tn.DomainName}}</li>
+                {% else %}
+
+                {% set hasDN = true %}
+                {% endif %}
+
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+        <p class="govuk-body">Download a file containing these results</p>
+        <a href="" role="button" class="govuk-button govuk-button--secondary">
+            CSV
+        </a>
+        <a href="" role="button" class="govuk-button govuk-button--secondary">
+            ODS
+        </a>
+
+        <p class="govuk-body">
+            <a href="/{{version}}/operator/summary" class="govuk-link">
+                Download the full register
+            </a></p>
+
+    </div>
+
+    {% endif%}
+   
+</div>
+
+
+{% endblock %}

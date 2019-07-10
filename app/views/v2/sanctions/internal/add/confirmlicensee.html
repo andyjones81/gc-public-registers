@@ -1,0 +1,51 @@
+<!-- {% extends "admin_layout_int.html" %} -->
+{% extends "layout_fullwidth_internal.html" %}
+{% block pageTitle %}
+What is the licence number?
+{% endblock %}
+{% block beforeContent %}
+<a href="/{{version}}/sanctions/internal/add/licensee" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+{% set datax = result.registerData.recordset[0] %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+            <span class="govuk-caption-l">Regulatory {{data['reg-type'] | lower }}</span>
+            <h1 class="govuk-heading-l">Is this the correct licensee?</h1>
+
+            <div class="govuk-inset-text">
+{% if datax === undefined %}
+No details found for that account number. <a
+    href="/{{version}}/sanctions/internal/add/licensee">Search again</a>.</p>
+{% else %}
+ Account type: <span class="govuk-!-font-weight-bold">{{datax.RemoteStatus}}</span>
+                <br />Account number: <span class="govuk-!-font-weight-bold">{{datax.AccountNo}}</span>
+                <br />Account name: <span class="govuk-!-font-weight-bold">{{datax.Account}}</span></div>
+
+                <p class="govuk-body">If this isn't the correct licensee, <a
+                    href="/{{version}}/sanctions/internal/add/licensee">search again</a>.</p>
+
+                    <button type="submit" class="govuk-button">
+                            It's correct, continue
+                        </button>
+{% endif %}
+
+                       
+
+        
+
+
+        </form>
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}
