@@ -35,6 +35,8 @@ checkFiles()
 //   runGulp()
 // }
 
+runGulp()
+
 // Warn if node_modules folder doesn't exist
 function checkFiles () {
   const nodeModulesExists = fs.existsSync(path.join(__dirname, '/node_modules'))
