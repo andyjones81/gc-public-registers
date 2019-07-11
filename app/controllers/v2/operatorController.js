@@ -3,6 +3,7 @@ const _ = require('lodash');
 const mobileDetect = require('mobile-detect');
 const sql = require("mssql");
 const winston = require('winston')
+var premisesEnabled = process.env.EnablePremises;
 
 exports.operator_summary_get = function (req, res) {
     const d = require('../../data/register.json')
@@ -328,7 +329,8 @@ exports.operator_detail_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 } else {
                     res.render(version + '/operator/detail', {
@@ -337,7 +339,8 @@ exports.operator_detail_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 }
             } else {
@@ -352,7 +355,8 @@ exports.operator_detail_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 } else {
 
@@ -362,7 +366,8 @@ exports.operator_detail_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 }
             }
@@ -430,7 +435,8 @@ exports.operator_tradingnames_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 } else {
                     res.render(version + '/operator/detail', {
@@ -439,7 +445,8 @@ exports.operator_tradingnames_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 }
             } else {
@@ -454,7 +461,8 @@ exports.operator_tradingnames_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 } else {
 
@@ -464,7 +472,8 @@ exports.operator_tradingnames_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 }
             }
@@ -531,7 +540,8 @@ exports.operator_domainnames_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 } else {
                     res.render(version + '/operator/detail', {
@@ -540,7 +550,8 @@ exports.operator_domainnames_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 }
             } else {
@@ -555,7 +566,8 @@ exports.operator_domainnames_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 } else {
 
@@ -565,7 +577,8 @@ exports.operator_domainnames_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 }
             }
@@ -619,7 +632,8 @@ exports.operator_sanctions_get = function (req, res) {
         res.render(version + '/operator/detail', {
             version,
             emptySearch,
-            detailView
+            detailView,
+            premisesEnabled
         })
     } else {
         registerData = getRegisterData(accountNo);
@@ -633,7 +647,8 @@ exports.operator_sanctions_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 } else {
                     res.render(version + '/operator/detail', {
@@ -642,7 +657,8 @@ exports.operator_sanctions_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 }
             } else {
@@ -657,7 +673,8 @@ exports.operator_sanctions_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 } else {
 
@@ -667,7 +684,8 @@ exports.operator_sanctions_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 }
             }
@@ -721,7 +739,8 @@ exports.operator_settlements_get = function (req, res) {
         res.render(version + '/operator/detail', {
             version,
             emptySearch,
-            detailView
+            detailView,
+            premisesEnabled
         })
     } else {
         registerData = getRegisterData(accountNo);
@@ -735,7 +754,8 @@ exports.operator_settlements_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 } else {
                     res.render(version + '/operator/detail', {
@@ -744,7 +764,8 @@ exports.operator_settlements_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 }
             } else {
@@ -759,7 +780,8 @@ exports.operator_settlements_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 } else {
 
@@ -769,7 +791,8 @@ exports.operator_settlements_get = function (req, res) {
                         result,
                         emptySearch,
                         feCHData,
-                        detailView
+                        detailView,
+                        premisesEnabled
                     })
                 }
             }
@@ -785,100 +808,110 @@ exports.operator_premises_get = function (req, res) {
 
     // console.log('Details')
 
-    var query = req.session.data['search']
-    var accountNo = req.params.id;
-
-    var r = req.session.data['ab']
-    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
-    var md = new mobileDetect(req.headers['user-agent']);
-
-    let chData = "";
-    let feCHData = {};
-    var detailView = process.env.DetailView;
-    if (process.env.EnableCh === 'true') {
-
-        var chNumber = '05310821'
-
-        var auth = "Basic " + new Buffer(process.env.CompaniesHouseAPIKey + ":").toString("base64");
-        var request = require('request');
-        var url = "https://api.companieshouse.gov.uk/company/" + chNumber + "/officers";
-
-        request.get({
-            url: url,
-            headers: {
-                "Authorization": auth
-            }
-        }, function (error, response, body) {
-            feCHData = JSON.parse(response.body)
-            console.log(feCHData)
-        });
-
-    }
-
-
-    var emptySearch = 'false';
-    let registerData = "";
-
-    if (query === '') {
-        emptySearch = 'true';
-        res.render(version + '/operator/detail', {
-            version,
-            emptySearch,
-            detailView
-        })
+    if (premisesEnabled !== 'true') {
+        res.redirect('/denied')
     } else {
-        registerData = getRegisterData(accountNo);
 
-        registerData.then(result => {
-            if (r === 'A') {
-                if (md.mobile() !== null) {
-                    res.render(version + '/operator/detail-mob', {
-                        version,
-                        registerData,
-                        result,
-                        emptySearch,
-                        feCHData,
-                        detailView
-                    })
-                } else {
-                    res.render(version + '/operator/detail', {
-                        version,
-                        registerData,
-                        result,
-                        emptySearch,
-                        feCHData,
-                        detailView
-                    })
+        var query = req.session.data['search']
+        var accountNo = req.params.id;
+
+        var r = req.session.data['ab']
+        const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+        var md = new mobileDetect(req.headers['user-agent']);
+
+        let chData = "";
+        let feCHData = {};
+        var detailView = process.env.DetailView;
+        if (process.env.EnableCh === 'true') {
+
+            var chNumber = '05310821'
+
+            var auth = "Basic " + new Buffer(process.env.CompaniesHouseAPIKey + ":").toString("base64");
+            var request = require('request');
+            var url = "https://api.companieshouse.gov.uk/company/" + chNumber + "/officers";
+
+            request.get({
+                url: url,
+                headers: {
+                    "Authorization": auth
                 }
-            } else {
+            }, function (error, response, body) {
+                feCHData = JSON.parse(response.body)
+                console.log(feCHData)
+            });
+
+        }
 
 
+        var emptySearch = 'false';
+        let registerData = "";
 
-                if (md.mobile() !== null) {
+        if (query === '') {
+            emptySearch = 'true';
+            res.render(version + '/operator/detail', {
+                version,
+                emptySearch,
+                detailView,
+                premisesEnabled
+            })
+        } else {
+            registerData = getRegisterData(accountNo);
 
-                    res.render(version + '/operator/detail-mob', {
-                        version,
-                        registerData,
-                        result,
-                        emptySearch,
-                        feCHData,
-                        detailView
-                    })
+            registerData.then(result => {
+                if (r === 'A') {
+                    if (md.mobile() !== null) {
+                        res.render(version + '/operator/detail-mob', {
+                            version,
+                            registerData,
+                            result,
+                            emptySearch,
+                            feCHData,
+                            detailView,
+                            premisesEnabled
+                        })
+                    } else {
+                        res.render(version + '/operator/detail', {
+                            version,
+                            registerData,
+                            result,
+                            emptySearch,
+                            feCHData,
+                            detailView,
+                            premisesEnabled
+                        })
+                    }
                 } else {
 
-                    res.render(version + '/operator/premises', {
-                        version,
-                        registerData,
-                        result,
-                        emptySearch,
-                        feCHData,
-                        detailView
-                    })
-                }
-            }
 
-        }).catch(err => {
-            // console.log(err);
-        });
+
+                    if (md.mobile() !== null) {
+
+                        res.render(version + '/operator/detail-mob', {
+                            version,
+                            registerData,
+                            result,
+                            emptySearch,
+                            feCHData,
+                            detailView,
+                            premisesEnabled
+                        })
+                    } else {
+
+                        res.render(version + '/operator/premises', {
+                            version,
+                            registerData,
+                            result,
+                            emptySearch,
+                            feCHData,
+                            detailView,
+                            premisesEnabled
+                        })
+                    }
+                }
+
+            }).catch(err => {
+                // console.log(err);
+            });
+        }
     }
 }

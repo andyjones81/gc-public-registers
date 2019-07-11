@@ -134,12 +134,15 @@
                 </li>
 
                 
-                <!-- <li class="app-subnav__section-item">
-                    <span class="gc-pill">0</span>
+                {% if result.premises.recordset.length > 0 and premisesEnabled === 'true' %}
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.premises.recordset.length | numeral("0,0") }}</span>
                     <a class="app-subnav__link govuk-link"
                         href="/{{version}}/operator/premises/{{olDetail.AccountNo}}">Premises</a>
                 </li>
+                {% endif %}
 
+                <!--
                 <li class="app-subnav__section-item">
                         <span class="gc-pill">0</span>
                         <a class="app-subnav__link govuk-link"
@@ -164,7 +167,8 @@
            
 
             {% if result.notes.recordset.length === 0 %}
-            <p class="govuk-body">None recorded</p>
+            <div class="govuk-inset-text">
+                <p class="govuk-body">None recorded</p></div>
             {% else %}
             <div class="govuk-inset-text">
                 <div class="gc-reg-action govuk-body">

@@ -104,50 +104,48 @@
 
             <ul class="app-subnav__section">
 
-                    <li class="app-subnav__section-item">
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
-                        </li>
-        
-                        <li class="app-subnav__section-item ">
-                            <span class="gc-pill">{{result.tradingNames.recordset.length}}</span>
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/tradingnames/{{olDetail.AccountNo}}">Trading names</a>
-                        </li>
-        
-                        <li class="app-subnav__section-item  app-subnav__section-item--current">
-                            <span class="gc-pill">{{result.domainNames.recordset.length}}</span>
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/domainnames/{{olDetail.AccountNo}}">Domain names</a>
-                        </li>
-        
-                        <li class="app-subnav__section-item">
-                            <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/sanctions/{{olDetail.AccountNo}}">Sanctions</a>
-                        </li>
-        
-                        <li class="app-subnav__section-item">
-                            <span class="gc-pill">{{result.notes.recordset.length}}</span>
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/settlements/{{olDetail.AccountNo}}">Settlements</a>
-                        </li>
-        
-                        
-                        {% if result.premises.recordset.length > 0 and premisesEnabled === 'true' %}
-                        <li class="app-subnav__section-item">
-                            <span class="gc-pill">{{result.premises.recordset.length | numeral("0,0") }}</span>
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/premises/{{olDetail.AccountNo}}">Premises</a>
-                        </li>
-                        {% endif %}
-        
-                        <!--
-                        <li class="app-subnav__section-item">
-                                <span class="gc-pill">0</span>
-                                <a class="app-subnav__link govuk-link"
-                                    href="/{{version}}/operator/people/{{olDetail.AccountNo}}">People</a>
-                            </li> -->
+                <li class="app-subnav__section-item">
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
+                </li>
+
+                <li class="app-subnav__section-item ">
+                    <span class="gc-pill">{{result.tradingNames.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/tradingnames/{{olDetail.AccountNo}}">Trading names</a>
+                </li>
+
+                <li class="app-subnav__section-item ">
+                    <span class="gc-pill">{{result.domainNames.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/domainnames/{{olDetail.AccountNo}}">Domain names</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/sanctions/{{olDetail.AccountNo}}">Sanctions</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.notes.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/settlements/{{olDetail.AccountNo}}">Settlements</a>
+                </li>
+
+                {% if result.premises.recordset.length > 0 and premisesEnabled === 'true' %}
+                <li class="app-subnav__section-item app-subnav__section-item--current">
+                    <span class="gc-pill">{{result.premises.recordset.length | numeral("0,0") }}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/premises/{{olDetail.AccountNo}}">Premises</a>
+                </li>
+                {% endif %}
+                <!-- 
+                <li class="app-subnav__section-item">
+                        <span class="gc-pill">0</span>
+                        <a class="app-subnav__link govuk-link"
+                            href="/{{version}}/operator/people/{{olDetail.AccountNo}}">People</a>
+                    </li> -->
 
             </ul>
 
@@ -158,38 +156,44 @@
     <div class="govuk-grid-column-three-quarters">
 
         <h2 class="govuk-heading-m">
-            Domain names
+            Premises
         </h2>
 
-        {% if result.domainNames.recordset.length === 0 %}
 
-        <p class="govuk-body">No domain names</p>
-        {% endif %}
+        {% if result.premises.recordset.length === 0 %}
 
+        <p class="govuk-body">No premises</p>
 
-        {% for status, i in result.domainNames.recordset | groupby ('AccountStatus') %}
+        {%else%}
 
         <table class="govuk-table">
 
             <thead class="govuk-table__head">
-                <tr class="govuk-table__row">
-                    <th class="govuk-table__header" scope="col">Name</th>
-                    <th class="govuk-table__header gc-text-right" scope="col">Status</th>
+                <tr class="govuk-table__row  govuk-body-s">
+                    <th class="govuk-table__header" scope="col">Address</th>
+                    <th class="govuk-table__header" scope="col">Authority</th>
+                    <th class="govuk-table__header" scope="col">Activity</th>
                 </tr>
             </thead>
-            <tbody class="govuk-table__body">
-                {% for name in i %}
+            <tbody class="govuk-table__body govuk-body-s">
+                {% for  i in result.premises.recordset %}
+
+
+
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell" scope="row">{{name.DomainName}}</td>
-                    <td class="govuk-table__cell gc-text-right" scope="row">{{name.AccountStatus}}</td>
+                    <td class="govuk-table__cell" scope="row">{{i.addressline1}}<br>{{i.addressline2}},
+                        {{i.city | capitalize}}, {{i.postcode}}</td>
+                    <td class="govuk-table__cell" scope="row">{{i.localauthority if i.localauthority !== 'NULL' else 'NOT AVAILABLE'}}</td>
+                    <td class="govuk-table__cell" scope="row">{{i.activity if i.activity !== 'NULL' else 'NOT AVAILABLE'}}</td>
                 </tr>
+
+
+
                 {% endfor %}
+
             </tbody>
         </table>
-
-        {% endfor %}
-
-
+        {% endif %}
     </div>
 </div>
 

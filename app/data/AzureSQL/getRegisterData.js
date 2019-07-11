@@ -17,6 +17,10 @@ async function getRegisterData(query) {
     let no = getNotes(query);
     let ac = getDatedActivites(query);
 
+
+    let prem = getPremises(query);
+    
+
     sqlResult['registerData'] = await q;
     sqlResult['tradingNames'] = await tn;
     sqlResult['domainNames'] = await dn;
@@ -27,6 +31,10 @@ async function getRegisterData(query) {
     sqlResult['notes'] = await no;
     sqlResult['datedactivities'] = await ac;
 
+
+    sqlResult['premises'] = await prem;
+    
+    
     sql.close()
     return sqlResult;
 }
@@ -57,6 +65,15 @@ async function getOLDomainNames(query) {
     try {
 
         return await sql.query("SELECT * from AllDomainNames where accountnumber = " + query + " order by AccountStatus, DomainName asc");
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function getPremises(query) {
+    try {
+
+        return await sql.query("SELECT * from addresslist where accountno = " + query + " order by localauthority asc");
     } catch (err) {
         console.log(err);
     }
