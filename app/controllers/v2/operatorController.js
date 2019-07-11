@@ -284,25 +284,25 @@ exports.operator_detail_get = function (req, res) {
 
     let chData = "";
     let feCHData = {};
-
+    var detailView = process.env.DetailView;
     if (process.env.EnableCh === 'true') {
 
         var chNumber = '05310821'
-      
+
         var auth = "Basic " + new Buffer(process.env.CompaniesHouseAPIKey + ":").toString("base64");
         var request = require('request');
-        var url = "https://api.companieshouse.gov.uk/company/"+chNumber+"/officers";
-        
-        request.get( {
-            url : url,
-            headers : {
-                "Authorization" : auth
+        var url = "https://api.companieshouse.gov.uk/company/" + chNumber + "/officers";
+
+        request.get({
+            url: url,
+            headers: {
+                "Authorization": auth
             }
-          }, function(error, response, body) {
-            feCHData = JSON.parse(response.body) 
-            console.log(feCHData)       
-          } );
-               
+        }, function (error, response, body) {
+            feCHData = JSON.parse(response.body)
+            console.log(feCHData)
+        });
+
     }
 
 
@@ -313,7 +313,8 @@ exports.operator_detail_get = function (req, res) {
         emptySearch = 'true';
         res.render(version + '/operator/detail', {
             version,
-            emptySearch
+            emptySearch,
+            detailView
         })
     } else {
         registerData = getRegisterData(accountNo);
@@ -326,7 +327,8 @@ exports.operator_detail_get = function (req, res) {
                         registerData,
                         result,
                         emptySearch,
-                        feCHData
+                        feCHData,
+                        detailView
                     })
                 } else {
                     res.render(version + '/operator/detail', {
@@ -334,7 +336,8 @@ exports.operator_detail_get = function (req, res) {
                         registerData,
                         result,
                         emptySearch,
-                        feCHData
+                        feCHData,
+                        detailView
                     })
                 }
             } else {
@@ -348,7 +351,8 @@ exports.operator_detail_get = function (req, res) {
                         registerData,
                         result,
                         emptySearch,
-                        feCHData
+                        feCHData,
+                        detailView
                     })
                 } else {
 
@@ -357,7 +361,8 @@ exports.operator_detail_get = function (req, res) {
                         registerData,
                         result,
                         emptySearch,
-                        feCHData
+                        feCHData,
+                        detailView
                     })
                 }
             }
