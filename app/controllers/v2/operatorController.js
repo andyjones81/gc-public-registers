@@ -372,3 +372,513 @@ exports.operator_detail_get = function (req, res) {
         });
     }
 }
+
+exports.operator_tradingnames_get = function (req, res) {
+
+    // console.log('Details')
+
+    var query = req.session.data['search']
+    var accountNo = req.params.id;
+
+    var r = req.session.data['ab']
+    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+    var md = new mobileDetect(req.headers['user-agent']);
+
+    let chData = "";
+    let feCHData = {};
+    var detailView = process.env.DetailView;
+    if (process.env.EnableCh === 'true') {
+
+        var chNumber = '05310821'
+
+        var auth = "Basic " + new Buffer(process.env.CompaniesHouseAPIKey + ":").toString("base64");
+        var request = require('request');
+        var url = "https://api.companieshouse.gov.uk/company/" + chNumber + "/officers";
+
+        request.get({
+            url: url,
+            headers: {
+                "Authorization": auth
+            }
+        }, function (error, response, body) {
+            feCHData = JSON.parse(response.body)
+            console.log(feCHData)
+        });
+
+    }
+
+
+    var emptySearch = 'false';
+    let registerData = "";
+
+    if (query === '') {
+        emptySearch = 'true';
+        res.render(version + '/operator/detail', {
+            version,
+            emptySearch,
+            detailView
+        })
+    } else {
+        registerData = getRegisterData(accountNo);
+
+        registerData.then(result => {
+            if (r === 'A') {
+                if (md.mobile() !== null) {
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                } else {
+                    res.render(version + '/operator/detail', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                }
+            } else {
+
+
+
+                if (md.mobile() !== null) {
+
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                } else {
+
+                    res.render(version + '/operator/tradingnames', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                }
+            }
+
+        }).catch(err => {
+            // console.log(err);
+        });
+    }
+}
+exports.operator_domainnames_get = function (req, res) {
+
+    // console.log('Details')
+
+    var query = req.session.data['search']
+    var accountNo = req.params.id;
+
+    var r = req.session.data['ab']
+    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+    var md = new mobileDetect(req.headers['user-agent']);
+
+    let chData = "";
+    let feCHData = {};
+    var detailView = process.env.DetailView;
+    if (process.env.EnableCh === 'true') {
+
+        var chNumber = '05310821'
+
+        var auth = "Basic " + new Buffer(process.env.CompaniesHouseAPIKey + ":").toString("base64");
+        var request = require('request');
+        var url = "https://api.companieshouse.gov.uk/company/" + chNumber + "/officers";
+
+        request.get({
+            url: url,
+            headers: {
+                "Authorization": auth
+            }
+        }, function (error, response, body) {
+            feCHData = JSON.parse(response.body)
+            console.log(feCHData)
+        });
+
+    }
+
+
+    var emptySearch = 'false';
+    let registerData = "";
+
+    if (query === '') {
+        emptySearch = 'true';
+        res.render(version + '/operator/detail', {
+            version,
+            emptySearch,
+            detailView
+        })
+    } else {
+        registerData = getRegisterData(accountNo);
+
+        registerData.then(result => {
+            if (r === 'A') {
+                if (md.mobile() !== null) {
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                } else {
+                    res.render(version + '/operator/detail', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                }
+            } else {
+
+
+
+                if (md.mobile() !== null) {
+
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                } else {
+
+                    res.render(version + '/operator/domainnames', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                }
+            }
+
+        }).catch(err => {
+            // console.log(err);
+        });
+    }
+}
+
+exports.operator_sanctions_get = function (req, res) {
+
+    // console.log('Details')
+
+    var query = req.session.data['search']
+    var accountNo = req.params.id;
+
+    var r = req.session.data['ab']
+    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+    var md = new mobileDetect(req.headers['user-agent']);
+
+    let chData = "";
+    let feCHData = {};
+    var detailView = process.env.DetailView;
+    if (process.env.EnableCh === 'true') {
+
+        var chNumber = '05310821'
+
+        var auth = "Basic " + new Buffer(process.env.CompaniesHouseAPIKey + ":").toString("base64");
+        var request = require('request');
+        var url = "https://api.companieshouse.gov.uk/company/" + chNumber + "/officers";
+
+        request.get({
+            url: url,
+            headers: {
+                "Authorization": auth
+            }
+        }, function (error, response, body) {
+            feCHData = JSON.parse(response.body)
+            console.log(feCHData)
+        });
+
+    }
+
+
+    var emptySearch = 'false';
+    let registerData = "";
+
+    if (query === '') {
+        emptySearch = 'true';
+        res.render(version + '/operator/detail', {
+            version,
+            emptySearch,
+            detailView
+        })
+    } else {
+        registerData = getRegisterData(accountNo);
+
+        registerData.then(result => {
+            if (r === 'A') {
+                if (md.mobile() !== null) {
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                } else {
+                    res.render(version + '/operator/detail', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                }
+            } else {
+
+
+
+                if (md.mobile() !== null) {
+
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                } else {
+
+                    res.render(version + '/operator/sanctions', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                }
+            }
+
+        }).catch(err => {
+            // console.log(err);
+        });
+    }
+}
+
+exports.operator_settlements_get = function (req, res) {
+
+    // console.log('Details')
+
+    var query = req.session.data['search']
+    var accountNo = req.params.id;
+
+    var r = req.session.data['ab']
+    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+    var md = new mobileDetect(req.headers['user-agent']);
+
+    let chData = "";
+    let feCHData = {};
+    var detailView = process.env.DetailView;
+    if (process.env.EnableCh === 'true') {
+
+        var chNumber = '05310821'
+
+        var auth = "Basic " + new Buffer(process.env.CompaniesHouseAPIKey + ":").toString("base64");
+        var request = require('request');
+        var url = "https://api.companieshouse.gov.uk/company/" + chNumber + "/officers";
+
+        request.get({
+            url: url,
+            headers: {
+                "Authorization": auth
+            }
+        }, function (error, response, body) {
+            feCHData = JSON.parse(response.body)
+            console.log(feCHData)
+        });
+
+    }
+
+
+    var emptySearch = 'false';
+    let registerData = "";
+
+    if (query === '') {
+        emptySearch = 'true';
+        res.render(version + '/operator/detail', {
+            version,
+            emptySearch,
+            detailView
+        })
+    } else {
+        registerData = getRegisterData(accountNo);
+
+        registerData.then(result => {
+            if (r === 'A') {
+                if (md.mobile() !== null) {
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                } else {
+                    res.render(version + '/operator/detail', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                }
+            } else {
+
+
+
+                if (md.mobile() !== null) {
+
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                } else {
+
+                    res.render(version + '/operator/settlements', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                }
+            }
+
+        }).catch(err => {
+            // console.log(err);
+        });
+    }
+}
+
+
+exports.operator_premises_get = function (req, res) {
+
+    // console.log('Details')
+
+    var query = req.session.data['search']
+    var accountNo = req.params.id;
+
+    var r = req.session.data['ab']
+    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+    var md = new mobileDetect(req.headers['user-agent']);
+
+    let chData = "";
+    let feCHData = {};
+    var detailView = process.env.DetailView;
+    if (process.env.EnableCh === 'true') {
+
+        var chNumber = '05310821'
+
+        var auth = "Basic " + new Buffer(process.env.CompaniesHouseAPIKey + ":").toString("base64");
+        var request = require('request');
+        var url = "https://api.companieshouse.gov.uk/company/" + chNumber + "/officers";
+
+        request.get({
+            url: url,
+            headers: {
+                "Authorization": auth
+            }
+        }, function (error, response, body) {
+            feCHData = JSON.parse(response.body)
+            console.log(feCHData)
+        });
+
+    }
+
+
+    var emptySearch = 'false';
+    let registerData = "";
+
+    if (query === '') {
+        emptySearch = 'true';
+        res.render(version + '/operator/detail', {
+            version,
+            emptySearch,
+            detailView
+        })
+    } else {
+        registerData = getRegisterData(accountNo);
+
+        registerData.then(result => {
+            if (r === 'A') {
+                if (md.mobile() !== null) {
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                } else {
+                    res.render(version + '/operator/detail', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                }
+            } else {
+
+
+
+                if (md.mobile() !== null) {
+
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                } else {
+
+                    res.render(version + '/operator/premises', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView
+                    })
+                }
+            }
+
+        }).catch(err => {
+            // console.log(err);
+        });
+    }
+}

@@ -1,0 +1,43 @@
+<ul class="app-subnav__section">
+
+        <li class="app-subnav__section-item">
+            <a class="app-subnav__link govuk-link"
+                href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
+        </li>
+
+        <li class="app-subnav__section-item   app-subnav__section-item--current">
+            <span class="gc-pill">{{result.tradingNames.recordset.length}}</span>
+            <a class="app-subnav__link govuk-link"
+                href="/{{version}}/operator/tradingnames/{{olDetail.AccountNo}}">Trading names</a>
+        </li>
+
+        <li class="app-subnav__section-item">
+            <span class="gc-pill">{{result.domainNames.recordset.length}}</span>
+            <a class="app-subnav__link govuk-link"
+                href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Domain names</a>
+        </li>
+
+        <li class="app-subnav__section-item">
+            <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
+            <a class="app-subnav__link govuk-link"
+                href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Sanctions</a>
+        </li>
+
+        <li class="app-subnav__section-item">
+            <span class="gc-pill">{{result.notes.recordset.length}}</span>
+            <a class="app-subnav__link govuk-link"
+                href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Settlements</a>
+        </li>
+
+        <li class="app-subnav__section-item">
+            <span class="gc-pill">0</span>
+            <a class="app-subnav__link govuk-link"
+                href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Premises</a>
+        </li>
+
+        <li class="app-subnav__section-item">
+            <span class="gc-pill">0</span>
+            <a class="app-subnav__link govuk-link" href="/components/breadcrumbs/">People</a>
+        </li>
+
+    </ul>

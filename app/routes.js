@@ -181,6 +181,11 @@ router.get('/' + version + '/operator/detail/:id', operator_Controller.operator_
 router.get('/' + version + '/operator/api', operator_Controller.operator_api_get);
 router.get('/' + version + '/operator/download', operator_Controller.operator_download_get);
 
+router.get('/' + version + '/operator/tradingnames/:id', operator_Controller.operator_tradingnames_get);
+router.get('/' + version + '/operator/domainnames/:id', operator_Controller.operator_domainnames_get);
+router.get('/' + version + '/operator/sanctions/:id', operator_Controller.operator_sanctions_get);
+router.get('/' + version + '/operator/settlements/:id', operator_Controller.operator_settlements_get);
+router.get('/' + version + '/operator/premises/:id', operator_Controller.operator_premises_get);
 
 // Personal
 router.get('/' + version + '/personal/summary', personal_Controller.personal_summary_get);
