@@ -15,6 +15,7 @@ async function getRegisterData(query) {
     let newlics = getNewLicences(query);
     let newacts = getNewLicenceActivities(query);
     let no = getNotes(query);
+    let ac = getDatedActivites(query);
 
     sqlResult['registerData'] = await q;
     sqlResult['tradingNames'] = await tn;
@@ -24,6 +25,7 @@ async function getRegisterData(query) {
     sqlResult['newLicenceInfo'] = await newlics;
     sqlResult['newLicenceActivityInfo'] = await newacts;
     sqlResult['notes'] = await no;
+    sqlResult['datedactivities'] = await ac;
 
     sql.close()
     return sqlResult;
@@ -67,6 +69,17 @@ async function getOLActivities(query) {
     } catch (err) {
 
         // console.log(err);
+    }
+}
+
+async function getDatedActivites(query) {
+
+    console.log('get activities by date')
+    try {
+        return await sql.query("SELECT * from ActivitiesByDate where accountid = " + query + "  order by minofstart desc, maxofend desc");
+    } catch (err) {
+
+        console.log(err);
     }
 }
 

@@ -105,32 +105,38 @@
             <ul class="app-subnav__section">
 
                 <li class="app-subnav__section-item  app-subnav__section-item--current">
-                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
                 </li>
 
                 <li class="app-subnav__section-item">
                     <span class="gc-pill">{{result.tradingNames.recordset.length}}</span>
-                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Trading names</a>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Trading names</a>
                 </li>
 
                 <li class="app-subnav__section-item">
                     <span class="gc-pill">{{result.domainNames.recordset.length}}</span>
-                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Domain names</a>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Domain names</a>
                 </li>
 
                 <li class="app-subnav__section-item">
                     <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
-                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Sanctions</a>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Sanctions</a>
                 </li>
 
                 <li class="app-subnav__section-item">
                     <span class="gc-pill">{{result.notes.recordset.length}}</span>
-                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Settlements</a>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Settlements</a>
                 </li>
 
                 <li class="app-subnav__section-item">
                     <span class="gc-pill">0</span>
-                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Premises</a>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Premises</a>
                 </li>
 
                 <li class="app-subnav__section-item">
@@ -149,9 +155,7 @@
     <div class="govuk-grid-column-three-quarters">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-                <h2 class="govuk-heading-m">
-                    Licence summary
-                </h2>
+
 
 
 
@@ -164,12 +168,11 @@
                 </div>
                 {% endif %}
 
-
-                {% for licence in result.newLicenceInfo.recordset %}
-
+              
 
 
-
+                <!--    Option 1        -->
+                <!-- {% for licence in result.newLicenceInfo.recordset %}
 
                 <div class="gc-search-result">
                     <span class="govuk-tag {{licence.Status | lower}} gc-pull-right">
@@ -177,74 +180,180 @@
                     </span>
 
                     <span class="govuk-caption-s">{{licence.LicenceNo}}</span>
-                    <h3 class="govuk-heading-s govuk-!-margin-bottom-2"> {{ licence.Type }}</h3>
-
-                    {% if licence.End !== null %}
-
-                    <p class="govuk-body">Licence held between {{licence.Start | date('DD MMMM YYYY')}}
-                        and {{licence.End | date('DD MMMM YYYY')}}</p>
+                    <h3 class="govuk-heading-m govuk-!-margin-bottom-2"> {{ licence.Type }}</h3>
 
                     <details class="govuk-details govuk-!-margin-bottom-0">
                         <summary class="govuk-details__summary">
                             <span class="govuk-details__summary-text">
-                                Activities currently held on this licence
+                                Activites
                             </span>
                         </summary>
                         <div class="govuk-details__text">
-                            <ul class="govuk-list">
 
-                                {% for item in result.newLicenceActivityInfo.recordset %}
+                            <table class="govuk-table">
 
-                                {% if item.licenceid === licence.LicenceId %}
-                                <li class="govuk-body-s">
-                                    {{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}
-                                </li>
-                                {% endif %}
+                                <thead class="govuk-table__head">
+                                    <tr class="govuk-table__row">
+                                        <th class="govuk-table__header" scope="col">Activity</th>
+                                        <th class="govuk-table__header govuk-table__header--numeric gc-text-right"
+                                            scope="col">Held from</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="govuk-table__body govuk-body-s">
+                                    {% for act in result.datedactivities.recordset %}
 
+                                    {% if licence.Type == 'Remote' %}
 
-                                {% endfor %}
+                                    {% if '- R' in act.Product %}
+                                    {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
+                                    <tr class="govuk-table__row">
+                                        <th class="govuk-table__header" scope="row">
+                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
+                                        </th>
+                                        <td class="govuk-table__cell govuk-table__cell--numeric">
+                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
+                                        </td>
 
-                            </ul>
+                                    </tr>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endif %}
+
+                                    {% if licence.Type == 'Non-Remote' %}
+
+                                    {% if '- N' in act.Product %}
+                                    {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
+                                    <tr class="govuk-table__row">
+                                        <th class="govuk-table__header" scope="row">
+                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
+                                        </th>
+                                        <td class="govuk-table__cell govuk-table__cell--numeric">
+                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
+                                        </td>
+
+                                    </tr>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endif %}
+
+                                    {% if licence.Type == 'Ancillary Remote' %}
+
+                                    {% if '- A' in act.Product %}
+                                    {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
+                                    <tr class="govuk-table__row">
+                                        <th class="govuk-table__header" scope="row">
+                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
+                                        </th>
+                                        <td class="govuk-table__cell govuk-table__cell--numeric">
+                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
+                                        </td>
+
+                                    </tr>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endif %}
+
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </details>
-
-                    {% else %}
-                    <p class="govuk-body">Licence held from
-                        {{licence.AnniversaryDate | date('DD MMMM YYYY')}}
-                    </p>
-                    <details class="govuk-details govuk-!-margin-bottom-0">
-                        <summary class="govuk-details__summary">
-                            <span class="govuk-details__summary-text">
-                                Activities currently held on this licence
-                            </span>
-                        </summary>
-                        <div class="govuk-details__text">
-                            <ul class="govuk-list">
-
-
-
-                                {% for item in result.newLicenceActivityInfo.recordset %}
-
-                                {% if item.licenceid === licence.LicenceId %}
-                                <li class="govuk-body-s">
-                                    {{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}
-                                </li>
-                                {% endif %}
-
-
-                                {% endfor %}
-
-                            </ul>
-                        </div>
-                    </details>
-
-
-                    {% endif %}
-
 
                 </div>
 
+                {% endfor %} -->
+
+                <!--   END Option 1        -->
+
+
+                <!--    Option 2        -->
+
+                {% for licence in result.newLicenceInfo.recordset %}
+                <div class="govuk-inset-text govuk-!-margin-top-0">
+                    <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+                        <p class="govuk-body gc-pull-right"><a href="#">{{ licence.Type }} licence information</a></p>
+                        {{ licence.Type }}</h2>
+                    <div class="gc-search-result gc-search-result--header">
+                        <span class="govuk-tag {{licence.Status | lower}} gc-pull-right">
+                            {{licence.Status}}
+                        </span>
+                        Licence number: {{licence.LicenceNo}}
+                    </div>
+    {% if licence.Status === 'Active' %}
+                    <table class="govuk-table">
+
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row govuk-body-s">
+                                <th class="govuk-table__header" scope="col">Licensed for</th>
+                                <th class="govuk-table__header govuk-table__header--numeric  gc-text-right" scope="col">From</th>
+                            </tr>
+                        </thead>
+
+                    
+
+                        <tbody class="govuk-table__body  govuk-body-s">
+                            {% for act in result.datedactivities.recordset %}
+
+                            {% if licence.Type == 'Remote' %}
+
+                            {% if '- R' in act.Product %}
+                            {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
+                            <tr class="govuk-table__row">
+                                    <td class="govuk-table__cell" scope="row">
+                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
+                                        </td>
+                                        <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
+                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
+                                        </td>
+
+                            </tr>
+                            {% endif %}
+                            {% endif %}
+                            {% endif %}
+                            {% if licence.Type == 'Non-Remote' %}
+
+                            {% if '- N' in act.Product %}
+                            {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
+                            <tr class="govuk-table__row">
+                                    <td class="govuk-table__cell" scope="row">
+                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
+                                        </td>
+                                        <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
+                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
+                                        </td>
+
+                            </tr>
+                            {% endif %}
+                            {% endif %}
+                            {% endif %}
+                            {% if licence.Type == 'Ancillary Remote' %}
+
+                            {% if '- A' in act.Product %}
+                            {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
+                            <tr class="govuk-table__row">
+                                    <td class="govuk-table__cell" scope="row">
+                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
+                                        </td>
+                                        <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
+                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
+                                        </td>
+
+                            </tr>
+                            {% endif %}
+                            {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+         
+                    </table>
+                    {% else %}
+                    <p>Licence acitivities no longer held</p>
+{% endif %}
+                </div>
                 {% endfor %}
+
+                <!--   END Option 1        -->
+
             </div>
         </div>
     </div>
