@@ -114,10 +114,10 @@ Register of regulatory sanctions
                     
                                 <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
                                     {% if i.remotestatus === 'Operator' %}
-                                    <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#action">
+                                    <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}">
                                         {{i.account}}</a>
                                     {% else %}
-                                    <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
+                                    <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}">
                                         {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
                                     {% endif %}
                     
@@ -149,10 +149,10 @@ Register of regulatory sanctions
                     
                                 <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
                                     {% if i.remotestatus === 'Operator' %}
-                                    <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#action">
+                                    <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}#action">
                                         {{i.account}}</a>
                                     {% else %}
-                                    <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
+                                    <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}#past-year">
                                         {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
                                     {% endif %}
                     
