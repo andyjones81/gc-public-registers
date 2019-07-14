@@ -142,4 +142,16 @@ async function getNewLicenceActivities(query) {
     }
 }
 
+async function getADR(query) {
+    try {
+
+        return await sql.query("SELECT distinct(Product), licenceid from Licenses inner join licenceactivities on Licenses.licencerowid = licenceactivities.licencerowid where accountno = " + query + " and [status] in('Active', 'Superseded', 'Revoked', 'Surrendered', 'Lapsed')");
+    } catch (err) {
+
+        console.log(err);
+    }
+}
+
+
+
 module.exports = getRegisterData;

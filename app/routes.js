@@ -186,6 +186,8 @@ router.get('/' + version + '/operator/domainnames/:id', operator_Controller.oper
 router.get('/' + version + '/operator/sanctions/:id', operator_Controller.operator_sanctions_get);
 router.get('/' + version + '/operator/settlements/:id', operator_Controller.operator_settlements_get);
 router.get('/' + version + '/operator/premises/:id', operator_Controller.operator_premises_get);
+router.get('/' + version + '/operator/company/:id', operator_Controller.operator_company_get);
+router.get('/' + version + '/operator/company-summary/:id', operator_Controller.operator_company_summary_get);
 
 // Personal
 router.get('/' + version + '/personal/summary', personal_Controller.personal_summary_get);
@@ -207,6 +209,7 @@ router.get('/' + version + '/sanctions/full', sanctions_Controller.sanctions_ful
 // Premises
 router.get('/' + version + '/premises/summary', premises_Controller.premises_summary_get);
 router.get('/' + version + '/premises/search', premises_Controller.premises_search_get);
+router.get('/' + version + '/premises/detail/:id', premises_Controller.premises_detail_get);
 
 
 // Sanctions Internal Administraton

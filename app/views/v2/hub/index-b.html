@@ -38,13 +38,38 @@ Public registers and datasets
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l govuk-!-margin-top-6">Public registers and datasets</h1>
-        <p class="govuk-body-l">We've made it easy to search and download information about licensed gambling
-          businesses,
-          individuals and regulatory actions.</p>
+        <h1 class="govuk-heading-l govuk-!-margin-top-6">Public registers</h1>
+        <p class="govuk-body-l">The public registers provide information about businesses and individuals licensed by the Gambling Commission, regulatory actions, and premises licensed for gambling purposes.</p>
 
-        <p class="govuk-body">You can also download other published datasets provided by the Gambling Commission.</p>
 
+        <div class="gc-register-search">
+            <form method="POST" action="/{{version}}/hub/results">
+              <label for="search" class="govuk-label">
+                <h2 class="govuk-heading-m  govuk-!-margin-bottom-3">
+                  Search all the registers
+                </h2>
+              </label>
+              <p class="govuk-body">Search by business or individual name, account number or address.</p>
+              <div class="inner-form govuk-!-margin-bottom-3">
+                <div class="input-field second-wrap">
+                  <input id="search" name="search" type="text" placeholder="Search" required="required" />
+                </div>
+                <div class="input-field third-wrap">
+                  <button class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
+                      registers</span>
+                    <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search"
+                      role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                      <path fill="currentColor"
+                        d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </form>
+  
+  
+          </div>
 
 
       </div>
@@ -62,8 +87,10 @@ Public registers and datasets
   <div class="govuk-grid-column-two-thirds v2">
 
     <h2 class="govuk-heading-m">
-      Registers
+      All registers
     </h2>
+    <p class="govuk-body">Search, view and download information from specific registers.</p>
+
 
     <ul class="register-themes">
       <li class="register-theme"><a class="register-theme__link" href="/{{version}}/operator/summary">
@@ -79,6 +106,12 @@ Public registers and datasets
           <p class="register-theme__description govuk-body-s">Search or download information about licensed individuals
           </p>
           <p class="register-theme__count govuk-body-s">{{23940 | numeral("0,0") }} records</p>
+        </a></li>  
+        <li class="register-theme"><a class="register-theme__link" href="/{{version}}/premises/summary">
+          <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Premises
+          </h3>
+          <p class="register-theme__description govuk-body-s">Search and view premises licensed for gambling activity</p>
+          <p class="register-theme__count govuk-body-s">{{10972 | numeral("0,0") }} records</p>
         </a></li>
       <li class="register-theme"><a class="register-theme__link" href="/{{version}}/sanctions/summary">
           <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">
@@ -86,15 +119,10 @@ Public registers and datasets
           <p class="register-theme__description govuk-body-s">Search or download details of regulatory actions</p>
           <p class="register-theme__count govuk-body-s">{{105 | numeral("0,0") }} records</p>
         </a></li>
-      <li class="register-theme"><a class="register-theme__link" href="/{{version}}/premises/summary">
-          <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">Premises
-          </h3>
-          <p class="register-theme__description govuk-body-s">Search and view premises licensed for gambling activity</p>
-          <p class="register-theme__count govuk-body-s">{{13958 | numeral("0,0") }} records</p>
-        </a></li>
+    
     </ul>
 
-    <h2 class="govuk-heading-m">
+    <!-- <h2 class="govuk-heading-m">
       Datasets
     </h2>
 
@@ -107,7 +135,7 @@ Public registers and datasets
           </p>
           <p class="register-theme__count govuk-body-s">PDF</p>
         </a></li>
-    </ul>
+    </ul> -->
   </div>
 
   <div class="govuk-grid-column-one-third">
@@ -167,7 +195,7 @@ Public registers and datasets
 </div>
 
 
-<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible gc-break">
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible gc-break govuk-!-margin-top-9">
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-third">
@@ -193,15 +221,14 @@ Public registers and datasets
   </div>
 
   <div class="govuk-grid-column-one-third">
-    <h3 class="govuk-heading-m">
-      Useful information
-    </h3>
-    <ul class="govuk-list">
-      <li>
-        <a class="govuk-link"
-          href="http://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx">Regulatory
-          action</a></li>
-    </ul>
+    
+      <h2 class="govuk-heading-m">
+          Help and support
+      </h2>
+      <p class="govuk-body">If you or someone you know is struggling with gambling activity, you can find the details
+          of <a
+              href="https://www.gamblingcommission.gov.uk/for-the-public/Safer-gambling/Getting-help-to-control-your-gambling.aspx#Organisations_that_provide_help"
+              target="_blank">organisations who can help</a> on our website.</p>
   </div>
 
 

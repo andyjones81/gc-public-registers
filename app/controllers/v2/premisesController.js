@@ -12,11 +12,48 @@ exports.premises_summary_get = function (req, res) {
 
 exports.premises_search_get = function (req, res) {
 
-var apikey = process.env.apikey
+    //Get the premises
 
-    res.render(version + '/premises/search', {
-        version,
-        apikey
-    })
+    const searchRegister = require('../../data/AzureSQL/searchPremises');
+    let query = req.session.data['searchp']
+
+    query = (query === undefined) ? " " : query;
+
+    let premisesResults = searchRegister(query);
+
+    premisesResults.then(list => {
+        
+            res.render(version + '/premises/search', {
+                version,
+                list
+            })
+        }).catch(err => {
+        console.log(err);
+    });
+
+
+}
+
+
+exports.premises_detail_get = function (req, res) {
+
+    //Get the premises
+
+    const getPremises = require('../../data/AzureSQL/getPremises');
+    let query = req.params.id;
+console.log('Get premises: '+ query)
+
+    let premisesResults = getPremises(query);
+
+    premisesResults.then(premises => {
+        
+            res.render(version + '/premises/detail', {
+                version,
+                premises
+            })
+        }).catch(err => {
+        console.log(err);
+    });
+
 
 }

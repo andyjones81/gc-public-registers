@@ -40,26 +40,22 @@ Search the operator register
 <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">
-            Gambling premises register
-        </h1>
-    </div>
 
-</div>
-
-<div class="govuk-grid-row">
-
-    <div class="govuk-grid-column-one-third">
         <div class="gc-register-search gc-register-search--whitebg">
-            <form method="GET" action="./view/internalresults">
+            <form method="POST" action="search">
                 <label for="search" class="govuk-label">
-                    <h2 class="govuk-heading-s  govuk-!-margin-bottom-1">Postcode, street or town</h2>
+                    <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">
+                        Search the gambling premises register
+                    </h1>
 
                 </label>
-
+                <span class="govuk-hint">
+                    Search by business name, account number, street, town or postcode
+                </span>
                 <div class="inner-form govuk-!-margin-bottom-3">
                     <div class="input-field second-wrap">
-                        <input id="isearch" name="isearch" type="text" placeholder="Search" />
+                        <input id="search" name="searchp" type="text" placeholder="Search"
+                            value="{{ data['searchp'] }}" />
                     </div>
                     <div class="input-field third-wrap">
                         <button class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
@@ -77,14 +73,65 @@ Search the operator register
 
 
         </div>
+    </div>
+
+</div>
+
+<div class="govuk-grid-row">
+    {% if list.premises.recordset.length > 0 %}
+    <div class="govuk-grid-column-one-third">
+
 
         <form method="POST" action="results">
 
+
+                <details class="govuk-details">
+                        <summary class="govuk-details__summary">
+                          <span class="govuk-details__summary-text">
+                           Filter the results
+                          </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                   
 
 
             <div class="gc-filters">
 
                 <h2 class="govuk-heading-m">Filters</h2>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="sort">
+                        Operated by
+                    </label>
+                    <select class="govuk-select  govuk-!-width-full" id="sort" name="sort">
+
+                        <option value="all">View all</option>
+
+                        {% for account, i in list.premises.recordset |sort(false, true, 'Account') | groupby('Account') %}
+                        <option value="{{account}}">{{account | truncate(30)}}</option>
+                        {% endfor %}
+
+
+
+                    </select>
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="sort">
+                        Licensing Authority
+                    </label>
+                    <select class="govuk-select  govuk-!-width-full" id="sort" name="authority">
+
+                        <option value="all">View all</option>
+
+                        {% for authority, i in list.premises.recordset |sort(false, true, 'localauthority') | groupby('localauthority') %}
+                        <option value="{{authority}}">{{authority | truncate(30)}}</option>
+                        {% endfor %}
+
+
+
+                    </select>
+                </div>
 
 
                 <div class="govuk-form-group">
@@ -95,60 +142,28 @@ Search the operator register
                             </h3>
                         </legend>
                         <div class="govuk-checkboxes govuk-checkboxes--small">
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="organisation-1" name="organisation"
-                                    type="checkbox" value="hmrc">
-                                <label class="govuk-label govuk-checkboxes__label" for="organisation-1">
-                                    Adult Gaming Centre
+
+
+                            
+                            {% set ord = 0 %}
+
+                           
+
+                            {% for activity, i in list.premises.recordset |sort(false, true, 'activity') | groupby('activity') %}
+
+                            <div class="govuk-checkboxes__item"> <span class="gc-pill gc-pull-right">{{i.length | numeral("0,0") }}</span>
+                                <input class="govuk-checkboxes__input" id="activity-{{ord}}" name="activity"
+                                    type="checkbox" value="{{activity}}">   
+                                <label class="govuk-label govuk-checkboxes__label" for="activity-{{ord}}">
+                                    
+                                    {{activity | truncate(20)}} 
                                 </label> </div>
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="organisation-2" name="organisation"
-                                    type="checkbox" value="employment-tribunal">
-                                <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
-                                    Betting Intermediary
-                                </label> </div>
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="organisation-3" name="organisation"
-                                    type="checkbox" value="MOD">
-                                <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
-                                    Betting Shop
-                                </label> </div>
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="organisation-4" name="organisation"
-                                    type="checkbox" value="DfT">
-                                <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
-                                    Bingo
-                                </label> </div>
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="organisation-5" name="organisation"
-                                    type="checkbox" value="DfT">
-                                <label class="govuk-label govuk-checkboxes__label" for="organisation-5">
-                                    Casino
-                                </label> </div>
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="organisation-6" name="organisation"
-                                    type="checkbox" value="DfT">
-                                <label class="govuk-label govuk-checkboxes__label" for="organisation6">
-                                        Family Entertainment Centre
-                                </label> </div>
-                                <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="organisation-7" name="organisation"
-                                            type="checkbox" value="DfT">
-                                        <label class="govuk-label govuk-checkboxes__label" for="organisation-7">
-                                                Machine Technical
-                                        </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="organisation-8" name="organisation"
-                                                    type="checkbox" value="DfT">
-                                                <label class="govuk-label govuk-checkboxes__label" for="organisation-8">
-                                                        Pool Betting
-                                                </label> </div>
-                                                <div class="govuk-checkboxes__item">
-                                                        <input class="govuk-checkboxes__input" id="organisation-9" name="organisation"
-                                                            type="checkbox" value="DfT">
-                                                        <label class="govuk-label govuk-checkboxes__label" for="organisation-9">
-                                                                Unknown
-                                                        </label> </div>
+
+                            {% set ord = (ord + 1) %}
+                     
+                            {% endfor %}
+
+
                         </div>
                     </fieldset>
                 </div>
@@ -159,45 +174,60 @@ Search the operator register
 
 
             </div>
+
+        </div>
+    </details>
         </form>
     </div>
 
+    {% endif %}
     <div class="govuk-grid-column-two-thirds">
 
-            <div class="govuk-tabs" data-module="tabs">
-                    <h2 class="govuk-tabs__title">
-                      Contents
-                    </h2>
-                  
-                    <ul class="govuk-tabs__list">
-                      <li class="govuk-tabs__list-item">
-                        <a class="govuk-tabs__tab" href="#past-day">
-                          Results
-                        </a>
-                      </li>
-                      <li class="govuk-tabs__list-item">
-                        <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#past-week">
-                         Map
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  
-                    <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-day">
-                     
-                  
-                    </section>
-                    <section class="govuk-tabs__panel" id="past-week">
-                            <div id="map"></div>
-                           
-                  
-                    </section>
+        <h2 class="govuk-heading-m">Results</h2>
 
-                  </div>
+        {% if list.premises.recordset.length === 0 %}
+        <p>Nothing found for term <span class="govuk-!-font-weight-bold">{{data['searchp']}}</span></p>
+        {% else %}
+        <p class="govuk-body govuk-!-margin-bottom-2">
+            <span class="govuk-!-font-weight-bold">{{list.premises.recordset.length | numeral("0,0") }}</span>
+            results found for the search <span class="govuk-!-font-weight-bold">{{data['searchp']}}</span></p>
+        <hr class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
+
+        {% for i in list.premises.recordset %}
+
+
+        <div class="gc-search-result">
+
+
+            <h3 class="govuk-heading-m govuk-!-margin-bottom-2"><a
+                    href="/{{version}}/premises/detail/{{i.id}}">{{i.addressline1 | title}}</a></h3>
+
+            <p class="govuk-body-s">
+                {{i.addressline2 if i.addressline2 | title else ""}}, {{i.city | title}}, {{i.postcode | upper}}
+            </p>
+
+            <div class="govuk-tag">{{i.activity}}</div>
+
+            <div class="govuk-grid-row govuk-!-margin-top-4">
+                <div class="govuk-grid-column-one-half govuk-!-margin-bottom-1">
+                    <h3 class="govuk-heading-s   govuk-!-margin-bottom-1">Operated by</h3>
+                    <p class="govuk-body-s govuk-!-margin-bottom-1"> {{i.Account}}</p>
+                </div>
+                <div class="govuk-grid-column-one-half govuk-!-margin-bottom-1">
+                    <h3 class="govuk-heading-s  govuk-!-margin-bottom-1">Licensed by</h3>
+                    <p class="govuk-body-s govuk-!-margin-bottom-1"> {{i.localauthority }}</p>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        {% endfor %}
+        {% endif %}
 
     </div>
 
 </div>
 
 {% endblock %}
-

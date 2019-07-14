@@ -1,0 +1,118 @@
+{% extends "layout_fullwidth.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+{{premises.addressline1}}
+{% endblock %}
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/premises/summary">Premises register information</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/premises/search">Premises search</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item">
+            Detail
+        </li>
+    </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-third">
+
+
+  <div class="govuk-tag  govuk-!-margin-bottom-4">{{premises.getPremises.recordset[0].activity}}</div>
+        <address>
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-2">{{premises.getPremises.recordset[0].addressline1 | title}}</h1>
+          <p class="govuk-body"> {{premises.getPremises.recordset[0].addressline2 if premises.getPremises.recordset[0].addressline2 | title else ""}}
+            <br />
+            {{premises.getPremises.recordset[0].city | title}}<br />
+            {{premises.getPremises.recordset[0].postcode | upper}}</p> 
+        </address>
+
+      
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+                <h2 class="govuk-heading-m   govuk-!-margin-bottom-1">Operated by</h2>
+                <p class="govuk-body-s">
+                    <a href="/{{version}}/operator/detail/{{premises.getPremises.recordset[0].accountno}}">{{premises.getPremises.recordset[0].Account}}</a></p>
+            </div>
+
+            <div class="govuk-grid-column-full">
+                <h2 class="govuk-heading-m  govuk-!-margin-bottom-1">Licensed by</h2>
+                <p class="govuk-body-s"> {{premises.getPremises.recordset[0].localauthority }}
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+        <div id="map" class="gc-map"></div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+
+{% block pageScripts %}
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4ZNFwoRz5iMIUtpnemwH54BKdlMtOS74&callback=initMap"></script>
+
+<script>
+    var geocoder;
+    var map;
+    var address = "{{premises.getPremises.recordset[0].addressline1 | title}}, {{premises.getPremises.recordset[0].city}}, {{premises.getPremises.recordset[0].postcode}}, United Kingdom";
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 16,
+        center: {lat: 0, lng: 0}
+      });
+      geocoder = new google.maps.Geocoder();
+      codeAddress(geocoder, map);
+    }
+
+    function codeAddress(geocoder, map) {
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+  </script>
+
+{% endblock %}
+

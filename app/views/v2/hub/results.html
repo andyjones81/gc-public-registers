@@ -47,7 +47,7 @@ Search the registers
                     </h1>
                 </label>
                 <span class="govuk-hint content-desktop">
-                    Search by operator or individual name, trading name, licence number or regulatory actions.
+                        Search by business or individual name, account number or address.
                 </span>
                 <div class="inner-form govuk-!-margin-bottom-3">
                     <div class="input-field second-wrap">
@@ -139,7 +139,7 @@ Search the registers
                         {% if accountNumber !== i.accountno %}
                         {% set accountNumber = i.accountno%}
 
-                        <div class="gc-search-result-a">
+                        <div class="gc-search-result">
                             <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
                                 <a href="/{{version}}/operator/detail/{{i.accountno}}">
                                     {{i.account}}</a>
@@ -258,7 +258,7 @@ Search the registers
                         {% if accountNumber !== i.accountno %}
                         {% set accountNumber = i.accountno%}
 
-                        <div class="gc-search-result-a">
+                        <div class="gc-search-result">
                             <ul class="gc-search-result--tag gc-pull-right">
 
                                 <li>{{i.towncity | capitalize}}</li>
@@ -305,7 +305,7 @@ Search the registers
                                 class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
                         {% for i in result.searchedSanctions.recordset %}
 
-                        <div class="gc-search-result-a">
+                        <div class="gc-search-result">
 
                             <ul class="gc-search-result--tag gc-pull-right">
                                 <li>{{i.remotestatus}}</li>

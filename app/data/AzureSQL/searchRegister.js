@@ -39,11 +39,12 @@ async function getAccount(query, statusFilter, sectorFilter) {
 
         return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.determinationstatus from publicregisterreporting as pr " +
             "left join [dbo].[AllDomainNames] as dn  on pr.accountno = dn.accountnumber and pr.remotestatus = 'Operator' " +
-            "left join [dbo].[AllTradingNames] as tn on pr.accountno = tn.accountno " +
+            "right join [dbo].[AllTradingNames] as tn on pr.accountno = tn.accountno " +
                  "where pr.account like '%" + query + "%' " +
             "or pr.account like '%" + strippedQuery + "%' " +
             "or dn.domainname like '%" + query + "%' " +
             "or tn.tradingname like'%" + query + "%' " +
+            "or tn.tradingname like'%" + strippedQuery + "%' " +
             "or pr.accountno like'%" + query + "%' " +
             "order by pr.account");
     } catch (err) {

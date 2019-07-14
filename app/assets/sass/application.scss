@@ -1097,8 +1097,9 @@ body {font-family: "Lato", sans-serif;}
 .app-subnav__link{
   display:block;
   padding:8px 30px 8px 10px;
-  border-left:4px solid transparent;
-  text-decoration:none
+  border-left:4px solid $grey-4;
+  text-decoration:none;
+  margin-bottom: 5px;
 }
 .app-subnav__link:focus{
   background:inherit

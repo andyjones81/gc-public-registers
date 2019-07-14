@@ -60,6 +60,12 @@
                     Account number
                 </h2>
                 <p class="govuk-body"> {{olDetail.AccountNo }}</p>
+
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                        Alternative dispute resolution provider
+                    </h2>
+                    
+                    <p class="govuk-body"> {{adrdata[0].AssociatedAccountName }}</p>
             </div>
             <div class="govuk-grid-column-two-thirds">
                 <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
@@ -102,55 +108,70 @@
 
         <nav class="app-subnav">
 
-                <ul class="app-subnav__section">
+            <ul class="app-subnav__section">
 
-                        <li class="app-subnav__section-item  app-subnav__section-item--current">
-                                <a class="app-subnav__link govuk-link"
-                                    href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
-                            </li>
-            
-                            <li class="app-subnav__section-item ">
-                                <span class="gc-pill">{{result.tradingNames.recordset.length}}</span>
-                                <a class="app-subnav__link govuk-link"
-                                    href="/{{version}}/operator/tradingnames/{{olDetail.AccountNo}}">Trading names</a>
-                            </li>
-            
-                            <li class="app-subnav__section-item">
-                                <span class="gc-pill">{{result.domainNames.recordset.length}}</span>
-                                <a class="app-subnav__link govuk-link"
-                                    href="/{{version}}/operator/domainnames/{{olDetail.AccountNo}}">Domain names</a>
-                            </li>
-            
-                            <li class="app-subnav__section-item">
-                                <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
-                                <a class="app-subnav__link govuk-link"
-                                    href="/{{version}}/operator/sanctions/{{olDetail.AccountNo}}">Sanctions</a>
-                            </li>
-            
-                            <li class="app-subnav__section-item">
-                                <span class="gc-pill">{{result.notes.recordset.length}}</span>
-                                <a class="app-subnav__link govuk-link"
-                                    href="/{{version}}/operator/settlements/{{olDetail.AccountNo}}">Settlements</a>
-                            </li>
-            
-                            
-                            {% if result.premises.recordset.length > 0 and premisesEnabled === 'true' %}
-                            <li class="app-subnav__section-item">
-                                <span class="gc-pill">{{result.premises.recordset.length | numeral("0,0") }}</span>
-                                <a class="app-subnav__link govuk-link"
-                                    href="/{{version}}/operator/premises/{{olDetail.AccountNo}}">Premises</a>
-                            </li>
-                            {% endif %}
-            
-                            <!--
-                            <li class="app-subnav__section-item">
-                                    <span class="gc-pill">0</span>
-                                    <a class="app-subnav__link govuk-link"
-                                        href="/{{version}}/operator/people/{{olDetail.AccountNo}}">People</a>
-                                </li> -->
-                    </ul>
+                <li class="app-subnav__section-item  app-subnav__section-item--current">
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
+                </li>
+
+                <li class="app-subnav__section-item ">
+                    <span class="gc-pill">{{result.tradingNames.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/tradingnames/{{olDetail.AccountNo}}">Trading names</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.domainNames.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/domainnames/{{olDetail.AccountNo}}">Domain names</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/sanctions/{{olDetail.AccountNo}}">Sanctions</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.notes.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/settlements/{{olDetail.AccountNo}}">Settlements</a>
+                </li>
+
+                {% if result.premises.recordset.length > 0 and premisesEnabled === 'true' %}
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.premises.recordset.length | numeral("0,0") }}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/premises/{{olDetail.AccountNo}}">Premises</a>
+                </li>
+                {% endif %}
+
+            </ul>
 
         </nav>
+
+        {% if EnableCH === 'true' %}
+        <h2 class="govuk-heading-s">Companies House</h2>
+
+        <nav class="app-subnav">
+
+            <ul class="app-subnav__section">
+
+                <li class="app-subnav__section-item">
+                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/company-summary/{{olDetail.AccountNo}}">Summary</a>
+                </li>
+             
+                <li class="app-subnav__section-item">
+                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/company/{{olDetail.AccountNo}}">People</a>
+                </li>
+            
+
+
+            </ul>
+
+        </nav>    
+        {% endif %}
 
     </div>
 
@@ -158,10 +179,9 @@
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
 
-
-                    <h2 class="govuk-heading-m">
-                            Licence summary
-                        </h2>
+                <h2 class="govuk-heading-m">
+                    Licence summary
+                </h2>
 
 
 
@@ -176,7 +196,7 @@
 
 
                 <!--    Option 1        -->
-{% if detailView === '1' %}
+                {% if detailView === '1' %}
 
                 {% for licence in result.newLicenceInfo.recordset %}
 
@@ -276,24 +296,39 @@
 
                 <!--    Option 2        -->
                 {% if detailView === '2' %}
-                 {% for licence in result.newLicenceInfo.recordset %}
+                {% for licence in result.newLicenceInfo.recordset %}
                 <div class="govuk-inset-text govuk-!-margin-top-0">
-                    <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
-                        <p class="govuk-body gc-pull-right"><a href="#">{{ licence.Type }} licence information</a></p>
-                        {{ licence.Type }}</h2>
+
+
                     <div class="gc-search-result gc-search-result--header">
                         <span class="govuk-tag {{licence.Status | lower}} gc-pull-right">
                             {{licence.Status}}
                         </span>
-                        Licence number: {{licence.LicenceNo}}
+
+                        <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+                            {{ licence.Type }}</h2>
+                        <p class="govuk-!-margin-bottom-2 govuk-body-s">Licence number: {{licence.LicenceNo}}</p>
+
+                        <details class="govuk-details govuk-!-margin-bottom-1">
+                            <summary class="govuk-details__summary">
+                                <span class="govuk-details__summary-text">
+                                    What is a {{ licence.Type | lower}} licence?
+                                </span>
+                            </summary>
+                            <div class="govuk-details__text">
+                                Information about the licence type
+                            </div>
+                        </details>
+
                     </div>
-    {% if licence.Status === 'Active' %}
+                    {% if licence.Status === 'Active' %}
                     <table class="govuk-table">
 
                         <thead class="govuk-table__head">
                             <tr class="govuk-table__row govuk-body-s">
                                 <th class="govuk-table__header" scope="col">Licensed for</th>
-                                <th class="govuk-table__header govuk-table__header--numeric  gc-text-right" scope="col">From</th>
+                                <th class="govuk-table__header govuk-table__header--numeric  gc-text-right" scope="col">
+                                    From</th>
                             </tr>
                         </thead>
 
@@ -307,58 +342,228 @@
                             {% if '- R' in act.Product %}
                             {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
                             <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell" scope="row">
-                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
-                                        </td>
-                                        <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
-                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
-                                        </td>
+                                <td class="govuk-table__cell" scope="row">
+
+                                    {% set product =  act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") %}
+
+                                    {% if product === 'Bingo ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Remote-bingo-operating-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Betting Intermediary ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Remote-betting-intermediary-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Pool Betting ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Remote-pool-betting-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'General Betting Standard - Virtual Event ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Remote-general-betting-standard-virtual-events-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'General Betting Standard eal Event ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Remote-general-betting-standard-real-events-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Gambling Software ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Remote-gambling-software-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Gaming Machine Technical Software ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Remote-gaming-machine-technical-software-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Casino ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Remote-casino-operating-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Gaming Machine Technical Full ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-gaming-machine-technical-full-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Linked Gambling Software ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Linked-licences-gambling-software.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+
+                                    {% if product === 'Linked Gaming Machine Technical Supplier ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Remote-gaming-machine-technical-supplier-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+
+
+
+
+
+                                </td>
+                                <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
+                                    <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
+                                </td>
 
                             </tr>
                             {% endif %}
                             {% endif %}
                             {% endif %}
+
                             {% if licence.Type == 'Non-Remote' %}
 
                             {% if '- N' in act.Product %}
                             {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
                             <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell" scope="row">
-                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
-                                        </td>
-                                        <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
-                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
-                                        </td>
+                                <td class="govuk-table__cell" scope="row">
+                                    {% set product =  act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") %}
+
+
+                                    {% if product === 'Gambling Software ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-gambling-software-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'General Betting Standard ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-general-betting-standard-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Pool Betting ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-pool-betting-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'External Lottery Manager ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-external-lottery-manager-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Gaming Machine General Adult Gaming Centre ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Adult-gaming-centre.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Casino 1968 Act ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-1968-Act-casino-operating-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Bingo ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-bingo-operating-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Linked Gambling Software ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Linked-licences-gambling-software.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Casino 2005 Act ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/non-remote-2005-Act-casino-operating-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Gaming Machine Technical Full ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-gaming-machine-technical-full-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Gaming Machine Technical Supplier ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-gaming-machine-technical-supplier-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+                                    {% if product === 'Linked Gaming Machine Technical Supplier ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-gaming-machine-technical-supplier-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+
+
+                                </td>
+                                <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
+                                    <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
+                                </td>
 
                             </tr>
                             {% endif %}
                             {% endif %}
                             {% endif %}
-                            {% if licence.Type == 'Ancillary Remote' %}
 
+                            {% if licence.Type == 'Ancillary Remote' %}
                             {% if '- A' in act.Product %}
                             {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
                             <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell" scope="row">
-                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
-                                        </td>
-                                        <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
-                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
-                                        </td>
+                                <td class="govuk-table__cell" scope="row">
+                                    {% set product =  act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") %}
+
+                                    {% if product === 'Gambling Software ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-gambling-software-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'General Betting Standard ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-general-betting-standard-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Pool Betting ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-pool-betting-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'External Lottery Manager ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-external-lottery-manager-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Gaming Machine General Adult Gaming Centre ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Adult-gaming-centre.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+
+                                    {% if product === 'Gaming Machine General Family Entertainment Centre ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Family-Entertainment-centre.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Casino ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-1968-Act-casino-operating-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                    {% if product === 'Bingo ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-bingo-operating-licence.aspx.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
+                                </td>
+                                <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
+                                    <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
+                                </td>
 
                             </tr>
                             {% endif %}
                             {% endif %}
                             {% endif %}
+
                             {% endfor %}
                         </tbody>
 
                     </table>
                     {% else %}
                     <p>Licence acitivities no longer held</p>
-{% endif %}
+                    {% endif %}
                 </div>
-                {% endfor %} 
+                {% endfor %}
 
                 {% endif %}
                 <!--   END Option 2        -->
@@ -368,425 +573,7 @@
     </div>
 </div>
 
-<!-- <div class="govuk-tabs" data-module="tabs">
-        <h2 class="govuk-tabs__title">
-            Contents
-        </h2>
-
-        <ul class="govuk-tabs__list">
-            <li class="govuk-tabs__list-item">
-                <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#licence">
-                    Licence
-                </a>
-            </li>
-            <li class="govuk-tabs__list-item">
-                <a class="govuk-tabs__tab" href="#trading">
-                    Trading names ({{result.tradingNames.recordset.length}})
-                </a>
-            </li>
-            <li class="govuk-tabs__list-item">
-                <a class="govuk-tabs__tab" href="#domain">
-                    Domain names ({{result.domainNames.recordset.length}})
-                </a>
-            </li>
-            <li class="govuk-tabs__list-item">
-                <a class="govuk-tabs__tab" href="#action">
-                    Regulatory action ({{result.sanctions.recordset.length + result.notes.recordset.length}})
-                </a>
-            </li>
-        </ul>
-
-        <section class="govuk-tabs__panel" id="licence">
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-third">
-
-                    <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
-                        Account number
-                    </h2>
-                    <p class="govuk-body"> {{olDetail.AccountNo }}</p>
-
-                    <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
-                        Head office address
-                    </h2>
-
-                    {% if olDetail.towncity === null or olDetail.postcode === null %}
-                    <p class="govuk-body">Address not available</p>
-                    {% else %}
-
-                    <address class="govuk-body">
-
-                        {{olDetail.propertyname}}<br />
-
-                        {% if olDetail.street !== null %}
-                        {{olDetail.street}} <br />
-                        {% endif %}
-
-                        {{olDetail.towncity | capitalize}}<br /> {{olDetail.postcode | upper}}
-
-
-                    </address>
-                    {% endif %}
-                </div>
-                <div class="govuk-grid-column-two-thirds">
-                    <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-bottom-1">
-                        Licences
-                    </h2>
-                    {% if result.newLicenceInfo.recordset.length === 0 %}
-                    <div class="govuk-inset-text">
-                        Licence information is not yet available as the application for an operating licence
-                        is being processed.
-                    </div>
-                    {% endif %}
-
-
-                    {% for licence in result.newLicenceInfo.recordset %}
-
-
-                    <div class="gc-search-result">
-                        <span class="govuk-tag {{licence.Status | lower}} gc-pull-right">
-                            {{licence.Status}}
-                        </span>
-
-                        <span class="govuk-caption-s">{{licence.LicenceNo}}</span>
-                        <h3 class="govuk-heading-s govuk-!-margin-bottom-2"> {{ licence.Type }}</h3>
-
-                        {% if licence.End !== null %}
-
-                        <p class="govuk-body">Licence held between {{licence.Start | date('DD MMMM YYYY')}}
-                            and {{licence.End | date('DD MMMM YYYY')}}</p>
-
-                        <details class="govuk-details govuk-!-margin-bottom-0">
-                            <summary class="govuk-details__summary">
-                                <span class="govuk-details__summary-text">
-                                    Activities held on this licence
-                                </span>
-                            </summary>
-                            <div class="govuk-details__text">
-                                <ul class="govuk-list">
-
-                                    {% for item in result.newLicenceActivityInfo.recordset %}
-
-                                    {% if item.licenceid === licence.LicenceId %}
-                                    <li class="govuk-body-s">
-                                        {{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}
-                                    </li>
-                                    {% endif %}
-
-
-                                    {% endfor %}
-
-                                </ul>
-                            </div>
-                        </details>
-
-                        {% else %}
-                        <p class="govuk-body">Current licence held from
-                            {{licence.Start | date('DD MMMM YYYY')}}
-                        </p>
-                        <details class="govuk-details govuk-!-margin-bottom-0">
-                            <summary class="govuk-details__summary">
-                                <span class="govuk-details__summary-text">
-                                    Activities held on this licence
-                                </span>
-                            </summary>
-                            <div class="govuk-details__text">
-                                <ul class="govuk-list">
-
-
-
-                                    {% for item in result.newLicenceActivityInfo.recordset %}
-
-                                    {% if item.licenceid === licence.LicenceId %}
-                                    <li class="govuk-body-s">
-                                        {{item.Product | replace(" - R", "") |replace("- N", "") | replace("- A", "") }}
-                                    </li>
-                                    {% endif %}
-
-
-                                    {% endfor %}
-
-                                </ul>
-                            </div>
-                        </details>
-
-
-                        {% endif %}
-
-
-                    </div>
-
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-        <section class="govuk-tabs__panel" id="trading">
-            {% if result.tradingNames.recordset.length === 0 %}
-
-            <p class="govuk-body">No trading names</p>
-            {% endif %}
-
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-
-                    {% for status, i in result.tradingNames.recordset | groupby ('Status') %}
-
-                    <table class="govuk-table">
-
-                        <thead class="govuk-table__head">
-                            <tr class="govuk-table__row">
-                                <th class="govuk-table__header" scope="col">{{status}}</th>
-                            </tr>
-                        </thead>
-                        <tbody class="govuk-table__body">
-                            {% for name in i %}
-                            <tr class="govuk-table__row">
-                                <td class="govuk-table__cell" scope="row">{{name.TradingName}}</td>
-                            </tr>
-                            {% endfor %}
-
-
-
-                        </tbody>
-                    </table>
-
-
-                    {% endfor %}
-
-                </div>
-            </div>
-        </section>
-        <section class="govuk-tabs__panel" id="domain">
-            {% if result.domainNames.recordset.length === 0 %}
-
-            <p class="govuk-body">No domain names</p>
-            {% endif %}
-
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-
-                    {% for status, i in result.domainNames.recordset  | groupby ('AccountStatus') %}
-
-                    <table class="govuk-table">
-
-                        <thead class="govuk-table__head">
-                            <tr class="govuk-table__row">
-                                <th class="govuk-table__header" scope="col">{{status}}</th>
-                            </tr>
-                        </thead>
-                        <tbody class="govuk-table__body">
-                            {% for name in i %}
-                            <tr class="govuk-table__row">
-                                <td class="govuk-table__cell" scope="row">{{name.DomainName | lower}}</td>
-                            </tr>
-                            {% endfor %}
-
-
-
-                        </tbody>
-                    </table>
-
-
-                    {% endfor %}
-
-                </div>
-            </div>
-        </section>
-        <section class="govuk-tabs__panel" id="action">
-            <h2 class="govuk-heading-m">
-                Sanctions
-
-            </h2>
-
-            <details class="govuk-details">
-                <summary class="govuk-details__summary">
-                    <span class="govuk-details__summary-text">
-                        What are sanctions?
-                    </span>
-                </summary>
-                <div class="govuk-details__text">
-                    <p>When a licence holder has not followed rules and regulations aimed at ensuring gambling is fair,
-                        safe and crime-free, we can take action and impose the following sanctions:
-                    </p>
-                    <ul class="govuk-list govuk-list--bullet">
-                        <li>Give the licensee a warning</li>
-                        <li>Add, remove, or amend a condition to the licence</li>
-                        <li>Suspend a licence</li>
-                        <li>Revoke a licence</li>
-                        <li>Impose a financial penalty</li>
-                    </ul>
-                </div>
-            </details>
-            {% if result.sanctions.recordset.length === 0 %}
-            <p class="govuk-body">None recorded</p>
-            {% else %}
-            <div class="govuk-inset-text">
-                <div class="gc-reg-action govuk-body">
-                    {% for item in result.sanctions.recordset %}
-
-                    <div class="govuk-grid-row">
-                        <div class="govuk-grid-column-one-half">
-                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                Decision
-                            </h2>
-                            <p class="govuk-body">{{item.status}}</p>
-                        </div>
-
-                        <div class="govuk-grid-column-one-half">
-                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                Date of decision
-                            </h2>
-                            <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
-                        </div>
-
-                    </div>
-                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                        Outcome
-                    </h2>
-                    <p class="govuk-body">
-
-                        {{item.details | safe}}
-
-
-                    </p>
-
-                    {% endfor %}
-
-
-                </div>
-            </div>
-            {%endif%}
-
-
-
-
-
-            <h2 class="govuk-heading-m govuk-!-margin-top-4">
-                Other actions
-            </h2>
-            <details class="govuk-details">
-                <summary class="govuk-details__summary">
-                    <span class="govuk-details__summary-text">
-                        What are other actions?
-                    </span>
-                </summary>
-                <div class="govuk-details__text">
-                    <p>Following an investigation into a licence holder we may enter into a regulatory settlement. These
-                        take place, for example, where the licence holder has been open and transparent with us and has
-                        shown a willingness to suggest actions that prevent the need for a more formal sanction.
-                </div>
-                </p>
-
-            </details>
-
-
-            {% if result.notes.recordset.length === 0 %}
-            <p class="govuk-body">None recorded</p>
-            {% else %}
-            <div class="govuk-inset-text">
-                <div class="gc-reg-action govuk-body">
-                    {% for item in result.notes.recordset %}
-
-                    <div class="govuk-grid-row">
-
-                        <div class="govuk-grid-column-one-half">
-                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                Date of publication
-                            </h2>
-                            <p class="govuk-body">{{item.DecidedOn | date('DD MMMM YYYY')}}</p>
-                        </div>
-
-                    </div>
-                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                        Outcome
-                    </h2>
-                    <p class="govuk-body">
-
-                        {{item.Details | safe}}
-
-                    </p>
-
-                    {% endfor %}
-
-
-                </div>
-            </div>
-            {%endif%}
-
-
-
-
-        </section>
-    </div> -->
-
-
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-    </div>
-
-
-
-    <div class="govuk-grid-column-one-third">
-
-        <h2 class="govuk-heading-m">
-            Related information
-        </h2>
-        <nav role="navigation" aria-labelledby="subsection-title">
-            <ul class="govuk-list">
-                <li>
-                    <a class="govuk-link"
-                        href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Types-of-operating-licence.aspx"
-                        target="_Blank">
-                        Licensed activity information
-                    </a>
-                </li>
-                <li>
-                    <a class="govuk-link"
-                        href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
-                        target="_Blank">
-                        Licence conditions and codes of practice
-                    </a>
-                </li>
-                <li>
-                    <a class="govuk-link"
-                        href=" https://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx"
-                        target="_Blank">
-                        Regulatory action
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
-
-    </div>
-
-    <div class="govuk-grid-column-one-third">
-
-        <h2 class="govuk-heading-m">
-            Complaints
-        </h2>
-        <p class="govuk-body">If you want to make a complaint about a gambling business, you can <a class="govuk-link"
-                href="https://www.gamblingcommission.gov.uk/for-the-public/Your-rights/Complaints.aspx" target="_Blank">
-                find information on our website
-            </a> about how to do this.
-
-
-        </p>
-
-    </div>
-
-    <div class="govuk-grid-column-one-third">
-
-        <h2 class="govuk-heading-m">
-            Help and support
-        </h2>
-        <p class="govuk-body">If you or someone you know is struggling with gambling activity, you can find the details
-            of <a
-                href="https://www.gamblingcommission.gov.uk/for-the-public/Safer-gambling/Getting-help-to-control-your-gambling.aspx#Organisations_that_provide_help"
-                target="_blank">organisations who can help</a> on our website.</p>
-    </div>
-
-</div>
+{% include "includes/page-footer.html" %}
 
 
 
