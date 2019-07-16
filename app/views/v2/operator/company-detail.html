@@ -1,0 +1,322 @@
+{% extends "layout_fullwidth.html" %} {% set olDetail = result.registerData.recordset[0] %} {% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button> {% include "includes/nav.html" %} {% endblock %}
+{% block headerInfo %} {% include
+"includes/beta.html" %} {% endblock %} {% block pageTitle %} {{olDetail.Account}} {% endblock %}
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling business register</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/results">Search results</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            Detail
+        </li>
+    </ol>
+</div>
+
+{% endblock %} {% block content %}
+
+
+{% set chData = feCHDataSummary.items[0] %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+
+
+
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
+            {{olDetail.Account }}
+        </h1>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    Account number
+                </h2>
+                <p class="govuk-body"> {{olDetail.AccountNo }}</p>
+
+            </div>
+
+
+            <div class="govuk-grid-two-thirds">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    Head office address
+                </h2>
+                {% if olDetail.towncity === null or olDetail.postcode === null %}
+                <p class="govuk-body">Address not available</p>
+                {% else %}
+
+                <address class="govuk-body">
+
+                    {{olDetail.propertyname}}<br />
+
+                    {% if olDetail.street !== null %} {{olDetail.street}},{% endif %}
+
+                    {{olDetail.towncity | capitalize}}, {{olDetail.postcode | upper}}
+
+
+                </address>
+                {% endif %}
+            </div>
+        </div>
+
+
+
+        <hr class="govuk-section-break govuk-section-break--visible gc-break govuk-!-margin-bottom-7">
+
+    </div>
+
+    <div class="govuk-grid-column-one-quarter">
+
+
+
+
+        <nav class="app-subnav">
+
+            <ul class="app-subnav__section">
+
+                <li class="app-subnav__section-item">
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
+                </li>
+
+                <li class="app-subnav__section-item   app-subnav__section-item--current">
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/company-detail/{{olDetail.AccountNo}}">Company information</a>
+
+                    <ul class="app-subnav__section app-subnav__section--nested">
+
+                        <li class="app-subnav__section-item">
+                            <a class="app-subnav__link govuk-link" href="#adr">
+                                ADR provider
+                            </a>
+                        </li>
+                        {% if olDetail.AccountNo === '1611' %}
+                        <li class="app-subnav__section-item">
+                            <a class="app-subnav__link govuk-link" href="#group">
+                                Group structure
+                            </a>
+                        </li>
+{% endif%}
+                      
+
+
+                    </ul>
+                </li>
+
+                <li class="app-subnav__section-item ">
+                    <span class="gc-pill">{{result.tradingNames.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/tradingnames/{{olDetail.AccountNo}}">Trading names</a>
+                </li>
+
+                <li class="app-subnav__section-item ">
+                    <span class="gc-pill">{{result.domainNames.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/domainnames/{{olDetail.AccountNo}}">Domain names</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/sanctions/{{olDetail.AccountNo}}">Sanctions</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.notes.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/settlements/{{olDetail.AccountNo}}">Settlements</a>
+                </li>
+
+
+                {% if result.premises.recordset.length > 0 and premisesEnabled === 'true' %}
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.premises.recordset.length | numeral("0,0") }}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/premises/{{olDetail.AccountNo}}">Premises</a>
+                </li>
+                {% endif %}
+
+
+
+            </ul>
+
+        </nav>
+
+
+        {% if EnableCH === 'true' %}
+        <h2 class="govuk-heading-s">Companies House</h2>
+
+        <nav class="app-subnav">
+
+            <ul class="app-subnav__section">
+
+                <li class="app-subnav__section-item app-subnav__section-item--current">
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/company-summary/{{olDetail.AccountNo}}">Summary</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/company/{{olDetail.AccountNo}}">People</a>
+                </li>
+
+
+            </ul>
+
+        </nav>
+        {% endif %}
+
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
+
+
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-3" id="adr">
+            Alternative dispute resolution (ADR) provider
+        </h2>
+        <p class="govuk-body">Find out more about what ADRs are on <a
+                href="https://www.gov.uk/government/publications/alternative-dispute-resolution-for-consumers"
+                target="_Blank">GOV.UK</a></p>
+
+        {% if adrdata.length === 0 %}
+        <p class="govuk-body">ADR not available</p>
+        {% else %}
+
+        <p class="govuk-body">
+            {{olDetail.Account }} uses
+            <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/General-compliance/ADR/Approved-ADR-providers.aspx"
+                target="_Blank">{{adrdata[0].AssociatedAccountName }}</a> as their ADR provider.</p>
+        {% endif %}
+
+
+
+        {% if olDetail.AccountNo === '1611' %}
+        <div id="group">
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-3  govuk-!-margin-top-9">
+                Group structure
+            </h2>
+
+            <table class="govuk-table">
+
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="col">Company</th>
+                        <th class="govuk-table__header" scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body govuk-body-s">
+
+
+                    {% for ol,i in result.olGroup.recordset | groupby('Account_Type') %}
+
+                    {%for name in i %}
+                    {% if name.Account_Type === 'Operator' and name.Account__ !== 1611%}
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell" scope="row">
+
+                            {% if name.Account_Type === 'Operator'%}
+                            <a href="/{{version}}/operator/detail/{{name.Account__}}"
+                                target="_Blank">{{name.Account}}</a>
+                            {% else %}
+                            {{name.Account}}
+                            {% endif %}</td>
+                        <td class="govuk-table__cell" scope="row">
+                            {{name.Account_Type}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+
+    </div>
+</div>
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    </div>
+
+
+
+    <div class="govuk-grid-column-one-third">
+
+        <h2 class="govuk-heading-m">
+            Related information
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link"
+                        href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Types-of-operating-licence.aspx"
+                        target="_Blank">
+                        Licensed activity information
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link"
+                        href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
+                        target="_Blank">
+                        Licence conditions and codes of practice
+                    </a>
+                </li>
+                <li>
+                    <a class="govuk-link"
+                        href=" https://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx"
+                        target="_Blank">
+                        Regulatory action
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+        <h2 class="govuk-heading-m">
+            Complaints
+        </h2>
+        <p class="govuk-body">If you want to make a complaint about a gambling business, you can <a class="govuk-link"
+                href="https://www.gamblingcommission.gov.uk/for-the-public/Your-rights/Complaints.aspx" target="_Blank">
+                find information on our website
+            </a> about how to do this.
+
+
+        </p>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+        <h2 class="govuk-heading-m">
+            Help and support
+        </h2>
+        <p class="govuk-body">If you or someone you know is struggling with gambling activity, you can find the details
+            of <a
+                href="https://www.gamblingcommission.gov.uk/for-the-public/Safer-gambling/Getting-help-to-control-your-gambling.aspx#Organisations_that_provide_help"
+                target="_blank">organisations who can help</a> on our website.</p>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

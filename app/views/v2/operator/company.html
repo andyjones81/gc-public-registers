@@ -32,53 +32,40 @@
 
 
                 <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
-                    {{olDetail.Account }}
-                </h1>
-                <div class="govuk-grid-row">
-                    <div class="govuk-grid-column-one-third">
-                        <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
-                            Account number
-                        </h2>
-                        <p class="govuk-body"> {{olDetail.AccountNo }}</p>              
-                      
-                    </div>
-        
-                    <div class="govuk-grid-column-two-thirds">
-                        <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
-                                Alternative dispute resolution provider
+                        {{olDetail.Account }}
+                    </h1>
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-one-third">
+                            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                                Account number
                             </h2>
-        
-                            {% if adrdata.length === 0 %}
-                            <p class="govuk-body">ADR not available</p>
+                            <p class="govuk-body"> {{olDetail.AccountNo }}</p>
+            
+                        </div>
+            
+            
+                        <div class="govuk-grid-two-thirds">
+                            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                                Head office address
+                            </h2>
+                            {% if olDetail.towncity === null or olDetail.postcode === null %}
+                            <p class="govuk-body">Address not available</p>
                             {% else %}
             
-                          <p class="govuk-body"><a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/General-compliance/ADR/Approved-ADR-providers.aspx" target="_Blank">{{adrdata[0].AssociatedAccountName }}</a></p>
+                            <address class="govuk-body">
+            
+                                {{olDetail.propertyname}}<br />
+            
+                                {% if olDetail.street !== null %} {{olDetail.street}},{% endif %}
+            
+                                {{olDetail.towncity | capitalize}}, {{olDetail.postcode | upper}}
+            
+            
+                            </address>
                             {% endif %}
-                            
-                           
+                        </div>
                     </div>
-                    <div class="govuk-grid-column-full">
-                            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
-                                    Head office address
-                                </h2>
-                                {% if olDetail.towncity === null or olDetail.postcode === null %}
-                                <p class="govuk-body">Address not available</p>
-                                {% else %}
-                
-                                <address class="govuk-body">
-                
-                                    {{olDetail.propertyname}}, 
-                
-                                    {% if olDetail.street !== null %} {{olDetail.street}},{% endif %}
-                
-                                    {{olDetail.towncity | capitalize}}, {{olDetail.postcode | upper}}
-                
-                
-                                </address>
-                                {% endif %}
-                    </div>
-                </div>
-        
+            
         
         
                 <hr class="govuk-section-break govuk-section-break--visible gc-break govuk-!-margin-bottom-7">

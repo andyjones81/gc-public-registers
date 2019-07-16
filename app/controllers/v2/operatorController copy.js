@@ -7,6 +7,7 @@ var premisesEnabled = process.env.EnablePremises;
 var EnableCH = process.env.EnableCH;
 const adr = require('../../data/adr.json');
 
+
 exports.operator_summary_get = function (req, res) {
     const d = require('../../data/register.json')
 
@@ -283,7 +284,116 @@ exports.operator_detail_get = function (req, res) {
 
     var r = req.session.data['ab']
     const getRegisterData = require('../../data/AzureSQL/getRegisterData');
-    
+
+
+    var md = new mobileDetect(req.headers['user-agent']);
+
+    let chData = "";
+    let feCHData = {};
+    var detailView = process.env.DetailView;
+
+    const d = require('../../data/companies.json')
+
+    var ch = d.filter(function (value) {
+        return value.Account === accountNo;
+    });
+
+   
+    if (ch.length === 0) {
+        EnableCH = 'false';
+    }
+
+    console.log(EnableCH)
+
+
+    var emptySearch = 'false';
+    let registerData = "";
+
+    if (query === '') {
+        emptySearch = 'true';
+        res.render(version + '/operator/detail', {
+            version,
+            emptySearch,
+            detailView
+        })
+    } else {
+        registerData = getRegisterData(accountNo);
+
+        registerData.then(result => {
+            if (r === 'A') {
+                if (md.mobile() !== null) {
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView,
+                        premisesEnabled,
+                        EnableCH
+                    })
+                } else {
+                    res.render(version + '/operator/detail', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView,
+                        premisesEnabled,
+                        EnableCH
+                    })
+                }
+            } else {
+
+
+
+                if (md.mobile() !== null) {
+
+                    res.render(version + '/operator/detail-mob', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView,
+                        premisesEnabled,
+                        EnableCH
+                    })
+                } else {
+
+                    res.render(version + '/operator/detail-b', {
+                        version,
+                        registerData,
+                        result,
+                        emptySearch,
+                        feCHData,
+                        detailView,
+                        premisesEnabled,
+                        EnableCH,
+                        adrdata
+                    })
+                }
+            }
+
+        }).catch(err => {
+            // console.log(err);
+        });
+    }
+}
+
+
+
+exports.operator_companydetail_get = function (req, res) {
+
+    // console.log('Details')
+
+    var query = req.session.data['search']
+    var accountNo = req.params.id;
+
+    var r = req.session.data['ab']
+    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+
 
     var md = new mobileDetect(req.headers['user-agent']);
 
@@ -301,15 +411,15 @@ exports.operator_detail_get = function (req, res) {
         return value.AccountNo === accountNo;
     });
 
-    console.log("ch: "+ch[0]) 
+    console.log("ch: " + ch)
 
-    console.log("adr: " +adrdata)
-  
-    if(ch.length === 0){
+    console.log("adr: " + adrdata)
+
+    if (ch.length === 0) {
         EnableCH = 'false';
     }
 
-   console.log(EnableCH)
+    console.log(EnableCH)
 
 
     var emptySearch = 'false';
@@ -380,124 +490,8 @@ exports.operator_detail_get = function (req, res) {
                         detailView,
                         premisesEnabled,
                         EnableCH,
-                        adrdata
-                    })
-                }
-            }
-
-        }).catch(err => {
-            // console.log(err);
-        });
-    }
-}
-
-exports.operator_companydetail_get = function (req, res) {
-
-    // console.log('Details')
-
-    var query = req.session.data['search']
-    var accountNo = req.params.id;
-
-    var r = req.session.data['ab']
-    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
-    
-
-    var md = new mobileDetect(req.headers['user-agent']);
-
-    let chData = "";
-    let feCHData = {};
-    var detailView = process.env.DetailView;
-
-    const d = require('../../data/companies.json')
-
-    var ch = d.filter(function (value) {
-        return value.Account === accountNo;
-    });
-
-    var adrdata = adr.filter(function (value) {
-        return value.AccountNo === accountNo;
-    });
-
-    console.log("ch: "+ch)
-
-    console.log("adr: " +adrdata)
-  
-    if(ch.length === 0){
-        EnableCH = 'false';
-    }
-
-   console.log(EnableCH)
-
-
-    var emptySearch = 'false';
-    let registerData = "";
-
-    if (query === '') {
-        emptySearch = 'true';
-        res.render(version + '/operator/detail', {
-            version,
-            emptySearch,
-            detailView
-        })
-    } else {
-        registerData = getRegisterData(accountNo);
-
-        registerData.then(result => {
-            if (r === 'A') {
-                if (md.mobile() !== null) {
-                    res.render(version + '/operator/detail-mob', {
-                        version,
-                        registerData,
-                        result,
-                        emptySearch,
-                        feCHData,
-                        detailView,
-                        premisesEnabled,
-                        EnableCH,
-                        adrdata
-                    })
-                } else {
-                    res.render(version + '/operator/detail', {
-                        version,
-                        registerData,
-                        result,
-                        emptySearch,
-                        feCHData,
-                        detailView,
-                        premisesEnabled,
-                        EnableCH,
-                        adrdata
-                    })
-                }
-            } else {
-
-
-
-                if (md.mobile() !== null) {
-
-                    res.render(version + '/operator/detail-mob', {
-                        version,
-                        registerData,
-                        result,
-                        emptySearch,
-                        feCHData,
-                        detailView,
-                        premisesEnabled,
-                        EnableCH,
-                        adrdata
-                    })
-                } else {
-
-                    res.render(version + '/operator/company-detail', {
-                        version,
-                        registerData,
-                        result,
-                        emptySearch,
-                        feCHData,
-                        detailView,
-                        premisesEnabled,
-                        EnableCH,
-                        adrdata
+                        adrdata,
+                        OLModel
                     })
                 }
             }
@@ -526,7 +520,7 @@ exports.operator_tradingnames_get = function (req, res) {
     let feCHData = {};
     var detailView = process.env.DetailView;
 
-    
+
     const d = require('../../data/companies.json')
 
     var ch = d.filter(function (value) {
@@ -534,8 +528,8 @@ exports.operator_tradingnames_get = function (req, res) {
     });
 
     console.log(ch)
-  
-    if(ch.length === 0){
+
+    if (ch.length === 0) {
         EnableCH = 'false';
     }
 
@@ -566,7 +560,8 @@ exports.operator_tradingnames_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 } else {
                     res.render(version + '/operator/detail', {
@@ -577,7 +572,8 @@ exports.operator_tradingnames_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 }
             } else {
@@ -594,7 +590,8 @@ exports.operator_tradingnames_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 } else {
 
@@ -606,7 +603,8 @@ exports.operator_tradingnames_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 }
             }
@@ -640,8 +638,8 @@ exports.operator_domainnames_get = function (req, res) {
     });
 
     console.log(ch)
-  
-    if(ch.length === 0){
+
+    if (ch.length === 0) {
         EnableCH = 'false';
     }
 
@@ -671,7 +669,8 @@ exports.operator_domainnames_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 } else {
                     res.render(version + '/operator/detail', {
@@ -682,7 +681,8 @@ exports.operator_domainnames_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 }
             } else {
@@ -699,7 +699,8 @@ exports.operator_domainnames_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 } else {
 
@@ -711,7 +712,8 @@ exports.operator_domainnames_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 }
             }
@@ -746,8 +748,8 @@ exports.operator_sanctions_get = function (req, res) {
     });
 
     console.log(ch)
-  
-    if(ch.length === 0){
+
+    if (ch.length === 0) {
         EnableCH = 'false';
     }
 
@@ -778,7 +780,8 @@ exports.operator_sanctions_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 } else {
                     res.render(version + '/operator/detail', {
@@ -789,7 +792,8 @@ exports.operator_sanctions_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 }
             } else {
@@ -806,7 +810,8 @@ exports.operator_sanctions_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 } else {
 
@@ -818,7 +823,8 @@ exports.operator_sanctions_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 }
             }
@@ -853,8 +859,8 @@ exports.operator_settlements_get = function (req, res) {
     });
 
     console.log(ch)
-  
-    if(ch.length === 0){
+
+    if (ch.length === 0) {
         EnableCH = 'false';
     }
 
@@ -885,7 +891,8 @@ exports.operator_settlements_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 } else {
                     res.render(version + '/operator/detail', {
@@ -896,7 +903,8 @@ exports.operator_settlements_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 }
             } else {
@@ -913,7 +921,8 @@ exports.operator_settlements_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 } else {
 
@@ -925,7 +934,8 @@ exports.operator_settlements_get = function (req, res) {
                         feCHData,
                         detailView,
                         premisesEnabled,
-                        EnableCH,  adrdata
+                        EnableCH,
+                        adrdata
                     })
                 }
             }
@@ -963,13 +973,13 @@ exports.operator_premises_get = function (req, res) {
         var ch = d.filter(function (value) {
             return value.Account === accountNo;
         });
-    
+
         console.log(ch)
-      
-        if(ch.length === 0){
+
+        if (ch.length === 0) {
             EnableCH = 'false';
         }
-    
+
 
         var emptySearch = 'false';
         let registerData = "";
@@ -996,7 +1006,8 @@ exports.operator_premises_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     } else {
                         res.render(version + '/operator/detail', {
@@ -1007,7 +1018,8 @@ exports.operator_premises_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     }
                 } else {
@@ -1024,7 +1036,8 @@ exports.operator_premises_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     } else {
 
@@ -1036,7 +1049,8 @@ exports.operator_premises_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     }
                 }
@@ -1065,13 +1079,13 @@ exports.operator_company_get = function (req, res) {
         let feCHData = {};
         let feCHDataSummary = {};
 
-        
-    var adrdata = adr.filter(function (value) {
-        return value.AccountNo === accountNo;
-    });
+
+        var adrdata = adr.filter(function (value) {
+            return value.AccountNo === accountNo;
+        });
 
         var detailView = process.env.DetailView;
-         if (EnableCH === 'true') {
+        if (EnableCH === 'true') {
 
             const d = require('../../data/companies.json')
 
@@ -1137,7 +1151,8 @@ exports.operator_company_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     } else {
                         res.render(version + '/operator/detail', {
@@ -1148,7 +1163,8 @@ exports.operator_company_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     }
                 } else {
@@ -1165,7 +1181,8 @@ exports.operator_company_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     } else {
 
@@ -1177,7 +1194,8 @@ exports.operator_company_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     }
                 }
@@ -1212,7 +1230,7 @@ exports.operator_company_summary_get = function (req, res) {
         });
 
         var detailView = process.env.DetailView;
-         if (EnableCH === 'true') {
+        if (EnableCH === 'true') {
 
             const d = require('../../data/companies.json')
 
@@ -1238,7 +1256,7 @@ exports.operator_company_summary_get = function (req, res) {
                 // console.log(feCHData)
             });
 
-            url = "https://api.companieshouse.gov.uk/search/companies?q="+chNumber;
+            url = "https://api.companieshouse.gov.uk/search/companies?q=" + chNumber;
 
 
             request.get({
@@ -1279,7 +1297,8 @@ exports.operator_company_summary_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     } else {
                         res.render(version + '/operator/detail', {
@@ -1290,7 +1309,8 @@ exports.operator_company_summary_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     }
                 } else {
@@ -1307,7 +1327,8 @@ exports.operator_company_summary_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata
+                            EnableCH,
+                            adrdata
                         })
                     } else {
 
@@ -1319,8 +1340,9 @@ exports.operator_company_summary_get = function (req, res) {
                             feCHData,
                             detailView,
                             premisesEnabled,
-                        EnableCH,  adrdata,
-                        feCHDataSummary
+                            EnableCH,
+                            adrdata,
+                            feCHDataSummary
                         })
                     }
                 }

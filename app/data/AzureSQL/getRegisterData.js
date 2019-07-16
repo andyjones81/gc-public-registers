@@ -16,6 +16,7 @@ async function getRegisterData(query) {
     let newacts = getNewLicenceActivities(query);
     let no = getNotes(query);
     let ac = getDatedActivites(query);
+    let grp = getGroup(query)
 
 
     let prem = getPremises(query);
@@ -30,6 +31,8 @@ async function getRegisterData(query) {
     sqlResult['newLicenceActivityInfo'] = await newacts;
     sqlResult['notes'] = await no;
     sqlResult['datedactivities'] = await ac;
+    
+    sqlResult['olGroup'] = await grp;
 
 
     sqlResult['premises'] = await prem;
@@ -65,6 +68,15 @@ async function getOLDomainNames(query) {
     try {
 
         return await sql.query("SELECT * from AllDomainNames where accountnumber = " + query + " order by AccountStatus, DomainName asc");
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function getGroup(query) {
+    try {
+
+        return await sql.query("SELECT * from OLGroups order by Account");
     } catch (err) {
         console.log(err);
     }

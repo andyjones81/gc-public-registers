@@ -1097,7 +1097,7 @@ body {font-family: "Lato", sans-serif;}
 .app-subnav__link{
   display:block;
   padding:8px 30px 8px 10px;
-  border-left:4px solid $grey-4;
+  border-left:4px solid $grey-3;
   text-decoration:none;
   margin-bottom: 5px;
 }
@@ -1116,11 +1116,13 @@ body {font-family: "Lato", sans-serif;}
   font-weight:bold
 }
 .app-subnav__section--nested{
-  margin-bottom:0
+  margin-bottom:5px
 }
 .app-subnav__section--nested .app-subnav__link{
   padding-left:20px;
-  font-weight:400
+  font-weight:400;
+  margin-bottom:0px;
+  margin-top:-5px;
 }
 .app-subnav__theme{
   margin:0;
@@ -1155,4 +1157,4 @@ body {font-family: "Lato", sans-serif;}
 
 .gc-text-right{text-align: right;}
 
-.gc-search-result--header{background: $grey-4}
+.gc-search-result--header{background: $grey-4;}

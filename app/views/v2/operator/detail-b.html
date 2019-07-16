@@ -43,42 +43,26 @@
 {% block content %}
 
 
-
-
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
 
-
-
-        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
-            {{olDetail.Account }}
-        </h1>
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-one-third">
-                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
-                    Account number
-                </h2>
-                <p class="govuk-body"> {{olDetail.AccountNo }}</p>              
-              
-            </div>
-
-            <div class="govuk-grid-column-two-thirds">
-                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
-                        Alternative dispute resolution provider
-                    </h2>
-
-                    {% if adrdata.length === 0 %}
-                    <p class="govuk-body">ADR not available</p>
-                    {% else %}
     
-                  <p class="govuk-body"><a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/General-compliance/ADR/Approved-ADR-providers.aspx" target="_Blank">{{adrdata[0].AssociatedAccountName }}</a></p>
-                    {% endif %}
-                    
-                   
-            </div>
-            <div class="govuk-grid-column-full">
-                    <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+            <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
+                    {{olDetail.Account }}
+                </h1>
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-third">
+                        <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                            Account number
+                        </h2>
+                        <p class="govuk-body"> {{olDetail.AccountNo }}</p>
+        
+                    </div>
+        
+        
+                    <div class="govuk-grid-two-thirds">
+                        <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
                             Head office address
                         </h2>
                         {% if olDetail.towncity === null or olDetail.postcode === null %}
@@ -87,7 +71,7 @@
         
                         <address class="govuk-body">
         
-                            {{olDetail.propertyname}}, 
+                            {{olDetail.propertyname}}<br />
         
                             {% if olDetail.street !== null %} {{olDetail.street}},{% endif %}
         
@@ -96,8 +80,9 @@
         
                         </address>
                         {% endif %}
-            </div>
-        </div>
+                    </div>
+                </div>
+        
 
 
 
@@ -123,6 +108,11 @@
                 <li class="app-subnav__section-item  app-subnav__section-item--current">
                     <a class="app-subnav__link govuk-link"
                         href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
+                </li>
+
+                <li class="app-subnav__section-item ">
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/company-detail/{{olDetail.AccountNo}}">Company information</a>
                 </li>
 
                 <li class="app-subnav__section-item ">
@@ -169,18 +159,20 @@
             <ul class="app-subnav__section">
 
                 <li class="app-subnav__section-item">
-                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/company-summary/{{olDetail.AccountNo}}">Summary</a>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/company-summary/{{olDetail.AccountNo}}">Summary</a>
                 </li>
-             
+
                 <li class="app-subnav__section-item">
-                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/company/{{olDetail.AccountNo}}">People</a>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/company/{{olDetail.AccountNo}}">People</a>
                 </li>
-            
+
 
 
             </ul>
 
-        </nav>    
+        </nav>
         {% endif %}
 
     </div>
@@ -307,7 +299,7 @@
                 <!--    Option 2        -->
                 {% if detailView === '2' %}
                 {% for licence in result.newLicenceInfo.recordset %}
-                <div class="govuk-inset-text govuk-!-margin-top-0">
+                <div class="govuk-inset-text govuk-!-margin-top-0" style="padding-top:1px;">
 
 
                     <div class="gc-search-result gc-search-result--header">
