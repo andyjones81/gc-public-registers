@@ -10,11 +10,16 @@ async function searchRegister(query, sectorFilter, statusFilter) {
     let q = getAccount(query, statusFilter, sectorFilter);
     let tn = getTradingNames(query);
     let dn = getDomainNames(query);
+    let tnc = getTradingNameCount(query);
+    let dnc = getDomainNameCount(query);
 
 
     sqlResult['registerData'] = await q;
     sqlResult['tradingNames'] = await tn;
     sqlResult['domainNames'] = await dn;
+    sqlResult['allTNCount'] = await tnc;
+
+    sqlResult['allDNCount'] = await dnc;
 
     sql.close()
     return sqlResult;
@@ -74,6 +79,26 @@ async function getDomainNames(query) {
         // console.log(err);
     }
 }
+
+
+async function getTradingNameCount(query) {
+    try {
+        return await sql.query("SELECT accountNo, count(*) as countof  FROM [dbo].[AllTradingNames]   group by accountNo");
+    } catch (err) {
+
+        // console.log(err);
+    }
+}
+
+async function getDomainNameCount(query) {
+    try {
+        return await sql.query("SELECT AccountNumber, count(*) as countof  FROM [dbo].[AllDomainNames]   group by AccountNumber");
+    } catch (err) {
+
+        console.log(err);
+    }
+}
+
 
 
 module.exports = searchRegister;

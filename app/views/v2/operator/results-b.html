@@ -282,7 +282,7 @@ Search the register of gambling businesses
                 </button>
 
 
-             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 
                 <p class="govuk-body">Download a file containing these results</p>
@@ -293,7 +293,7 @@ Search the register of gambling businesses
                     ODS
                 </a>
 
-               
+
             </div>
         </form>
     </div>
@@ -336,30 +336,69 @@ Search the register of gambling businesses
 
         <div class="gc-search-result">
             <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
-                <a href="/{{version}}/operator/detail/{{i.accountno}}">
-                    <!-- <span class="gc-pull-right"><span class="govuk-tag"> {% if i.determinationstatus === 'Granted' %}
-                            Active
-                            {% else %}
-                            {{i.determinationstatus}}
-                            {% endif %}</span></span>--> {{i.account}}</a> 
+
+                <span class="gc-pull-right">
+                    <span class="govuk-tag">{{i.accountno}}</span></span>
+                <a href="/{{version}}/operator/detail/{{i.accountno}}">{{i.account}}</a>
 
             </h3>
-            <p class="govuk-body-s govuk-!-margin-bottom-2">Account {{i.accountno}} </p>
+
             {% set hasTN = false %}
+            {% set matchCount = 0 %}
+            {% set tnCount = 0 %}
+            {% set s = "" %} {% set cs = "" %}
+
             {% for tn in result.tradingNames.recordset %}
+
             {% if tn.AccountNo === accountNumber %}
 
+            {% for tnc in result.allTNCount.recordset %}
+            {% if tnc.accountNo === accountNumber %}
+            {% set tnCount = tnc.countof %}
+            {% endif %}
+            {% endfor %}
 
             {% set hasTN = true %}
+            {% set matchCount = (matchCount + 1) %}
 
             {% endif %}
 
             {% endfor %}
-            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3 ">Trading name matches</p>
+
+            {% if matchCount > 1 %}
+            {% set s = "es" %}
             {% endif %}
+
+
+            {% if tnCount > 1 %}
+            {% set cs = "s" %}
+            {% endif %}
+
+
+            {% if tnCount > 0 or matchCount > 0 %}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-margin-top-3">Trading names</h3>
+            {% endif %}
+
+            {% if tnCount === 0 %}
+
+            <!-- <p class="govuk-body-s govuk-!-margin-bottom-2">No trading names</p> -->
+            {% else %}
+
+            {% if matchCount === 0 %}
+
+            <p class="govuk-body-s govuk-!-margin-bottom-2">No matches from {{tnCount}} trading name{{cs}}</p>
+            {% else %}
+
+            <p class="govuk-body-s govuk-!-margin-bottom-2">{{matchCount}} match{{s}} from {{tnCount}} trading name{{cs}}
+            </p>
+            {% endif %}
+           
+            {% endif %}
+
+          
+
+
             <ul class="gc-search-result--tag">
-
-
 
 
                 {% for tn in result.tradingNames.recordset %}
@@ -374,17 +413,52 @@ Search the register of gambling businesses
             </ul>
 
             {% set hasTN = false %}
+            {% set matchCount = 0 %}
+            {% set tnCount = 0 %}
+
+            {% set s = "" %} {% set cs = "" %}
+
             {% for tn in result.domainNames.recordset %}
+
             {% if tn.AccountNumber === accountNumber %}
 
+            {% for tnc in result.allDNCount.recordset %}
+            {% if tnc.AccountNumber === accountNumber %}
+            {% set tnCount = tnc.countof %}
+            {% endif %}
+            {% endfor %}
 
             {% set hasTN = true %}
+            {% set matchCount = (matchCount + 1) %}
 
             {% endif %}
 
             {% endfor %}
-            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3">Domain name matches</p>
+
+            {% if matchCount > 1 %}
+            {% set s = "es" %}
             {% endif %}
+
+            {% if tnCount > 1 %}
+            {% set cs = "s" %}
+            {% endif %}
+            {% if tnCount > 0 or matchCount > 0 %}
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-margin-top-3">Domain names</h3>
+            {% endif %}
+     
+            {% if tnCount === 0 %}
+
+            <!-- <p class="govuk-body-s govuk-!-margin-bottom-2">No domain names</p> -->
+            {% else %}
+
+            {% if matchCount === 0 %}
+
+            <p class="govuk-body-s govuk-!-margin-bottom-2">No matches from {{tnCount}} domain name{{cs}}</p>
+            {% else %}
+            <p class="govuk-body-s govuk-!-margin-bottom-2">{{matchCount}} match{{s}} from {{tnCount}} domain name{{cs}}
+            </p>
+            {% endif %}
+             {% endif %}
 
             <ul class="gc-search-result--tag">
 
@@ -407,8 +481,9 @@ Search the register of gambling businesses
     </div>
 
     {% endif%}
-  
-</div>
 
+
+
+</div>
 
 {% endblock %}
