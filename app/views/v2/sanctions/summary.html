@@ -60,7 +60,7 @@ Register of regulatory actions
             <div class="govuk-grid-column-two-thirds">
 
                 <div class="gc-register-search">
-                    <form method="POST" action="results">
+                    <form method="POST" action="full">
                         <label for="search" class="govuk-label">
                             <h2 class="govuk-heading-m  govuk-!-margin-bottom-3">
                                 Search this register
@@ -120,7 +120,7 @@ Register of regulatory actions
              <li class="register-theme"><a class="register-theme__link" href="/{{version}}/sanctions/full">
                         <h3 class="register-theme__heading govuk-heading-s govuk-!-margin-bottom-0 govuk-!-padding-bottom-1">View the full register</h3>
                         <p class="register-theme__description govuk-body-s">View all the entries in the register</p>
-                      
+                        <p class="register-theme__count govuk-body-s">{{104 | numeral("0,0") }} records</p>  
                     </a></li> 
                    
         </ul>
@@ -161,7 +161,7 @@ Register of regulatory actions
 
         <p class="govuk-body">Last updated: {{ date | date('DD MMMM YYYY')}}</p>
 
-        <p class="govuk-body">There are <span class="govuk-!-font-weight-bold">{{79 | numeral("0,0") }}</span>
+        <p class="govuk-body">There are <span class="govuk-!-font-weight-bold">{{104 | numeral("0,0") }}</span>
             records and <b>6 fields</b>
             in this register.</p>
 
