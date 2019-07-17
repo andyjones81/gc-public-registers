@@ -2,7 +2,7 @@ var NotifyClient = require('notifications-node-client').NotifyClient,
     notify = new NotifyClient(process.env.PublicRegisterNotifyKey);
 
 exports.home_get = function (req, res) {
-       res.redirect(process.env.version+"/hub/journey")
+       res.redirect(process.env.Version+"/hub/journey")
 }
 
 exports.changelog_get = function (req, res) {
