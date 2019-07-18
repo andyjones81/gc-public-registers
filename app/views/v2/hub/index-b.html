@@ -15,7 +15,7 @@ Public registers and datasets
 {% block headerInfo %}
 <section class="gc-product-page gc-product-page--header">
   <div class="govuk-header__container govuk-width-container">
-    <div class="govuk-!-padding-bottom-2">
+    <!-- <div class="govuk-!-padding-bottom-2">
       <div class="gc-tag alpha-tag">ALPHA</div> This is new, <a href="/feedback" class="govuk-link" target="_Blank">give
         us
         feedback</a>.
@@ -24,25 +24,21 @@ Public registers and datasets
       <div class="govuk-grid-column-full">
         <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
       </div>
-    </div>
+    </div> -->
 
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        <h1 class="govuk-heading-l govuk-!-margin-top-6">Public registers</h1>
-        <p class="govuk-body-l">The public registers provide information about businesses and individuals licensed by
-          the Gambling Commission, regulatory actions, and premises licensed for gambling purposes.</p>
+        <h1 class="govuk-heading-l govuk-!-margin-top-5">Public registers</h1>
+        <p class="govuk-body-l">The public registers provide information about licensed businesses, individuals and premises, and regulatory actions.</p>
 
 
         <div class="gc-register-search">
           <form method="POST" action="/{{version}}/hub/results">
             <label for="search" class="govuk-label">
-              <h2 class="govuk-heading-m  govuk-!-margin-bottom-3">
-                Search all the registers
-              </h2>
-            </label>
-            <p class="govuk-body">Search by business or individual name, account number or address.</p>
+                    
+            <p class="govuk-body">Search by business or individual name, account number or address.</p> </label>
             <div class="inner-form govuk-!-margin-bottom-3">
               <div class="input-field second-wrap">
                 <input id="search" name="search" type="text" placeholder="Search" required="required" />
@@ -80,9 +76,9 @@ Public registers and datasets
   <div class="govuk-grid-column-two-thirds v2">
 
     <h2 class="govuk-heading-m">
-      All registers
+      Registers
     </h2>
-    <p class="govuk-body">Search, view and download information from specific registers.</p>
+    <p class="govuk-body">Search, view and download information.</p>
 
 
     <ul class="register-themes">
@@ -170,7 +166,7 @@ Public registers and datasets
           {% endfor %}
 
           <li>
-            <a href="#" class="govuk-link govuk-!-font-weight-bold">
+            <a href="https://www.gamblingcommission.gov.uk/news-action-and-statistics/news/news.aspx" target="_blank" class="govuk-link govuk-!-font-weight-bold">
               More <span class="govuk-visually-hidden">news</span>
             </a>
           </li>
