@@ -109,7 +109,11 @@ Search the registers
                     <div class="govuk-grid-column-two-thirds"> {% if(result.registerData.recordset.length === 0)%}
 
                         <h3 class="govuk-heading-m">
-                            Nothing found for "{{data['search']}}" in the register of gambling operators.
+                            <p class="govuk-body"> No results can be found for <span class="govuk-!-font-weight-bold">"{{data['search']}}"</span> in the register of gambling operators.
+                                
+                            <br></br>    
+                            You can search the register using the business or individal name or account number.</p>
+                            
 
 
                         </h3>
@@ -304,7 +308,10 @@ Search the registers
                         {% if(result.personalData.recordset.length === 0)%}
 
                         <h3 class="govuk-heading-m">
-                            Nothing found for "{{data['search']}}" in the register of personal licence holders.
+                                <p class="govuk-body"> No results can be found for <span class="govuk-!-font-weight-bold">"{{data['search']}}"</span> in the register of personal licence holders.
+                                
+                                    <br></br>    
+                                    You can search the register using the name, licence or account number.</p>
 
 
                         </h3>
@@ -363,8 +370,10 @@ Search the registers
                         {% if(result.searchedSanctions.recordset.length === 0)%}
 
                         <h3 class="govuk-heading-m">
-                            Nothing found for "{{data['search']}}" in the register of regulatory actions.
-                        </h3>
+                                <p class="govuk-body"> No results can be found for <span class="govuk-!-font-weight-bold">"{{data['search']}}"</span> in the register of regulatory actions.
+                                
+                                    <br></br>    
+                                    You can search the register using the business or individal name or account number.</p>
 
 
                         {%else%}
@@ -414,7 +423,10 @@ Search the registers
                         {% if(result.premises.recordset.length === 0)%}
 
                         <h3 class="govuk-heading-m">
-                            Nothing found for "{{data['search']}}" in the register of gambling premises
+                                <p class="govuk-body"> No results can be found for <span class="govuk-!-font-weight-bold">"{{data['search']}}"</span> in the register of gambling premises.
+                                
+                                    <br></br>    
+                                    You can search the register using the business name, account number, street, town or postcode.</p>
                         </h3>
 
 

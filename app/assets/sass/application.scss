@@ -84,11 +84,21 @@ $path: "/public/images/";
   .govuk-body-l,
   .govuk-body,
   .govuk-label,
+  .govuk-back-link,
   .govuk-link,
   a {
-    color: #fff
+    color: $white
+  
   }
-}
+  .govuk-back-link {
+    border-bottom: 1px solid $white
+  }
+  .govuk-back-link:focus,
+  .govuk-link:focus {
+    color: $black;
+    border-bottom: 1px solid $black 
+  }
+ } 
 
 .gc-panel-card-min-height {
   height: 170px;
@@ -1158,3 +1168,4 @@ body {font-family: "Lato", sans-serif;}
 .gc-text-right{text-align: right;}
 
 .gc-search-result--header{background: $grey-4;}
+
