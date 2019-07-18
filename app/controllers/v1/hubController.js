@@ -2,6 +2,73 @@ const version = "v1";
 const _ = require('lodash');
 var mobileDetect = require('mobile-detect')
 
+exports.hub_access_get = function (req, res) {
+
+        req.session.data['ab'] = process.env.journey
+
+        if (req.session.data['ab'] === undefined) {
+
+        } else {
+
+                const d = require('../../data/register.json')
+
+                var qs1 = d.Accounts.Account.filter(function (value) {
+                        return value.RemoteStatus === 'Operator';
+                });
+                var qs2 = d.Accounts.Account.filter(function (value) {
+                        return value.RemoteStatus === 'Personal';
+                });
+
+                var countOL = qs1.length;
+                var countPL = qs2.length;
+                var countActions = 79;
+
+                var r = req.session.data['ab']
+
+                if (r === 'A') {
+                        res.render(version + '/hub/accessibility-statement', {
+                                version,
+                                countOL,
+                                countPL,
+                                countActions
+                        })
+                } else {
+
+
+                        var news;
+                        var consultations;
+
+                        Promise.all([
+                                        client.getEntries({
+                                                'content_type': 'news'
+                                        }),
+                                        client.getEntries({
+                                                'content_type': 'consultation'
+                                        })
+                                ])
+                                .then(([n, c]) => {
+
+                                        news = n,
+                                                consultations = c,
+
+                                                res.render(version + '/hub/accessibility-statement', {
+                                                        version,
+                                                        countOL,
+                                                        countPL,
+                                                        countActions,
+                                                        news,
+                                                        consultations,
+                                                })
+                                })
+                                .catch(error => {
+                                        console.log(error);
+                                });
+
+                }
+        }
+}
+
+
 exports.home_get = function (req, res) {
 
         req.session.data['ab'] = process.env.journey

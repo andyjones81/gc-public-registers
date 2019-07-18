@@ -301,7 +301,7 @@ exports.operator_detail_get = function (req, res) {
         return value.AccountNo === accountNo;
     });
 
-    console.log("ch: "+ch[0]) 
+    console.log("ch: "+ch) 
 
     console.log("adr: " +adrdata)
   
@@ -309,7 +309,7 @@ exports.operator_detail_get = function (req, res) {
         EnableCH = 'false';
     }
 
-   console.log(EnableCH)
+   console.log("Enable CH: "+EnableCH)
 
 
     var emptySearch = 'false';
