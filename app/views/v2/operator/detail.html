@@ -23,46 +23,20 @@ A - {{olDetail.Account}}
 
 
 {% if data['ab'] === 'B' %}
-<div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling operator register</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/results">Search results</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-            Detail
-        </li>
-    </ol>
-</div>
+
+<a href="/{{version}}/operator/results" class="govuk-back-link">Back</a>
+
 {% else %}
-<div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/summary">Gambling operator register</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/operator/results">Search results</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-            Detail
-        </li>
-    </ol>
-</div>
+<a href="/{{version}}/operator/results" class="govuk-back-link">Back</a>
 {% endif %}
 
 
 
 
 <div class="govuk-breadcrumbs content-mobile">
+
     <a href="/{{version}}/operator/results" class="govuk-back-link">Back to search results</a>
+
 </div>
 {% endblock %}
 

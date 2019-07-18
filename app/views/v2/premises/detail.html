@@ -19,23 +19,8 @@
 
 {% block beforeContent %}
 
-<div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/premises/summary">Premises register information</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/{{version}}/premises/search">Premises search</a>
-        </li>
+<a href="/{{version}}/premises/search" class="govuk-back-link">Search the register</a>
 
-        <li class="govuk-breadcrumbs__list-item">
-            Detail
-        </li>
-    </ol>
-</div>
 {% endblock %}
 
 {% block content %}
