@@ -46,104 +46,96 @@
 
 
 <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-full">
 
 
 
 
-                <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
-                        {{olDetail.Account }}
-                    </h1>
-                    <div class="govuk-grid-row">
-                        <div class="govuk-grid-column-one-third">
-                            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
-                                Account number
-                            </h2>
-                            <p class="govuk-body"> {{olDetail.AccountNo }}</p>
-            
-                        </div>
-            
-            
-                        <div class="govuk-grid-two-thirds">
-                            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
-                                Head office address
-                            </h2>
-                            {% if olDetail.towncity === null or olDetail.postcode === null %}
-                            <p class="govuk-body">Address not available</p>
-                            {% else %}
-            
-                            <address class="govuk-body">
-            
-                                {{olDetail.propertyname}}<br />
-            
-                                {% if olDetail.street !== null %} {{olDetail.street}},{% endif %}
-            
-                                {{olDetail.towncity | capitalize}}, {{olDetail.postcode | upper}}
-            
-            
-                            </address>
-                            {% endif %}
-                        </div>
-                    </div>
-            
-        
-        
-                <hr class="govuk-section-break govuk-section-break--visible gc-break govuk-!-margin-bottom-7">
-        
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
+            {{olDetail.Account }}
+        </h1>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    Account number
+                </h2>
+                <p class="govuk-body"> {{olDetail.AccountNo }}</p>
+
             </div>
+
+
+            <div class="govuk-grid-two-thirds">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    Head office address
+                </h2>
+                {% if olDetail.towncity === null or olDetail.postcode === null %}
+                <p class="govuk-body">Address not available</p>
+                {% else %}
+
+                <address class="govuk-body">
+
+                    {{olDetail.propertyname}}<br />
+
+                    {% if olDetail.street !== null %} {{olDetail.street}},{% endif %}
+
+                    {{olDetail.towncity | capitalize}}, {{olDetail.postcode | upper}}
+
+
+                </address>
+                {% endif %}
+            </div>
+        </div>
+
+
+
+        <hr class="govuk-section-break govuk-section-break--visible gc-break govuk-!-margin-bottom-7">
+
+    </div>
 
     <div class="govuk-grid-column-one-quarter">
 
-        <!-- <ul class="gc-register-tabs">
-            <li class="selected"><a href="">Summary</a></li>
-            <li><a href="">Trading names</a></li>
-            <li><a href="">Domain names</a></li>
-            <li><a href="">Regulatory action</a></li>
-            <li><a href="">People</a></li>
-            <li><a href="">Premises</a></li>
-        </ul> -->
 
         <nav class="app-subnav">
 
             <ul class="app-subnav__section">
 
-                    <li class="app-subnav__section-item">
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
-                        </li>
-        
-                        <li class="app-subnav__section-item ">
-                            <span class="gc-pill">{{result.tradingNames.recordset.length}}</span>
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/tradingnames/{{olDetail.AccountNo}}">Trading names</a>
-                        </li>
-        
-                        <li class="app-subnav__section-item  app-subnav__section-item--current">
-                            <span class="gc-pill">{{result.domainNames.recordset.length}}</span>
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/domainnames/{{olDetail.AccountNo}}">Domain names</a>
-                        </li>
-        
-                        <li class="app-subnav__section-item">
-                            <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/sanctions/{{olDetail.AccountNo}}">Sanctions</a>
-                        </li>
-        
-                        <li class="app-subnav__section-item">
-                            <span class="gc-pill">{{result.notes.recordset.length}}</span>
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/settlements/{{olDetail.AccountNo}}">Settlements</a>
-                        </li>
-        
-                        
-                        {% if result.premises.recordset.length > 0 and premisesEnabled === 'true' %}
-                        <li class="app-subnav__section-item">
-                            <span class="gc-pill">{{result.premises.recordset.length | numeral("0,0") }}</span>
-                            <a class="app-subnav__link govuk-link"
-                                href="/{{version}}/operator/premises/{{olDetail.AccountNo}}">Premises</a>
-                        </li>
-                        {% endif %}
+                <li class="app-subnav__section-item">
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/detail/{{olDetail.AccountNo}}">Licence summary</a>
+                </li>
+
+                <li class="app-subnav__section-item ">
+                    <span class="gc-pill">{{result.tradingNames.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/tradingnames/{{olDetail.AccountNo}}">Trading names</a>
+                </li>
+
+                <li class="app-subnav__section-item  app-subnav__section-item--current">
+                    <span class="gc-pill">{{result.domainNames.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/domainnames/{{olDetail.AccountNo}}">Domain names</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/sanctions/{{olDetail.AccountNo}}">Sanctions</a>
+                </li>
+
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.notes.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/settlements/{{olDetail.AccountNo}}">Settlements</a>
+                </li>
+
+
+                {% if result.premises.recordset.length > 0 and premisesEnabled === 'true' %}
+                <li class="app-subnav__section-item">
+                    <span class="gc-pill">{{result.premises.recordset.length | numeral("0,0") }}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/premises/{{olDetail.AccountNo}}">Premises</a>
+                </li>
+                {% endif %}
 
 
             </ul>
@@ -157,19 +149,21 @@
 
             <ul class="app-subnav__section">
                 <li class="app-subnav__section-item">
-                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/company-summary/{{olDetail.AccountNo}}">Summary</a>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/company-summary/{{olDetail.AccountNo}}">Summary</a>
                 </li>
 
-             
+
                 <li class="app-subnav__section-item">
-                    <a class="app-subnav__link govuk-link" href="/{{version}}/operator/company/{{olDetail.AccountNo}}">People</a>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/operator/company/{{olDetail.AccountNo}}">People</a>
                 </li>
-            
+
 
 
             </ul>
 
-        </nav>    
+        </nav>
         {% endif %}
 
     </div>
@@ -183,11 +177,22 @@
         {% if result.domainNames.recordset.length === 0 %}
 
         <div class="govuk-inset-text">
-            <p class="govuk-body">None recorded</p></div>
+            <p class="govuk-body">None recorded</p>
+        </div>
         {% endif %}
 
 
         {% for status, i in result.domainNames.recordset | groupby ('AccountStatus') %}
+        {% if status === 'White Label' %}
+       <h3 class="govuk-heading-m">White label websites</h3>
+       
+        <p class="govuk-body">A white label website is designed to look and feel like a company or brand but the
+            contents and services provided on the website are operated and managed by another company. </p>
+        <p class="govuk-body">You can find out more about <a
+                href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/Sector-specific-compliance/Remote-and-software/White-label-gambling-websites.aspx"
+                target="_blank">white label gambling websites</a> on the Gambling Commission website.</p>
+        {% endif %}
+
 
         <table class="govuk-table">
 
