@@ -187,15 +187,19 @@ exports.sanctions_results_get = function (req, res) {
 exports.sanctions_full_get = function (req, res) {
     console.log('sanctions: full get')
     var r = req.session.data['ab']
-    
+
     const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
 
     var query = req.session.data['search']
-
-    if(query === '')
+    console.log('query pre: '+ query)
+    
+    if(query === '' || query === undefined || query === 'null')
     {
         query = 'all';
     }
+
+    
+    console.log('query post: '+ query)
 
     let registerData = sanctionsRegisterData(query);
 
