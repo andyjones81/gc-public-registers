@@ -303,7 +303,8 @@ exports.operator_detail_get = function (req, res) {
         return value.AccountNo === accountNo;
     });
 
-    console.log("ch: "+ch) 
+    console.log(ch) 
+    console.log(ch.length) 
 
     console.log("adr: " +adrdata)
   
