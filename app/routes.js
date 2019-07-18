@@ -197,6 +197,8 @@ router.get('/' + version + '/personal/download', personal_Controller.personal_do
 router.post('/' + version + '/personal/results', personal_Controller.personal_results_post);
 router.get('/' + version + '/personal/results', personal_Controller.personal_results_post);
 router.get('/' + version + '/personal/detail/:id', personal_Controller.personal_detail_get);
+router.get('/' + version + '/personal/settlements/:id', personal_Controller.personal_settlements_get);
+router.get('/' + version + '/personal/sanctions/:id', personal_Controller.personal_sanctions_get);
 
 // Sanctions
 router.get('/' + version + '/sanctions/summary', sanctions_Controller.sanctions_summary_get);
