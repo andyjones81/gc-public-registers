@@ -218,3 +218,83 @@ exports.personal_detail_get = function (req, res) {
         });
     }
 }
+
+exports.personal_settlements_get = function (req, res) {
+
+    // console.log('Details')
+
+    var query = req.session.data['search']
+    var accountNo = req.params.id;
+    var r = req.session.data['ab']
+
+    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+
+    console.log("Detail Get: " + r)
+
+    var emptySearch = 'false';
+    let registerData = "";
+
+    if (query === '') {
+        emptySearch = 'true';
+        res.render(version + '/personal/settlements', {
+            version,
+            emptySearch
+        })
+    } else {
+        registerData = getRegisterData(accountNo);
+
+        registerData.then(result => {
+
+            res.render(version + '/personal/settlements', {
+                version,
+                registerData,
+                result,
+                emptySearch, 
+                r
+            })
+
+        }).catch(err => {
+            // console.log(err);
+        });
+    }
+}
+
+exports.personal_sanctions_get = function (req, res) {
+
+    // console.log('Details')
+
+    var query = req.session.data['search']
+    var accountNo = req.params.id;
+    var r = req.session.data['ab']
+
+    const getRegisterData = require('../../data/AzureSQL/getRegisterData');
+
+    console.log("Detail Get: " + r)
+
+    var emptySearch = 'false';
+    let registerData = "";
+
+    if (query === '') {
+        emptySearch = 'true';
+        res.render(version + '/personal/sanctions', {
+            version,
+            emptySearch
+        })
+    } else {
+        registerData = getRegisterData(accountNo);
+
+        registerData.then(result => {
+
+            res.render(version + '/personal/sanctions', {
+                version,
+                registerData,
+                result,
+                emptySearch, 
+                r
+            })
+
+        }).catch(err => {
+            // console.log(err);
+        });
+    }
+}

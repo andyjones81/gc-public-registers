@@ -1,0 +1,154 @@
+{% extends "layout_fullwidth-v2.html" %}
+{% set data = result.registerData.recordset[0] %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+
+{{ data.Applicantfirstname }} {{ data.Applicantsurname }} - {{data.AccountNo }}
+{% endblock %}
+
+{% block beforeContent %}
+
+<a href="/{{version}}/personal/results" class="govuk-back-link">Search the register</a>
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+
+
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">
+            {{ data.Applicantfirstname }} {{ data.Applicantsurname }}
+        </h1>
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    Account number
+                </h2>
+                <p class="govuk-body"> {{data.AccountNo }}</p>
+
+            </div>
+
+
+            <div class="govuk-grid-two-thirds">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    Location
+                </h2>
+                {% if data.towncity !== null %}
+                <p class="govuk-body">{{data.towncity | capitalize}}</p>
+                {% else %}
+                <p class="govuk-body">Not available</p>
+
+                {% endif %}
+            </div>
+        </div>
+
+
+
+
+        <hr class="govuk-section-break govuk-section-break--visible gc-break govuk-!-margin-bottom-7">
+
+    </div>
+
+    <div class="govuk-grid-column-one-quarter">
+
+
+
+        <nav class="app-subnav">
+
+            <ul class="app-subnav__section">
+
+                <li class="app-subnav__section-item">
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/personal/detail/{{data.AccountNo}}">Licence summary</a>
+                </li>
+
+                <li class="app-subnav__section-item  ">
+                    <span class="gc-pill">{{result.sanctions.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/personal/sanctions/{{data.AccountNo}}">Sanctions</a>
+                </li>
+
+                <li class="app-subnav__section-item app-subnav__section-item--current">
+                    <span class="gc-pill">{{result.notes.recordset.length}}</span>
+                    <a class="app-subnav__link govuk-link"
+                        href="/{{version}}/personal/settlements/{{data.AccountNo}}">Settlements</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
+
+
+        <h2 class="govuk-heading-m">
+            Settlements
+        </h2>
+        <p>Following an investigation into a licence holder we may enter into a regulatory settlement. These
+            take place, for example, where the licence holder has been open and transparent with us and has
+            shown a willingness to suggest actions that prevent the need for a more formal sanction.
+        </p>
+
+
+        {% if result.notes.recordset.length === 0 %}
+        <div class="govuk-inset-text">
+            <p class="govuk-body">None recorded</p>
+        </div>
+        {% else %}
+        <div class="govuk-inset-text">
+            <div class="gc-reg-action govuk-body">
+                {% for item in result.notes.recordset %}
+
+                <div class="govuk-grid-row">
+
+                    <div class="govuk-grid-column-one-half">
+                        <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                            Date of publication
+                        </h2>
+                        <p class="govuk-body">{{item.DecidedOn | date('DD MMMM YYYY')}}</p>
+                    </div>
+
+                </div>
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                    Outcome
+                </h2>
+                <p class="govuk-body">
+
+                    {{item.Details | safe}}
+
+                </p>
+
+                {% endfor %}
+
+
+            </div>
+        </div>
+        {%endif%}
+
+
+
+    </div>
+</div>
+
+{% endblock %}
