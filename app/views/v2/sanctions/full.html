@@ -84,345 +84,267 @@ Register of regulatory sanctions
             </ul>
 
             <section class="govuk-tabs__panel" id="sanctions">
-
-                <div class="govuk-grid-column-one-third">
-
-
-                    <form method="POST" action="full">
+                <div class="govuk-grid-row">
+                    {% if result.allSanctions.recordset.length > 0%}
+                    <div class="govuk-grid-column-one-third">
 
 
-                        <details class="govuk-details">
-                            <summary class="govuk-details__summary">
-                                <span class="govuk-details__summary-text">
-                                    Filter the results
-                                </span>
-                            </summary>
-                            <div class="govuk-details__text">
+                        <form method="POST" action="full">
+
+
+                            <details class="govuk-details">
+                                <summary class="govuk-details__summary">
+                                    <span class="govuk-details__summary-text">
+                                        Filter the results
+                                    </span>
+                                </summary>
+                                <div class="govuk-details__text">
 
 
 
-                                <div class="gc-filters">
+                                    <div class="gc-filters">
 
-                                    <h2 class="govuk-heading-m">Filters</h2>
-
-
-                                    <div class="govuk-form-group">
-                                        <fieldset class="govuk-fieldset">
-                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                                                <h3 class="govuk-fieldset__heading">
-                                                   Licensee type
-                                                </h3>
-                                            </legend>
-                                            <div class="govuk-checkboxes govuk-checkboxes--small">
+                                        <h2 class="govuk-heading-m">Filters</h2>
 
 
-                                                {% set ord = 0 %}
-
-                                                {% for remotestatus, i in result.allSanctions.recordset |sort(false, true, 'remotestatus') | groupby('remotestatus') %}
-
-                                                <div class="govuk-checkboxes__item"> <span
-                                                        class="gc-pill gc-pull-right">{{i.length | numeral("0,0") }}</span>
-                                                    <input class="govuk-checkboxes__input" id="remotestatus-{{ord}}"
-                                                        name="remotestatus" type="checkbox" value="{{remotestatus}}">
-                                                    <label class="govuk-label govuk-checkboxes__label"
-                                                        for="remotestatus-{{ord}}">
-
-                                                        {{remotestatus | truncate(20)}}
-                                                    </label> </div>
-
-                                                {% set ord = (ord + 1) %}
-
-                                                {% endfor %}
+                                        <div class="govuk-form-group">
+                                            <fieldset class="govuk-fieldset">
+                                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                    <h3 class="govuk-fieldset__heading">
+                                                        Licensee type
+                                                    </h3>
+                                                </legend>
+                                                <div class="govuk-checkboxes govuk-checkboxes--small">
 
 
-                                            </div>
-                                        </fieldset>
+                                                    {% set ord = 0 %}
+
+                                                    {% for remotestatus, i in result.allSanctions.recordset |sort(false, true, 'remotestatus') | groupby('remotestatus') %}
+
+                                                    <div class="govuk-checkboxes__item"> <span
+                                                            class="gc-pill gc-pull-right">{{i.length | numeral("0,0") }}</span>
+                                                        <input class="govuk-checkboxes__input" id="remotestatus-{{ord}}"
+                                                            name="remotestatus" type="checkbox"
+                                                            value="{{remotestatus}}">
+                                                        <label class="govuk-label govuk-checkboxes__label"
+                                                            for="remotestatus-{{ord}}">
+
+                                                            {{remotestatus | truncate(20)}}
+                                                        </label> </div>
+
+                                                    {% set ord = (ord + 1) %}
+
+                                                    {% endfor %}
+
+
+                                                </div>
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="govuk-form-group">
+                                            <fieldset class="govuk-fieldset">
+                                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                    <h3 class="govuk-fieldset__heading">
+                                                        Licensee type
+                                                    </h3>
+                                                </legend>
+                                                <div class="govuk-checkboxes govuk-checkboxes--small">
+
+
+                                                    {% set ord = 0 %}
+
+                                                    {% for status, i in result.allSanctions.recordset |sort(false, true, 'status') | groupby('status') %}
+
+                                                    <div class="govuk-checkboxes__item"> <span
+                                                            class="gc-pill gc-pull-right">{{i.length | numeral("0,0") }}</span>
+                                                        <input class="govuk-checkboxes__input" id="status-{{ord}}"
+                                                            name="status" type="checkbox" value="{{status}}">
+                                                        <label class="govuk-label govuk-checkboxes__label"
+                                                            for="status-{{ord}}">
+
+                                                            {{status | truncate(20)}}
+                                                        </label> </div>
+
+                                                    {% set ord = (ord + 1) %}
+
+                                                    {% endfor %}
+
+
+                                                </div>
+                                            </fieldset>
+                                        </div>
+
+                                        <button type="submit" class="govuk-button">
+                                            Apply filters
+                                        </button>
+
                                     </div>
-
-                                    <div class="govuk-form-group">
-                                        <fieldset class="govuk-fieldset">
-                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                                                <h3 class="govuk-fieldset__heading">
-                                                   Licensee type
-                                                </h3>
-                                            </legend>
-                                            <div class="govuk-checkboxes govuk-checkboxes--small">
-
-
-                                                {% set ord = 0 %}
-
-                                                {% for status, i in result.allSanctions.recordset |sort(false, true, 'status') | groupby('status') %}
-
-                                                <div class="govuk-checkboxes__item"> <span
-                                                        class="gc-pill gc-pull-right">{{i.length | numeral("0,0") }}</span>
-                                                    <input class="govuk-checkboxes__input" id="status-{{ord}}"
-                                                        name="status" type="checkbox" value="{{status}}">
-                                                    <label class="govuk-label govuk-checkboxes__label"
-                                                        for="status-{{ord}}">
-
-                                                        {{status | truncate(20)}}
-                                                    </label> </div>
-
-                                                {% set ord = (ord + 1) %}
-
-                                                {% endfor %}
-
-
-                                            </div>
-                                        </fieldset>
-                                    </div>
-
-                                    <button type="submit" class="govuk-button">
-                                        Apply filters
-                                    </button>
 
                                 </div>
-
-                            </div>
-                        </details>
-                    </form>
-                </div>
-                <div class="govuk-grid-column-two-thirds">
-                    <h2 class="govuk-heading-m">
-                        Sanctions
-                    </h2>
-
-                    <div class="govuk-!-margin-top-6"></div>
-                    {% for i in result.allSanctions.recordset %}
-
-                    <div class="gc-search-result">
-
-                        <ul class="gc-search-result--tag gc-pull-right">
-                            <li>{{i.remotestatus}}</li>
-                        </ul>
-
-                        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                            {% if i.remotestatus === 'Operator' %}
-                            <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}">
-                                {{i.account}}</a>
-                            {% else %}
-                            <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
-                                {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
-                            {% endif %}
-
-                        </h3>
-
-                        <p class="govuk-body-s govuk-!-margin-bottom-2">Decision date
-                            {{i.decidedon | date('DD MMMM YYYY')}}
-                        </p>
-                        <span class="govuk-tag">{{i.status}}</span>
+                            </details>
+                        </form>
                     </div>
+                    {%endif%}
+                    <div class="govuk-grid-column-two-thirds">
+                        <h2 class="govuk-heading-m">
+                            Sanctions
+                        </h2>
 
-                    {% endfor %}
+                        <div class="govuk-!-margin-top-6"></div>
+                        {% if result.allSanctions.recordset.length > 0%}
+                        {% for i in result.allSanctions.recordset %}
 
+                        <div class="gc-search-result">
+
+                            <ul class="gc-search-result--tag gc-pull-right">
+                                <li>{{i.remotestatus}}</li>
+                            </ul>
+
+                            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+                                {% if i.remotestatus === 'Operator' %}
+                                <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}">
+                                    {{i.account}}</a>
+                                {% else %}
+                                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}">
+                                    {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
+                                {% endif %}
+
+                            </h3>
+
+                            <p class="govuk-body-s govuk-!-margin-bottom-2">Decision date
+                                {{i.decidedon | date('DD MMMM YYYY')}}
+                            </p>
+                            <span class="govuk-tag">{{i.status}}</span>
+                        </div>
+
+                        {% endfor %}
+                        {%else%}
+
+                        <p class="govuk-body">No results found for <span
+                                class="govuk-!-font-weight-bold">"{{data['search']}}"</span> in the sanctions register
+                        </p>
+                        <p class="govuk-body">You can search the register using business or individual name or account
+                            number.</p>
+                        {%endif%}
+                    </div>
 
             </section>
             <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="settlements">
+                <div class="govuk-grid-row"> {% if result.allSettlements.recordset.length > 0%}
+
+                    <div class="govuk-grid-column-one-third">
 
 
-                <div class="govuk-grid-column-one-third">
+                        <form method="POST" action="full">
 
 
-                    <form method="POST" action="full">
+                            <details class="govuk-details">
+                                <summary class="govuk-details__summary">
+                                    <span class="govuk-details__summary-text">
+                                        Filter the results
+                                    </span>
+                                </summary>
+                                <div class="govuk-details__text">
+
+                                    <div class="gc-filters">
+
+                                        <h2 class="govuk-heading-m">Filters</h2>
+
+                                        <div class="govuk-form-group">
+                                            <fieldset class="govuk-fieldset">
+                                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                    <h3 class="govuk-fieldset__heading">
+                                                        Licensee type
+                                                    </h3>
+                                                </legend>
+                                                <div class="govuk-checkboxes govuk-checkboxes--small">
 
 
-                        <details class="govuk-details">
-                            <summary class="govuk-details__summary">
-                                <span class="govuk-details__summary-text">
-                                    Filter the results
-                                </span>
-                            </summary>
-                            <div class="govuk-details__text">
+                                                    {% set ord = 0 %}
+
+                                                    {% for remotestatus, i in result.allSettlements.recordset |sort(false, true, 'remotestatus') | groupby('remotestatus') %}
+
+                                                    <div class="govuk-checkboxes__item"> <span
+                                                            class="gc-pill gc-pull-right">{{i.length | numeral("0,0") }}</span>
+                                                        <input class="govuk-checkboxes__input"
+                                                            id="sremotestatus-{{ord}}" name="sremotestatus"
+                                                            type="checkbox" value="{{remotestatus}}">
+                                                        <label class="govuk-label govuk-checkboxes__label"
+                                                            for="sremotestatus-{{ord}}">
+
+                                                            {{remotestatus | truncate(20)}}
+                                                        </label> </div>
+
+                                                    {% set ord = (ord + 1) %}
+
+                                                    {% endfor %}
 
 
+                                                </div>
+                                            </fieldset>
+                                        </div>
 
-                                <div class="gc-filters">
+                                        <button type="submit" class="govuk-button">
+                                            Apply filters
+                                        </button>
 
-                                    <h2 class="govuk-heading-m">Filters</h2>
-
-
-                                    <div class="govuk-form-group">
-                                        <fieldset class="govuk-fieldset">
-                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                                                <h3 class="govuk-fieldset__heading">
-                                                   Licensee type
-                                                </h3>
-                                            </legend>
-                                            <div class="govuk-checkboxes govuk-checkboxes--small">
-
-
-                                                {% set ord = 0 %}
-
-                                                {% for remotestatus, i in result.allSettlements.recordset |sort(false, true, 'remotestatus') | groupby('remotestatus') %}
-
-                                                <div class="govuk-checkboxes__item"> <span
-                                                        class="gc-pill gc-pull-right">{{i.length | numeral("0,0") }}</span>
-                                                    <input class="govuk-checkboxes__input" id="sremotestatus-{{ord}}"
-                                                        name="sremotestatus" type="checkbox" value="{{remotestatus}}">
-                                                    <label class="govuk-label govuk-checkboxes__label"
-                                                        for="sremotestatus-{{ord}}">
-
-                                                        {{remotestatus | truncate(20)}}
-                                                    </label> </div>
-
-                                                {% set ord = (ord + 1) %}
-
-                                                {% endfor %}
-
-
-                                            </div>
-                                        </fieldset>
                                     </div>
 
-                                 
-
-                                    <button type="submit" class="govuk-button">
-                                        Apply filters
-                                    </button>
-
                                 </div>
+                            </details>
+                        </form>
+                    </div>
+                    {%endif%}
+                    <div class="govuk-grid-column-two-thirds">
 
-                            </div>
-                        </details>
-                    </form>
+                        <h2 class="govuk-heading-m">
+                            Settlements
+                        </h2>
+
+                        <div class="govuk-!-margin-top-6"></div>
+                        {% if result.allSettlements.recordset.length > 0%}
+                        {% for i in result.allSettlements.recordset %}
+
+                        <div class="gc-search-result">
+
+                            <ul class="gc-search-result--tag gc-pull-right">
+                                <li>{{i.remotestatus}}</li>
+                            </ul>
+
+                            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+                                {% if i.remotestatus === 'Operator' %}
+                                <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}">
+                                    {{i.account}}</a>
+                                {% else %}
+                                <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}">
+                                    {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
+                                {% endif %}
+
+                            </h3>
+
+                            <p class="govuk-body-s govuk-!-margin-bottom-2">Publication date
+                                {{i.decidedon | date('DD MMMM YYYY')}}</p>
+
+                        </div>
+
+                        {% endfor %}
+                        {%else%}
+
+                        <p class="govuk-body">No results found for <span
+                                class="govuk-!-font-weight-bold">"{{data['search']}}"</span> in the settlements register
+                        </p>
+                        <p class="govuk-body">You can search the register using business or individual name or account
+                            number.</p>
+                        {%endif%}
+                    </div>
                 </div>
-
-                <div class="govuk-grid-column-two-thirds">
-
-                <h2 class="govuk-heading-m">
-                    Settlements
-                </h2>
-
-                <div class="govuk-!-margin-top-6"></div>
-
-                {% for i in result.allSettlements.recordset %}
-
-                <div class="gc-search-result">
-
-                    <ul class="gc-search-result--tag gc-pull-right">
-                        <li>{{i.remotestatus}}</li>
-                    </ul>
-
-                    <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                        {% if i.remotestatus === 'Operator' %}
-                        <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}#action">
-                            {{i.account}}</a>
-                        {% else %}
-                        <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}#past-year">
-                            {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
-                        {% endif %}
-
-                    </h3>
-
-                    <p class="govuk-body-s govuk-!-margin-bottom-2">Publication date
-                        {{i.decidedon | date('DD MMMM YYYY')}}</p>
-
-                </div>
-
-                {% endfor %}
-            </div>
             </section>
 
         </div>
-
-
-
-
-
 
 
 
     </div>
 </div>
-<!-- 
-
-<div class="govuk-grid-row">
-
-    <div class="govuk-grid-column-two-thirds">
-
-        <h1 class="govuk-heading-l" id="subsection-title">
-            Register of regulatory sanctions
-        </h1>
-
-        <p class="govuk-body">There are {{result.allSanctions.recordset.length}} entries in the register of regulatory
-            actions.</p>
-
-        {% for i in result.allSanctions.recordset %}
-
-        <div class="gc-search-result">
-
-            <ul class="gc-search-result--tag gc-pull-right">
-                <li>{{i.remotestatus}}</li>
-            </ul>
-
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                {% if i.remotestatus === 'Operator' %}
-                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#action">
-                    {{i.account}}</a>
-                {% else %}
-                <a href="/{{version}}/{{i.remotestatus}}/detail/{{i.AccountNo}}#past-year">
-                    {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
-                {% endif %}
-
-            </h3>
-
-            <p class="govuk-body-s govuk-!-margin-bottom-2">Decision date {{i.decidedon | date('DD MMMM YYYY')}}</p>
-            <span class="govuk-tag">{{i.status}}</span>
-        </div>
-
-        {% endfor %}
-
-    </div>
-
-    <div class="govuk-grid-column-one-third">
-        <aside class="app-related-items" role="complementary">
-
-            <h2 class="govuk-heading-m" id="subsection-title">
-                Sanctions register
-            </h2>
-
-            <nav role="navigation" aria-labelledby="subsection-title">
-                <ul class="govuk-list govuk-!-font-size-16">
-                    <li>
-                        <a href="/{{version}}/sanctions/summary" class="govuk-link">
-                            Download the full register
-                        </a>
-                    </li>
-                    <li>
-                        <a class="govuk-link" href="/{{version}}/sanctions/summary" target="_Blank">
-                            Register information
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-
-            <h2 class="govuk-heading-m" id="subsection-title">
-                Related information
-            </h2>
-            <nav role="navigation" aria-labelledby="subsection-title">
-                <ul class="govuk-list govuk-!-font-size-16">
-                    <li>
-                        <a class="govuk-link"
-                            href="http://www.gamblingcommission.gov.uk/news-action-and-statistics/Regulatory-action/Regulatory-action.aspx"
-                            target="_Blank">
-                            Regulatory action
-                        </a>
-                    </li>
-                    <li>
-                        <a class="govuk-link"
-                            href="http://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/LCCP/Licence-conditions-and-codes-of-practice.aspx"
-                            target="_Blank">
-                            Licence conditions and codes of practice
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-    </div>
-
-</div> -->
-
-
-
 
 {% endblock %}

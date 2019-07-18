@@ -1,0 +1,64 @@
+{% extends "layout_fullwidth-v2.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+    aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Public registers - Gambling Commission
+{% endblock %}
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/hub">All registers</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/{{version}}/premises/summary">Premises register</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item">
+            API
+        </li>
+    </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h2 class="govuk-heading-l">Use the API</h2>
+
+        <p class="govuk-body">Get this register as JSON:</p>
+<pre>
+<code>http://example.com/register/premises/records.json</code>
+</pre>
+       
+<h3 class="govuk-heading-m govuk-!-margin-top-5">
+        Register definition
+      </h3>
+        <p class="govuk-body">You can view details of the fields and descriptions on the <a class="govuk-link" href="/{{version}}/premises/summary">register summary</a> information page.</p>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

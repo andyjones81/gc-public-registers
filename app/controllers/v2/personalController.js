@@ -78,7 +78,7 @@ exports.personal_results_post = function (req, res) {
     if (query === '') {
         console.log('Empty query')
         emptySearch = 'true';
-        res.render(version + '/personal/results-b', {
+        res.render(version + '/personal/results', {
             version,
             emptySearch
         })
@@ -88,111 +88,18 @@ exports.personal_results_post = function (req, res) {
         registerData = searchRegister(query);
         console.log('Data:' +registerData)
         registerData.then(result => {
-
-    if (r === 'A') {
+  
         res.render(version + '/personal/results', {
             version,
             registerData,
             result,
             emptySearch
         })
-    } else {
-
-            //Is this a mobile?
-
-
-
-            var md = new mobileDetect(req.headers['user-agent']);
-
-            if (md.mobile() !== null) {
-
-                res.render(version + '/personal/results-mob', {
-                    version,
-                    registerData,
-                    result,
-                    emptySearch
-                })
-            } else {
-                res.render(version + '/personal/results', {
-                    version,
-                    registerData,
-                    result,
-                    emptySearch
-                })
-            }
-        }
-
-
+    
         }).catch(err => {
-           //  console.log(err);
+             console.log(err);
         });
-    }
-
-    // var r = req.session.data['ab']
-    // const d = require('../../data/register.json')
-
-
-
-    // var qs1 = d.Accounts.Account.filter(function (value) {
-    //     return value.RemoteStatus === 'personal';
-    // });
-
-    // console.log('qs1')
-
-    // if (query === undefined) {
-    //     registerData = _.orderBy(qs1, ['Account'], ['asc']);
-    // } else {
-    //     registerData = _.filter(qs1, function (a) {
-    //         if ((a.Account.toLowerCase().indexOf((query).toLowerCase()) !== -1) ||
-    //             (a.AccountNo.indexOf((query)) !== -1))
-    //             return a;
-    //     });
-    // }
-
-    // 
-
-    // console.log('filters - start')
-
-    // console.log(statusFilter)
-    // console.log(sectorFilter)
-    // console.log('filters - end')
-
-    // if (statusFilter !== undefined) {
-    //     console.log('inside the filtering')
-    //     if (statusFilter.length !== 2) {
-    //         registerData = _.filter(registerData, function (a) {
-    //             if (a.DeterminationStatus.indexOf((statusFilter)) !== -1)
-    //                 return a;
-    //         });
-    //     }
-    // }
-
-    // registerData = _.orderBy(registerData, ['Account'], ['asc']);
-
-
-    // if (r === 'A') {
-    //     res.render(version + '/personal/results', {
-    //         version,
-    //         registerData
-    //     })
-    // } else {
-    //     //Is this a mobile?
-
-    //     var md = new mobileDetect(req.headers['user-agent']);
-
-    //     if (md.mobile() !== null) {
-
-    //         res.render(version + '/personal/results-mob', {
-    //             version,
-    //             registerData
-    //         })
-    //     } else {
-    //         res.render(version + '/personal/results-b', {
-    //             version,
-    //             registerData
-    //         })
-    //     }
-    // }
+    }  
 
 }
 

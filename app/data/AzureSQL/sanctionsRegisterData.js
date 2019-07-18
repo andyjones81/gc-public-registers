@@ -25,6 +25,8 @@ async function getAllSanctions(query) {
 
         console.log('get sanctions all');
 
+        if(query === 'all')
+        {
         return await sql.query("SELECT sa.Id, ss.status, pr.AccountNo, sa.decidedon, pr.account, pr.Applicantfirstname, sa.Details, pr.Applicantsurname, pr.remotestatus " +
             "FROM [Sanctions] as sa  " + 
             "INNER JOIN [PublicRegisterReporting] as pr  " + 
@@ -32,9 +34,25 @@ async function getAllSanctions(query) {
             "INNER JOIN [SanctionStatus] as ss  " + 
             "ON sa.[Status] = ss.Id  " + 
             "where sa.Enabled = 1 order by sa.decidedon desc");
+        }
+        else{
+            return await sql.query("SELECT sa.Id, ss.status, pr.AccountNo, sa.decidedon, pr.account, pr.Applicantfirstname, pr.Applicantsurname, pr.remotestatus " +
+            "FROM [Sanctions] as sa " +
+            "INNER JOIN [PublicRegisterReporting] as pr " +
+            "ON pr.AccountNo = sa.AccountNumber " +
+            "INNER JOIN [SanctionStatus] as ss " +
+            "ON sa.[Status] = ss.Id " +
+            "where sa.Enabled = 1 " +
+            "and (sa.AccountNumber) like'%" + query + "%' " +
+            "or (sa.Status) like'%" + query + "%' " +
+            "or (pr.account) like'%" + query + "%' " +
+            "or (pr.Applicantfirstname) like'%" + query + "%' ");
+        }
+
+
 
     } catch (err) {
-        console.log(err);
+        console.log(err + "Get all sanctions");
     }
 }
 
@@ -43,13 +61,26 @@ async function getAllSettlements(query) {
 
         console.log('get settlements all');
 
+
+        if(query === 'all')
+        {
         return await sql.query("SELECT pr.AccountNo, n.decidedon, pr.account, pr.Applicantfirstname, pr.Applicantsurname, pr.remotestatus, n.details "+
         "FROM [dbo].[Notes] as n "+
         "inner join [dbo].[PublicRegisterReporting] as pr "+
         "on pr.AccountNo = n.AccountNumber order by n.decidedon desc");
+        }
+        else{
+            return await sql.query("SELECT pr.AccountNo, n.decidedon, pr.account, pr.Applicantfirstname, pr.Applicantsurname, pr.remotestatus, n.details "+
+            "FROM [dbo].[Notes] as n "+
+            "inner join [dbo].[PublicRegisterReporting] as pr "+
+            "on pr.AccountNo = n.AccountNumber "+
+            "where pr.AccountNo like'%" + query + "%' " +
+            "or pr.account like'%" + query + "%' " +
+            "or pr.Applicantfirstname like'%" + query + "%'  order by n.decidedon desc");
+        }
 
     } catch (err) {
-        console.log(err);
+        console.log(err + "Get all notes");
     }
 }
 
@@ -80,7 +111,7 @@ async function searchSanctions(query) {
 
 
     } catch (err) {
-        console.log(err);
+        console.log(err + "search all sanctions");
     }
 }
 
