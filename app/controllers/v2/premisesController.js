@@ -9,6 +9,11 @@ exports.premises_summary_get = function (req, res) {
 
 }
 
+exports.premises_api_get = function (req, res) {
+    res.render(version + '/premises/api', {
+        version
+    })
+}
 
 exports.premises_search_get = function (req, res) {
 

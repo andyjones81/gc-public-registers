@@ -13,6 +13,7 @@ async function searchFullRegister(query, sectorFilter, statusFilter) {
     let dn = getDomainNames(query);
     let sq = searchSanctions(query);
 
+    let p = searchPremises(query);
 
 
     sqlResult['registerData'] = await q ;
@@ -20,11 +21,34 @@ async function searchFullRegister(query, sectorFilter, statusFilter) {
     sqlResult['tradingNames'] = await tn ;
     sqlResult['domainNames'] = await dn ;
     sqlResult['searchedSanctions'] = await sq;
+    
+    sqlResult['premises'] = await p;
 
     sql.close()
     return sqlResult;
 }
 
+async function searchPremises(query) {
+    try {
+
+        console.log('Search premises: ' + query);
+
+
+        return await sql.query("SELECT ad.id, pr.[accountno], ad.[addressline1], ad.[addressline2], ad.[city], ad.[postcode], ad.[country], ad.[active], ad.[localauthority], ad.[activity], pr.Account " +
+            "FROM [dbo].[addresslist] as ad inner join [dbo].[PublicRegisterReporting] as pr on pr.AccountNo = ad.accountno " +
+            "where (pr.accountno) like'%" + query + "%' " +
+            "or (ad.addressline1) like'%" + query + "%' " +
+            "or (ad.city) like'%" + query + "%' " +
+            "or (ad.postcode) like'%" + query + "%' " +
+            "or (pr.account) like'%" + query + "%' " +
+            "or (ad.localauthority) like'%" + query + "%' " +            
+            "or (ad.activity) like'%" + query + "%' " +
+            "order by ad.activity");
+
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 async function searchSanctions(query) {
     try {

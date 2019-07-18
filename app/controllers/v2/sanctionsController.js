@@ -18,7 +18,7 @@ exports.sanctions_summary_get = function (req, res) {
 
 exports.sanctions_search_get = function (req, res) {
     const registerData = require('../../data/register.json')
-
+    console.log('sanctions: search get')
     var r = req.session.data['ab']
     if (r === 'A') {
         res.render(version + '/sanctions/search', {
@@ -48,12 +48,12 @@ exports.sanctions_api_get = function (req, res) {
 }
 
 exports.sanctions_results_post = function (req, res) {
-    console.log('sanctions: POST')
+    console.log('sanctions: results post')
     var r = req.session.data['ab']
     const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
     let query = req.session.data['search']
 
-    console.log(query)
+   
 
     var emptySearch = 'false';
     let registerData = sanctionsRegisterData(query);
@@ -67,11 +67,7 @@ exports.sanctions_results_post = function (req, res) {
             registerData
         })
     } else {
-
-        console.log('Search PL data')
-
-
-
+       
         registerData.then(result => {
             if (r === 'A') {
                 res.render(version + '/sanctions/results', {
@@ -116,7 +112,7 @@ exports.sanctions_results_post = function (req, res) {
 
 
 exports.sanctions_results_get = function (req, res) {
-    // console.log('get')
+    console.log('sanctions: results get')
     // Value from the form
     var query = req.session.data['search']
     var registerData = [];
@@ -189,10 +185,19 @@ exports.sanctions_results_get = function (req, res) {
 }
 
 exports.sanctions_full_get = function (req, res) {
-
+    console.log('sanctions: full get')
     var r = req.session.data['ab']
+    
     const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
-    let registerData = sanctionsRegisterData("all");
+
+    var query = req.session.data['search']
+
+    if(query === '')
+    {
+        query = 'all';
+    }
+
+    let registerData = sanctionsRegisterData(query);
 
     registerData.then(result => {
 

@@ -57,7 +57,7 @@ Search the personal licence register
 
                 </label>
                 <span class="govuk-hint">
-                        Search by name or account number
+                    Search by name or account number
                 </span>
                 <div class="inner-form govuk-!-margin-bottom-3">
                     <div class="input-field second-wrap">
@@ -257,7 +257,7 @@ Search the personal licence register
             {% endif %}
 
         </h3>
-        
+
 
         {%else%} <p class="govuk-body govuk-!-margin-bottom-2">
             <span class="govuk-!-font-weight-bold">{{result.registerData.recordset.length | numeral("0,0") }}</span>
@@ -266,36 +266,44 @@ Search the personal licence register
         {% endif %}
 
 
-        {% for i in result.registerData.recordset %}
+        {% for accountno, ai in result.registerData.recordset | groupby('accountno') %}
+
+{%for base, i in ai | groupby('accountno') %}
 
         {% set accountNumber = 0%}
 
         {% if accountNumber !== i.accountno %}
         {% set accountNumber = i.accountno%}
 
-        <div class="gc-search-result">    <ul class="gc-search-result--tag gc-pull-right">
-    
-                    <li>{{i.towncity | capitalize}}</li>
-            </ul>
+        <div class="gc-search-result">
+            <span class="gc-pull-right">
+                <span class="govuk-tag">{{accountno}}</span></span>
+
             <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
-                <a href="/{{version}}/personal/detail/{{i.accountno}}">
-                   {{i.Applicantfirstname}} {{i.Applicantsurname | upper}}</a>
+                <a href="/{{version}}/personal/detail/{{accountno}}">
+                    {{i[0].Applicantfirstname}} {{ai[0].Applicantsurname | upper}}</a>
 
             </h3>
-            <p class="govuk-body-s govuk-!-margin-bottom-2">Account {{i.accountno}} </p>
 
-        
+            <ul class="gc-search-result--tag">
+
+                <li>{{i[0].towncity | capitalize}}</li>
+                
+            {% for product in ai %}
+            <li>{{product.product | replace('- N','') | upper}}</li>
+            {% endfor %}
+            </ul>
 
 
         </div>
         {% endif %}
         {% endfor %}
+        {% endfor %}
 
     </div>
 
     {% endif%}
-  
-</div>
 
+</div>
 
 {% endblock %}

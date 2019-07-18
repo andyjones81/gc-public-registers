@@ -47,7 +47,7 @@ Search the registers
                     </h1>
                 </label>
                 <span class="govuk-hint content-desktop">
-                        Search by business or individual name, account number or address.
+                    Search by business or individual name, account number or address.
                 </span>
                 <div class="inner-form govuk-!-margin-bottom-3">
                     <div class="input-field second-wrap">
@@ -92,12 +92,12 @@ Search the registers
             <ul class="govuk-tabs__list">
                 <li class="govuk-tabs__list-item">
                     <a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#past-day">
-                        Operator licence ({{ result.registerData.recordset.length | numeral("0,0") }})
+                        Businesses ({{ result.registerData.recordset.length | numeral("0,0") }})
                     </a>
                 </li>
                 <li class="govuk-tabs__list-item">
                     <a class="govuk-tabs__tab" href="#past-week">
-                        Personal licence ({{ result.personalData.recordset.length | numeral("0,0") }})
+                        Individuals ({{ result.personalData.recordset.length | numeral("0,0") }})
                     </a>
                 </li>
                 <li class="govuk-tabs__list-item">
@@ -105,7 +105,11 @@ Search the registers
                         Regulatory actions ({{ result.searchedSanctions.recordset.length | numeral("0,0") }})
                     </a>
                 </li>
-
+                <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#prem">
+                        Premises ({{ result.premises.recordset.length | numeral("0,0") }})
+                    </a>
+                </li>
             </ul>
 
             <section class="govuk-tabs__panel" id="past-day">
@@ -131,81 +135,157 @@ Search the registers
                             class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
                         {% endif %}
 
-
                         {% for i in result.registerData.recordset %}
 
                         {% set accountNumber = 0%}
-
+                
                         {% if accountNumber !== i.accountno %}
                         {% set accountNumber = i.accountno%}
-
+                
                         <div class="gc-search-result">
                             <h3 class="govuk-heading-s  govuk-!-margin-bottom-2">
-                                <a href="/{{version}}/operator/detail/{{i.accountno}}">
-                                    {{i.account}}</a>
-
+                
+                                <span class="gc-pull-right">
+                                    <span class="govuk-tag">{{i.accountno}}</span></span>
+                                <a href="/{{version}}/operator/detail/{{i.accountno}}">{{i.account}}</a>
+                
                             </h3>
-                            <p class="govuk-body-s govuk-!-margin-bottom-2">Account {{i.accountno}} </p>
+                
                             {% set hasTN = false %}
+                            {% set matchCount = 0 %}
+                            {% set tnCount = 0 %}
+                            {% set s = "" %} {% set cs = "" %}
+                
                             {% for tn in result.tradingNames.recordset %}
+                
                             {% if tn.AccountNo === accountNumber %}
-
-
-                            {% set hasTN = true %}
-
+                
+                            {% for tnc in result.allTNCount.recordset %}
+                            {% if tnc.accountNo === accountNumber %}
+                            {% set tnCount = tnc.countof %}
                             {% endif %}
-
                             {% endfor %}
-                            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3 ">Trading
-                                names</p>
+                
+                            {% set hasTN = true %}
+                            {% set matchCount = (matchCount + 1) %}
+                
                             {% endif %}
+                
+                            {% endfor %}
+                
+                            {% if matchCount > 1 %}
+                            {% set s = "es" %}
+                            {% endif %}
+                
+                
+                            {% if tnCount > 1 %}
+                            {% set cs = "s" %}
+                            {% endif %}
+                
+                
+                            {% if tnCount > 0 or matchCount > 0 %}
+                           
+                            {% endif %}
+                 <h3 class="govuk-body-s govuk-!-font-weight-bold govuk-!-margin-bottom-1 govuk-!-margin-top-3">Trading names</h3>
+                            {% if tnCount === 0 %}
+                
+                            <p class="govuk-body-s govuk-!-margin-bottom-2">No trading names</p>
+                            {% else %}
+                
+                            {% if matchCount === 0 %}
+                
+                            <p class="govuk-body-s govuk-!-margin-bottom-2">No matches from {{tnCount}} trading name{{cs}}</p>
+                            {% else %}
+                
+                            <p class="govuk-body-s govuk-!-margin-bottom-2">{{matchCount}} match{{s}} from {{tnCount}} trading name{{cs}}
+                            </p>
+                            {% endif %}
+                           
+                            {% endif %}
+                
+                          
+                
+                
                             <ul class="gc-search-result--tag">
-
-
-
-
+                
+                
                                 {% for tn in result.tradingNames.recordset %}
                                 {% if tn.AccountNo === accountNumber %}
-
+                
                                 <li>{{tn.TradingName}}</li>
-
-
+                
+                
                                 {% endif %}
-
+                
                                 {% endfor %}
                             </ul>
-
+                
                             {% set hasTN = false %}
+                            {% set matchCount = 0 %}
+                            {% set tnCount = 0 %}
+                
+                            {% set s = "" %} {% set cs = "" %}
+                
                             {% for tn in result.domainNames.recordset %}
+                
                             {% if tn.AccountNumber === accountNumber %}
-
-
-                            {% set hasTN = true %}
-
+                
+                            {% for tnc in result.allDNCount.recordset %}
+                            {% if tnc.AccountNumber === accountNumber %}
+                            {% set tnCount = tnc.countof %}
                             {% endif %}
-
                             {% endfor %}
-                            {% if hasTN %} <p class="govuk-body-s govuk-!-margin-bottom-2 govuk-!-margin-top-3">Domain
-                                names</p>
+                
+                            {% set hasTN = true %}
+                            {% set matchCount = (matchCount + 1) %}
+                
                             {% endif %}
-
+                
+                            {% endfor %}
+                
+                            {% if matchCount > 1 %}
+                            {% set s = "es" %}
+                            {% endif %}
+                
+                            {% if tnCount > 1 %}
+                            {% set cs = "s" %}
+                            {% endif %}
+                            {% if tnCount > 0 or matchCount > 0 %}
+                           
+                            {% endif %}
+                      <h3 class="govuk-body-s govuk-!-font-weight-bold govuk-!-margin-bottom-1 govuk-!-margin-top-3">Domain names</h3>
+                            {% if tnCount === 0 %}
+                
+                             <p class="govuk-body-s govuk-!-margin-bottom-2">No domain names</p>
+                            {% else %}
+                
+                            {% if matchCount === 0 %}
+                
+                            <p class="govuk-body-s govuk-!-margin-bottom-2">No matches from {{tnCount}} domain name{{cs}}</p>
+                            {% else %}
+                            <p class="govuk-body-s govuk-!-margin-bottom-2">{{matchCount}} match{{s}} from {{tnCount}} domain name{{cs}}
+                            </p>
+                            {% endif %}
+                             {% endif %}
+                
                             <ul class="gc-search-result--tag">
-
-
-
+                
+                
+                
                                 {% for tn in result.domainNames.recordset %}
                                 {% if tn.AccountNumber === accountNumber %}
                                 <li>{{tn.DomainName | lower}}</li>
                                 {% else %}
-
+                
                                 {% set hasDN = true %}
                                 {% endif %}
-
+                
                                 {% endfor %}
                             </ul>
                         </div>
                         {% endif %}
                         {% endfor %}
+                      
                     </div>
                     <div class="govuk-grid-column-one-third">
                         <!-- <div class="gc-right-aside">
@@ -238,7 +318,7 @@ Search the registers
 
                         </h3>
                         {% if result.registerData.recordset.length > 0%}
-                        <p class="govuk-body">There are matches in the register of <a href="#past-day">operator licence
+                        <p class="govuk-body">There are matches in the register of <a href="#past-day">Businesses
                                 holders</a>.</p>
                         {% endif %}
 
@@ -298,11 +378,11 @@ Search the registers
 
                         {%else%}
                         <p class="govuk-body govuk-!-margin-bottom-2">
-                                <span
-                                    class="govuk-!-font-weight-bold">{{result.searchedSanctions.recordset.length | numeral("0,0") }}</span>
-                                results</p>
-                            <hr
-                                class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
+                            <span
+                                class="govuk-!-font-weight-bold">{{result.searchedSanctions.recordset.length | numeral("0,0") }}</span>
+                            results</p>
+                        <hr
+                            class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
                         {% for i in result.searchedSanctions.recordset %}
 
                         <div class="gc-search-result">
@@ -327,6 +407,66 @@ Search the registers
                         </div>
 
                         {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+            </section>
+            <section class="govuk-tabs__panel govuk-tabs__panel--hidden" id="prem">
+
+
+
+
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds">
+
+                        {% if(result.premises.recordset.length === 0)%}
+
+                        <h3 class="govuk-heading-m">
+                            Nothing found for "{{data['search']}}" in the register of gambling premises
+                        </h3>
+
+
+                        {%else%}
+                        <p class="govuk-body govuk-!-margin-bottom-2">
+                            <span
+                                class="govuk-!-font-weight-bold">{{result.premises.recordset.length | numeral("0,0") }}</span>
+                            results</p>
+                        <hr
+                            class="govuk-section-break govuk-!-margin-bottom-4 govuk-!-margin-top-1 govuk-section-break--visible">
+
+                            {% for i in result.premises.recordset %}
+
+
+                            <div class="gc-search-result">
+                    
+                    
+                                <h3 class="govuk-heading-m govuk-!-margin-bottom-2"><a
+                                        href="/{{version}}/premises/detail/{{i.id}}">{{i.addressline1 | title}}</a></h3>
+                    
+                                <p class="govuk-body-s">
+                                    {{i.addressline2 if i.addressline2 | title else ""}}, {{i.city | title}}, {{i.postcode | upper}}
+                                </p>
+                    
+                                <div class="govuk-tag">{{i.activity}}</div>
+                    
+                                <div class="govuk-grid-row govuk-!-margin-top-4">
+                                    <div class="govuk-grid-column-one-half govuk-!-margin-bottom-1">
+                                        <h3 class="govuk-heading-s   govuk-!-margin-bottom-1">Operated by</h3>
+                                        <p class="govuk-body-s govuk-!-margin-bottom-1"> {{i.Account}}</p>
+                                    </div>
+                                    <div class="govuk-grid-column-one-half govuk-!-margin-bottom-1">
+                                        <h3 class="govuk-heading-s  govuk-!-margin-bottom-1">Licensed by</h3>
+                                        <p class="govuk-body-s govuk-!-margin-bottom-1"> {{i.localauthority }}</p>
+                                    </div>
+                                </div>
+                    
+                    
+                            </div>
+                    
+                    
+                            {% endfor %}
+
                         {% endif %}
                     </div>
                 </div>

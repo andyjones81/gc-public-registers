@@ -211,6 +211,7 @@ router.get('/' + version + '/sanctions/full', sanctions_Controller.sanctions_ful
 router.get('/' + version + '/premises/summary', premises_Controller.premises_summary_get);
 router.get('/' + version + '/premises/search', premises_Controller.premises_search_get);
 router.get('/' + version + '/premises/detail/:id', premises_Controller.premises_detail_get);
+router.get('/' + version + '/premises/api', premises_Controller.premises_api_get);
 
 
 // Sanctions Internal Administraton
