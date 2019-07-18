@@ -184,13 +184,13 @@
 
         {% for status, i in result.domainNames.recordset | groupby ('AccountStatus') %}
         {% if status === 'White Label' %}
-       <h3 class="govuk-heading-m">White label websites</h3>
+       <h3 class="govuk-heading-m">White label</h3>
        
         <p class="govuk-body">A white label website is designed to look and feel like a company or brand but the
             contents and services provided on the website are operated and managed by another company. </p>
         <p class="govuk-body">You can find out more about <a
                 href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Compliance/Sector-specific-compliance/Remote-and-software/White-label-gambling-websites.aspx"
-                target="_blank">white label gambling websites</a> on the Gambling Commission website.</p>
+                target="_blank">white label gambling websites</a> on the Gambling Commission website</p>
         {% endif %}
 
 
