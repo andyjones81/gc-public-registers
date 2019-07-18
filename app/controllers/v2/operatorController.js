@@ -4,7 +4,7 @@ const mobileDetect = require('mobile-detect');
 const sql = require("mssql");
 const winston = require('winston')
 var premisesEnabled = process.env.EnablePremises;
-var EnableCH = process.env.EnableCH;
+var EnableCH = 'true';
 const adr = require('../../data/adr.json');
 
 exports.operator_summary_get = function (req, res) {
@@ -308,7 +308,7 @@ exports.operator_detail_get = function (req, res) {
 
     console.log("adr: " + adrdata)
 
-    if (ch.length === 0) {
+    if (ch.length === 0 || process.env.EnableCH === 'false') {
         EnableCH = 'false';
     }
 
