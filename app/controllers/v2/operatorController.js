@@ -293,6 +293,8 @@ exports.operator_detail_get = function (req, res) {
 
     const d = require('../../data/companies.json')
 
+    console.log(d);
+
     var ch = d.filter(function (value) {
         return value.Account === accountNo;
     });
