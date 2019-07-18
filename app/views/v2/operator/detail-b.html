@@ -177,103 +177,6 @@
 
 
 
-                <!--    Option 1        -->
-                {% if detailView === '1' %}
-
-                {% for licence in result.newLicenceInfo.recordset %}
-
-                <div class="gc-search-result">
-                    <span class="govuk-tag {{licence.Status | lower}} gc-pull-right">
-                        {{licence.Status}}
-                    </span>
-
-                    <span class="govuk-caption-s">{{licence.LicenceNo}}</span>
-                    <h3 class="govuk-heading-m govuk-!-margin-bottom-2"> {{ licence.Type }}</h3>
-
-                    <details class="govuk-details govuk-!-margin-bottom-0">
-                        <summary class="govuk-details__summary">
-                            <span class="govuk-details__summary-text">
-                                Activites
-                            </span>
-                        </summary>
-                        <div class="govuk-details__text">
-
-                            <table class="govuk-table">
-
-                                <thead class="govuk-table__head">
-                                    <tr class="govuk-table__row">
-                                        <th class="govuk-table__header" scope="col">Activity</th>
-                                        <th class="govuk-table__header govuk-table__header--numeric gc-text-right"
-                                            scope="col">Held from</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="govuk-table__body govuk-body-s">
-                                    {% for act in result.datedactivities.recordset %}
-
-                                    {% if licence.Type == 'Remote' %}
-
-                                    {% if '- R' in act.Product %}
-                                    {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
-                                    <tr class="govuk-table__row">
-                                        <th class="govuk-table__header" scope="row">
-                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
-                                        </th>
-                                        <td class="govuk-table__cell govuk-table__cell--numeric  gc-text-right">
-                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
-                                        </td>
-
-                                    </tr>
-                                    {% endif %}
-                                    {% endif %}
-                                    {% endif %}
-
-                                    {% if licence.Type == 'Non-Remote' %}
-
-                                    {% if '- N' in act.Product %}
-                                    {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
-                                    <tr class="govuk-table__row">
-                                        <th class="govuk-table__header" scope="row">
-                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
-                                        </th>
-                                        <td class="govuk-table__cell govuk-table__cell--numeric  gc-text-right">
-                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
-                                        </td>
-
-                                    </tr>
-                                    {% endif %}
-                                    {% endif %}
-                                    {% endif %}
-
-                                    {% if licence.Type == 'Ancillary Remote' %}
-
-                                    {% if '- A' in act.Product %}
-                                    {% if act.MaxofEnd | date('DD MMM YYYY') === '31 Dec 3000' %}
-                                    <tr class="govuk-table__row">
-                                        <th class="govuk-table__header" scope="row">
-                                            {{act.Product | replace("- R", "") |replace("- N", "") | replace("- A", "") }}
-                                        </th>
-                                        <td class="govuk-table__cell govuk-table__cell--numeric  gc-text-right">
-                                            <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
-                                        </td>
-
-                                    </tr>
-                                    {% endif %}
-                                    {% endif %}
-                                    {% endif %}
-
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </details>
-
-                </div>
-
-                {% endfor %}
-
-                {% endif %}
-
-                <!--   END Option 1        -->
 
 
                 <!--    Option 2        -->
@@ -297,8 +200,21 @@
                                     What is a {{ licence.Type | lower}} licence?
                                 </span>
                             </summary>
-                            <div class="govuk-details__text">
-                                Information about the licence type
+                            <div class="govuk-details__text govuk-body-s">
+                                {% if licence.Type === 'Non-Remote'%}
+                                <p>A non-remote licence is required for physical, land-based gambling, for example, bookmakers, betting shops, arcades and casinos.</p>
+                                {% endif %}
+
+                                {% if licence.Type === 'Remote'%}
+                               <p> Regardless of where you are based in the world, you need a licence from us if:</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li>you are providing facilities for gambling to consumers in Great Britain online (or through any other means of remote communication)</li>
+    <li> any part of your remote gambling equipment is based in Great Britain. </li>
+</ul>
+                                {% endif %}
+                                {% if licence.Type === 'Ancillary Remote'%}
+                                <p>Authorises the licensee to provide facilities for single premises gaming by means of remote communication equipment that is situated entirely on the set of premises on which the gaming takes place</p>
+                                {% endif %}
                             </div>
                         </details>
 
@@ -467,7 +383,12 @@
                                         target="_Blank">{{product}}</a>
                                     {% endif %}
 
+                                    {% if product === 'Gaming Machine General Family Entertainment Centre ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Family-entertainment-centre.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
 
+                                 
 
                                 </td>
                                 <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">

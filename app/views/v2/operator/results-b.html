@@ -84,200 +84,150 @@ Search the register of gambling businesses
 
     {% else %}
     <div class="govuk-grid-column-one-third">
-        <form method="POST" action="results">
-            <div class="gc-filters">
 
-                <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Filter</h2>
 
-                <div class="govuk-accordion" data-module="accordion" id="accordion-default">
 
-                    <div class="govuk-accordion__section ">
-                        <div class="govuk-accordion__section-header">
-                            <h2 class="govuk-accordion__section-heading">
-                                <span class="govuk-accordion__section-button" id="accordionSector">
-                                    Licensed for
-                                </span>
-                            </h2>
-                        </div>
-                        <div id="accordionSectorContent" class="govuk-accordion__section-content"
-                            aria-labelledby="accordionSector">
-                            <div class="govuk-form-group">
-                                <fieldset class="govuk-fieldset">
+            <form method="POST" action="full">
 
-                                    <div class="govuk-checkboxes govuk-checkboxes--small">
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="sector-1" name="sector"
-                                                type="checkbox" value="Arcades">
-                                            <label class="govuk-label govuk-checkboxes__label" for="sector-1">
-                                                Arcades
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="sector-2" name="sector"
-                                                type="checkbox" value="Betting">
-                                            <label class="govuk-label govuk-checkboxes__label" for="sector-2">
-                                                Betting
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="sector-3" name="sector"
-                                                type="checkbox" value="Bingo">
-                                            <label class="govuk-label govuk-checkboxes__label" for="sector-3">
-                                                Bingo
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="sector-4" name="sector"
-                                                type="checkbox" value="Casino">
-                                            <label class="govuk-label govuk-checkboxes__label" for="sector-4">
-                                                Casino
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="sector-5" name="sector"
-                                                type="checkbox" value="Gambling software">
-                                            <label class="govuk-label govuk-checkboxes__label" for="sector-5">
-                                                Gambling software
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="sector-6" name="sector"
-                                                type="checkbox" value="Gaming machine">
-                                            <label class="govuk-label govuk-checkboxes__label" for="sector-6">
-                                                Gaming machine
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="sector-7" name="sector"
-                                                type="checkbox" value="Lotteries">
-                                            <label class="govuk-label govuk-checkboxes__label" for="sector-7">
-                                                Lotteries
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="sector-8" name="sector"
-                                                type="checkbox" value="Remote">
-                                            <label class="govuk-label govuk-checkboxes__label" for="sector-8">
-                                                Remote
-                                            </label> </div>
-                                    </div>
-                                </fieldset>
+
+                    <details class="govuk-details">
+                        <summary class="govuk-details__summary">
+                            <span class="govuk-details__summary-text">
+                                Filter the results
+                            </span>
+                        </summary>
+                        <div class="govuk-details__text">
+
+
+
+                            <div class="gc-filters">
+
+                     
+                                <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset">
+                                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                        <h3 class="govuk-fieldset__heading">
+                                                            Activity
+                                                        </h3>
+                                                    </legend>
+                                                <div class="govuk-checkboxes govuk-checkboxes--small">
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="sector-1" name="sector"
+                                                            type="checkbox" value="Arcades">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="sector-1">
+                                                            Arcades
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="sector-2" name="sector"
+                                                            type="checkbox" value="Betting">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="sector-2">
+                                                            Betting
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="sector-3" name="sector"
+                                                            type="checkbox" value="Bingo">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="sector-3">
+                                                            Bingo
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="sector-4" name="sector"
+                                                            type="checkbox" value="Casino">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="sector-4">
+                                                            Casino
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="sector-5" name="sector"
+                                                            type="checkbox" value="Gambling software">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="sector-5">
+                                                            Gambling software
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="sector-6" name="sector"
+                                                            type="checkbox" value="Gaming machine">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="sector-6">
+                                                            Gaming machine
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="sector-7" name="sector"
+                                                            type="checkbox" value="Lotteries">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="sector-7">
+                                                            Lotteries
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="sector-8" name="sector"
+                                                            type="checkbox" value="Remote">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="sector-8">
+                                                            Remote
+                                                        </label> </div>
+                                                </div>
+                                            </fieldset>
+                                </div>
+
+                                <div class="govuk-form-group">
+                                        <fieldset class="govuk-fieldset">
+                                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                                        <h3 class="govuk-fieldset__heading">
+                                                            Status
+                                                        </h3>
+                                                    </legend>
+                                                <div class="govuk-checkboxes govuk-checkboxes--small">
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="status-1" name="status"
+                                                            type="checkbox" value="Active">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="status-1">
+                                                            Active
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="status-2" name="status"
+                                                            type="checkbox" value="Expired">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="status-2">
+                                                            Expired
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="status-3" name="status"
+                                                            type="checkbox" value="Forfeited">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="status-3">
+                                                            Forfeited
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="status-4" name="status"
+                                                            type="checkbox" value="Lapsed">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="status-4">
+                                                            Lapsed
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="status-5" name="status"
+                                                            type="checkbox" value="Revoked">
+                                                        <label class=" govuk-label govuk-checkboxes__label" for="status-5">
+                                                            Revoked
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="status-6" name="status"
+                                                            type="checkbox" value="Surrendered">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="status-6">
+                                                            Surrendered
+                                                        </label> </div>
+                                                    <div class="govuk-checkboxes__item">
+                                                        <input class="govuk-checkboxes__input" id="status-7" name="status"
+                                                            type="checkbox" value="Suspended">
+                                                        <label class="govuk-label govuk-checkboxes__label" for="status-7">
+                                                            Suspended
+                                                        </label> </div>
+        
+                                                </div>
+                                            </fieldset>
+                                </div>
+
+                                <button type="submit" class="govuk-button">
+                                    Apply filters
+                                </button>
+
                             </div>
+
                         </div>
-                    </div>
+                    </details>
+                </form>
 
-                    <div class="govuk-accordion__section ">
-                        <div class="govuk-accordion__section-header">
-                            <h2 class="govuk-accordion__section-heading">
-                                <span class="govuk-accordion__section-button" id="accordionStatus">
-                                    Licence status
-                                </span>
-                            </h2>
-                        </div>
-                        <div id="accordionStatusContent" class="govuk-accordion__section-content"
-                            aria-labelledby="accordionStatus">
-                            <div class="govuk-form-group">
-                                <fieldset class="govuk-fieldset">
-
-                                    <div class="govuk-checkboxes govuk-checkboxes--small">
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="status-1" name="status"
-                                                type="checkbox" value="Active">
-                                            <label class="govuk-label govuk-checkboxes__label" for="status-1">
-                                                Active
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="status-2" name="status"
-                                                type="checkbox" value="Expired">
-                                            <label class="govuk-label govuk-checkboxes__label" for="status-2">
-                                                Expired
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="status-3" name="status"
-                                                type="checkbox" value="Forfeited">
-                                            <label class="govuk-label govuk-checkboxes__label" for="status-3">
-                                                Forfeited
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="status-4" name="status"
-                                                type="checkbox" value="Lapsed">
-                                            <label class="govuk-label govuk-checkboxes__label" for="status-4">
-                                                Lapsed
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="status-5" name="status"
-                                                type="checkbox" value="Revoked">
-                                            <label class=" govuk-label govuk-checkboxes__label" for="status-5">
-                                                Revoked
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="status-6" name="status"
-                                                type="checkbox" value="Surrendered">
-                                            <label class="govuk-label govuk-checkboxes__label" for="status-6">
-                                                Surrendered
-                                            </label> </div>
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="status-7" name="status"
-                                                type="checkbox" value="Suspended">
-                                            <label class="govuk-label govuk-checkboxes__label" for="status-7">
-                                                Suspended
-                                            </label> </div>
-
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- <div class="govuk-accordion__section ">
-                        <div class="govuk-accordion__section-header">
-                            <h2 class="govuk-accordion__section-heading">
-                                <span class="govuk-accordion__section-button" id="accordionStatus">
-                                    Account status
-                                </span>
-                            </h2>
-                        </div>
-                        <div id="accordionStatusContent" class="govuk-accordion__section-content"
-                            aria-labelledby="accordionStatus">
-                            <div class="govuk-form-group">
-                                <fieldset class="govuk-fieldset">
-
-                                    <div class="govuk-checkboxes govuk-checkboxes--small">
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="status-1" name="status"
-                                                type="checkbox" value="Granted" {{ checked("status", "Granted") }}>
-                                            <label class="govuk-label govuk-checkboxes__label" for="status-1">
-                                                Active
-                                            </label> </div>
-
-                                        <div class="govuk-checkboxes__item">
-                                            <input class="govuk-checkboxes__input" id="status-7" name="status"
-                                                type="checkbox" value="Pending" {{ checked("status", "Pending") }}>
-                                            <label class="govuk-label govuk-checkboxes__label" for="status-7">
-                                                Pending
-                                            </label> </div>
-
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </div> -->
-
-
-                </div>
-                <button type="submit" class="govuk-button">
-                    Apply filter
-                </button>
-
-
-                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-
-                <p class="govuk-body">Download a file containing these results</p>
-                <a href="/public/blank.csv" role="button" class="govuk-button govuk-button--secondary">
-                    CSV
-                </a>
-                <a href="/public/blank.ods" role="button" class="govuk-button govuk-button--secondary">
-                    ODS
-                </a>
-
-
-            </div>
-        </form>
     </div>
     <div class="govuk-grid-column-two-thirds">
 

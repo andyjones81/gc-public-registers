@@ -101,61 +101,61 @@
 
     <div class="govuk-grid-column-three-quarters">
        
-            <h2 class="govuk-heading-m">
-                    Sanctions
-                 </h2>
-                 <p>When a licence holder has not followed rules and regulations aimed at ensuring gambling is fair,
-                         safe and crime-free, we can take action and impose the following sanctions:
-                     </p>
-                     <ul class="govuk-list govuk-list--bullet">
-                         <li>Give the licensee a warning</li>
-                         <li>Add, remove, or amend a condition to the licence</li>
-                         <li>Suspend a licence</li>
-                         <li>Revoke a licence</li>
-                         <li>Impose a financial penalty</li>
-                     </ul>
-         
-           
-                     {% if result.sanctions.recordset.length === 0 %}
-                     <div class="govuk-inset-text">
-                     <p class="govuk-body">None recorded</p></div>
-                     {% else %}
-                     <div class="govuk-inset-text">
-                         <div class="gc-reg-action govuk-body">
-                             {% for item in result.sanctions.recordset %}
-         
-                             <div class="govuk-grid-row">
-                                 <div class="govuk-grid-column-one-half">
-                                     <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                         Decision
-                                     </h2>
-                                     <p class="govuk-body">{{item.status}}</p>
-                                 </div>
-         
-                                 <div class="govuk-grid-column-one-half">
-                                     <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                         Date of decision
-                                     </h2>
-                                     <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
-                                 </div>
-         
-                             </div>
-                             <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                                 Outcome
-                             </h2>
-                             <p class="govuk-body">
-         
-                                 {{item.details | safe}}
-         
-         
-                             </p>
-         
-                             {% endfor %}
-         
-         
-                         </div>
-                     </div>
-                     {%endif%}
+         <h2 class="govuk-heading-m">
+           Sanctions
+        </h2>
+        <p>When a licence holder has not followed rules and regulations aimed at ensuring gambling is fair,
+                safe and crime-free, we can take action and impose the following sanctions:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>Give the licensee a warning</li>
+                <li>Add, remove, or amend a condition to the licence</li>
+                <li>Suspend a licence</li>
+                <li>Revoke a licence</li>
+                <li>Impose a financial penalty</li>
+            </ul>
+
+  
+            {% if result.sanctions.recordset.length === 0 %}
+            <div class="govuk-inset-text">
+            <p class="govuk-body">None recorded</p></div>
+            {% else %}
+            <div class="govuk-inset-text">
+                <div class="gc-reg-action govuk-body">
+                    {% for item in result.sanctions.recordset %}
+
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-one-half">
+                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                Decision
+                            </h2>
+                            <p class="govuk-body">{{item.status}}</p>
+                        </div>
+
+                        <div class="govuk-grid-column-one-half">
+                            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                                Date of decision
+                            </h2>
+                            <p class="govuk-body">{{item.decidedon | date('DD MMMM YYYY')}}</p>
+                        </div>
+
+                    </div>
+                    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                        Outcome
+                    </h2>
+                    <p class="govuk-body">
+
+                        {{item.details | safe}}
+
+
+                    </p>
+
+                    {% endfor %}
+
+
+                </div>
+            </div>
+            {%endif%}
     </div>
 </div>
 
