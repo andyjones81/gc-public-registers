@@ -91,7 +91,9 @@ $path: "/public/images/";
   
   }
   .govuk-back-link {
-    border-bottom: 1px solid $white
+    border-bottom: 1px solid $white;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
   .govuk-back-link:focus,
   .govuk-link:focus {
