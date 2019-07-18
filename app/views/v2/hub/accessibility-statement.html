@@ -1,0 +1,33 @@
+{% extends "layout_fullwidth-v2.html" %}
+
+{% block headerContent %}
+
+<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+  aria-label="Show or hide Top Level Navigation">Menu</button>
+{% include "includes/nav.html" %}
+
+{% endblock %}
+
+{% block pageTitle %}
+Public register prototype
+{% endblock %}
+
+{% block headerInfo %}
+{% include "includes/beta.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  
+<h1 class="govuk-heading-l">Accessibility Statement</h1>
+<p class="govuk-body-l">Text for statement here.</p>
+
+      
+  </div>
+
+</div>
+
+{% endblock %}
