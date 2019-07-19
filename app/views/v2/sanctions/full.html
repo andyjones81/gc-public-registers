@@ -31,7 +31,7 @@ Register of regulatory sanctions
 
         <div class="gc-register-search gc-register-search--whitebg">
             <form method="POST" action="full">
-                <label for="search" class="govuk-label">
+                <label for="searchsan" class="govuk-label">
                     <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">
                         Search the regulatory actions register
                     </h1>
@@ -42,8 +42,8 @@ Register of regulatory sanctions
                 </span>
                 <div class="inner-form govuk-!-margin-bottom-3">
                     <div class="input-field second-wrap">
-                        <input id="search" name="search" type="text" placeholder="Search"
-                            value="{{ data['search'] }}" />
+                        <input id="searchsan" name="searchsan" type="text" placeholder="Search"
+                            value="{{ data['searchsan'] }}" />
                     </div>
                     <div class="input-field third-wrap">
                         <button class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
@@ -221,7 +221,7 @@ Register of regulatory sanctions
                         {%else%}
 
                         <p class="govuk-body">No results found for <span
-                                class="govuk-!-font-weight-bold">"{{data['search']}}"</span> in the sanctions register
+                                class="govuk-!-font-weight-bold">"{{data['searchsan']}}"</span> in the sanctions register
                         </p>
                         <p class="govuk-body">You can search the register using business or individual name or account
                             number.</p>

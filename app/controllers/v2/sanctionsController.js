@@ -190,7 +190,7 @@ exports.sanctions_full_get = function (req, res) {
 
     const sanctionsRegisterData = require('../../data/AzureSQL/sanctionsRegisterData');
 
-    var query = req.session.data['search']
+    var query = req.session.data['searchsan']
     console.log('query pre: '+ query)
     
     if(query === '' || query === undefined || query === 'null')
