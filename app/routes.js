@@ -163,7 +163,7 @@ var premises_Controller = require('./controllers/' + version + '/premisesControl
 router.get('/', core_Controller.home_get);
 router.post('/feedback', core_Controller.feedback_post);
 router.get('/core/changelog', core_Controller.changelog_get);
-
+router.post('/reportissue', core_Controller.report_issue_post);
 
 // Hub
 router.get('/' + version + '/hub/', hub_Controller.home_get);
