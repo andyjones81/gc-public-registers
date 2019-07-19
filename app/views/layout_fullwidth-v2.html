@@ -46,15 +46,16 @@ GOV.UK Prototype Kit
       </a>
     </div>
     <div class="govuk-header__content">
-  
-    <!-- {% block headerContent %}
+
+      <!-- {% block headerContent %}
     {% endblock %}     -->
 
-    <a href="/v2/hub/" class="govuk-header__link govuk-header__link--service-name">
+      <a href="/v2/hub/" class="govuk-header__link govuk-header__link--service-name">
         Public registers
       </a>
 
-      <button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+        aria-label="Show or hide Top Level Navigation">Menu</button>
       <nav>
         <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">
           <li class="govuk-header__navigation-item">
@@ -63,64 +64,70 @@ GOV.UK Prototype Kit
             </a>
           </li>
           <li class="govuk-header__navigation-item">
-              <a class="govuk-header__link" href="/{{version}}/personal/summary">
-                Individuals
-              </a>
-            </li>
-            <li class="govuk-header__navigation-item">
-                <a class="govuk-header__link" href="/{{version}}/premises/summary">
-                  Premises
-                </a>
-              </li>
-              <li class="govuk-header__navigation-item">
-                  <a class="govuk-header__link" href="/{{version}}/sanctions/summary">
-                    Regulatory actions
-                  </a>
-                </li>
+            <a class="govuk-header__link" href="/{{version}}/personal/summary">
+              Individuals
+            </a>
+          </li>
+          <li class="govuk-header__navigation-item">
+            <a class="govuk-header__link" href="/{{version}}/premises/summary">
+              Premises
+            </a>
+          </li>
+          <li class="govuk-header__navigation-item">
+            <a class="govuk-header__link" href="/{{version}}/sanctions/summary">
+              Regulatory actions
+            </a>
+          </li>
         </ul>
       </nav>
 
-      </div>
-   
+    </div>
+
   </div>
 
-    {% block headerInfo %}
-    {% endblock %}
+  {% block headerInfo %}
+  {% endblock %}
 
-</header>  
+</header>
 
 {% endblock %}
 
 {% if useAutoStoreData %}
 {% block footer %}
-
-
+<!-- 
+<div class="gc-prefooter">
+  <div class="govuk-width-container ">
+    
+      <p><span class="govuk-tag">ALPHA</span> This service is new, <a href="/feedback" class="govuk-link"  target="_Blank">give us
+        feedback</a>. If something doesn't look right, you can <a href="/{{version}}/reportissue">tell us about it</a>.</p>
+  </div>
+</div> -->
 
 <footer class="govuk-footer " role="contentinfo">
-    <div class="govuk-width-container ">
-      <div class="govuk-footer__meta">
-        <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
-          <h2 class="govuk-visually-hidden">Support links</h2>
-          
-          <div class="footer-meta-inner">
-            <ul class="govuk-footer__inline-list">
-  
-              <li class="govuk-footer__inline-list-item">
-                <a class="govuk-footer__link" href="http://www.gamblingcommission.gov.uk/Footer/Privacy-and-cookies.aspx"
-                  target="_Blank">Privacy Policy</a>
-              </li>
-              <li class="govuk-footer__inline-list-item">
-                <a class="govuk-footer__link" href="/{{version}}/hub/accessibility-statement">Accessibility statement</a>
-              </li>
-               </ul>
-            <p class="govuk-body-s">This service is provided by Gambling Commission Digital Team</p>
-          </div>
-        
+  <div class="govuk-width-container ">
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+        <h2 class="govuk-visually-hidden">Support links</h2>
+
+        <div class="footer-meta-inner">
+          <ul class="govuk-footer__inline-list">
+
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="http://www.gamblingcommission.gov.uk/Footer/Privacy-and-cookies.aspx"
+                target="_Blank">Privacy Policy</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/{{version}}/hub/accessibility-statement">Accessibility statement</a>
+            </li>
+          </ul>
+          <p class="govuk-body-s">This service is provided by Gambling Commission Digital Team</p>
         </div>
+
       </div>
     </div>
-  
-  </footer>
+  </div>
+
+</footer>
 {% endblock %}
 {% endif %}
 
