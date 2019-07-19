@@ -15,7 +15,7 @@ exports.feedback_post = function (req, res) {
   notify
     .sendEmail(process.env.PublicRegisterNotifyEmailTemplate, process.env.PublicRegisterNotifyEmail, {
        personalisation: {
-        'Feedback': req.body.moredetail,
+        'Feedback': "General feedback: " + req.body.moredetail,
         'Name': req.body.name,
         'Email': req.body.email
       }
@@ -33,7 +33,7 @@ exports.report_issue_post = function (req, res) {
   notify
     .sendEmail(process.env.PublicRegisterNotifyEmailTemplate, process.env.PublicRegisterNotifyEmail, {
        personalisation: {
-        'report_issue': req.body.moredetail,
+        'Feedback': "Something wrong feedback: " + req.body.moredetail,
         'Name': req.body.name,
         'Email': req.body.email
       }

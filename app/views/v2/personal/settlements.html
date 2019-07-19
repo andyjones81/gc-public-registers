@@ -44,10 +44,10 @@
                 </h2>
                 <p class="govuk-body"> {{data.AccountNo }}</p>
 
+           
             </div>
 
-
-            <div class="govuk-grid-two-thirds">
+            <div class="govuk-grid-column-one-third">
                 <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
                     Location
                 </h2>
@@ -58,8 +58,19 @@
 
                 {% endif %}
             </div>
-        </div>
 
+            <div class="govuk-grid-column-one-third">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    Licence started
+                </h2>
+                <p class="govuk-body">{{data.ProcessEndDate | date('DD MMMM YYYY')}}</p>
+
+           
+
+            </div>
+
+          
+        </div>
 
 
 
