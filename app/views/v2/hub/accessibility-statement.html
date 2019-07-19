@@ -16,6 +16,12 @@ Public register prototype
 {% include "includes/beta.html" %}
 {% endblock %}
 
+{% block beforeContent %}
+
+
+<a href="/{{version}}/hub" class="govuk-back-link">Back</a>
+  
+{% endblock %}
 
 {% block content %}
 
@@ -25,8 +31,6 @@ Public register prototype
 <h1 class="govuk-heading-l">Accessibility Statement</h1>
 <p class="govuk-body-l">Text for statement here.</p>
 
-      
-  </div>
 
 </div>
 
