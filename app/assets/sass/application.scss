@@ -16,6 +16,9 @@ $path: "/public/images/";
 @import "patterns/_check-your-answers";
 @import "patterns/_task-list";
 @import "patterns/_related-items";
+@import "gcpatterns/gc-alert";
+@import "gcpatterns/gc-vertical-menu";
+@import "gcpatterns/gc-card";
 
 .code {
   color: $govuk-text-colour;

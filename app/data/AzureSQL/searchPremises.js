@@ -35,7 +35,7 @@ async function search(query) {
             "or (pr.account) like'%" + query + "%' " +
             "or (ad.localauthority) like'%" + query + "%' " +            
             "or (ad.activity) like'%" + query + "%' " +
-            "order by ad.activity");
+            "order by ad.addressline1");
 
     } catch (err) {
         console.log(err);
