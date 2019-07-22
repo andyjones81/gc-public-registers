@@ -137,7 +137,7 @@ async function getNotes(query) {
 async function getNewLicences(query) {
     try {
 
-        return await sql.query("SELECT * from Licenses where accountno = " + query + " and start > '2010-06-18' and status in ('Active','Suspended', 'Surrendered', 'Revoked','Lapsed') order by start desc");
+        return await sql.query("SELECT * from Licenses where accountno = " + query + " and status in ('Active','Suspended', 'Surrendered', 'Revoked','Lapsed') order by start desc");
     } catch (err) {
 
         // console.log(err);
