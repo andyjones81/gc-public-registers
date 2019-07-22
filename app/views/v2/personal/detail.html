@@ -44,7 +44,7 @@
                 </h2>
                 <p class="govuk-body"> {{data.AccountNo }}</p>
 
-           
+
             </div>
 
             <div class="govuk-grid-column-one-third">
@@ -65,22 +65,15 @@
                 </h2>
                 <p class="govuk-body">{{data.ProcessEndDate | date('DD MMMM YYYY')}}</p>
 
-           
-
             </div>
 
-          
         </div>
-
-
-
 
         <hr class="govuk-section-break govuk-section-break--visible gc-break govuk-!-margin-bottom-7">
 
     </div>
 
     <div class="govuk-grid-column-one-quarter">
-
 
 
         <nav class="app-subnav">
@@ -118,161 +111,194 @@
                 <h2 class="govuk-heading-m">
                     Licence summary
                 </h2>
-                
 
-                {% for item in result.activities.recordset %}
-
-                
-
-                {% set product = item.Product | replace(' - N', '') | replace(' - R','')%}
-
-                {% if product === 'PFL' %}
-
-                <div class="gc-search-result">
-                    <span class="govuk-tag {{item.DeterminationStatus | lower}} gc-pull-right">
-                        {% if item.DeterminationStatus === 'Granted' %}
-                        Active
-                        {%else%}
-                        {{item.DeterminationStatus}}
-                        {%endif%}
-                    </span>
-                    <p class="govuk-body">
-                        Personal functional licence
-                    </p>
-                    <details class="govuk-details  govuk-!-margin-bottom-0">
-                        <summary class="govuk-details__summary">
-                            <span class="govuk-details__summary-text">
-                                What you can do with this licence
-                            </span>
-                        </summary>
-                        <div class="govuk-details__text">
-                            <p class="govuk-body">This licence allows you to carry out
-                                activities
-                                involving gaming or
-                                handling cash in relation to gambling. Currently, we only
-                                require
-                                casino employees to
-                                hold a Personal Functional Licence.</p>
-                            <p class="govuk-body">Examples of employees who should have personal
-                                functional licences
-                                are: </p>
-                            <ul class="govuk-list govuk-list--bullet">
-                                <li>dealers/croupiers in respect of casino games </li>
-                                <li>cashiers</li>
-                                <li>inspectors</li>
-                                <li>pit bosses/gaming supervisors</li>
-                                <li>security staff/surveillance related to gambling activities.
-                                </li>
-                            </ul>
-
-                        </div>
-                    </details>
-
+                {% if result.newLicenceInfo.recordset.length === 0 %}
+                <div class="govuk-inset-text">
+                    No licence details found
                 </div>
+                {% endif%}
 
-                {% endif %}
+                {% for item in result.newLicenceInfo.recordset %}
+                <div class="govuk-inset-text govuk-!-margin-top-0" style="padding-top:1px;">
+                    <div class="gc-search-result gc-search-result--header">
+                        <span class="govuk-tag  {% if item.Status === 'Active' %}
+                        active                       
+                        {%endif%} gc-pull-right">
 
-                {% if product === 'PML' %}
-                <div class="gc-search-result">
-                    <span class="govuk-tag {{item.DeterminationStatus | lower}} gc-pull-right">
-                        {% if item.DeterminationStatus === 'Granted' %}
-                        Active
-                        {%else%}
-                        {{item.DeterminationStatus}}
-                        {%endif%}
-                    </span>
-                    <p class="govuk-body">
+                            {% if item.Status === 'Active' %}
+                            Active
+                            {%else%}
+                            {{item.Status}}
+                            {%endif%}
+                        </span>
 
-                        Personal management licence
+                        <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+                            {% if '-M-' in item.LicenceNo %}
+                            Personal management
+                            {% endif %}
+                            {% if '-F-' in item.LicenceNo %}
+                            Personal functional
+                            {% endif %}
+                        </h2>
+                        <p class="govuk-!-margin-bottom-2 govuk-body-s">Licence number: {{item.LicenceNo}}</p>
 
-
-
-                        {% if result.activities.recordset.length > 1 %}
-
-                        {% for activity in result.activities.recordset %}
-
-                        {% if activity.Product === 'PML - N'%}
-                        <br>- Non-remote
-                        {% endif%}
-
-                        {% if activity.Product === 'PML - R'%}
-                        <br>- Remote
-                        {% endif%}
-
-                        {% endfor %}
-
-                        {% else %}
-
-                        {% if result.activities.recordset[0].Product === 'PML - N'%}
-                        <br>- Non-remote
-                        {% endif%}
-
-                        {% if result.activities.recordset[0].Product === 'PML - R'%}
-                        <br>- Remote
-                        {% endif%}
-
-
-
-                        {% endif %}
-
-                    </p>
-
-                    <details class="govuk-details  govuk-!-margin-bottom-0">
-                        <summary class="govuk-details__summary">
-                            <span class="govuk-details__summary-text">
-                                What you can do with this licence
-                            </span>
-                        </summary>
-                        <div class="govuk-details__text">
-                            <p class="govuk-body">The licence allows the licensee to hold any of
-                                the
-                                following relevant
-                                management positions: </p>
-                            <ul class="govuk-list govuk-list--bullet">
-                                <li>overall strategy and delivery of gambling operations</li>
-                                <li>financial planning, control and budgeting</li>
-                                <li>marketing and commercial development</li>
-                                <li>regulatory compliance</li>
-                                <li>gambling related IT provision and security</li>
-                                <li>where there is a regional structure, regional or area
-                                    managers
-                                    to whom
-                                    responsibility for gambling operations is delegated</li>
-                                <li>the director or trustee responsible for a society lottery
-                                </li>
-                                <li>casino and bingo site managers.</li>
-                            </ul>
-                            <p class="govuk-body">
-                                An individual who occupies more than one of these management
-                                positions only needs to
-                                hold one personal management licence (PML).
-                            </p>
-                            <p class="govuk-body">
-                                A PML allows the licensee to work in the non-remote sector, the
-                                remote sector or both.
-                            </p>
-                            <p class="govuk-body">
-                                An individual who works in both non-remote and remote sectors
-                                only
-                                needs to hold one
-                                PML. </p>
+                        <details class="govuk-details govuk-!-margin-bottom-1">
+                            <summary class="govuk-details__summary">
+                                <span class="govuk-details__summary-text">
+                                    What is a {% if '-M-' in item.LicenceNo %}
+                                    Personal management
+                                    {% endif %}
+                                    {% if '-F-' in item.LicenceNo %}
+                                    Personal functional
+                                    {% endif %} licence?
+                                </span>
+                            </summary>
+                            <div class="govuk-details__text govuk-body-s">
+                                {% if '-M-' in item.LicenceNo %}
+                                <p class="govuk-body">The licence allows the licensee to hold any of
+                                    the
+                                    following relevant
+                                    management positions: </p>
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <li>overall strategy and delivery of gambling operations</li>
+                                    <li>financial planning, control and budgeting</li>
+                                    <li>marketing and commercial development</li>
+                                    <li>regulatory compliance</li>
+                                    <li>gambling related IT provision and security</li>
+                                    <li>where there is a regional structure, regional or area
+                                        managers
+                                        to whom
+                                        responsibility for gambling operations is delegated</li>
+                                    <li>the director or trustee responsible for a society lottery
+                                    </li>
+                                    <li>casino and bingo site managers.</li>
+                                </ul>
+                                <p class="govuk-body">
+                                    An individual who occupies more than one of these management
+                                    positions only needs to
+                                    hold one personal management licence (PML).
+                                </p>
+                                <p class="govuk-body">
+                                    A PML allows the licensee to work in the non-remote sector, the
+                                    remote sector or both.
+                                </p>
+                                <p class="govuk-body">
+                                    An individual who works in both non-remote and remote sectors
+                                    only
+                                    needs to hold one
+                                    PML. </p>
 
 
-                        </div>
-                    </details>
 
+                                {% endif %}
+
+                                {% if '-F-' in item.LicenceNo %}
+                                <p class="govuk-body">This licence allows you to carry out
+                                    activities
+                                    involving gaming or
+                                    handling cash in relation to gambling. Currently, we only
+                                    require
+                                    casino employees to
+                                    hold a Personal Functional Licence.</p>
+                                <p class="govuk-body">Examples of employees who should have personal
+                                    functional licences
+                                    are: </p>
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <li>dealers/croupiers in respect of casino games </li>
+                                    <li>cashiers</li>
+                                    <li>inspectors</li>
+                                    <li>pit bosses/gaming supervisors</li>
+                                    <li>security staff/surveillance related to gambling activities.
+                                    </li>
+                                </ul>
+                                {% endif %}
+
+                            </div>
+                        </details>
+                    </div>
+
+
+                    {% if item.Status === 'Active' %}
+                    <table class="govuk-table">
+
+                        <thead class="govuk-table__head">
+                            <tr class="govuk-table__row govuk-body-s">
+                                <th class="govuk-table__header" scope="col">Licensed for</th>
+                                <th class="govuk-table__header govuk-table__header--numeric  gc-text-right" scope="col">
+                                    From</th>
+                            </tr>
+                        </thead>
+
+
+
+                        <tbody class="govuk-table__body  govuk-body-s">
+                            {% for act in result.activities.recordset %}
+
+
+                            {% if '-M-' in item.LicenceNo  and act.DeterminationStatus ==='Granted'%}
+                            {% if 'PML - N' in act.Product %}
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell" scope="row">
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Personal-management-licence.aspx"
+                                        target="_Blank">
+                                        {% if 'PML - N' in act.Product %}
+                                        Non-remote
+                                        {% endif %}
+                                    </a>
+                                </td>
+                                <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
+                                    {{data.ProcessEndDate | date('DD MMMM YYYY')}}
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% if 'PML - R' in act.Product  and act.DeterminationStatus ==='Granted'%}
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell" scope="row">
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Personal-management-licence.aspx"
+                                        target="_Blank">
+                                        {% if 'PML - R' in act.Product %}
+                                        Remote
+                                        {% endif %}
+                                    </a>
+                                </td>
+                                <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
+                                    {{data.ProcessEndDate | date('DD MMMM YYYY')}}
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% if 'PFL' in act.Product and act.DeterminationStatus ==='Granted' %}
+                            <tr class="govuk-table__row">
+                                <td class="govuk-table__cell" scope="row">
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Personal-functional-licence.aspx"
+                                        target="_Blank">
+                                        {% if 'PFL' in act.Product %}
+                                        Functional
+                                        {% endif %}
+                                    </a>
+                                </td>
+                                <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
+                                    {{data.ProcessEndDate | date('DD MMMM YYYY')}}
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endif %}
+
+
+
+
+
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                    {% endif %}
                 </div>
-                {% endif %}
-
-
-
-
                 {% endfor %}
+
 
 
             </div>
         </div>
     </div>
-</div>
 
-{% endblock %}
+    {% endblock %}
