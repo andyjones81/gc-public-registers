@@ -30,6 +30,7 @@ async function search(query) {
             "FROM [dbo].[addresslist] as ad inner join [dbo].[PublicRegisterReporting] as pr on pr.AccountNo = ad.accountno " +
             "where (pr.accountno) like'%" + query + "%' " +
             "or (ad.addressline1) like'%" + query + "%' " +
+            "or (ad.addressline2) like'%" + query + "%' " +
             "or (ad.city) like'%" + query + "%' " +
             "or (ad.postcode) like'%" + query + "%' " +
             "or (pr.account) like'%" + query + "%' " +
