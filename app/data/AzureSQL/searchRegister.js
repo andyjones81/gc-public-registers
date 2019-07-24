@@ -39,7 +39,6 @@ async function getAccount(query, statusFilter, sectorFilter) {
         }
 
 
-
         // console.log("Rendered status filter:" + statusFilter);
 
         return await sql.query("SELECT distinct(pr.accountno), pr.account, pr.determinationstatus from publicregisterreporting as pr " +

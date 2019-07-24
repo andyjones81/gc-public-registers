@@ -41,16 +41,14 @@ GOV.UK Prototype Kit
   <div class="govuk-header__container govuk-width-container">
 
     <div class="govuk-header__logo">
-      <a class="govuk-header__link govuk-header__link--homepage" href="/{{version}}/hub/journey">
+      <a class="govuk-header__link govuk-header__link--homepage" href="/{{version}}/hub/journey" data-track="'click','Header','Logo'">
         <img src="/public/images/logo.png" alt="Gambling Commission Logo" class="gc-logo-image">
       </a>
     </div>
     <div class="govuk-header__content">
 
-      <!-- {% block headerContent %}
-    {% endblock %}     -->
 
-      <a href="/v2/hub/" class="govuk-header__link govuk-header__link--service-name">
+      <a href="/v2/hub/" class="govuk-header__link govuk-header__link--service-name" data-track="'click','Header','Service name'">
         Public registers
       </a>
 
@@ -59,22 +57,22 @@ GOV.UK Prototype Kit
       <nav>
         <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">
           <li class="govuk-header__navigation-item">
-            <a class="govuk-header__link" href="/{{version}}/operator/summary">
+            <a class="govuk-header__link" href="/{{version}}/operator/summary" data-track="'click','Header','Businesses'">
               Businesses
             </a>
           </li>
           <li class="govuk-header__navigation-item">
-            <a class="govuk-header__link" href="/{{version}}/personal/summary">
+            <a class="govuk-header__link" href="/{{version}}/personal/summary" data-track="'click','Header','Individuals'">
               Individuals
             </a>
           </li>
           <li class="govuk-header__navigation-item">
-            <a class="govuk-header__link" href="/{{version}}/premises/summary">
+            <a class="govuk-header__link" href="/{{version}}/premises/summary" data-track="'click','Header','Premises'">
               Premises
             </a>
           </li>
           <li class="govuk-header__navigation-item">
-            <a class="govuk-header__link" href="/{{version}}/sanctions/summary">
+            <a class="govuk-header__link" href="/{{version}}/sanctions/summary" data-track="'click','Header','Regulatory Actions'">
               Regulatory actions
             </a>
           </li>
@@ -96,43 +94,43 @@ GOV.UK Prototype Kit
 
 {% block footer %}
 
-  <div class="govuk-width-container ">
+<div class="govuk-width-container ">
 
-      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible gc-break govuk-!-margin-top-9">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-half">
-          <h3 class="govuk-heading-m">
-            Current features
-          </h3>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>Search and download regulatory actions <span class="govuk-tag">new</span></li>
-            <li>Search and download information on gambling operators</li>
-            <li>Search and download information on licensed individuals</li>
-            <li>Search and download gambling premises dataset</li>
-          </ul>
-        </div>
-      
-      <div class="govuk-grid-column-one-half">
-      
-        <h2 class="govuk-heading-m">
-          Help and support
-        </h2>
-        
-        <p class="govuk-body">If you or someone you know is struggling with gambling activity, you can find the details
-          of <a
-            href="https://www.gamblingcommission.gov.uk/for-the-public/Safer-gambling/Getting-help-to-control-your-gambling.aspx#Organisations_that_provide_help"
-            target="_blank">organisations who can help</a> on our website.</p>
-      </div>
-         
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible gc-break govuk-!-margin-top-9">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <h3 class="govuk-heading-m">
+        Current features
+      </h3>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Search and download regulatory actions <span class="govuk-tag">new</span></li>
+        <li>Search and download information on gambling operators</li>
+        <li>Search and download information on licensed individuals</li>
+        <li>Search and download gambling premises dataset</li>
+      </ul>
+    </div>
+
+    <div class="govuk-grid-column-one-half">
+
+      <h2 class="govuk-heading-m">
+        Help and support
+      </h2>
+
+      <p class="govuk-body">If you or someone you know is struggling with gambling activity, you can find the details
+        of <a
+          href="https://www.gamblingcommission.gov.uk/for-the-public/Safer-gambling/Getting-help-to-control-your-gambling.aspx#Organisations_that_provide_help"
+          target="_blank">organisations who can help</a> on our website.</p>
+    </div>
+
   </div>
-</div> 
+</div>
 
 <div class="gc-prefooter">
-    <div class="govuk-width-container ">
-       <p>If something doesn't look right, you can <a target="_blank" href="/reportissue">tell us about it</a>.</p>
-    </div>
-  </div> 
-  
+  <div class="govuk-width-container ">
+    <p>If something doesn't look right, you can <a target="_blank" href="/reportissue">tell us about it</a>.</p>
+  </div>
+</div>
+
 
 <footer class="govuk-footer " role="contentinfo">
   <div class="govuk-width-container ">
@@ -165,7 +163,30 @@ GOV.UK Prototype Kit
 {% block bodyEnd %}
 {% block scripts %}
 {% include "includes/scripts-v2.html" %}
-{% block pageScripts %}{% endblock %}
+{% block pageScripts %}
+<script src="http://cdn.jsdelivr.net/datatrack.js/latest/dataTrack.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $.dataTrack(function (action, category, label, value) {
+      ga('send', 'event', category, action, label, value);
+    });
+  });
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144500255-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144500255-1');
+</script>
+
+{% endblock %}
 {% endblock %}
 <!-- GOV.UK Prototype Kit {{releaseVersion}} -->
 {% endblock %}
