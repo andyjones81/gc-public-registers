@@ -202,10 +202,10 @@ Register of regulatory sanctions
 
                             <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
                                 {% if i.remotestatus === 'Operator' %}
-                                <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}"   ga-on="click" ga-event-category="RASaSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}-{{ loop.length }}-{{i.AccountNo}}">
+                                <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}"   ga-on="click" ga-event-category="RASaSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}¬{{ loop.length }}¬{{i.AccountNo}}¬{{data['searchsan']}}">
                                     {{i.account}}</a>
                                 {% else %}
-                                <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}" ga-on="click" ga-event-category="RASaSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}-{{ loop.length }}-{{i.AccountNo}}">
+                                <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}" ga-on="click" ga-event-category="RASaSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}¬{{ loop.length }}¬{{i.AccountNo}}¬{{data['searchsan']}}">
                                     {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
                                 {% endif %}
 
@@ -313,10 +313,10 @@ Register of regulatory sanctions
 
                             <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
                                 {% if i.remotestatus === 'Operator' %}
-                                <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}" ga-on="click" ga-event-category="RASeSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}-{{ loop.length }}-{{i.AccountNo}}">
+                                <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}" ga-on="click" ga-event-category="RASeSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}¬{{ loop.length }}¬{{i.AccountNo}}¬{{data['searchsan']}}">
                                     {{i.account}}</a>
                                 {% else %}
-                                <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}" ga-on="click" ga-event-category="RASeSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}-{{ loop.length }}-{{i.AccountNo}}">
+                                <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}" ga-on="click" ga-event-category="RASeSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}¬{{ loop.length }}¬{{i.AccountNo}}¬{{data['searchsan']}}">
                                     {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
                                 {% endif %}
 
@@ -331,7 +331,7 @@ Register of regulatory sanctions
                         {%else%}
 
                         <p class="govuk-body">No results found for <span
-                                class="govuk-!-font-weight-bold">"{{data['search']}}"</span> in the settlements register
+                                class="govuk-!-font-weight-bold">"{{data['searchsan']}}"</span> in the settlements register
                         </p>
                         <p class="govuk-body">You can search the register using business or individual name or account
                             number.</p>
