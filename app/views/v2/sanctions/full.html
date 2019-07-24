@@ -202,10 +202,10 @@ Register of regulatory sanctions
 
                             <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
                                 {% if i.remotestatus === 'Operator' %}
-                                <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}">
+                                <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}"   ga-on="click" ga-event-category="RASaSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}-{{ loop.length }}-{{i.AccountNo}}">
                                     {{i.account}}</a>
                                 {% else %}
-                                <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}">
+                                <a href="/{{version}}/{{i.remotestatus}}/sanctions/{{i.AccountNo}}" ga-on="click" ga-event-category="RASaSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}-{{ loop.length }}-{{i.AccountNo}}">
                                     {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
                                 {% endif %}
 
@@ -313,10 +313,10 @@ Register of regulatory sanctions
 
                             <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
                                 {% if i.remotestatus === 'Operator' %}
-                                <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}">
+                                <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}" ga-on="click" ga-event-category="RASeSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}-{{ loop.length }}-{{i.AccountNo}}">
                                     {{i.account}}</a>
                                 {% else %}
-                                <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}">
+                                <a href="/{{version}}/{{i.remotestatus}}/settlements/{{i.AccountNo}}" ga-on="click" ga-event-category="RASeSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}-{{ loop.length }}-{{i.AccountNo}}">
                                     {{i.Applicantfirstname}} {{i.Applicantsurname | upper}} </a>
                                 {% endif %}
 

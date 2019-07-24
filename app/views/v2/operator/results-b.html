@@ -271,7 +271,7 @@ Search the register of gambling businesses
 
                 <span class="gc-pull-right">
                     <span class="govuk-tag">{{i.accountno}}</span></span>
-                <a href="/{{version}}/operator/detail/{{i.accountno}}">{{i.account}}</a>
+                <a href="/{{version}}/operator/detail/{{i.accountno}}" ga-on="click" ga-event-category="OLSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}-{{ loop.length }}-{{i.accountno}}">{{i.account}}</a>
 
             </h3>
 

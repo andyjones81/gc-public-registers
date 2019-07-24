@@ -188,7 +188,7 @@ Search the operator register
 
 
             <h3 class="govuk-heading-m govuk-!-margin-bottom-2"><a
-                    href="/{{version}}/premises/detail/{{i.id}}">{{i.addressline1 | title}}</a></h3>
+                    href="/{{version}}/premises/detail/{{i.id}}"   ga-on="click" ga-event-category="PremSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}-{{ loop.length }}-{{i.id}}">{{i.addressline1 | title}}</a></h3>
 
             <p class="govuk-body-s">
                 {{i.addressline2 if i.addressline2 | title else ""}}, {{i.city | title}}, {{i.postcode | upper}}
