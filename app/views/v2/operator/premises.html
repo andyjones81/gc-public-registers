@@ -187,7 +187,8 @@
 
 
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell" scope="row"><a href="/{{version}}/premises/detail/{{i.ID}}">{{i.addressline1}}</a><br>{{i.addressline2}},
+                    <td class="govuk-table__cell" scope="row">
+                        <a href="/{{version}}/premises/detail/{{i.ID}}" class="govuk-!-margin-bottom-2">{{i.addressline1}}</a><br>{{i.addressline2}},
                         {{i.city | capitalize}}, {{i.postcode}}</td>
                     <td class="govuk-table__cell" scope="row">{{i.localauthority if i.localauthority !== 'NULL' else 'NOT AVAILABLE'}}</td>
                     <td class="govuk-table__cell" scope="row">{{i.activity if i.activity !== 'NULL' else 'NOT AVAILABLE'}}</td>

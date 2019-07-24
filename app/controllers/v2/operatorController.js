@@ -82,7 +82,7 @@ exports.operator_results_post = function (req, res) {
 
     if (query === '') {
         emptySearch = 'true';
-        res.render(version + '/operator/results-b', {
+        res.render(version + '/operator/results-b?q=' + query, {
             version,
             emptySearch
         })
@@ -92,7 +92,7 @@ exports.operator_results_post = function (req, res) {
         registerData.then(result => {
 
             if (r === 'A') {
-                res.render(version + '/operator/results', {
+                res.render(version + '/operator/results?q=' + query, {
                     version,
                     registerData,
                     result,
@@ -244,7 +244,7 @@ exports.operator_results_get = function (req, res) {
     registerData = _.orderBy(registerData, ['Account'], ['asc']);
 
     if (r === 'A') {
-        res.render(version + '/operator/results', {
+        res.render(version + '/operator/results?q=' + query, {
             version,
             registerData
         })
@@ -261,7 +261,7 @@ exports.operator_results_get = function (req, res) {
                 registerData
             })
         } else {
-            res.render(version + '/operator/results-b', {
+            res.render(version + '/operator/results-b?q=' + query, {
                 version,
                 registerData
             })

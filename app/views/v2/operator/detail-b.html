@@ -391,6 +391,11 @@
                                         target="_Blank">{{product}}</a>
                                     {% endif %}
 
+                                    {% if product === 'Gaming Machine Technical Software ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-gaming-machine-technical-software-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
+
                                  
 
                                 </td>
@@ -450,7 +455,10 @@
                                     <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-bingo-operating-licence.aspx.aspx"
                                         target="_Blank">{{product}}</a>
                                     {% endif %}
-
+                                    {% if product === 'Gaming Machine Technical Full ' %}
+                                    <a href="https://www.gamblingcommission.gov.uk/for-gambling-businesses/Do-I-need-a-licence/Operating-licences/Non-remote-gaming-machine-technical-full-licence.aspx"
+                                        target="_Blank">{{product}}</a>
+                                    {% endif %}
                                 </td>
                                 <td class="govuk-table__cell govuk-table__cell--numeric gc-text-right">
                                     <div class="">{{act.MinofStart | date('DD MMM YYYY')}}</div>
@@ -466,7 +474,7 @@
 
                     </table>
                     {% else %}
-                    <p>Licence acitivities no longer held</p>
+                    <p>Licence activities no longer held</p>
                     {% endif %}
                 </div>
                 {% endfor %}
