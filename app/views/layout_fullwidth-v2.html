@@ -165,25 +165,22 @@ GOV.UK Prototype Kit
 {% include "includes/scripts-v2.html" %}
 {% block pageScripts %}
 <script src="http://cdn.jsdelivr.net/datatrack.js/latest/dataTrack.min.js"></script>
-
-<script>
-  $(document).ready(function () {
-    $.dataTrack(function (action, category, label, value) {
-      gtag('send', 'event', category, action, label, value);
-    });
-  });
+<script>    
+$(document).ready(function() {
+    $.dataTrack(); 
+});
 </script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144500255-1"></script>
+
 <script>
-  window.dataLayer = window.dataLayer || [];
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
+  ga('create', 'UA-144500255-1', 'auto');
+  ga('send', 'pageview');
 
-  gtag('config', 'UA-144500255-1');
 </script>
 
 {% endblock %}
