@@ -2,7 +2,7 @@
 
 {% block headerContent %}
 
-<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+<button data-module="govuk-button"  type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
     aria-label="Show or hide Top Level Navigation">Menu</button>
 {% include "includes/nav.html" %}
 
@@ -46,7 +46,7 @@ Search the operator register
                             value="{{ data['searchp'] }}" />
                     </div>
                     <div class="input-field third-wrap">
-                        <button class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
+                        <button data-module="govuk-button"  class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
                                 register</span>
                             <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas"
                                 data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -73,7 +73,7 @@ Search the operator register
         <form method="POST" action="search">
 
 
-                <details class="govuk-details">
+                <details data-module="govuk-details"  class="govuk-details">
                         <summary class="govuk-details__summary">
                           <span class="govuk-details__summary-text">
                            Filter the results
@@ -156,7 +156,7 @@ Search the operator register
                     </fieldset>
                 </div>
 
-                <button type="submit" class="govuk-button">
+                <button data-module="govuk-button"  type="submit" class="govuk-button">
                     Apply filters
                 </button>
 
@@ -187,7 +187,7 @@ Search the operator register
         <div class="gc-search-result">
 
 
-            <h3 class="govuk-heading-m govuk-!-margin-bottom-2"><a
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-2"><a
                     href="/{{version}}/premises/detail/{{i.id}}"   ga-on="click" ga-event-category="PremSearch" ga-event-action="Click" ga-event-label="{{ loop.index }}¬{{ loop.length }}¬{{i.id}}¬{{data['searchp']}}">{{i.addressline1 | title}}</a></h3>
 
             <p class="govuk-body-s">

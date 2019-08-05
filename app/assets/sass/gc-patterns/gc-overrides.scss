@@ -1,0 +1,16 @@
+.govuk-header {
+    background: $gcebony;
+  }
+
+  .govuk-header__container {
+    border-bottom: 10px solid $gcebonyshade;
+}
+
+.gc-product-layout{
+  .govuk-header__container {
+    border-bottom: none;
+}
+}
+
+
+.gc-logo-image{max-width: 200px;}

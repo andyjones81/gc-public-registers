@@ -4,7 +4,7 @@
 
 {% block headerContent %}
 
-<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+<button data-module="govuk-button"  type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
     aria-label="Show or hide Top Level Navigation">Menu</button>
 {% include "includes/nav.html" %}
 
@@ -179,7 +179,7 @@
                                     <p class="govuk-body">Licence held between {{licence.Start | date('DD MMMM YYYY')}}
                                         and {{licence.End | date('DD MMMM YYYY')}}</p>
 
-                                    <details class="govuk-details govuk-!-margin-bottom-0">
+                                    <details data-module="govuk-details"  class="govuk-details govuk-!-margin-bottom-0" >
                                         <summary class="govuk-details__summary">
                                             <span class="govuk-details__summary-text">
                                                 Activities held on this licence
@@ -207,7 +207,7 @@
                                     <p class="govuk-body">Current licence held from
                                         {{licence.Start | date('DD MMMM YYYY')}}
                                     </p>
-                                    <details class="govuk-details govuk-!-margin-bottom-0">
+                                    <details data-module="govuk-details"  class="govuk-details govuk-!-margin-bottom-0">
                                         <summary class="govuk-details__summary">
                                             <span class="govuk-details__summary-text">
                                                 Activities held on this licence
@@ -610,7 +610,7 @@
                             <p class="govuk-body">Licence held between {{licence.Start | date('DD MMMM YYYY')}}
                                 and {{licence.End | date('DD MMMM YYYY')}}</p>
 
-                            <details class="govuk-details govuk-!-margin-bottom-0">
+                            <details data-module="govuk-details"  class="govuk-details govuk-!-margin-bottom-0">
                                 <summary class="govuk-details__summary">
                                     <span class="govuk-details__summary-text">
                                         Activities held on this licence
@@ -638,7 +638,7 @@
                             <p class="govuk-body">Current licence held from
                                 {{licence.Start | date('DD MMMM YYYY')}}
                             </p>
-                            <details class="govuk-details govuk-!-margin-bottom-0">
+                            <details data-module="govuk-details"  class="govuk-details govuk-!-margin-bottom-0">
                                 <summary class="govuk-details__summary">
                                     <span class="govuk-details__summary-text">
                                         Activities held on this licence
@@ -752,7 +752,7 @@
 
                 </h2>
 
-                <details class="govuk-details">
+                <details data-module="govuk-details"  class="govuk-details">
                     <summary class="govuk-details__summary">
                         <span class="govuk-details__summary-text">
                             What are sanctions?
@@ -816,7 +816,7 @@
                 <h2 class="govuk-heading-m govuk-!-margin-top-4">
                     Other actions
                 </h2>
-                <details class="govuk-details">
+                <details data-module="govuk-details"  class="govuk-details">
                     <summary class="govuk-details__summary">
                         <span class="govuk-details__summary-text">
                             What are other actions?

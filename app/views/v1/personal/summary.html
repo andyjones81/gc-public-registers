@@ -2,7 +2,7 @@
 
 {% block headerContent %}
 
-<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+<button data-module="govuk-button"  type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
     aria-label="Show or hide Top Level Navigation">Menu</button>
 {% include "includes/nav.html" %}
 
@@ -74,7 +74,7 @@ Register of personal licences
                                 <input id="search" name="search" type="text" placeholder="Search" />
                             </div>
                             <div class="input-field third-wrap">
-                                <button class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
+                                <button data-module="govuk-button"  class="btn-search" type="submit"><span class="govuk-visually-hidden">Search the
                                         register</span>
                                     <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas"
                                         data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg"

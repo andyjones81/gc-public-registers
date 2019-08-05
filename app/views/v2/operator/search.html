@@ -2,7 +2,7 @@
 
 {% block headerContent %}
 
-<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+<button data-module="govuk-button"  type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
     aria-label="Show or hide Top Level Navigation">Menu</button>
 {% include "includes/nav.html" %}
 
@@ -46,7 +46,7 @@ Search the operator register
                     <input class="govuk-input" id="search" name="search" type="text">
                 </div>
 
-                <details class="govuk-details">
+                <details data-module="govuk-details"  class="govuk-details">
                     <summary class="govuk-details__summary">
                         <span class="govuk-details__summary-text">
                             Additional search options
@@ -197,7 +197,7 @@ Search the operator register
                     </div>
                 </details>
 
-                <button type="submit" class="govuk-button">
+                <button data-module="govuk-button"  type="submit" class="govuk-button">
                     Search
                 </button>
             </form>

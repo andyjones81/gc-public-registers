@@ -4,7 +4,7 @@
 
 {% block headerContent %}
 
-<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+<button data-module="govuk-button"  type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
     aria-label="Show or hide Top Level Navigation">Menu</button>
 {% include "includes/nav.html" %}
 
@@ -197,7 +197,7 @@
                             {{ licence.Type }}</h2>
                         <p class="govuk-!-margin-bottom-2 govuk-body-s">Licence number: {{licence.LicenceNo}}</p>
 
-                        <details class="govuk-details govuk-!-margin-bottom-1">
+                        <details data-module="govuk-details"  class="govuk-details govuk-!-margin-bottom-1">
                             <summary class="govuk-details__summary">
                                 <span class="govuk-details__summary-text">
                                     What is a {{ licence.Type | lower}} licence?

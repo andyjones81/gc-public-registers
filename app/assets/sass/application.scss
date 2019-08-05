@@ -1,28 +1,23 @@
-// global styles for <a> and <p> tags
 $govuk-global-styles: true;
-$gcapple-dark: #4D7227;
-// Path to assets for use with the file-url function
-// in the govuk frontend toolkit's url-helpers partial
 $path: "/public/images/";
 
-//Import GOV.UK Frontend
-@import "node_modules/govuk-frontend/all";
+@import "node_modules/govuk-frontend/govuk/all";
 
-//Variables specific to Blue Badge
+@import "components/_cookie-banner";
+@import "gc-patterns/gc-colors";
+@import "gc-patterns/gc-alert";
+@import "gc-patterns/gc-card";
+@import "gc-patterns/gc-typography";
+@import "gc-patterns/gc-position";
+@import "gc-patterns/gc-currency";
+@import "gc-patterns/gc-vertical-menu";
+@import "gc-patterns/gc-hero";
+@import "gc-patterns/gc-overrides";
 
-@import "variables";
-
-// Patterns that aren't in Frontend
-@import "patterns/_check-your-answers";
-@import "patterns/_task-list";
-@import "patterns/_related-items";
-@import "gcpatterns/gc-alert";
-@import "gcpatterns/gc-vertical-menu";
-@import "gcpatterns/gc-card";
 
 .code {
   color: $govuk-text-colour;
-  background-color: govuk-colour(grey-4);
+  background-color: govuk-colour('light-grey');
 
   text-shadow: 0 1px govuk-colour(white);
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -54,18 +49,6 @@ $path: "/public/images/";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
-@import 'patterns/sign-in';
-@import 'patterns/admin';
-@import 'patterns/cropper';
-@import 'patterns/candidate';
-@import 'patterns/guidance';
-@import 'patterns/autocomplete';
-@import 'patterns/header';
-@import 'patterns/govuk-panels';
-@import "components/_cookie-banner";
-@import "patterns/gc-core";
-@import "patterns/gc-currency-input";
-
 .text-right {
   text-align: right;
 }
@@ -91,18 +74,18 @@ $path: "/public/images/";
   .govuk-link,
   .govuk-caption-l,
   a {
-    color: $white
+    color: govuk-colour('white')
   
   }
   .govuk-back-link {
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid govuk-colour('white');
     margin-top: 0px;
     margin-bottom: 0px;
   }
   .govuk-back-link:focus,
   .govuk-link:focus {
-    color: $black;
-    border-bottom: 1px solid $black 
+    color: govuk-colour('black');
+    border-bottom: 1px solid govuk-colour('black') 
   }
  } 
 
@@ -120,7 +103,7 @@ $path: "/public/images/";
 .gc-meta {
  
   margin-top: 5px;
-    color: $grey-1;
+    color: govuk-colour('dark-grey');
     font-size: 14px;
   }
 
@@ -134,7 +117,7 @@ $path: "/public/images/";
 }
 
 .gc-register-search form .inner-form {
-  background: $white;
+  background: govuk-colour('white');
   display: -ms-flexbox;
   display: flex;
   width: 100%;
@@ -142,7 +125,7 @@ $path: "/public/images/";
   justify-content: space-between;
   -ms-flex-align: center;
   align-items: center;
-  // border: 2px solid $grey-1;
+  // border: 2px solid govuk-colour('dark-grey');
   // box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
 }
 
@@ -160,35 +143,35 @@ $path: "/public/images/";
   width: 100%;
   padding: 10px 15px;
   font-size: 16px;
-  color: $black !important;
+  color: govuk-colour('black') !important;
 }
 
 .gc-register-search--whitebg form .inner-form .input-field input {
 
-  border: 2px solid $black;
+  border: 2px solid govuk-colour('black');
 
 }
 
 
 
 .gc-register-search form .inner-form .input-field input.placeholder {
-  color: $grey-1;
+  color: govuk-colour('dark-grey');
   font-size: 16px;
 }
 
 .gc-register-search form .inner-form .input-field input:-moz-placeholder {
-  color: $grey-1;
+  color: govuk-colour('dark-grey');
   font-size: 16px;
 }
 
 .gc-register-search form .inner-form .input-field input::-webkit-input-placeholder {
-  color: $grey-1;
+  color: govuk-colour('dark-grey');
   font-size: 16px;
 }
 
 .gc-register-search form .inner-form .input-field input:hover,
 .gc-register-search form .inner-form .input-field input:focus {
-  box-shadow: 0 0 0 4px $yellow;
+  box-shadow: 0 0 0 4px govuk-colour('yellow');
 
 }
 
@@ -217,7 +200,7 @@ $path: "/public/images/";
   color: #fff;
   border: 0;
   cursor: pointer;
-  background: $black;
+  background: govuk-colour('black');
   transition: all .2s ease-out, color .2s ease-out;
 }
 
@@ -226,13 +209,13 @@ $path: "/public/images/";
 }
 
 .gc-register-search form .inner-form .input-field.third-wrap .btn-search:hover {
-  background: $black;
-  box-shadow: 0 0 0 4px $yellow;
+  background: govuk-colour('black');
+  box-shadow: 0 0 0 4px govuk-colour('yellow');
 }
 
 .gc-register-search form .inner-form .input-field.third-wrap .btn-search:focus {
 
-  box-shadow: 0 0 0 4px $yellow;
+  box-shadow: 0 0 0 4px govuk-colour('yellow');
 }
 
 
@@ -251,7 +234,7 @@ $path: "/public/images/";
 
   .gc-register-search form .inner-form .input-field {
     margin-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid $govuk-border-colour;
   }
 
   .gc-register-search form .inner-form .input-field input {
@@ -395,14 +378,14 @@ $path: "/public/images/";
 
 .gc-tag-meta {
   padding: 5px;
-  border: 1px solid $grey-1;
-  background: $grey-4;
+  border: 1px solid govuk-colour('dark-grey');
+  background: govuk-colour('light-grey');
   font-size: 14px;
 }
 
 .gc-search-result-a {
   margin-bottom: 20px;
-  border-bottom: 1px solid $grey-2;
+  border-bottom: 1px solid govuk-colour('mid-grey');
   padding: 5px 0px 15px 0px;
   .govuk-details__summary-text {
     text-decoration: underline;
@@ -413,7 +396,7 @@ $path: "/public/images/";
 
 .gc-search-result {
   margin-bottom: 20px;
-  box-shadow: 0px 0px 0px 1px $grey-2;
+  box-shadow: 0px 0px 0px 1px govuk-colour('mid-grey');
   border-radius: 0px;
   padding: 15px;
   border-bottom: none;
@@ -429,11 +412,11 @@ $path: "/public/images/";
 @media screen and (max-width: 767px) {
   .gc-search-result {
     margin-bottom: 20px;
-    box-shadow: 0px 0px 0px 1px $grey-2;
+    box-shadow: 0px 0px 0px 1px govuk-colour('mid-grey');
     border-radius: 3px;
     padding: 15px;
     border-bottom: none;
-    background: $grey-4;
+    background: govuk-colour('light-grey');
   }
 }
 
@@ -449,9 +432,9 @@ $path: "/public/images/";
 
   .govuk-accordion__section-content {
     padding: 15px;
-    border-left: 1px solid $grey-3;
-    border-right: 1px solid $grey-3;
-    border-bottom: 1px solid $grey-3;
+    border-left: 1px solid govuk-colour('light-grey');
+    border-right: 1px solid govuk-colour('light-grey');
+    border-bottom: 1px solid govuk-colour('light-grey');
   }
 
   .govuk-accordion__section {
@@ -460,12 +443,12 @@ $path: "/public/images/";
   }
 
   .govuk-accordion__section-header {
-    background: $grey-3;
+    background: govuk-colour('light-grey');
     padding: 0px 0px 15px 15px;
   }
 
   .govuk-accordion__section-header:hover {
-    background: $grey-3;
+    background: govuk-colour('light-grey');
   }
 
 
@@ -486,7 +469,7 @@ $path: "/public/images/";
 @media screen and (max-width: 768px) {
 
   .gc-search-result>.govuk-heading-s {
-    color: $govuk-blue;
+    color: govuk-colour('blue');
   }
 
   .gc-search-result {
@@ -645,8 +628,8 @@ $path: "/public/images/";
 }
 
 .register-theme__link:hover {
-  border: 1px solid $yellow;
-  box-shadow: 0 0 0 1px $yellow;
+  border: 1px solid govuk-colour('yellow');
+  box-shadow: 0 0 0 1px govuk-colour('yellow');
 }
 
 .register-theme__heading,
@@ -716,8 +699,8 @@ $path: "/public/images/";
   & li {
     display: inline-block;
     padding: 3px 5px;
-    background: $grey-3;
-    border: 1px solid $grey-2;
+    background: govuk-colour('light-grey');
+    border: 1px solid govuk-colour('mid-grey');
     font-size: 14px;
     margin-bottom: 5px;
     font-family: "nta", Arial, sans-serif;
@@ -751,8 +734,8 @@ code {
 }
 
 .alpha-tag {
-  background: $jaffa;
-  color: $white;
+  background: govuk-colour('orange');
+  color: govuk-colour('white');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
@@ -762,16 +745,17 @@ code {
   display: inline-block;
   padding: 5px 10px;
   padding-bottom: 1px;
-  outline: 2px solid $white;
+  outline: 2px solid govuk-colour('white');
   outline-offset: -2px;
   letter-spacing: 1px;
   text-decoration: none;
   text-transform: uppercase;
   margin-right: 15px;
+  margin-bottom: 5px
 }
 
 .gc-right-aside{
-  border-top: 10px solid $govuk-blue;
+  border-top: 10px solid govuk-colour('blue');
   padding: 15px 0 0 0;
   margin-left: 15px;
 }
@@ -784,13 +768,13 @@ code {
 address{font-style: normal;}
 
 
-.govuk-tag.active, .govuk-tag.granted {background-color: $gcapple}
-.govuk-tag.suspended{background-color: $govuk-blue}
+.govuk-tag.active, .govuk-tag.granted {background-color: govuk-colour('green')}
+.govuk-tag.suspended{background-color: govuk-colour('blue')}
 
 .gc-vertical-side-nav{
   list-style: none; padding:0px; margin:0px;
-li{background: $grey-4; list-style: none; margin-bottom: 5px}
-  li  { font-size: 14px; padding: 10px; display: block; text-decoration: none;border-left: 5px solid $grey-4}
+li{background: govuk-colour('light-grey'); list-style: none; margin-bottom: 5px}
+  li  { font-size: 14px; padding: 10px; display: block; text-decoration: none;border-left: 5px solid govuk-colour('light-grey')}
   li:hover, li.active { border-left: 5px solid $gcebony; cursor: pointer;}
   li.active { font-weight: 700;}
 }
@@ -821,165 +805,7 @@ body {font-family: "Lato", sans-serif;}
   .card{min-height: 225px;}
 }
 
-[aria-sort] button,
-[aria-sort] button:hover {
-  background-color: transparent;
-  border-width: 0;
-  -webkit-box-shadow: 0 0 0 0;
-  -moz-box-shadow: 0 0 0 0;
-  box-shadow: 0 0 0 0;
-  color: #005ea5;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  padding: 0 10px 0 0;
-  position: relative;
-  text-align: inherit;
-  font-size: 1em;
-  margin: 0;
-  @include govuk-focusable;
-}
 
-[aria-sort]:first-child button {
-  right: auto;
-}
-
-[aria-sort] button:before {
-  content: " \25bc";
-  position: absolute;
-  right: -1px;
-  top: 9px;
-  font-size: 0.5em;
-}
-
-[aria-sort] button:after {
-  content: " \25b2";
-  position: absolute;
-  right: -1px;
-  top: 1px;
-  font-size: 0.5em;
-}
-
-[aria-sort="ascending"] button:before,
-[aria-sort="descending"] button:before {
-  content: none;
-}
-
-[aria-sort="ascending"] button:after {
-  content: " \25b2";
-  font-size: .8em;
-  position: absolute;
-  right: -5px;
-  top: 2px;
-}
-
-[aria-sort="descending"] button:after {
-  content: " \25bc";
-  font-size: .8em;
-  position: absolute;
-  right: -5px;
-  top: 2px;
-}
-
-.govuk-table__header, .govuk-table__cell {
-  padding: 7px 20px 7px 0;
-  border-bottom: 1px solid #bfc1c3;
-  text-align: left;
-}
-
-/* ==========================================================================
-   #SECONDARY NAV
-   ========================================================================== */
-
-   .hmcts-sub-navigation {
-    margin-bottom: govuk-spacing(7);
-  }
-  
-  
-  .hmcts-sub-navigation__list {
-    font-size: 0; // Removes white space when using inline-block on child element.
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  
-    @include mq($from: tablet) {
-      box-shadow: inset 0 -1px 0 $govuk-border-colour;
-      width: 100%;
-    }
-  
-    // IE8 does not support box shadow, so use a standard border.
-    @include govuk-if-ie8 {
-      border-bottom: 1px solid $govuk-border-colour;
-    }
-  
-  }
-  
-  
-  .hmcts-sub-navigation__item {
-    @include govuk-font(19);
-    box-shadow: inset 0 -1px 0 $govuk-border-colour;
-    display: block;
-    margin-top: -1px;
-  
-    &:last-child {
-      box-shadow: none;
-    }
-  
-    @include mq($from: tablet) {
-      box-shadow: none;
-      display: inline-block;
-      margin-right: govuk-spacing(4);
-      margin-top: 0;
-    }
-  
-  }
-  
-  
-  .hmcts-sub-navigation__link {
-    display: block;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: govuk-spacing(3);
-    text-decoration: none;
-  
-    @include mq($from: tablet) {
-      padding-left: 0;
-    }
-  
-    &:focus {
-      color: govuk-colour("black"); // Focus colour on yellow should really be black.
-      position: relative; // Ensure focus sits above everything else.
-    }
-  
-  }
-  
-  
-  .hmcts-sub-navigation__link[aria-current="page"] {
-    color: govuk-colour(black);
-    position: relative;
-    text-decoration: none;
-  
-    &:before {
-      background-color: govuk-colour("blue");
-      content: "";
-      display: block;
-      height: 100%;
-      position: absolute; bottom: 0; left: 0;
-      width: 5px;
-  
-      @include mq($from: tablet) {
-        height: 5px;
-        width: 100%;
-      }
-  
-    }
-  
-    &:focus:before {
-      background-color: govuk-colour("black");
-    }
-  
-  }
   
 
   .gc-break{border-bottom: 5px solid $gcebonyshade;}
@@ -1059,10 +885,10 @@ body {font-family: "Lato", sans-serif;}
     float: right;
     margin-top: 8px;
     margin-right: 5px;
-    background: $grey-3;
+    background: govuk-colour('light-grey');
     padding: 3px 4px 2px 4px;
     border-radius: 2px;
-    color: $black;
+    color: govuk-colour('black');
     font-weight: 700;
     min-width: 25px;
     text-align: center;
@@ -1113,7 +939,7 @@ body {font-family: "Lato", sans-serif;}
 .app-subnav__link{
   display:block;
   padding:8px 30px 8px 10px;
-  border-left:4px solid $grey-3;
+  border-left:4px solid govuk-colour('light-grey');
   text-decoration:none;
   margin-bottom: 5px;
 }
@@ -1173,6 +999,6 @@ body {font-family: "Lato", sans-serif;}
 
 .gc-text-right{text-align: right;}
 
-.gc-search-result--header{background: $grey-4;}
+.gc-search-result--header{background: govuk-colour('light-grey');}
 
-.gc-prefooter{padding: 25px 15px 5px 15px; background: $grey-4; border-top: 1px solid $grey-2}
+.gc-prefooter{padding: 25px 15px 5px 15px; background: govuk-colour('white'); border-top: 1px solid $govuk-border-colour; margin-top: 40px;}

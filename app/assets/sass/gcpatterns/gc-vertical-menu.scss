@@ -39,7 +39,7 @@
   .gc-vertical-nav__link{
     display:block;
     padding:8px 30px 8px 10px;
-    border-left:4px solid govuk-colour("grey-3");
+    border-left:4px solid govuk-colour("light-grey");
     text-decoration:none;
     margin-bottom: 5px;
   }
@@ -49,7 +49,7 @@
   }
 
  .gc-vertical-nav__section-item--current{
-    background: govuk-colour("grey-4");
+    background: govuk-colour("light-grey");
   }
 
   .gc-vertical-nav__link:hover{
@@ -75,7 +75,7 @@
     float: right;
     margin-top: 7px;
     margin-right: 7px;
-    background: govuk-colour("grey-3");
+    background: govuk-colour("light-grey");
     padding: 3px 4px 2px 4px;
     border-radius: 2px;
     color: govuk-colour("black");

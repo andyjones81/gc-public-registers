@@ -193,7 +193,7 @@ When should this be published?
       <p class="govuk-body">You can edit the details before it goes live on the register.</p>
       <form method="POST" action="/{{version}}/{{appJourney.submit}}">
         <div class="govuk-form-group">
-          <button class="govuk-button" type="submit">
+          <button data-module="govuk-button"  class="govuk-button" type="submit">
             Submit {{data['reg-type'] | lower }}
           </button>
         </div>

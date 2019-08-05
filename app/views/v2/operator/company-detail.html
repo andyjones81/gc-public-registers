@@ -1,6 +1,6 @@
 {% extends "layout_fullwidth-v2.html" %} {% set olDetail = result.registerData.recordset[0] %} {% block headerContent %}
 
-<button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
+<button data-module="govuk-button"  type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation"
     aria-label="Show or hide Top Level Navigation">Menu</button> {% include "includes/nav.html" %} {% endblock %}
 {% block headerInfo %} {% include
 "includes/beta.html" %} {% endblock %} {% block pageTitle %} {{olDetail.Account}} {% endblock %}

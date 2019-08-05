@@ -70,7 +70,7 @@ HMCTSFrontend.AddAnother.prototype.updateAttributes = function(index, item) {
 };
 
 HMCTSFrontend.AddAnother.prototype.createRemoveButton = function(item) {
-	item.append('<button type="button" class="govuk-button hmcts-button--secondary hmcts-add-another__remove-button">Remove</button>');
+	item.append('<button data-module="govuk-button"  type="button" class="govuk-button hmcts-button--secondary hmcts-add-another__remove-button">Remove</button>');
 };
 
 HMCTSFrontend.AddAnother.prototype.resetItem = function(item) {
@@ -116,7 +116,7 @@ HMCTSFrontend.FilterToggleButton.prototype.setupResponsiveChecks = function() {
 };
 
 HMCTSFrontend.FilterToggleButton.prototype.createToggleButton = function() {
-  this.menuButton = $('<button class="govuk-button '+this.options.toggleButton.classes+'" type="button" aria-haspopup="true" aria-expanded="false">'+this.options.toggleButton.showText+'</button>');
+  this.menuButton = $('<button data-module="govuk-button"  class="govuk-button '+this.options.toggleButton.classes+'" type="button" aria-haspopup="true" aria-expanded="false">'+this.options.toggleButton.showText+'</button>');
   this.menuButton.on('click', $.proxy(this, 'onMenuButtonClick'));
   this.options.toggleButton.container.append(this.menuButton);
 };
@@ -141,7 +141,7 @@ HMCTSFrontend.FilterToggleButton.prototype.enableSmallMode = function() {
 
 HMCTSFrontend.FilterToggleButton.prototype.addCloseButton = function() {
   if(this.options.closeButton) {
-    this.closeButton = $('<button class="hmcts-filter__close" type="button">'+this.options.closeButton.text+'</button>');
+    this.closeButton = $('<button data-module="govuk-button"  class="hmcts-filter__close" type="button">'+this.options.closeButton.text+'</button>');
     this.closeButton.on('click', $.proxy(this, 'onCloseClick'));
     this.options.closeButton.container.append(this.closeButton);
   }
@@ -363,7 +363,7 @@ HMCTSFrontend.Menu.prototype.onDocumentClick = function(e) {
 };
 
 HMCTSFrontend.Menu.prototype.createToggleButton = function() {
-	this.menuButton = $('<button class="govuk-button hmcts-menu__toggle-button ' + this.buttonClasses + '" type="button" aria-haspopup="true" aria-expanded="false">'+this.buttonText+'</button>');
+	this.menuButton = $('<button data-module="govuk-button"  class="govuk-button hmcts-menu__toggle-button ' + this.buttonClasses + '" type="button" aria-haspopup="true" aria-expanded="false">'+this.buttonText+'</button>');
 	this.menuButton.on('click', $.proxy(this, 'onMenuButtonClick'));
 	this.menuButton.on('keydown', $.proxy(this, 'onMenuKeyDown'));
 };
@@ -546,23 +546,23 @@ if('contentEditable' in document.documentElement) {
     html += '<div class="hmcts-rich-text-editor__toolbar" role="toolbar">';
 
     if(this.options.toolbar.bold) {
-      html += '<button class="hmcts-rich-text-editor__toolbar-button hmcts-rich-text-editor__toolbar-button--bold" type="button" data-command="bold"><span class="govuk-visually-hidden">Bold</span></button>';
+      html += '<button data-module="govuk-button"  class="hmcts-rich-text-editor__toolbar-button hmcts-rich-text-editor__toolbar-button--bold" type="button" data-command="bold"><span class="govuk-visually-hidden">Bold</span></button>';
     }
 
     if(this.options.toolbar.italic) {
-      html += '<button class="hmcts-rich-text-editor__toolbar-button hmcts-rich-text-editor__toolbar-button--italic" type="button" data-command="italic"><span class="govuk-visually-hidden">Italic</span></button>';
+      html += '<button data-module="govuk-button"  class="hmcts-rich-text-editor__toolbar-button hmcts-rich-text-editor__toolbar-button--italic" type="button" data-command="italic"><span class="govuk-visually-hidden">Italic</span></button>';
     }
 
     if(this.options.toolbar.underline) {
-      html += '<button class="hmcts-rich-text-editor__toolbar-button hmcts-rich-text-editor__toolbar-button--underline" type="button" data-command="underline"><span class="govuk-visually-hidden">Underline</span></button>';
+      html += '<button data-module="govuk-button"  class="hmcts-rich-text-editor__toolbar-button hmcts-rich-text-editor__toolbar-button--underline" type="button" data-command="underline"><span class="govuk-visually-hidden">Underline</span></button>';
     }
 
     if(this.options.toolbar.list) {
-      html += '<button class="hmcts-rich-text-editor__toolbar-button hmcts-rich-text-editor__toolbar-button--unordered-list" type="button" data-command="insertUnorderedList"><span class="govuk-visually-hidden">Unordered list</span></button>';
+      html += '<button data-module="govuk-button"  class="hmcts-rich-text-editor__toolbar-button hmcts-rich-text-editor__toolbar-button--unordered-list" type="button" data-command="insertUnorderedList"><span class="govuk-visually-hidden">Unordered list</span></button>';
     }
 
     if(this.options.toolbar.numbers) {
-      html += '<button class="hmcts-rich-text-editor__toolbar-button hmcts-rich-text-editor__toolbar-button--ordered-list" type="button" data-command="insertOrderedList"><span class="govuk-visually-hidden">Ordered list</span></button>';
+      html += '<button data-module="govuk-button"  class="hmcts-rich-text-editor__toolbar-button hmcts-rich-text-editor__toolbar-button--ordered-list" type="button" data-command="insertOrderedList"><span class="govuk-visually-hidden">Ordered list</span></button>';
     }
 
     html += '</div>';
@@ -621,7 +621,7 @@ if('contentEditable' in document.documentElement) {
 }
 HMCTSFrontend.SearchToggleButton = function(options) {
   this.options = options;
-  this.toggleButton = $('<button class="hmcts-search-toggle__button" type="button" aria-haspopup="true" aria-expanded="false">'+this.options.toggleButton.text+'</button>');
+  this.toggleButton = $('<button data-module="govuk-button"  class="hmcts-search-toggle__button" type="button" aria-haspopup="true" aria-expanded="false">'+this.options.toggleButton.text+'</button>');
 	this.toggleButton.on('click', $.proxy(this, 'onToggleButtonClick'));
   this.options.toggleButton.container.append(this.toggleButton);
 };
@@ -666,7 +666,7 @@ HMCTSFrontend.SortableTable.prototype.createHeadingButtons = function() {
 
 HMCTSFrontend.SortableTable.prototype.createHeadingButton = function(heading, i) {
 	var text = heading.text();
-	var button = $('<button type="button" data-index="'+i+'">'+text+'</button>');
+	var button = $('<button data-module="govuk-button"  type="button" data-index="'+i+'">'+text+'</button>');
 	heading.text('');
 	heading.append(button);
 };
